@@ -1,0 +1,1 @@
+export type IBreakPoint = 'base' | 'sm' | 'md' | 'lg' | 'xl';
