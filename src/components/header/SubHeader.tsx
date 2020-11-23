@@ -2,11 +2,11 @@ import { useQuery } from "@apollo/client";
 import { Box, Flex, Icon, Popover, PopoverContent, PopoverTrigger, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import MenuIcon from '../../../public/svg/MenuIcon.svg'
-import { ProductCategoriesQuery } from "../products/ProductsQueries";
+import { IProductCategoriesData, ProductCategoriesQuery } from "../products/ProductsQueries";
 
 export default function SubHeader() {
 
-  const { loading, error, data } = useQuery(ProductCategoriesQuery)
+  const { loading, error, data } = useQuery<IProductCategoriesData>(ProductCategoriesQuery)
   const rootProductCategories = data?.productCategories.filter(cat => cat.parent === null);
   console.log(data?.productCategories);
 

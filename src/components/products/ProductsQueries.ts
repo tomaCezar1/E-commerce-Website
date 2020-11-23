@@ -10,3 +10,13 @@ export const ProductCategoriesQuery = gql`
   }
 
 `
+
+export interface IProductCategories {
+  id: string;
+  parent: string;
+  title: string;
+}
+
+export interface IProductCategoriesData {
+  productCategories: IProductCategories[]
+}
