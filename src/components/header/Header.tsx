@@ -53,12 +53,16 @@ export default function Header(): JSX.Element {
         <Flex align="center">
           {(breakPoint === 'xl' || breakPoint === 'lg') && 
           <>
-            <Link href="checkout">
+            <Link href="/checkout">
               <div>
-                <Icon as={ShoppingCartIcon} className="cursor-pointer" />
+                <Icon w="18px" h="17px" as={ShoppingCartIcon} className="cursor-pointer" />
               </div>
             </Link>
-           <Icon as={HeartIcon} ml="28px" />
+            <Link href="/checkout">
+              <div>
+                <Icon w="18px" h="17px" as={HeartIcon} ml="28px" className="cursor-pointer" />
+              </div>
+            </Link>
           </>
           }
           <Box ml="38px">
