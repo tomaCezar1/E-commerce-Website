@@ -3,10 +3,10 @@ export const APP_THEME = {
     // white: 'red',
     primary: {
       100: '#E7EDF2',
-      500: "#232B59"
+      500: "#2F3D7E"
     },
     accent: {
-      500: '#EC7E2F'
+      500: '#FFC91A'
     },
   },
   fonts: {
