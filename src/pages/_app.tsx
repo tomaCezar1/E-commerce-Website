@@ -1,16 +1,18 @@
-import React from 'react';
+import React from 'react'
 import Head from 'next/head'
 import { AppProps } from 'next/app'
-import '../styles.scss'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { useApollo } from '../lib/apolloClient'
-import { ApolloProvider } from '@apollo/client';
-import { APP_THEME } from '../lib/theme';
+import { ApolloProvider } from '@apollo/client'
+import { APP_THEME } from '../lib/theme'
+import '../styles/styles.scss'
 
 const theme = extendTheme(APP_THEME)
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
-  const Layout = (Component as any).Layout ? (Component as any).Layout : React.Fragment;
+  const Layout = (Component as any).Layout
+    ? (Component as any).Layout
+    : React.Fragment
   const apolloClient = useApollo(pageProps)
   return (
     <>
@@ -22,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       <ApolloProvider client={apolloClient}>
         <ChakraProvider resetCSS theme={theme}>
           <Layout>
-              <Component {...pageProps} />
+            <Component {...pageProps} />
           </Layout>
         </ChakraProvider>
       </ApolloProvider>

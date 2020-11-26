@@ -9,7 +9,17 @@ export const ProductCategoriesQuery = gql`
     }
   }
 
-`
+`;
+
+export const ProductsCategoriesQuery = gql`
+query ProductCategories($id: String){
+  productCategories(filter: {parent:{eq: $id}}) {
+    title
+    parent
+		id
+  }
+}
+`;
 
 export interface IProductCategories {
   id: string;

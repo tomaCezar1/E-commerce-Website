@@ -1,0 +1,26 @@
+.boxes-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-bottom: 62px;
+}
+
+.box-containers {
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: flex-start;
+    width: 277px;
+    height: 208px;
+}
+
+.svg {
+    width: 22px !important;
+    height: 28px !important;
+}
+
+.box-containers:first-child {
+    margin-right: 2rem;
+}
