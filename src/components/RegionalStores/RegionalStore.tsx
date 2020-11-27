@@ -4,13 +4,15 @@ import Map from './Map'
 import ContactBox from './ContactBox/ContactBox'
 import styled from 'styled-components'
 
-function RegionalStores() {
+function RegionalStore() {
   return (
     <div style={{ background: '#F8F8F8', width: '100vw', margin: 'auto' }}>
-      <Container>
-        <Title>Magazine Regionale</Title>
+      <Flex direction="column" align="center" justify="center" m="auto">
         <Flex flexDirection="column" align="center" justify="center">
-          <Flex flexDirection="row" w={1121}>
+          <Container>
+            <Title>Magazine Regionale</Title>
+          </Container>
+          <Flex flexDirection="row" w={1121} align="flex-start">
             <div>
               <div className="map-container">
                 {/* MAP */}
@@ -62,7 +64,7 @@ function RegionalStores() {
             </div>
           </Flex>
         </Flex>
-      </Container>
+      </Flex>
     </div>
   )
 }
@@ -72,24 +74,31 @@ const Title = styled.h1`
   font-weight: 700;
   font-size: 36px;
   margin-bottom: 2rem;
+  margin-top: 1rem;
   line-height: 42.19px;
   padding: 0;
-  margin-left: -1.35rem;
+  display: flex;
+  align-items: flex-start;
+  // margin-left: -1.35rem;
 `
 
 const Text = styled.p`
   font-size: 14px;
   font-weight: 400;
-  line-height: 16.41px;
-  &:not(first-child) {
-    margin-top: 16.4px;
+  line-height: 1.4rem;
+  margin-top: 16.4px;
+  &:first-child {
+    margin-top: 0;
   }
 `
 const Container = styled.div`
-  width: 70%;
-  margin: auto;
+  // margin: auto;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-self: flex-start;
   //   margin-left: 154px;
   //   margin-right: 165px;
 `
 
-export default RegionalStores
+export default RegionalStore
