@@ -1,8 +1,8 @@
 import { Flex, Icon, Text } from "@chakra-ui/react";
 import Link from 'next/link';
-import FacebookIcon from '../../../public/svg/FacebookIcon.svg';
-import LinkedInIcon from '../../../public/svg/LinkedInIcon.svg';
-import InstagramIcon from '../../../public/svg/InstagramIcon.svg';
+import FacebookIcon from '../../../../public/svg/FacebookIcon.svg';
+import LinkedInIcon from '../../../../public/svg/LinkedInIcon.svg';
+import InstagramIcon from '../../../../public/svg/InstagramIcon.svg';
 
 
 export default function Footer() {

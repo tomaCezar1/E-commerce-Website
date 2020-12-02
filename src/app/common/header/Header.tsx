@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Flex, Text, Box } from '@chakra-ui/layout'
-import PhoneIcon from '../../../public/svg/phone.svg';
-import ShoppingCartIcon from '../../../public/svg/ShoppingCartIcon.svg'
-import HeartIcon from '../../../public/svg/HeartIcon.svg'
+import PhoneIcon from '../../../../public/svg/phone.svg';
+import ShoppingCartIcon from '../../../../public/svg/ShoppingCartIcon.svg'
+import HeartIcon from '../../../../public/svg/HeartIcon.svg'
 import { Icon, useBreakpoint } from '@chakra-ui/react';
 import { IBreakPoint } from '../../lib/types/common';
 import SubHeader from './SubHeader';

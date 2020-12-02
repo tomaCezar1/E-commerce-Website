@@ -2,9 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 import { AppProps } from 'next/app'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-import { useApollo } from '../lib/apolloClient'
+import { useApollo } from '../app/lib/apolloClient'
 import { ApolloProvider } from '@apollo/client'
-import { APP_THEME } from '../lib/theme'
+import { APP_THEME } from '../app/lib/theme'
 import '../styles/styles.scss'
 
 const theme = extendTheme(APP_THEME)

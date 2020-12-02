@@ -1,12 +1,9 @@
-import { Flex } from '@chakra-ui/react';
-import DefaultLayout from '../components/DefaultLayout'
-export const Home = (): JSX.Element => (
-  <Flex maxW="1133px" w="100%">
-    <Flex>
+import HomePage from '../app/app-features/home-page/HomePage';
+import DefaultLayout from '../app/common/DefaultLayout'
 
-    </Flex>
-  </Flex>
-)
+function IndexPage(): JSX.Element {
+  return <HomePage/>
+} 
 
 // TODO: Need to Fix
 // export async function getStaticProps() {
@@ -23,6 +20,6 @@ export const Home = (): JSX.Element => (
 // }
 
 
-Home.Layout = DefaultLayout;
+IndexPage.Layout = DefaultLayout;
 
-export default Home
+export default IndexPage

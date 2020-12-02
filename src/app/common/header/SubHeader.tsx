@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { Box, Flex, Icon, Popover, PopoverContent, PopoverTrigger, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import MenuIcon from '../../../public/svg/MenuIcon.svg'
-import { IProductCategoriesData, ProductCategoriesQuery } from "../products/ProductsQueries";
+import MenuIcon from '../../../../public/svg/MenuIcon.svg'
+import { IProductCategoriesData, ProductCategoriesQuery } from "../../app-features/categories/ProductCategoriesQueries";
 
 export default function SubHeader(): JSX.Element {
 

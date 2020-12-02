@@ -1,5 +1,5 @@
 import { Flex, Box } from "@chakra-ui/react";
-import Footer from "./Footer/Footer";
+import Footer from "./footer/Footer";
 import Header from "./header/Header";
 
 export default function DefaultLayout({ children }) {

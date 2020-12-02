@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
 import Map from './Map'
-import ContactBox from './ContactBox/ContactBox'
-import styled from 'styled-components'
+import ContactBox from './contact-box/ContactBox'
+import styled from 'styled-components';
 
 function RegionalStore() {
   return (

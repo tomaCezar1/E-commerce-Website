@@ -1,8 +1,8 @@
 import { Flex, Icon } from '@chakra-ui/react'
 import styled from 'styled-components'
-import MailIcon from '../../../../public/svg/MailIcon.svg'
-import MapIcon from '../../../../public/svg/MapIcon.svg'
-import PhoneIcon from '../../../../public/svg/PhoneIcon.svg'
+import MailIcon from '../../../../../public/svg/MailIcon.svg'
+import MapIcon from '../../../../../public/svg/MapIcon.svg'
+import PhoneIcon from '../../../../../public/svg/PhoneIcon.svg'
 
 function ContactBox(props) {
   return (

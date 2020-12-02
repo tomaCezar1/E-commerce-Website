@@ -3,22 +3,22 @@ import { gql } from "@apollo/client";
 export const ProductCategoriesQuery = gql`
   query {
     productCategories {
-    id
-    parent
-    title
+      id
+      parent
+      title
     }
   }
 
 `;
 
-export const ProductsCategoriesQuery = gql`
-query ProductCategories($id: String){
-  productCategories(filter: {parent:{eq: $id}}) {
-    title
-    parent
-		id
+export const SubcategoriesQuery = gql`
+  query ProductCategories($id: String){
+    productCategories(filter: {parent:{eq: $id}}) {
+      title
+      parent
+      id
+    }
   }
-}
 `;
 
 export interface IProductCategories {
