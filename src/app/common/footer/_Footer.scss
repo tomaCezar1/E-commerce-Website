@@ -1,25 +1,49 @@
 .footer-icons {
-    margin-right: 11.75px;
+  margin-right: 11.75px;
+  cursor: pointer;
 }
 
-.footer-copywright {
-    color: #ACB5BD;
+%text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
 }
 
 .footer-container {
-    width: 80%;
-    margin: 0 auto;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
-.footer-copy-div {
-    margin-bottom: 21px;
+.footer-copywright {
+  color: #acb5bd;
+  font-size: 12px;
+  line-height: 14px;
 }
 
-.footer-info:first-child {
-    margin-right: 104px;
+.footer-info {
+  color: #ffffff;
+  p {
+    @extend %text;
+    font-weight: 700;
+  }
+  a {
+    font-size: 21px;
+    line-height: 35px;
+    font-weight: 400;
+  }
 }
 
 .footer-hr {
-    margin-bottom: 19px;
-    margin-top: 19px;
+  margin-bottom: 19px;
+  margin-top: 19px;
+  background: #acb5bd;
+  opacity: 0.2;
+}
+
+.contact-info {
+  margin-bottom: 84px;
+  @extend %text;
 }
