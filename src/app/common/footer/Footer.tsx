@@ -15,9 +15,9 @@ export default function Footer() {
       pb="25px"
       justifyContent="center"
     >
-      <Flex flexDir="column" width="70%" ml="auto" mr="auto">
+      <Flex flexDir="column" width="1152px" ml="auto" mr="auto">
         <Flex className="footer-container" flexDir="row">
-          <Flex className="footer-info-container" width="480px">
+          <Flex className="footer-info-container" width="100%">
             <Flex className="footer-info" flexDir="column">
               <Text fontSize="24px" mb="19px">
                 Informatii
@@ -28,7 +28,10 @@ export default function Footer() {
               <Link href="/">Livrare</Link>
               <Link href="/">Termeni și condiții</Link>
             </Flex>
-            <Flex className="footer-info" flexDir="column">
+            <Flex
+              className="footer-info footer-info-second-child"
+              flexDir="column"
+            >
               <Text fontSize="24px" mb="19px">
                 Informatii
               </Text>
