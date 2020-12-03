@@ -10,12 +10,12 @@ export default function Footer() {
     <Flex
       as="footer"
       background="#124193"
-      height="349px"
+      height="100%"
       pt="46px"
-      pb="46px"
+      pb="25px"
       justifyContent="center"
     >
-      <Flex flexDir="column" width="100%" mr="163px" ml="154px">
+      <Flex flexDir="column" width="70%" ml="auto" mr="auto">
         <Flex className="footer-container" flexDir="row">
           <Flex className="footer-info-container" width="480px">
             <Flex className="footer-info" flexDir="column">
@@ -52,12 +52,7 @@ export default function Footer() {
 
         <hr className="footer-hr" />
 
-        <Flex
-          flexDir="row"
-          justifyContent="space-between"
-          className="footer-copyright-div"
-          mb="25px"
-        >
+        <Flex flexDir="row" justifyContent="space-between">
           <Flex flexDir="row">
             <Icon
               className="footer-icons"

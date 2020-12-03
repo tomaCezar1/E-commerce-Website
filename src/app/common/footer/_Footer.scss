@@ -17,19 +17,15 @@
   justify-content: space-between;
 }
 
-.footer-copyright-div {
-  //   margin-bottom: 21px;
-  margin-bottom: 3rem !important;
+.footer-info-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 .footer-copywright {
   color: #acb5bd;
   font-size: 12px;
   line-height: 14px;
-}
-
-.footer-info:first-child {
-  margin-right: 104px;
 }
 
 .footer-info {
