@@ -13,9 +13,9 @@ export default function Footer() {
       height="100%"
       pt="46px"
       pb="25px"
-      justifyContent="center"
+      justify="center"
     >
-      <Flex flexDir="column" width="1152px" ml="auto" mr="auto">
+      <Flex flexDir="column" width="1152px">
         <Flex className="footer-container" flexDir="row">
           <Flex className="footer-info-container" width="100%">
             <Flex className="footer-info" flexDir="column">
@@ -28,10 +28,7 @@ export default function Footer() {
               <Link href="/">Livrare</Link>
               <Link href="/">Termeni și condiții</Link>
             </Flex>
-            <Flex
-              className="footer-info footer-info-second-child"
-              flexDir="column"
-            >
+            <Flex className="footer-info" flexDir="column" ml="104px">
               <Text fontSize="24px" mb="19px">
                 Informatii
               </Text>
@@ -43,7 +40,7 @@ export default function Footer() {
             </Flex>
           </Flex>
           <Flex direction="column" alignSelf="start" align="start">
-            <Text noOfLines={2} className="contact-info">
+            <Text className="contact-info">
               <Flex direction="column">
                 <span>Call centru:</span>
                 <span> +373 69 606 707</span>
