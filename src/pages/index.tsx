@@ -1,4 +1,5 @@
 import HomePage from '../app/app-features/home-page/HomePage';
+import DefaultLayout from '../app/common/DefaultLayout'
 
 function IndexPage(): JSX.Element {
   return <HomePage/>
@@ -17,5 +18,8 @@ function IndexPage(): JSX.Element {
 //     revalidate: 1,
 //   })
 // }
+
+
+IndexPage.Layout = DefaultLayout;
 
 export default IndexPage

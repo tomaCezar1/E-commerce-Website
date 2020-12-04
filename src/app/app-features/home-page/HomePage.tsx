@@ -3,7 +3,7 @@ import CarouselComponent from './CarouselComponent/CarouselComponent'
 
 export default function HomePage(): JSX.Element {
   return (
-    <Flex maxW="1152px" w="100%" id="homepage">
+    <Flex maxW="1152px" w="100%">
       <h1>Home Page</h1>
       <CarouselComponent />
     </Flex>
