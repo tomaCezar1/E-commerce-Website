@@ -1,0 +1,24 @@
+.partnerlist-container {
+  margin: auto;
+  height: 155px;
+  width: 1132px;
+  border-radius: 1rem;
+}
+
+.partnerlist-img {
+  height: $carousel-height;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 16px !important;
+}
+
+.partner-slick-arrow {
+  font-size: 1.5rem !important;
+  z-index: 4;
+  cursor: pointer;
+  color: $white;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  @extend %flex;
+}
