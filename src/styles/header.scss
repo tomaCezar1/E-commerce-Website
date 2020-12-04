@@ -13,7 +13,7 @@
 
 #header-relative {
   height: 65px;
-  width: 1152px;
+  width: $width;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,7 +28,7 @@
 
 .header-relative {
   height: 65px;
-  width: 1152px;
+  width: $width;
   display: flex;
   align-items: center;
   justify-content: space-between;
