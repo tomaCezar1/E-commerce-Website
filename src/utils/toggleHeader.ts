@@ -38,6 +38,10 @@ export function toggleHeader() {
       header.classList.remove('header-fixed');
       header.classList.add('header-relative');
     }
+    if(direction === 2 && curScroll > 150) {
+      header.classList.remove('header-fixed');
+      header.classList.add('hide');
+    }
   };
 
   const toggleHeader = function(direction: number, curScroll: number) {
