@@ -1,10 +1,7 @@
 import { Flex, Icon, Skeleton } from '@chakra-ui/react'
-import Router from 'next/router'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import RightArrow from '../../../../../public/svg/RightArrow.svg'
-import LeftArrow from '../../../../../public/svg/LeftArrow.svg'
+import RightArrow from '../../../../../public/svg/RightPartnerIcon.svg'
+import LeftArrow from '../../../../../public/svg/LeftPartnerIcon.svg'
 import { useQuery } from '@apollo/client'
 import { useState } from 'react'
 
@@ -27,12 +24,12 @@ function PartnerList(): JSX.Element {
 
   const goLeft = () => {
     console.log(x)
-    x === 0 ? null : setX(x + 105)
+    x === 0 ? null : setX(x + 100)
   }
 
   const goRight = () => {
     console.log(x)
-    x === -105 * (paths.length - 5) ? null : setX(x - 105)
+    x === -100 * (paths.length - 5) ? null : setX(x - 100)
   }
 
   return (
@@ -49,13 +46,13 @@ function PartnerList(): JSX.Element {
             </div>
           )
         })}
-        <button id="goLeft" onClick={goLeft}>
-          <LeftArrow />
-        </button>
-        <button id="goRight" onClick={goRight}>
-          <RightArrow />
-        </button>
       </div>
+      <i id="goLeft" onClick={goLeft}>
+        <LeftArrow />
+      </i>
+      <i id="goRight" onClick={goRight}>
+        <RightArrow />
+      </i>
     </div>
   )
 }
