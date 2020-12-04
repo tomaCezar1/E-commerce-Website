@@ -1,9 +1,14 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Link from 'next/link'
+import {toggleHeader} from '../../../utils/toggleHeader'
 
 export default function Header(): JSX.Element {
   const [searchValue, setSearchValue] = useState('')
   const [active, setActive] = useState(false)
+
+  useEffect(() => {
+    toggleHeader()
+  }, [])
 
   const handleClick = () => {
     setActive(!active)
@@ -40,7 +45,7 @@ export default function Header(): JSX.Element {
             </Link>
           </div>
       </div>
-      <div className="header-fixed">
+      <div id="header-relative">
         <Link href="/">
           <div className="logo-wrapper">
             <div className="logo" />

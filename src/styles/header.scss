@@ -2,17 +2,18 @@
 
 .header-static {
   height: 65px;
-  width: $fullWidth;
+  width: $width;
   display: flex;
   justify-content: flex-end;
   font-family: $medium;
   font-size: 12px;
   color: $primaryColor;
+  margin: auto;
 }
 
-.header-fixed {
+#header-relative {
   height: 65px;
-  width: $fullWidth;
+  width: 1152px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,6 +22,32 @@
   font-family: $medium;
   font-size: 12px;
   color: $white;
+  position: relative;
+  transition: all .3s ease;
+}
+
+.header-relative {
+  height: 65px;
+  width: 1152px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 16px;
+  background: $primaryColor;
+  font-family: $medium;
+  font-size: 12px;
+  color: $white;
+  position: relative;
+  transition: all .3s ease;
+}
+
+.header-relative.hide {
+  top: -85px;
+}
+
+.header-fixed {
+  position: fixed !important;
+  top: 0;
 }
 
 .header-phone-number {
