@@ -1,4 +1,4 @@
-import { Flex, Icon } from '@chakra-ui/react'
+import { Flex, Icon, Skeleton } from '@chakra-ui/react'
 import Router from 'next/router'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -29,28 +29,10 @@ function CarouselComponent(): JSX.Element {
     prevArrow: <SamplePrevArrow />,
   }
 
-  // const items = [
-  //   {
-  //     id: 1,
-  //     url:
-  //       'http://img.nowrunning.com/content/movie/2014/Jagga-Jaso/wall_1024x768_01.jpg',
-  //   },
-  //   {
-  //     id: 2,
-  //     url:
-  //       'https://alchetron.com/cdn/Cocktail-2012-film-images-6dbd0ec2-2ea4-47aa-88fd-388cabed7f8.jpg',
-  //   },
-  //   {
-  //     id: 3,
-  //     url: 'https://cdn.incoden.com/Produse/cat1.jpg',
-  //   },
-  // ]
-
   const handleClick = (link) => {
     Router.push(`${link}`)
   }
 
-  //Carousel will not work for 1 image only
   function slide() {
     if (!items?.length) {
       return (
@@ -73,15 +55,11 @@ function CarouselComponent(): JSX.Element {
               className="carousel-img"
               onClick={() => handleClick(item.link)}
             />
-            {/* <img src={item.url} alt="image" className="carousel-img" /> */}
           </div>
         )
       })
   }
 
-  //to change the styles, comment the inline
-  //and add the style in the global styles.scss in the
-  //'slick-arrow' class
   function SampleNextArrow(props) {
     const { className, style, onClick } = props
     return (
@@ -121,38 +99,12 @@ function CarouselComponent(): JSX.Element {
   return (
     <Flex align="center" justify="center">
       <div className="carousel-container">
-        <Slider {...settings}>{slide()}</Slider>
+        <Skeleton isLoaded={!loading} h="100%" w="100%">
+          <Slider {...settings}>{slide()}</Slider>
+        </Skeleton>
       </div>
     </Flex>
   )
 }
 
 export default CarouselComponent
-
-//Breakpoints for responsive
-// responsive: [
-//   {
-//     breakpoint: 1024,
-//     settings: {
-//       slidesToShow: 3,
-//       slidesToScroll: 3,
-//       infinite: true,
-//       dots: true,
-//     },
-//   },
-//   {
-//     breakpoint: 600,
-//     settings: {
-//       slidesToShow: 2,
-//       slidesToScroll: 2,
-//       initialSlide: 2,
-//     },
-//   },
-//   {
-//     breakpoint: 480,
-//     settings: {
-//       slidesToShow: 1,
-//       slidesToScroll: 1,
-//     },
-//   },
-// ],
