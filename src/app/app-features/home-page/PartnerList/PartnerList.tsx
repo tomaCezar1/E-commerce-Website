@@ -13,18 +13,26 @@ function PartnerList(): JSX.Element {
     'https://source.unsplash.com/RyRpq9SUwAU/1600x900',
     'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
     'https://source.unsplash.com/yXpA_eCbtzI/1600x900',
+    'https://source.unsplash.com/RyRpq9SUwAU/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
   ]
 
   const [x, setX] = useState(0)
 
   const goLeft = () => {
     console.log(x)
-    x === 0 ? setX(-100 * (paths.length - 1)) : setX(x + 100)
+    x === 0 ? null : setX(x + 105)
   }
 
   const goRight = () => {
     console.log(x)
-    x === -100 * (paths.length - 1) ? setX(0) : setX(x - 100)
+    x === -105 * (paths.length - 5) ? null : setX(x - 105)
   }
 
   return (
@@ -37,7 +45,7 @@ function PartnerList(): JSX.Element {
               className="slide"
               style={{ transform: `translateX(${x}%)` }}
             >
-              <img src={item} alt="" />
+              <img src={item} alt="" className="partner-img display" />
             </div>
           )
         })}
@@ -53,3 +61,43 @@ function PartnerList(): JSX.Element {
 }
 
 export default PartnerList
+
+// const paths = [
+//   'https://source.unsplash.com/RyRpq9SUwAU/1600x900',
+//   'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+//   'https://source.unsplash.com/yXpA_eCbtzI/1600x900',
+//   'https://source.unsplash.com/RyRpq9SUwAU/1600x900',
+//   'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+//   'https://source.unsplash.com/RyRpq9SUwAU/1600x900',
+//   'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+//   'https://source.unsplash.com/RyRpq9SUwAU/1600x900',
+//   'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+// ]
+
+// const arr = []
+// const [x, setX] = useState(arr)
+
+// const goLeft = () => {}
+
+// const goRight = () => {}
+
+// return (
+//   <div className="slider-container">
+//     <div className="slider">
+//       {paths.map((item, index) => {
+//         return (
+//           <div key={index}>
+//             <img src={item} alt="" className="partner-img current" />
+//             {arr}
+//           </div>
+//         )
+//       })}
+//       <button id="goLeft" onClick={goLeft}>
+//         <LeftArrow />
+//       </button>
+//       <button id="goRight" onClick={goRight}>
+//         <RightArrow />
+//       </button>
+//     </div>
+//   </div>
+// )
