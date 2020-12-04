@@ -1,0 +1,20 @@
+$white: #ffffff;
+$primaryColor: #124193;
+$semiTransparentWhite: rgba(255,255,255, 0.33);
+$width: 1152px;
+$fullWidth: 100%;
+
+$companyLogo: url('../../public/svg/Logo.svg');
+$phoneIcon: url('../../public/svg/PhoneIcon.svg');
+$burgerIcon: url('../../public/svg/BurgerIcon.svg');
+$cartIcon: url('../../public/svg/ShoppingCartIcon.svg');
+$heartIcon: url('../../public/svg/HeartIcon.svg');
+$searchIcon: url('../../public/svg/Search.svg') no-repeat;
+$notificationIconBg: #FFC91A;
+
+// Use these as the font-family rule for appropriate weights
+$thin: 'Thin'; //100
+$light: 'Light'; //300
+$regular: 'Regular'; //400
+$medium: 'Medium'; //500
+$bold: 'Bold'; //700

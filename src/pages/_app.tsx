@@ -1,13 +1,10 @@
 import React from 'react'
 import Head from 'next/head'
 import { AppProps } from 'next/app'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { useApollo } from '../app/lib/apolloClient'
 import { ApolloProvider } from '@apollo/client'
-import { APP_THEME } from '../app/lib/theme'
 import '../styles/styles.scss'
-
-const theme = extendTheme(APP_THEME)
+import '../styles/header.scss'
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const Layout = (Component as any).Layout
@@ -22,11 +19,9 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       </Head>
 
       <ApolloProvider client={apolloClient}>
-        <ChakraProvider resetCSS theme={theme}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </ChakraProvider>
       </ApolloProvider>
     </>
   )
