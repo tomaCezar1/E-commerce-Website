@@ -41,10 +41,8 @@ export default function Footer() {
           </Flex>
           <Flex direction="column" alignSelf="start" align="start">
             <Text className="contact-info">
-              <Flex direction="column">
-                <span>Call centru:</span>
-                <span> +373 69 606 707</span>
-              </Flex>
+              <span className="display-block">Call centru:</span>
+              <span className="display-block"> +373 69 606 707</span>
             </Text>
             <Icon as={CegoltarLogo} height="52px" width="256px" />
           </Flex>
