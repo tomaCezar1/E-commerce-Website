@@ -62,7 +62,10 @@ const Map = () => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[47.05191, 28.81658]} icon={MapIcon}></Marker>
+        <Marker
+          position={[47.05191, 28.81658]}
+          // icon={MapIcon}
+        ></Marker>
       </MapContainer>
     </>
   )
