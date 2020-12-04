@@ -1,18 +1,46 @@
-@import '../app/common/footer/Footer';
-@import '../app/app-features/home-page/CarouselComponent/Slider';
-
-* {
-  font-family: 'Roboto', sans-serif !important;
+.cursor-pointer {
+    cursor: pointer;
 }
 
 body {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #F8F8F8;
 }
 
 li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    max-width: 1152px;
+    margin: auto;
+}
+
+@font-face {
+    font-family: 'Thin';
+    src: local('Thin'), url('../../public/fonts/Roboto-Thin.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Light';
+    src: local('Light'), url('../../public/fonts/Roboto-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Regular';
+    src: local('Regular'), url('../../public/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Medium';
+    src: local('Medium'), url('../../public/fonts/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bold';
+    src: local('Bold'), url('../../public/fonts/Roboto-Bold.ttf') format('truetype');
 }
