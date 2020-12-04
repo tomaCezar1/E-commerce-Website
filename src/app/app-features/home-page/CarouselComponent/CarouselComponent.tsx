@@ -10,12 +10,8 @@ import { ICarouselItems, CarouselQuery } from './CarouselQuery'
 
 function CarouselComponent(): JSX.Element {
   const { loading, error, data } = useQuery<ICarouselItems>(CarouselQuery)
-  console.log(data?.carouselItems)
 
   const items = data?.carouselItems
-  const images = data?.carouselItems[0].image
-  const link = data?.carouselItems[0].link
-  console.log(images, link)
 
   const settings = {
     dots: true,
@@ -48,7 +44,6 @@ function CarouselComponent(): JSX.Element {
       return items?.map((item, index) => {
         return (
           <div key={index} className="carousel-img-container">
-            {console.log(item)}
             <img
               src={item.image}
               alt="image"
