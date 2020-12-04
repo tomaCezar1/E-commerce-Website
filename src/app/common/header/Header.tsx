@@ -21,7 +21,7 @@ export default function Header(): JSX.Element {
   const handleSubmit = (e) => {
     e.preventDefault()
   }
- 
+
   return (
     <header className="header">
       <div className="header-static">

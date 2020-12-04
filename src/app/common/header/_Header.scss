@@ -1,4 +1,9 @@
-@import './constants.scss';
+@import '../../../styles/constants.scss';
+
+.header {
+  position: relative;
+  z-index: 999 !important;
+}
 
 .header-static {
   height: 65px;
@@ -25,7 +30,7 @@
   color: $white;
   top: 0;
   position: relative;
-  
+  transition: all .3s ease;
 }
 
 .header-fixed {
@@ -35,6 +40,10 @@
 
 #header-relative.hide {
   top: -85px;
+}
+
+#homepage.add-padding {
+  padding-top: 65px;
 }
 
 .header-phone-number {
@@ -133,7 +142,7 @@
   border: none;
   background: $semiTransparentWhite;
   color: $white;
-  font-family: $regular;
+  font-family: $light;
   font-size: 14px;
   padding: 2px 0 0 20px;
   margin-top: -2px;
@@ -212,7 +221,7 @@
 
 .lang {
   font-size: 10px;
-  font-family: $regular;
+  font-family: $light;
   color: $primaryColor;
   cursor: pointer;
   height: 22px;
@@ -226,4 +235,8 @@
 .active {
   background-color: $primaryColor;
   color: $white;
+}
+
+.add-margin {
+  margin-top: 65px;
 }
