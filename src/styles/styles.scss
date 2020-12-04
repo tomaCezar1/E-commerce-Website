@@ -1,21 +1,18 @@
 @import '../app/common/footer/Footer';
-@import '../app/app-features/regional-store/contact-box/ContactBox';
-* {
-    font-family: 'Roboto', sans-serif !important;
-}
+@import '../app/app-features/home-page/CarouselComponent/Slider';
 
-.cursor-pointer {
-    cursor: pointer;
+* {
+  font-family: 'Roboto', sans-serif !important;
 }
 
 body {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
