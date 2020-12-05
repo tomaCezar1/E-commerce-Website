@@ -1,5 +1,7 @@
 @import '../app/common/footer/Footer';
 @import '../app/app-features/home-page/CarouselComponent/Slider';
+@import '../app/common/header/Header';
+@import '../app/common/layout/Layout';
 
 .cursor-pointer {
     cursor: pointer;
@@ -24,18 +26,8 @@ header {
 }
 
 @font-face {
-    font-family: 'Thin';
-    src: local('Thin'), url('../../public/fonts/Roboto-Thin.ttf') format('truetype');
-}
-
-@font-face {
     font-family: 'Light';
     src: local('Light'), url('../../public/fonts/Roboto-Light.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Regular';
-    src: local('Regular'), url('../../public/fonts/Roboto-Regular.ttf') format('truetype');
 }
 
 @font-face {
