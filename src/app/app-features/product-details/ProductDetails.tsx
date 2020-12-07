@@ -6,12 +6,17 @@ function ProductDetails() {
     images: [
       'https://cdn.incoden.com/Produse/cat1.jpg',
       'https://cdn.incoden.com/Produse/cat2.jpg',
+      'https://cdn.incoden.com/Produse/cat1.jpg',
+      'https://cdn.incoden.com/Produse/cat2.jpg',
+      'https://cdn.incoden.com/Produse/cat1.jpg',
+      'https://cdn.incoden.com/Produse/cat2.jpg',
+      'https://cdn.incoden.com/Produse/cat1.jpg',
+      'https://cdn.incoden.com/Produse/cat2.jpg',
     ],
   }
 
   return (
     <>
-      <p>Some images</p>
       <ProductImages images={product1.images} />
     </>
   )
