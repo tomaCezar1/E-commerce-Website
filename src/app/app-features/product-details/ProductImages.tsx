@@ -16,7 +16,8 @@ function ProductImages(props) {
   const setImg = (event, index) => {
     setCurrentImg(index)
     setClicked(isClicked)
-    if (event.target.class === 'small-img small-img-active') {
+
+    if (event.target.className === 'small-img small-img-active') {
       event.target.className = 'small-img'
       console.log('removed')
     } else {
@@ -38,7 +39,8 @@ function ProductImages(props) {
               // () => setCurrentImg(props.images[index])
               () => setImg(event, props.images[index])
             }
-            className={isClicked ? `small-img small-img-active ` : `small-img`}
+            // className={isClicked ? `small-img small-img-active ` : `small-img`}
+            className="small-img"
             key={index}
             src={img}
             alt="error"

@@ -24,5 +24,7 @@
 }
 
 .small-img-active {
-  border: 5px solid red;
+  outline: 1px solid rgb(133, 133, 133);
+  transform: scale(1.04);
+  transition: scale 0.3s;
 }
