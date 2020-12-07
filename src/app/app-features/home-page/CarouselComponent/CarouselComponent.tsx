@@ -63,11 +63,13 @@ function CarouselComponent(): JSX.Element {
           className="slick-arrow"
           style={{
             ...style,
-            right: '12%',
+            right: '9%',
           }}
           onClick={onClick}
         >
-          <Icon as={RightArrow} />
+          <i className="icons">
+            <RightArrow />
+          </i>
         </div>
       </div>
     )
@@ -81,18 +83,20 @@ function CarouselComponent(): JSX.Element {
           className="slick-arrow"
           style={{
             ...style,
-            left: '12%',
+            left: '8%',
           }}
           onClick={onClick}
         >
-          <Icon as={LeftArrow} />
+          <i className="icons">
+            <LeftArrow />
+          </i>
         </div>
       </div>
     )
   }
 
   return (
-    <Flex align="center" justify="center">
+    <Flex align="center" justify="center" borderRadius="16px">
       <div className="carousel-container">
         <Skeleton isLoaded={!loading} h="100%" w="100%">
           <Slider {...settings}>{slide()}</Slider>
