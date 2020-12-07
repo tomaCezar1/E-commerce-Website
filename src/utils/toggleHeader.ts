@@ -8,6 +8,7 @@ export function toggleHeader() {
   let prevDirection = 0;
 
   const header = document.getElementById("header-relative");
+  const homepage = document.getElementById('homepage')
 
   const checkScroll = function() {
     // Find the direction of scroll
@@ -33,6 +34,7 @@ export function toggleHeader() {
       header.classList.remove('header-fixed');
       header.classList.add('header-relative');
       header.classList.remove('hide');
+      homepage.classList.remove('add-padding')
     }
     if(direction === 2 && curScroll < 150) {
       header.classList.remove('header-fixed');
@@ -41,6 +43,9 @@ export function toggleHeader() {
     if(direction === 2 && curScroll > 150) {
       header.classList.remove('header-fixed');
       header.classList.add('hide');
+    }
+    if(direction === 2 && curScroll > 65) {
+      homepage.classList.remove('add-padding')
     }
   };
 
@@ -54,6 +59,7 @@ export function toggleHeader() {
       header.classList.remove('header-relative');
       header.classList.add('header-fixed');
       header.classList.remove('hide');
+      homepage.classList.add('add-padding')
       prevDirection = direction;
     }
   };
