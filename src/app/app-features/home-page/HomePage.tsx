@@ -4,14 +4,8 @@ import PartnerList from './PartnerList/PartnerList'
 
 export default function HomePage(): JSX.Element {
   return (
-    <Flex
-      maxW="1133px"
-      w="100%"
-      justify="center"
-      align="center"
-      flexDir="column"
-    >
-      <div style={{ height: '5rem' }}></div>
+    <Flex maxW="1152px" w="100%" id="homepage">
+      <h1>Home Page</h1>
       <CarouselComponent />
       <div style={{ height: '5rem' }}></div>
       <PartnerList />
