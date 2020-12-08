@@ -7,19 +7,21 @@ function ProductCard() {
   const sampleImg = 'https://cdn.incoden.com/Diferite/not-found.png'
 
   const [isActive, setActive] = useState(false)
-  const [onSale, setSale] = useState(true)
-  const [inStock, setStock] = useState(true)
+  const [onSale, setSale] = useState(false)
+  const [outOfStock, setStock] = useState(true)
 
   return (
     <>
       <div
-        className={`product-card-container ${inStock ? null : 'out-of-stock'}`}
+        className={`product-card-container ${
+          outOfStock ? 'out-of-stock' : null
+        }`}
       >
-        {onSale ? (
+        {onSale && (
           <div className="on-sale">
             <p className="on-sale-text">-50%</p>
           </div>
-        ) : null}
+        )}
         <div className="product-card-container-flex">
           <img src={sampleImg} alt="image" className="product-card-image" />
           <p className="product-card-name">Bec LED 11W 2700K (E27)</p>
@@ -32,7 +34,7 @@ function ProductCard() {
             ) : (
               <p className="basic-price">50 lei</p>
             )}
-            {inStock ? null : (
+            {outOfStock && (
               <p className="produs-in-stock">Produsul nu este in stock</p>
             )}
           </div>

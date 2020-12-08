@@ -3,7 +3,7 @@
 .product-card-container {
   width: 245px;
   height: 390px;
-  background: #e5e5e5;
+  background: $white;
   border-radius: 16px;
   position: relative;
 }
@@ -17,14 +17,14 @@
 .product-card-name {
   font-family: $medium;
   font-size: 20px;
-  line-height: 23.5px;
+  line-height: 24px;
   margin-top: 11.4px;
   margin-bottom: 17px;
 }
 
 .product-card-image {
-  width: 217px;
-  height: 213px;
+  width: 218px;
+  height: 214px;
   border-radius: 4px;
   margin-top: 5px;
 }
@@ -32,7 +32,7 @@
 .basic-price {
   font-family: $bold;
   font-size: 26px;
-  color: #000000;
+  color: $black;
   align-self: start;
   margin: 0 0 20px 0;
 }
@@ -71,7 +71,7 @@
   visibility: visible;
   width: 77px;
   height: 42px;
-  border-radius: 27.4735px 0px 0px 27.4735px;
+  border-radius: 28px 0px 0px 28px;
   background: #ea3030;
   position: absolute;
   top: 0;
@@ -98,7 +98,7 @@
   color: #ea5230;
   width: 93px;
   height: 16px;
-  align-self: end;
+  text-align: right;
 }
 
 .out-of-stock {
@@ -118,7 +118,7 @@
 .crossed-price {
   font-family: $medium;
   text-decoration: line-through;
-  color: #acb5bd;
+  color: $semiTransparentWhite;
   font-size: 20px;
 }
 
