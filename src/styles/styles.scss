@@ -3,6 +3,7 @@
 @import '../app/app-features/home-page/PartnerList/PartnerList';
 @import '../app/common/header/Header';
 @import '../app/common/layout/Layout';
+@import '../app/app-features/home-page/product-card/ProductCard';
 
 .cursor-pointer {
   cursor: pointer;
@@ -10,6 +11,10 @@
 
 a {
   text-decoration: none;
+}
+
+p {
+  margin: 0;
 }
 
 body {
