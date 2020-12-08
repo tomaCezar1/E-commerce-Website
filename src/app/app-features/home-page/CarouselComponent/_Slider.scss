@@ -1,6 +1,5 @@
 $white: #ffffff;
 $carousel-height: 434px;
-$carousel-width: 1125px;
 
 %flex {
   display: flex;
@@ -57,7 +56,7 @@ $carousel-width: 1125px;
 .carousel-container {
   margin: auto;
   height: $carousel-height;
-  width: $carousel-width;
+  width: 100%;
   border-radius: 16px !important;
 }
 

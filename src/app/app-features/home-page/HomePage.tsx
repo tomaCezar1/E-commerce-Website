@@ -1,12 +1,15 @@
 import styled from 'styled-components'
 import CarouselComponent from './CarouselComponent/CarouselComponent'
 import PartnerList from './PartnerList/PartnerList'
+import ProductCard from './product-card/ProductCard'
 
 export default function HomePage(): JSX.Element {
   return (
     <Div id="homepage">
       <h1>Home Page</h1>
       <CarouselComponent />
+      <div style={{ height: '5rem' }}></div>
+      <ProductCard/>
       <div style={{ height: '5rem' }}></div>
       <PartnerList />
       <div style={{ height: '5rem' }}></div>
