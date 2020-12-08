@@ -8,7 +8,7 @@ function ProductCard() {
 
   const [isActive, setActive] = useState(false)
   const [onSale, setSale] = useState(false)
-  const [outOfStock, setStock] = useState(true)
+  const [outOfStock, setStock] = useState(false)
 
   return (
     <>

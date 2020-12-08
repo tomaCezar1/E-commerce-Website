@@ -36,19 +36,19 @@ header {
 }
 
 @font-face {
-  font-family: 'Light';
-  src: local('Light'),
-    url('../../public/fonts/Roboto-Light.ttf') format('truetype');
+  font-family: 'Regular';
+  src: local('Roboto-Regular'),
+    url('../../public/fonts/Roboto-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Medium';
-  src: local('Medium'),
+  src: local('Roboto-Medium'),
     url('../../public/fonts/Roboto-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Bold';
-  src: local('Bold'),
+  src: local('Roboto-Bold'),
     url('../../public/fonts/Roboto-Bold.ttf') format('truetype');
 }
