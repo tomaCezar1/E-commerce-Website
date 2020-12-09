@@ -1,0 +1,134 @@
+@import '../../../../styles/constants.scss';
+
+.product-card-container {
+  width: 218px;
+  padding: 15px;
+  background: $white;
+  border-radius: 16px;
+  position: relative;
+  box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: box-shadow 350ms ease;
+  &:hover {
+    box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+
+.product-card-container-flex {
+  @extend %flex-column;
+  margin: auto;
+}
+
+.product-card-name {
+  font-family: $regular;
+  font-size: 20px;
+  line-height: 24px;
+  margin-top: 20px;
+  margin-bottom: 24px;
+}
+
+.product-card-image {
+  width: 100%;
+  height: 214px;
+  border-radius: 16px;
+}
+
+.basic-price {
+  font-family: $bold;
+  font-size: 26px;
+  color: $black;
+  align-self: start;
+  margin-bottom: 24px;
+}
+
+.product-card-cart {
+  @extend %flex-row;
+  justify-content: space-between;
+  align-items: center !important;
+  i {
+    @extend %flex-row;
+  }
+}
+
+.add-to-cart {
+  @extend %flex-row;
+  width: 165px;
+  height: 32px;
+  border-radius: 31px;
+  background: rgba(18, 65, 147, 1);
+  cursor: pointer;
+  margin-left: 27px;
+}
+
+.product-card-add-text {
+  margin-left: 13px;
+  font-family: $bold;
+  font-size: 14px;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+// Conditional styles
+.on-sale {
+  @extend %flex-row;
+  visibility: visible;
+  width: 77px;
+  height: 42px;
+  border-radius: 28px 0px 0px 28px;
+  background: #ea3030;
+  position: absolute;
+  top: 0;
+  right: 0;
+  letter-spacing: 0.75px;
+}
+
+.on-sale-text {
+  font-family: $bold;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.product-card-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.produs-in-stock {
+  font-size: 12px;
+  font-family: $medium;
+  color: #ea5230;
+  width: 93px;
+  height: 16px;
+  text-align: right;
+}
+
+.out-of-stock {
+  opacity: 0.5;
+  * {
+    cursor: default;
+  }
+}
+
+.discounted-price-div {
+  display: flex;
+  align-items: center;
+  align-self: start;
+  margin: 0 0 20px 0;
+}
+
+.crossed-price {
+  font-family: $medium;
+  text-decoration: line-through;
+  color: $semiTransparentWhite;
+  font-size: 20px;
+}
+
+.discounted-price {
+  font-family: $bold;
+  color: #36b368;
+  font-size: 26px;
+  margin-left: 8px;
+}

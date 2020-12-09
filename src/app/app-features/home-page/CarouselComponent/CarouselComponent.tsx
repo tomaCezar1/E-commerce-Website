@@ -96,13 +96,11 @@ function CarouselComponent(): JSX.Element {
   }
 
   return (
-    <Flex align="center" justify="center" borderRadius="16px">
-      <div className="carousel-container">
-        <Skeleton isLoaded={!loading} h="100%" w="100%">
-          <Slider {...settings}>{slide()}</Slider>
-        </Skeleton>
-      </div>
-    </Flex>
+    <div className="carousel-container">
+      <Skeleton isLoaded={!loading} h="100%" w="100%">
+        <Slider {...settings}>{slide()}</Slider>
+      </Skeleton>
+    </div>
   )
 }
 
