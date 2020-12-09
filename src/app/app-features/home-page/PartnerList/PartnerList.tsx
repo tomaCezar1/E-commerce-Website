@@ -1,4 +1,3 @@
-import { Flex, Icon, Skeleton } from '@chakra-ui/react'
 import 'slick-carousel/slick/slick-theme.css'
 import RightArrow from '../../../../../public/svg/RightPartnerIcon.svg'
 import LeftArrow from '../../../../../public/svg/LeftPartnerIcon.svg'
@@ -34,6 +33,9 @@ function PartnerList(): JSX.Element {
 
   return (
     <div className="slider-container">
+      <i id="goLeft" onClick={goLeft}>
+        <LeftArrow />
+      </i>
       <div className="slider">
         {paths.map((item, index) => {
           return (
@@ -47,9 +49,6 @@ function PartnerList(): JSX.Element {
           )
         })}
       </div>
-      <i id="goLeft" onClick={goLeft}>
-        <LeftArrow />
-      </i>
       <i id="goRight" onClick={goRight}>
         <RightArrow />
       </i>
