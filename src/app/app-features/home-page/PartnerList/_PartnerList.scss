@@ -2,7 +2,7 @@
 $height: 100px;
 
 .slider-container {
-  width: $width;
+  width: 100%;
   height: $height;
   display: flex;
   flex-direction: row;
@@ -11,12 +11,10 @@ $height: 100px;
 }
 
 .slider {
-  width: 90%;
   display: flex;
   align-items: center;
   overflow: hidden;
   background: none;
-  margin: 0 16px;
 }
 
 .current {
@@ -45,20 +43,23 @@ $height: 100px;
   z-index: 5;
   border: none;
   outline: none;
-  transition: 0.3s;
-  color: #000;
+  svg path {
+    stroke: rgba(0,0,0,0.5);
+    transition: stroke 350ms ease;
+  }
   &:hover {
-    color: #cccccc;
-    cursor: pointer;
+    svg path {
+      stroke: rgba(0,0,0,0.8);
+    }
   }
 }
 
 #goLeft {
-  left: 0;
+  padding-right: 16px;
   @extend %btn-styles;
 }
 
 #goRight {
-  right: 0;
+  padding-left: 16px;
   @extend %btn-styles;
 }
