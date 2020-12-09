@@ -16,14 +16,19 @@
 .categories-list {
   width: 350px;
   margin: 32px 0 32px 50px;
+  position: relative;
 }
 
 .subcategories {
-  margin: 32px 30px 32px 0;
-  width: 60%;
+  position: absolute;
+  left: 385px;
+  width: 666px;
+  height: 100%;
   background: $primaryAccentColor;
   border-radius: 16px;
+  padding-left: 20px;
 }
+
 
 .menu-list-item {
   width: 315px;
@@ -40,6 +45,17 @@
 }
 
 .menu-item-title {
+  font-size: 16px;
+  font-family: $medium;
+  margin: auto 0;
+}
+
+.children-item {
+  height: 42px;
+  display: flex;
+}
+
+.children-title {
   font-size: 16px;
   font-family: $medium;
   margin: auto 0;
