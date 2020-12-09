@@ -10,15 +10,14 @@ export default function Menu(): JSX.Element {
 
   useEffect(() => {
     setCategories(sortCategories(appContext.categories))
-  }, [])
+  }, [categories])
 
   const toggleMouse = () => {
     setShowSubCategories(!showSubCategories)
   }
 
-
   return (
-    <div className="menu-container">
+    <div id="menu" className="menu-container hide-menu">
       <ul className="categories-list">
         {categories.map((category) => {
           const {title, id, children} = category
