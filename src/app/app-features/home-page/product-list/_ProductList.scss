@@ -1,0 +1,5 @@
+@import '../../../../styles/constants.scss';
+
+.product-list-container {
+  @extend %flex-column;
+}
