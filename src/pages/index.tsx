@@ -2,20 +2,21 @@ import React, {useContext, useEffect} from 'react'
 import HomePage from '../app/app-features/home-page/HomePage';
 import {ProductCategoriesQuery} from '../app/app-features/categories/ProductCategoriesQueries'
 import { initializeApollo } from '../app/lib/apolloClient';
-import { sortCategories } from '../utils/categories'
+// import { sortCategories } from '../utils/categories'
 import {AppContext, AppContextProvider} from "../context";
 
 function IndexPage({categories}): JSX.Element {
-  const {appContext} = useContext(AppContext.Provider)
+  const { setAppContext } = useContext(AppContext)
 
   useEffect(() => {
-    setAppContext(sortCategories(categories))
+    // console.log(context);
+    setAppContext({ categories })
   }, [])
 
   return (
-    <AppContextProvider>
+    // <AppContextProvider>
        <HomePage />
-    </AppContextProvider>
+    // </AppContextProvider>
    
   )
 } 

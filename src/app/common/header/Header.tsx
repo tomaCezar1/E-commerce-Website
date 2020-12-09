@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {toggleHeader} from '../../../utils/toggleHeader'
 import Menu from '../menu/Menu'
