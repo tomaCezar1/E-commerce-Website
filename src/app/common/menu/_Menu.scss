@@ -1,0 +1,46 @@
+@import '../../../styles/constants.scss';
+
+.menu-container {
+  position: absolute;
+  top: 50px;
+  width: $fullWidth;
+  height: 450px;
+  background: $primaryColor;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  // box-shadow: 0px 6px 2px 0px rgba(0,0,0, 0.25);
+  display: flex;
+  justify-content: space-between;
+}
+
+.categories-list {
+  width: 350px;
+  margin: 32px 0 32px 50px;
+}
+
+.subcategories {
+  margin: 32px 30px 32px 0;
+  width: 60%;
+  background: $primaryAccentColor;
+  border-radius: 16px;
+}
+
+.menu-list-item {
+  width: 315px;
+  height: 42px;
+  padding-left: 16px;
+  border-radius: 16px;
+  margin-right: 38px;
+  display: flex;
+  cursor: pointer;
+}
+
+.menu-list-item:hover {
+  background-color: $primaryAccentColor;
+}
+
+.menu-item-title {
+  font-size: 16px;
+  font-family: $medium;
+  margin: auto 0;
+}
