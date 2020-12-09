@@ -79,6 +79,7 @@
 .logo-wrapper {
   position: relative;
   cursor: pointer;
+  z-index: 9999 !important;
 }
 
 .logo {
@@ -114,13 +115,24 @@
   justify-content: space-between;
   align-items: center;
   font-size: 18px;
-  cursor: pointer
+  cursor: pointer;
+  height: 70%;
+  margin: auto 0;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .burger-icon {
   width: 18px;
   height: 14px;
   background: $burgerIcon;
+}
+
+.button-text {
+  font-family: $medium;
+  font-size: 18px;
+  color: $white;
 }
 
 // Search container

@@ -1,10 +1,12 @@
 import {useState, useEffect} from 'react'
 import Link from 'next/link'
 import {toggleHeader} from '../../../utils/toggleHeader'
+import Menu from '../menu/Menu'
 
 export default function Header(): JSX.Element {
   const [searchValue, setSearchValue] = useState('')
   const [active, setActive] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
 
   useEffect(() => {
     toggleHeader()
@@ -12,6 +14,10 @@ export default function Header(): JSX.Element {
 
   const handleClick = () => {
     setActive(!active)
+  }
+
+  const handleMenu = () => {
+    setShowMenu(!showMenu)
   }
 
   const handleChange = (e) => {
@@ -51,10 +57,11 @@ export default function Header(): JSX.Element {
             <div className="logo" />
           </div>
         </Link>
-        <div className="header-menu">
+        <button className="header-menu" onClick={handleMenu}>
           <div className="burger-icon"/>
-          <span>Catalogul produselor</span>
-        </div>
+          <span className="button-text">Catalogul produselor</span>
+        </button>
+        {showMenu && <Menu />}
         <div className="search-container">
           <form onSubmit={handleSubmit}>
             <div style={{ margin: "0 auto" }}>
@@ -90,6 +97,7 @@ export default function Header(): JSX.Element {
           </div>
         </div>
       </div>
+      
     </header>
   )
 }
