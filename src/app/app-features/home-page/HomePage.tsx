@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import CarouselComponent from './CarouselComponent/CarouselComponent'
 import PartnerList from './PartnerList/PartnerList'
 import ProductCard from './product-card/ProductCard'
+import ProductList from './product-list/ProductList'
 
 export default function HomePage(): JSX.Element {
   return (
@@ -9,9 +10,11 @@ export default function HomePage(): JSX.Element {
       <h1>Home Page</h1>
       <CarouselComponent />
       <div style={{ height: '5rem' }}></div>
-      <ProductCard/>
+      <ProductCard />
       <div style={{ height: '5rem' }}></div>
       <PartnerList />
+      <div style={{ height: '5rem' }}></div>
+      <ProductList />
       <div style={{ height: '5rem' }}></div>
     </Div>
   )

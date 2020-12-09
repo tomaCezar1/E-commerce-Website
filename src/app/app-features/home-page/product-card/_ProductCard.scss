@@ -12,8 +12,8 @@
   &:hover {
     box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.2);
   }
+  margin-bottom: 32px;
 }
-
 
 .product-card-container-flex {
   @extend %flex-column;

@@ -3,9 +3,7 @@ import FavoriteEmpty from '../../../../../public/svg/FavoriteEmpty.svg'
 import FavoriteActive from '../../../../../public/svg/FavoriteActive.svg'
 import CartIcon from '../../../../../public/svg/CartIcon.svg'
 
-function ProductCard() {
-  const sampleImg = 'https://cdn.incoden.com/Diferite/not-found.png'
-
+function ProductCard(props) {
   const [isActive, setActive] = useState(false)
   const [onSale, setSale] = useState(false)
   const [outOfStock, setStock] = useState(false)
@@ -13,9 +11,7 @@ function ProductCard() {
   return (
     <>
       <div
-        className={`product-card-container ${
-          outOfStock ? 'out-of-stock' : null
-        }`}
+        className={`product-card-container ${outOfStock ? 'out-of-stock' : ''}`}
       >
         {onSale && (
           <div className="on-sale">
@@ -23,8 +19,8 @@ function ProductCard() {
           </div>
         )}
         <div className="product-card-container-flex">
-          <img src={sampleImg} alt="image" className="product-card-image" />
-          <p className="product-card-name">Bec LED 11W 2700K (E27)</p>
+          <img src={props.image} alt="image" className="product-card-image" />
+          <p className="product-card-name">{props.name}</p>
           <div className="product-card-price">
             {onSale ? (
               <div className="discounted-price-div">

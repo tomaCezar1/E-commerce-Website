@@ -1,5 +1,21 @@
 @import '../../../../styles/constants.scss';
 
 .product-list-container {
-  @extend %flex-column;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-list-header {
+  font-family: $bold;
+  font-size: 36px;
+  color: $black;
+  margin-bottom: 32px;
+}
+
+.cards-container {
+  @extend %flex-row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: $width;
+  height: 100%;
 }
