@@ -1,5 +1,6 @@
 import ProductImages from './ProductImages'
 import CartIcon from '../../../../public/svg/CartIcon.svg'
+import { useState } from 'react'
 
 function ProductDetails() {
   const product1 = {
@@ -14,6 +15,18 @@ function ProductDetails() {
       'https://cdn.incoden.com/Produse/cat1.jpg',
       'https://cdn.incoden.com/Produse/cat2.jpg',
     ],
+  }
+
+  const [counter, setCounter] = useState(0)
+
+  const handleAdd = () => {
+    setCounter(counter + 1)
+  }
+
+  const handleRemove = () => {
+    if (counter > 0) {
+      setCounter(counter - 1)
+    }
   }
 
   return (
@@ -40,16 +53,64 @@ function ProductDetails() {
             <a className="product-details-detalii">Mai multe detalii</a>
             <div className="product-details-cart-price">
               <h1 className="product-details-price">50 lei</h1>
-              <div className="product-details-add-to-cart">
-                <CartIcon />
-                <p className="product-details-add-text">Adaugă în coș</p>
+
+              <div className="product-details-add-to-cart-flex">
+                <div className="product-details-counter">
+                  <div
+                    className="product-details-counters"
+                    onClick={handleRemove}
+                  >
+                    <p>-</p>
+                  </div>
+                  <div className="product-details-center-counter">
+                    <p>{counter}</p>
+                  </div>
+                  <div className="product-details-counters" onClick={handleAdd}>
+                    <p>+</p>
+                  </div>
+                </div>
+
+                <div className="product-details-add-to-cart">
+                  <CartIcon />
+                  <p className="product-details-add-text">Adaugă în coș</p>
+                </div>
               </div>
             </div>
-            <div className="product-details-counter">
-              <button>-</button>
-              <p>1</p>
-              <button>+</button>
-            </div>
+          </div>
+        </div>
+
+        {/* Characteristics tables */}
+        <div className="characteristics-tables">
+          <div className="characteristics-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Caracteristici</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Tip</th>
+                  <td>Standard</td>
+                </tr>
+                <tr>
+                  <th>Putere</th>
+                  <td>1500W</td>
+                </tr>
+                <tr>
+                  <th>Tensiune</th>
+                  <td>220V</td>
+                </tr>
+                <tr>
+                  <th>Model</th>
+                  <td>PTWT21</td>
+                </tr>
+                <tr>
+                  <th>Temperatura</th>
+                  <td>5600K</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
