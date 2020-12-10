@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
-import {toggleHeader, toggleMenu} from '../../../utils/toggleHeader'
+import {toggleHeader, toggleMenu} from '../../../utils'
 import Menu from '../menu/Menu'
 import LangSwitch from './LangSwitch/LangSwitch'
 
