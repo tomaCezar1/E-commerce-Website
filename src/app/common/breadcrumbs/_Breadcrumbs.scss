@@ -1,0 +1,26 @@
+@import '../../../styles/constants.scss';
+
+.breadcrumb {
+  height: 20px;
+  display: flex;
+  padding: 0;
+  width: 100%;
+}
+
+.breadcrumb-item {
+  font-family: 'Medium';
+  font-size: 12px;
+  text-decoration: none;
+  color: $black;
+  margin: auto 0;
+  display: flex;
+}
+
+.breadcrumb-last-item {
+  color: $primaryColor;
+  font-family: 'Medium';
+  font-size: 12px;
+  text-decoration: none;
+  margin: auto 0;
+  display: flex;
+}
