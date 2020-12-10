@@ -21,26 +21,27 @@
 
 .subcategories {
   position: absolute;
-  left: 385px;
-  width: 666px;
   height: 100%;
+  width: 666px;
+  left: 385px;
+  top: 0;
   background: $primaryAccentColor;
   border-radius: 16px;
   padding-left: 20px;
+  margin-bottom: 30px;
 }
-
 
 .menu-list-item {
   width: 315px;
   height: 42px;
   padding-left: 16px;
   border-radius: 16px;
-  margin-right: 38px;
+  margin-right: 15px;
   display: flex;
   cursor: pointer;
 }
 
-.menu-list-item:hover {
+.menu-list-item.highlighted {
   background-color: $primaryAccentColor;
 }
 

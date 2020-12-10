@@ -1,50 +1,52 @@
 import React, { useState, useContext, useEffect } from 'react'
-import {Skeleton} from "@chakra-ui/react";
-import {sortCategories } from '../../../utils/categories'
 import { AppContext } from '../../../context'
 
 export default function Menu(): JSX.Element {
   const { appContext } = useContext(AppContext)
-  const [categories, setCategories] = useState([])
-  const [showSubCategories, setShowSubCategories] = useState(false)
+  const [activeCategory, setActiveCategory] = useState(0)
+
+  const [rootCategories, setRootCategories] = useState([]);
+  const [childCategories, setChildCategories] = useState([]); 
+
 
   useEffect(() => {
-    setCategories(sortCategories(appContext.categories))
-  }, [categories])
+    const rooCats = appContext.categories.filter(c => !c.parent);
+    setRootCategories(rooCats);
+    setChildCategories(appContext.categories.filter(c => c.parent === rooCats[0].id))
+  }, [appContext])
 
-  const toggleMouse = () => {
-    setShowSubCategories(!showSubCategories)
+  const toggleMouse = (index: number, id: string) => {
+    setActiveCategory(index)
+    setChildCategories(appContext.categories.filter(c => c.parent === id))
   }
 
   return (
     <div id="menu" className="menu-container hide-menu">
       <ul className="categories-list">
-        {categories.map((category) => {
-          const {title, id, children} = category
+        {rootCategories.map((category, index) => {
+          const {title, id} = category
+
           return (
             <li
-              className="menu-list-item"
+              className={activeCategory === index ? "menu-list-item highlighted" : "menu-list-item"}
               key={id}
-              onMouseEnter={toggleMouse}
-              onMouseLeave={toggleMouse}
+              onMouseEnter={() => toggleMouse(index, id)}
             >
               <span className="menu-item-title">{title}</span>
-              {children && showSubCategories && (
-                <ul className="subcategories">
-                  {children.map(element => {
-                    const {id, title} = element
-
-                    return (
-                      <li className="children-item" key={id}>
-                        <span className="children-title">{title}</span>
-                      </li> 
-                    )
-                  })}
-              </ul>
-              )}
             </li>
           )
         })}
+        <ul className="subcategories">
+          {childCategories?.map(element => {
+              const {id, title} = element
+
+              return (
+                <li className="children-item" key={id}>
+                  <span className="children-title">{title}</span>
+                </li> 
+              )
+          })}
+        </ul>   
       </ul>
     </div>
   )
