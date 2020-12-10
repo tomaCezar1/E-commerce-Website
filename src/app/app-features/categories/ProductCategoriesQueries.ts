@@ -8,7 +8,6 @@ export const ProductCategoriesQuery = gql`
       title
     }
   }
-
 `;
 
 export const SubcategoriesQuery = gql`

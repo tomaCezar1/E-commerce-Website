@@ -3,11 +3,22 @@
 @import '../app/app-features/home-page/PartnerList/PartnerList';
 @import '../app/common/header/Header';
 @import '../app/common/layout/Layout';
+@import '../app/app-features/home-page/product-card/ProductCard';
+@import '../app/common/menu/Menu';
+@import '../app/common/header/LangSwitch/LangSwitch';
 
 @import '../app/common/breadcrumbs/Breadcrumbs';
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
 }
 
 body {
@@ -29,19 +40,19 @@ header {
 }
 
 @font-face {
-  font-family: 'Light';
-  src: local('Light'),
-    url('../../public/fonts/Roboto-Light.ttf') format('truetype');
+  font-family: 'Regular';
+  src: local('Roboto-Regular'),
+    url('../../public/fonts/Roboto-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Medium';
-  src: local('Medium'),
+  src: local('Roboto-Medium'),
     url('../../public/fonts/Roboto-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Bold';
-  src: local('Bold'),
+  src: local('Roboto-Bold'),
     url('../../public/fonts/Roboto-Bold.ttf') format('truetype');
 }

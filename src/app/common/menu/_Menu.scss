@@ -1,0 +1,67 @@
+@import '../../../styles/constants.scss';
+
+.menu-container {
+  position: absolute;
+  top: 50px;
+  width: $fullWidth;
+  height: 450px;
+  background: $primaryColor;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  // box-shadow: 0px 6px 2px 0px rgba(0,0,0, 0.25);
+  display: flex;
+  justify-content: space-between;
+}
+
+.categories-list {
+  width: 350px;
+  margin: 32px 0 32px 50px;
+  position: relative;
+}
+
+.subcategories {
+  position: absolute;
+  height: 100%;
+  width: 666px;
+  left: 385px;
+  top: 0;
+  background: $primaryAccentColor;
+  border-radius: 16px;
+  padding-left: 20px;
+  margin-bottom: 30px;
+}
+
+.menu-list-item {
+  width: 315px;
+  height: 42px;
+  padding-left: 16px;
+  border-radius: 16px;
+  margin-right: 15px;
+  display: flex;
+  cursor: pointer;
+}
+
+.menu-list-item.highlighted {
+  background-color: $primaryAccentColor;
+}
+
+.menu-item-title {
+  font-size: 16px;
+  font-family: $medium;
+  margin: auto 0;
+}
+
+.children-item {
+  height: 42px;
+  display: flex;
+}
+
+.children-title {
+  font-size: 16px;
+  font-family: $medium;
+  margin: auto 0;
+}
+
+.hide-menu {
+  top: -550px;
+}
