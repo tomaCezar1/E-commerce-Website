@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import {convertBreadcrumb} from '../../../utils/convertBreadcrumb'
+import {convertBreadcrumb} from '../../../utils'
 
 export default function Breadcrumbs(): JSX.Element {
   const router = useRouter();
