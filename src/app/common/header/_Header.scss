@@ -123,6 +123,10 @@
   padding: 0;
 }
 
+.header-menu:focus {
+  outline: none;
+}
+
 .burger-icon {
   width: 18px;
   height: 14px;
@@ -216,36 +220,6 @@
   top: -2px;
   right: -5px;
   color: $primaryColor;
-}
-
-// Languages wrapper
-.lang-wrapper {
-  display: flex;
-  width: 50px;
-  height: 25px;
-  align-items: center;
-  padding: 0 2px;
-  justify-content: space-between;
-  background-color: $white;
-  border-radius: 16px;
-}
-
-.lang {
-  font-size: 10px;
-  font-family: $regular;
-  color: $primaryColor;
-  cursor: pointer;
-  height: 22px;
-  width: 25px;
-  border-radius: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.active {
-  background-color: $primaryColor;
-  color: $white;
 }
 
 .add-margin {

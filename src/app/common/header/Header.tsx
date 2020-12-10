@@ -1,20 +1,18 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 import {toggleHeader, toggleMenu} from '../../../utils/toggleHeader'
 import Menu from '../menu/Menu'
+import LangSwitch from './LangSwitch/LangSwitch'
 
 export default function Header(): JSX.Element {
+  const router = useRouter()
   const [searchValue, setSearchValue] = useState('')
-  const [active, setActive] = useState(false)
-
+  
   useEffect(() => {
     toggleHeader()
     toggleMenu()
   }, [])
-
-  const handleClick = () => {
-    setActive(!active)
-  }
 
   const handleMenu = () => {
     // Decide if add or remove
@@ -48,19 +46,19 @@ export default function Header(): JSX.Element {
             </a>
           </div>
           <div className="header-links">
-            <Link href="/">
+            <Link href={`/${router.locale}/regional-store`}>
               Magazine regionale
             </Link>
-            <Link href="/service">
+            <Link href={`/${router.locale}/service`}>
               Service centru
             </Link>
-            <Link href="/news">
+            <Link href={`/${router.locale}/news`}>
               Știri
             </Link>
           </div>
       </div>
       <div id="header-relative">
-        <Link href="/">
+        <Link href={`/`}>
           <div className="logo-wrapper">
             <div className="logo" />
           </div>
@@ -86,23 +84,16 @@ export default function Header(): JSX.Element {
         </div>
         <div className="header-cart-section">
           <div className="icons-wrapper">
-            <Link href="/cart">
+            <Link href={`/${router.locale}/cart`}>
               <div className="header-cart-icon">
                 <div className="cart-notification">1</div>
               </div>
             </Link>
-            <Link href="/favorites">
+            <Link href={`/${router.locale}/favorites`}>
               <div className="header-favorites-icon" />
             </Link>
           </div>
-          <div className="lang-wrapper">
-            <div className={active ? "lang active" : 'lang'} onClick={handleClick}>
-              Ro
-            </div>
-            <div className={active ? 'lang' : "lang active"}  onClick={handleClick}>
-              Ru
-            </div>
-          </div>
+          <LangSwitch />
         </div>
       </div>
       
