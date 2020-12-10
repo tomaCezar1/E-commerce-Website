@@ -1,21 +1,33 @@
+import React, {useContext, useEffect} from 'react'
 import HomePage from '../app/app-features/home-page/HomePage';
+import { ProductCategoriesQuery } from '../app/app-features/categories/ProductCategoriesQueries'
+import { initializeApollo } from '../app/lib/apolloClient';
+import { AppContext } from "../context";
 
-function IndexPage(): JSX.Element {
-  return <HomePage/>
-} 
+function IndexPage({categories}): JSX.Element {
+  const { setAppContext } = useContext(AppContext)
 
-// TODO: Need to Fix
-// export async function getStaticProps() {
-//   const apolloClient = initializeApollo()
+  useEffect(() => {
+    setAppContext({ categories })
+  }, [])
 
-//   await apolloClient.query({
-//     query: ProductCategoriesQuery
-//   })
+  return (
+    <HomePage />
+  )
+}
 
-//   return addApolloState(apolloClient, {
-//     props: {},
-//     revalidate: 1,
-//   })
-// }
+export async function getServerSideProps() {
+  const apolloClient = initializeApollo()
+
+  const data = await apolloClient.query({
+    query: ProductCategoriesQuery
+  })
+
+  return {
+    props: {
+      categories: data.data.productCategories
+    },
+  }
+}
 
 export default IndexPage

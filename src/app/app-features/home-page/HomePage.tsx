@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import ProductDetails from '../product-details/ProductDetails'
 import CarouselComponent from './CarouselComponent/CarouselComponent'
 import PartnerList from './PartnerList/PartnerList'
 import ProductCard from './product-card/ProductCard'
@@ -6,7 +6,7 @@ import ProductList from './product-list/ProductList'
 
 export default function HomePage(): JSX.Element {
   return (
-    <Div id="homepage">
+    <div id="homepage">
       <h1>Home Page</h1>
       <CarouselComponent />
       <div style={{ height: '5rem' }}></div>
@@ -14,16 +14,8 @@ export default function HomePage(): JSX.Element {
       <div style={{ height: '5rem' }}></div>
       <PartnerList />
       <div style={{ height: '5rem' }}></div>
-      <ProductList />
+      <ProductDetails />
       <div style={{ height: '5rem' }}></div>
-    </Div>
+    </div>
   )
 }
-
-const Div = styled.div`
-  max-width: 1152px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`
