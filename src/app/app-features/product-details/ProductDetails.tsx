@@ -82,9 +82,9 @@ function ProductDetails() {
         {/* Characteristics tables */}
         <div className="characteristics-tables">
           <div className="characteristics-table">
-            <table>
+            <table className="table">
               <thead>
-                <tr>
+                <tr className="table-head">
                   <th>Caracteristici</th>
                 </tr>
               </thead>
