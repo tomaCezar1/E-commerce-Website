@@ -1,0 +1,31 @@
+.big-image {
+  width: 333px;
+  height: 333px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.small-img-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 342px;
+  margin-top: 13px;
+}
+
+.small-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  margin-right: 9px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.small-img-active {
+  opacity: 1;
+  transform: scale(1.04);
+  transition: scale 0.3s;
+}
