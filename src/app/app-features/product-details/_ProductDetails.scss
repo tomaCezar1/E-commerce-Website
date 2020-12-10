@@ -63,7 +63,7 @@
 .product-details-in-stock {
   font-family: $bold;
   font-size: 14px;
-  color: #36b368;
+  color: $green;
 }
 
 .product-details-serial-nb {
@@ -83,7 +83,7 @@
 .product-details-detalii {
   font-family: $regular;
   font-size: 14px;
-  color: #124193;
+  color: $primaryColor;
   text-decoration: underline;
 }
 
@@ -106,7 +106,7 @@
   width: 208px;
   height: 38px;
   border-radius: 8px;
-  background: rgba(18, 65, 147, 1);
+  background: $primaryColor;
   cursor: pointer;
   margin-left: 16px;
 
@@ -124,7 +124,7 @@
   margin-left: 16px;
   font-family: $bold;
   font-size: 18px;
-  color: #ffffff;
+  color: $white;
 }
 
 .product-details-counter {
@@ -137,16 +137,11 @@
   align-items: center;
   font-family: $regular;
   font-size: 18px;
-  vertical-align: middle;
-}
-
-.product-details-counter > div {
-  @extend %flex-row;
-  margin: 0;
 }
 
 .product-details-center-counter {
-  background: #f9f9f9;
+  @extend %flex-row;
+  background: $lightGrey;
   border-left: 1px solid #dddddd;
   border-right: 1px solid #dddddd;
   flex: 1.5;
@@ -154,6 +149,7 @@
 }
 
 .product-details-counters {
+  @extend %flex-row;
   flex: 1;
   height: 100%;
   cursor: pointer;
@@ -167,7 +163,7 @@
   a {
     text-decoration: underline;
     cursor: pointer;
-    color: #124193;
+    color: $primaryColor;
   }
 }
 
@@ -227,8 +223,8 @@
     border-collapse: collapse;
   }
 
-  .table tbody tr:nth-child(odd) {
-    background: #f9f9f9;
+  .table .bg-light-grey {
+    background: $lightGrey;
   }
 
   .table tbody tr:last-child {
