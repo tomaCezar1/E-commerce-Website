@@ -184,7 +184,7 @@
   background: $white;
   border-radius: 16px;
   width: 548px;
-  height: 248px;
+  // height: 248px;
   box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.1);
   transition: box-shadow 350ms ease;
   &:hover {
@@ -229,5 +229,10 @@
 
   .table tbody tr:nth-child(odd) {
     background: #f9f9f9;
+  }
+
+  .table tbody tr:last-child {
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
   }
 }
