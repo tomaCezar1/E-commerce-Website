@@ -76,11 +76,46 @@ function ProductDetails() {
                 </div>
               </div>
             </div>
+            <div className="product-details-questions">
+              <p>Ai o intrebare?</p>&nbsp;
+              <a>Contactează-ne</a>
+            </div>
           </div>
         </div>
 
         {/* Characteristics tables */}
         <div className="characteristics-tables">
+          <div className="characteristics-table">
+            <table className="table">
+              <thead>
+                <tr className="table-head">
+                  <th>Caracteristici</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Tip</th>
+                  <td>Standard</td>
+                </tr>
+                <tr>
+                  <th>Putere</th>
+                  <td>1500W</td>
+                </tr>
+                <tr>
+                  <th>Tensiune</th>
+                  <td>220V</td>
+                </tr>
+                <tr>
+                  <th>Model</th>
+                  <td>PTWT21</td>
+                </tr>
+                <tr>
+                  <th>Temperatura</th>
+                  <td>5600K</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div className="characteristics-table">
             <table className="table">
               <thead>

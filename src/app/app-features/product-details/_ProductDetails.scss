@@ -91,12 +91,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 32px 0;
 }
 
 .product-details-price {
   color: $black;
   font-family: $bold;
   font-size: 48px;
+  margin: 0;
 }
 
 .product-details-add-to-cart {
@@ -157,13 +159,24 @@
   cursor: pointer;
 }
 
+.product-details-questions {
+  display: flex;
+  font-family: $bold;
+  font-size: 12px;
+  justify-content: flex-end;
+  a {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #124193;
+  }
+}
+
 //Characteristics Tables
 .characteristics-tables {
   display: flex;
-}
-
-.characteristics-table > * {
-  margin: 0;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 80px;
 }
 
 .characteristics-table {
@@ -202,14 +215,6 @@
   tbody tr th {
     padding: 16px !important;
     font-size: 14px;
-  }
-
-  tbody,
-  tbody tr,
-  tbody tr td,
-  tbody tr th,
-  table > * {
-    border-collapse: collapse;
   }
 
   tbody tr td {
