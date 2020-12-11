@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {toggleHeader, toggleMenu} from '../../../utils'
 import Menu from '../menu/Menu'
+import SearchBar from './SearchBar/SearchBar'
 import LangSwitch from './LangSwitch/LangSwitch'
 
 export default function Header(): JSX.Element {
   const router = useRouter()
-  const [searchValue, setSearchValue] = useState('')
   
   useEffect(() => {
     toggleHeader()
@@ -26,13 +26,6 @@ export default function Header(): JSX.Element {
     }
   }
 
-  const handleChange = (e) => {
-    setSearchValue(e.target.value)
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
  
   return (
     <header className="header">
@@ -68,20 +61,7 @@ export default function Header(): JSX.Element {
           <span className="button-text">Catalogul produselor</span>
         </button>
         <Menu />
-        <div className="search-container">
-          <form onSubmit={handleSubmit}>
-            <div style={{ margin: "0 auto" }}>
-              <div className="search-icon" />
-              <input
-                id="Search"
-                placeholder="Search..."
-                value={searchValue}
-                onChange={handleChange}
-                className="search-bar"
-              />
-            </div>
-          </form>
-        </div>
+        <SearchBar />
         <div className="header-cart-section">
           <div className="icons-wrapper">
             <Link href={`/${router.locale}/cart`}>
@@ -90,7 +70,9 @@ export default function Header(): JSX.Element {
               </div>
             </Link>
             <Link href={`/${router.locale}/favorites`}>
-              <div className="header-favorites-icon" />
+              <div className="header-favorites-icon">
+                <div className="cart-notification">1</div>
+              </div>
             </Link>
           </div>
           <LangSwitch />

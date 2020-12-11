@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 export function toggleHeader() {
   const doc = document.documentElement;
   const w = window;
@@ -130,3 +132,24 @@ export const convertBreadcrumb = (string: string) => {
   return breadcrumb
     .replace(/-/g, ' ')
 };
+
+
+export function useDebounce(value: string, delay: number) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(
+    () => {
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+
+      return () => {
+        clearTimeout(handler);
+      };
+    },
+
+    [value] 
+  );
+
+  return debouncedValue;
+}
