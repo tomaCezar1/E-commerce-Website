@@ -11,15 +11,37 @@ function BlogPage(): JSX.Element {
       <div className="blog-page">
         <h1 className="blog-page-title">Știri</h1>
         <div className="blog-page-container">
-          <Link href={`/ro/news/${{ id }}`}>
+          <Link href="/blog-news/[id]" as={`/blog-news/${id}`}>
             <a>
               <BlogPageCard />
             </a>
           </Link>
-          <BlogPageCard />
-          <BlogPageCard />
-          <BlogPageCard />
-          <BlogPageCard />
+          {/* <Link href="/blog-news/[id]" as={`/blog-news/${id}`}> */}
+          <Link href={`/blog-news/${id}`}>
+            <a>
+              <BlogPageCard />
+            </a>
+          </Link>
+          <Link href={`/blog-news/${id}`}>
+            <a>
+              <BlogPageCard />
+            </a>
+          </Link>
+          <Link href={`/blog-news/${id}`}>
+            <a>
+              <BlogPageCard />
+            </a>
+          </Link>
+          <Link href={`/blog-news/${id}`}>
+            <a>
+              <BlogPageCard />
+            </a>
+          </Link>
+          <Link href={`/blog-news/${id}`}>
+            <a>
+              <BlogPageCard />
+            </a>
+          </Link>
         </div>
       </div>
     </>
