@@ -16,6 +16,7 @@ export default function HomePage(): JSX.Element {
       <div style={{ height: '5rem' }}></div>
       <ProductDetails />
       <div style={{ height: '5rem' }}></div>
+      <ProductList />
     </div>
   )
 }

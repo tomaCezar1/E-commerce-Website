@@ -13,9 +13,8 @@
 }
 
 .cards-container {
-  @extend %flex-row;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  width: $width;
-  height: 100%;
+  width: 100%;
 }
