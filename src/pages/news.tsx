@@ -7,7 +7,6 @@ export default function News(): JSX.Element {
     <div>
       <Breadcrumbs />
       <BlogPage />
-      <BlogPageCard />
     </div>
   )
 }
