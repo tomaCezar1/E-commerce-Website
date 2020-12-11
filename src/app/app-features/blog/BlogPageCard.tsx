@@ -1,4 +1,4 @@
-function BlogPageCard() {
+function BlogPageCard(): JSX.Element {
   return (
     <>
       <div className="blog-card-container">
