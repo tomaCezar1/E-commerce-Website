@@ -5,7 +5,7 @@ import merge from 'deepmerge'
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
-let apolloClient
+export let apolloClient;
 
 function createApolloClient() {
   return new ApolloClient({

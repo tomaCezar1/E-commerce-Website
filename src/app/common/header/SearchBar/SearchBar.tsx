@@ -2,23 +2,36 @@ import React, {useState, useEffect} from 'react'
 import { useQuery } from "@apollo/client";
 import {SearchProductsQuery} from './SearchProductsQuery'
 import {useDebounce} from '../../../../utils'
+import { apolloClient } from '../../../lib/apolloClient'
 
 export default function SearchBar(): JSX.Element {
+
+  // const { loading, error, data, refetch } = useQuery(SearchProductsQuery, {
+  //   variables: { searchQuery: '' }
+  // });
+
+  const client = apolloClient;
+
   const [searchTerm, setSearchTerm] = useState('')
   const [results, setResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  const { loading, error, data } = useQuery(SearchProductsQuery, {
-    variables: { searchQuery: debouncedSearchTerm }
-  });
+
+  // console.log(data);
 
   useEffect(() => {
     if (debouncedSearchTerm) {
-      if(data) {
-        setResults(data)
-      }
+      client.query({query: SearchProductsQuery, variables: { searchQuery: debouncedSearchTerm }})
+        .then(res => {
+          console.log(res)
+        });
+      // refetch({searchQuery: debouncedSearchTerm});
+      // if(data) {
+      //   setResults(data)
+      // }
+      console.log(debouncedSearchTerm)
     } else {
       setResults([]);
     }
