@@ -93,7 +93,7 @@ function ProductDetails() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-light-grey">
+                <tr>
                   <th>Tip</th>
                   <td>Standard</td>
                 </tr>
@@ -101,7 +101,7 @@ function ProductDetails() {
                   <th>Putere</th>
                   <td>1500W</td>
                 </tr>
-                <tr className="bg-light-grey">
+                <tr>
                   <th>Tensiune</th>
                   <td>220V</td>
                 </tr>
@@ -109,7 +109,7 @@ function ProductDetails() {
                   <th>Model</th>
                   <td>PTWT21</td>
                 </tr>
-                <tr className="bg-light-grey">
+                <tr>
                   <th>Temperatura</th>
                   <td>5600K</td>
                 </tr>
@@ -124,7 +124,7 @@ function ProductDetails() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-light-grey">
+                <tr>
                   <th>Tip</th>
                   <td>Standard</td>
                 </tr>
@@ -132,7 +132,7 @@ function ProductDetails() {
                   <th>Putere</th>
                   <td>1500W</td>
                 </tr>
-                <tr className="bg-light-grey">
+                <tr>
                   <th>Tensiune</th>
                   <td>220V</td>
                 </tr>
@@ -140,7 +140,7 @@ function ProductDetails() {
                   <th>Model</th>
                   <td>PTWT21</td>
                 </tr>
-                <tr className="bg-light-grey">
+                <tr>
                   <th>Temperatura</th>
                   <td>5600K</td>
                 </tr>

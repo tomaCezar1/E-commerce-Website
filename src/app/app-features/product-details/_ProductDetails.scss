@@ -223,7 +223,7 @@
     border-collapse: collapse;
   }
 
-  .table .bg-light-grey {
+  .table tbody tr:nth-child(odd) {
     background: $lightGrey;
   }
 
