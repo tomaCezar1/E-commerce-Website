@@ -1,3 +1,4 @@
+import BlogDetailsPage from '../blog/news-details/BlogDetailsPage'
 import ProductDetails from '../product-details/ProductDetails'
 import CarouselComponent from './CarouselComponent/CarouselComponent'
 import PartnerList from './PartnerList/PartnerList'
@@ -15,6 +16,7 @@ export default function HomePage(): JSX.Element {
       <div style={{ height: '5rem' }}></div>
       <ProductDetails />
       <div style={{ height: '5rem' }}></div>
+      <BlogDetailsPage />
     </div>
   )
 }
