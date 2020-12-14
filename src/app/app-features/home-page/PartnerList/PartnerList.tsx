@@ -22,12 +22,10 @@ function PartnerList(): JSX.Element {
   const [x, setX] = useState(0)
 
   const goLeft = () => {
-    console.log(x)
     x === 0 ? null : setX(x + 100)
   }
 
   const goRight = () => {
-    console.log(x)
     x === -100 * (paths.length - 5) ? null : setX(x - 100)
   }
 

@@ -1,28 +1,31 @@
-import { useQuery } from "@apollo/client";
-import { Flex, Text } from "@chakra-ui/react";
-import { useRouter } from "next/dist/client/router";
-import { SubcategoriesQuery } from "./ProductCategoriesQueries";
+import Link from 'next/link'
+import React from 'react'
+import { useRouter } from 'next/router'
 
-export default function Categories(): JSX.Element {
-  const { id } = useRouter().query
-  console.log(id);
-
-  const { loading, error, data } = useQuery(SubcategoriesQuery, {
-    variables: { id }
-  });
-  const products = data?.productCategories;
-
-  console.log(data?.productCategories)
-  console.log(products)
+export default function Categories({subcategories, categoryDetails}): JSX.Element {
+  const router = useRouter()
 
   return (
-    <Flex maxW="1133px" w="100%" pt="30px">
-      <Text fontSize="xl">
-        Details about Category with id <b>{id}</b>
-      </Text>
-      {products?.map((obj) => {
-        <p>{obj}</p>
-      })}
-    </Flex>
+    <div style={{ margin: '30px 0' }}>
+      <div className="title-1">
+        {categoryDetails.title}
+      </div>
+      {
+        subcategories.map((subCategory, index) => {
+          return (
+            <Link
+              href={`/categories/[categorySlug]/[subcategorySlug]`}
+              as={`/categories/${categoryDetails.slug}/${subCategory.slug}`}
+              locale={router.locale}
+              key={index}>
+              <div style={{cursor: 'pointer'}}>
+                {subCategory.title}
+                <img src={subCategory.images[0]} style={{width: 'auto', height: '100px'}} alt='' />
+              </div>
+            </Link>
+          )
+        })
+      }
+    </div>
   )
 }

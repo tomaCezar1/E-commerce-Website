@@ -2,10 +2,8 @@ import React, { createContext, useState } from 'react'
 
 const AppContext = createContext(null)
 
-const AppContextProvider = ({ children }) => {
-  const [appContext, setAppContext] = useState({
-    categories: [],
-  })
+const AppContextProvider = ({ children, initialState }) => {
+  const [appContext, setAppContext] = useState(initialState)
   return (
     <AppContext.Provider value={{ appContext, setAppContext }}>
       {children}
