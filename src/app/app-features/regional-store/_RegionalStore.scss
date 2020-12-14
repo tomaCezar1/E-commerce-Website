@@ -1,0 +1,31 @@
+@import '../../../styles/constants.scss';
+
+.regional-store-title {
+  font-family: $bold;
+  font-size: 36px;
+  margin: 0 0 32px 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.regional-store-title-container {
+  display: flex;
+  justify-content: flex-start;
+  align-self: flex-start;
+}
+
+.regional-store-row {
+  display: flex;
+}
+
+.regional-store-text {
+  font-family: $regular;
+  font-size: 14px;
+}
+
+.regional-store-map-cards {
+  display: flex;
+  flex-direction: column;
+  width: 586px;
+  margin-right: 60px;
+}
