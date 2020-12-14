@@ -6,6 +6,8 @@ export const SearchProductsQuery = gql`
       id
       name
       images
+      price
+      slug
     }
   }
 `;
