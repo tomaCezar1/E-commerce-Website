@@ -12,6 +12,8 @@
 @import '../app/app-features/blog/BlogPage';
 @import '../app/app-features/regional-store/RegionalStore';
 @import '../app/app-features/regional-store/contact-box/ContactBox';
+@import '../app/common/overlay/Overlay';
+@import '../app/common/portal/Portal';
 @import '../app/common/breadcrumbs/Breadcrumbs';
 @import './utils';
 
@@ -62,3 +64,5 @@ header {
   src: local('Roboto-Bold'),
     url('../../public/fonts/Roboto-Bold.ttf') format('truetype');
 }
+
+
