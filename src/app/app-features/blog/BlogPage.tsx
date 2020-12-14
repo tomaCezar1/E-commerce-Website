@@ -3,6 +3,7 @@ import Link from 'next/link'
 import BlogPageCard from './BlogPageCard'
 
 function BlogPage(): JSX.Element {
+  //query needed
   const { id } = useRouter().query
   console.log(id)
 
@@ -16,7 +17,6 @@ function BlogPage(): JSX.Element {
               <BlogPageCard />
             </a>
           </Link>
-          {/* <Link href="/blog-news/[id]" as={`/blog-news/${id}`}> */}
           <Link href={`/blog-news/${id}`}>
             <a>
               <BlogPageCard />
