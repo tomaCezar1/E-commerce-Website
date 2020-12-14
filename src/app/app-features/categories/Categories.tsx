@@ -15,8 +15,6 @@ export default function Categories(): JSX.Element {
   console.log(data?.productCategories)
   console.log(products)
 
-
-
   return (
     <Flex maxW="1133px" w="100%" pt="30px">
       <Text fontSize="xl">

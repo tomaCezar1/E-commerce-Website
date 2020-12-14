@@ -1,9 +1,13 @@
 import React from 'react'
 import RegionalStore from '../app/app-features/regional-store/RegionalStore'
-import DefaultLayout from '../app/common/DefaultLayout'
+import Breadcrumbs from '../app/common/breadcrumbs/Breadcrumbs'
+
 
 export default function RegionalStorePage() {
-  return <RegionalStore />
+  return (
+    <>
+      <Breadcrumbs />
+      <RegionalStore />
+    </>
+  )
 }
-
-RegionalStorePage.Layout = DefaultLayout

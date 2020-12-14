@@ -1,77 +1,102 @@
-import Image from 'next/image'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Flex, Text, Box } from '@chakra-ui/layout'
-import PhoneIcon from '../../../../public/svg/phone.svg';
-import ShoppingCartIcon from '../../../../public/svg/ShoppingCartIcon.svg'
-import HeartIcon from '../../../../public/svg/HeartIcon.svg'
-import { Icon, useBreakpoint } from '@chakra-ui/react';
-import { IBreakPoint } from '../../lib/types/common';
-import SubHeader from './SubHeader';
+import {useRouter} from 'next/router'
+import {toggleHeader, toggleMenu} from '../../../utils'
+import Menu from '../menu/Menu'
+import LangSwitch from './LangSwitch/LangSwitch'
 
 export default function Header(): JSX.Element {
+  const router = useRouter()
+  const [searchValue, setSearchValue] = useState('')
+  
+  useEffect(() => {
+    toggleHeader()
+    toggleMenu()
+  }, [])
 
-  const breakPoint: IBreakPoint = useBreakpoint('base') as any
-  console.log(breakPoint)
+  const handleMenu = () => {
+    // Decide if add or remove
+    const menu = document.getElementById('menu')
+    if(menu.classList.contains('hide-menu')) {
+      // Remove
+      menu.classList.remove('hide-menu')
+    } else {
+      // Add
+      menu.classList.add('hide-menu')
+    }
+  }
 
+  const handleChange = (e) => {
+    setSearchValue(e.target.value)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+ 
   return (
-    <>
-    <Flex 
-      as="nav" 
-      h={57}
-      background="primary.500"
-      color="#fff"
-      align="center"
-      justify="center"
-    >
-      <Flex maxW="1133px" w="100%" paddingX={["30px", "30px", "30px", 0]} align="center" justifyContent="space-between">
-        <Flex>          
-          <Link href="/">
-          <div>
-            <Image
-              className="cursor-pointer"
-              src="/logo.png"
-              alt="Logo"
-              width={151}
-              height={30}
-            />
+    <header className="header">
+      <div className="header-static">
+          <div className="header-phone-number cursor-pointer" >
+            <div className="phone-icon-wrapper">
+              <div className="header-phone-icon" />
+            </div>
+            <a className="header-phone" href="tel:+373 69 000 000">
+              069 00 00 00
+            </a>
           </div>
-          </Link>
-          <Flex as="a" href="tel:069000000" ml={54} fontSize="sm" align="center">
-            <Icon as={PhoneIcon} mr="13px" mb="1px"/>
-            {breakPoint !== 'base' && 
-              <Text fontWeight="medium">
-                069 00 00 00
-            </Text>
-            }
-          </Flex>
-        </Flex>
-        {(breakPoint === 'xl' || breakPoint === 'lg') && 
-          <Box>
-            <input type="text"/>
-          </Box>
-        }
-        <Flex align="center">
-          {(breakPoint === 'xl' || breakPoint === 'lg') && 
-          <>
-            <Link href="/checkout">
-              <div>
-                <Icon w="18px" h="17px" as={ShoppingCartIcon} className="cursor-pointer" />
+          <div className="header-links">
+            <Link href={`/${router.locale}/regional-store`}>
+              Magazine regionale
+            </Link>
+            <Link href={`/${router.locale}/service`}>
+              Service centru
+            </Link>
+            <Link href={`/${router.locale}/news`}>
+              Știri
+            </Link>
+          </div>
+      </div>
+      <div id="header-relative">
+        <Link href={`/`}>
+          <div className="logo-wrapper">
+            <div className="logo" />
+          </div>
+        </Link>
+        <button className="header-menu" onClick={handleMenu}>
+          <div className="burger-icon"/>
+          <span className="button-text">Catalogul produselor</span>
+        </button>
+        <Menu />
+        <div className="search-container">
+          <form onSubmit={handleSubmit}>
+            <div style={{ margin: "0 auto" }}>
+              <div className="search-icon" />
+              <input
+                id="Search"
+                placeholder="Search..."
+                value={searchValue}
+                onChange={handleChange}
+                className="search-bar"
+              />
+            </div>
+          </form>
+        </div>
+        <div className="header-cart-section">
+          <div className="icons-wrapper">
+            <Link href={`/${router.locale}/cart`}>
+              <div className="header-cart-icon">
+                <div className="cart-notification">1</div>
               </div>
             </Link>
-            <Link href="/checkout">
-              <div>
-                <Icon w="18px" h="17px" as={HeartIcon} ml="28px" className="cursor-pointer" />
-              </div>
+            <Link href={`/${router.locale}/favorites`}>
+              <div className="header-favorites-icon" />
             </Link>
-          </>
-          }
-          <Box ml="38px">
-            RO | RU
-          </Box>
-        </Flex>  
-      </Flex>
-    </Flex>
-    <SubHeader/>
-    </>
+          </div>
+          <LangSwitch />
+        </div>
+      </div>
+      
+    </header>
   )
 }

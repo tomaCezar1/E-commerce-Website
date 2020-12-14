@@ -1,0 +1,65 @@
+@import '../../../../styles/constants.scss';
+$height: 100px;
+
+.slider-container {
+  width: 100%;
+  height: $height;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: none;
+}
+
+.current {
+  display: block;
+}
+
+.no-display {
+  display: none;
+}
+
+.slide {
+  transition: 0.7s;
+}
+
+.partner-img {
+  object-fit: cover;
+  height: 100px;
+  width: auto;
+  margin: 0 15px;
+}
+
+%btn-styles {
+  font-size: 48px;
+  background: none;
+  cursor: pointer;
+  z-index: 5;
+  border: none;
+  outline: none;
+  svg path {
+    stroke: rgba(0,0,0,0.5);
+    transition: stroke 350ms ease;
+  }
+  &:hover {
+    svg path {
+      stroke: rgba(0,0,0,0.8);
+    }
+  }
+}
+
+#goLeft {
+  padding-right: 16px;
+  @extend %btn-styles;
+}
+
+#goRight {
+  padding-left: 16px;
+  @extend %btn-styles;
+}

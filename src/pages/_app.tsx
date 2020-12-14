@@ -1,18 +1,14 @@
 import React from 'react'
 import Head from 'next/head'
 import { AppProps } from 'next/app'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-import { useApollo } from '../app/lib/apolloClient'
 import { ApolloProvider } from '@apollo/client'
-import { APP_THEME } from '../app/lib/theme'
+import { useApollo } from '../app/lib/apolloClient'
+import Layout from '../app/common/layout/Layout'
+import { AppContextProvider } from '../context'
+
 import '../styles/styles.scss'
 
-const theme = extendTheme(APP_THEME)
-
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
-  const Layout = (Component as any).Layout
-    ? (Component as any).Layout
-    : React.Fragment
   const apolloClient = useApollo(pageProps)
   return (
     <>
@@ -20,14 +16,13 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
         <meta name="description" content="Test" />
         <title>Cegoltar</title>
       </Head>
-
-      <ApolloProvider client={apolloClient}>
-        <ChakraProvider resetCSS theme={theme}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ChakraProvider>
-      </ApolloProvider>
+      <AppContextProvider>
+        <ApolloProvider client={apolloClient}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+        </ApolloProvider>
+      </AppContextProvider>
     </>
   )
 }

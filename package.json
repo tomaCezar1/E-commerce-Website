@@ -30,9 +30,12 @@
     "next": "latest",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-image-magnify": "^2.7.4",
     "react-leaflet": "^3.0.2",
     "react-leaflet-universal": "^2.2.1",
+    "react-slick": "^0.27.13",
     "sass": "^1.29.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
