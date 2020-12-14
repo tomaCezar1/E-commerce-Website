@@ -1,10 +1,11 @@
 // import { TileLayer } from 'react-leaflet';
 // import { Map } from 'react-leaflet-universal';
+// import { Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'
 import dynamic from 'next/dynamic'
 import L from 'leaflet'
 import MarkerIcon from '../../../public/svg/Marker.svg'
-// import { iconPerson } from './Icon'
+import MapIcon from './MapIcon'
 // import icon from 'leaflet/dist/images'
 // import iconShadow from 'leaflet/dist/images/marker-icon.png'
 
@@ -55,16 +56,16 @@ const Map = () => {
         center={[47.05191, 28.81658]}
         zoom={16}
         scrollWheelZoom={false}
-        style={{ height: 347, width: 586 }}
+        style={{ height: 347, width: 586, borderRadius: 16 }}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker
+        {/* <Marker
           position={[47.05191, 28.81658]}
-          // icon={{MarkerIcon}
-        ></Marker>
+          // icon={MapIcon}
+        ></Marker> */}
       </MapContainer>
     </>
   )

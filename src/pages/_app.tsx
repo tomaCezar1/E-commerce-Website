@@ -1,22 +1,24 @@
 import React from 'react'
 import Head from 'next/head'
-import { AppProps } from 'next/app'
+import App, { AppProps } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
-import { useApollo } from '../app/lib/apolloClient'
+import { initializeApollo, useApollo } from '../app/lib/apolloClient'
 import Layout from '../app/common/layout/Layout'
 import { AppContextProvider } from '../context'
 
 import '../styles/styles.scss'
+import { ProductCategoriesQuery } from '../app/app-features/categories/ProductCategoriesQueries'
 
-export default function App({ Component, pageProps }: AppProps): JSX.Element {
+function MyApp({ Component, pageProps, initialState }: AppProps & any): JSX.Element {
   const apolloClient = useApollo(pageProps)
+
   return (
     <>
       <Head>
         <meta name="description" content="Test" />
         <title>Cegoltar</title>
       </Head>
-      <AppContextProvider>
+      <AppContextProvider initialState={initialState}>
         <ApolloProvider client={apolloClient}>
             <Layout>
               <Component {...pageProps} />
@@ -26,3 +28,29 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
     </>
   )
 }
+
+/**
+ * This Is Bad !!! Because we are causing every page to be server side rendered
+ * and next.js will can not perform static pages optimization
+ *
+ * We can compromise and load categories client side BUT we anyway have to
+ * load translations this way, soo... we are in a shitty situation anyway
+ * TODO: Run some tests and see what performance is
+ * TODO: Probably we will load categories client side and compromise the SEO
+*/
+MyApp.getInitialProps = async (appContext) => {
+  const apolloClient = initializeApollo();
+  const productCategoriesData = await apolloClient.query({
+    query: ProductCategoriesQuery
+  })
+  const initialState = {
+    categories: productCategoriesData.data.productCategories
+  }
+  const appProps = await App.getInitialProps(appContext);
+  return {
+    ...appProps,
+    initialState
+  }
+}
+
+export default MyApp;

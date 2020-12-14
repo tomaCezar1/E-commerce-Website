@@ -1,11 +1,12 @@
 import { gql } from "@apollo/client";
 
 export const ProductCategoriesQuery = gql`
-  query {
-    productCategories {
+  query ProductCategories($filter: ProductCategoryFilter = {}) {
+    productCategories(filter: $filter) {
       id
-      parent
       title
+      parent
+      slug
     }
   }
 `;
@@ -13,9 +14,11 @@ export const ProductCategoriesQuery = gql`
 export const SubcategoriesQuery = gql`
   query ProductCategories($id: String){
     productCategories(filter: {parent:{eq: $id}}) {
+      id
       title
       parent
-      id
+      slug
+      images
     }
   }
 `;
