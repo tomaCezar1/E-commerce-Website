@@ -4,14 +4,12 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 export default function Menu(): JSX.Element {
-
   const router = useRouter()
   const { appContext } = useContext(AppContext)
   const [activeCategory, setActiveCategory] = useState(0)
 
   const [rootCategories, setRootCategories] = useState([]);
   const [childCategories, setChildCategories] = useState([]);
-
 
   useEffect(() => {
     const rooCats = appContext.categories.filter(c => !c.parent);

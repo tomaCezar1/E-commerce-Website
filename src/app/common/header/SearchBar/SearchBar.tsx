@@ -4,6 +4,7 @@ import { SearchProductsQuery } from './SearchProductsQuery'
 import { useDebounce } from '../../../../utils'
 import { apolloClient } from '../../../lib/apolloClient'
 import Overlay from '../../overlay/Overlay';
+import { SkeletonText, SkeletonCircle, Box } from '@chakra-ui/react';
 
 export default function SearchBar(): JSX.Element {
   const client = apolloClient;
@@ -24,9 +25,7 @@ export default function SearchBar(): JSX.Element {
         .then(res => {
           setResults(res.data.products)
           setIsSearching(false)
-          if(!showOverlay) {
-            setShowOverlay(true);
-          }
+          
         });
     } else {
       setResults([]);
@@ -37,25 +36,59 @@ export default function SearchBar(): JSX.Element {
     <>
       <div id="search-container" className="search-container" ref={searchInputRef}>
         <div style={{ margin: "0 auto", position: 'relative' }}>
-        {searchTerm ? <div className={showOverlay ? "close-circle-icon" : "close-circle-icon2"} onClick={() => setSearchTerm('')}/> : <div className="search-icon" />}
+        {searchTerm ? <div className={showOverlay ? "close-circle-icon" : "close-circle-icon2"} onClick={() => {
+          setResults([])
+          setSearchTerm('')
+        }}/> : <div className="search-icon" />}
           <input
             id="Search"
             placeholder="Search..."
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
-            className={searchTerm && showOverlay ? "search-bar-active" : "search-bar"} 
-            onFocus={searchTerm ? () => setShowOverlay(true) : null}
+            className={showOverlay ? "search-bar-active" : "search-bar"} 
+            onFocus={() => setShowOverlay(true)}
+            onBlur={!searchTerm ? () => setShowOverlay(false) : null}
           />
         </div>
       </div>
-      {searchTerm && showOverlay && 
+      {showOverlay && 
         (<Overlay anchor={searchInputRef.current} onBackdropClick={(e) => setShowOverlay(false)}>
           <div className="search-results-container">
+            {(!results.length && searchTerm && !isSearching) && (
+              <div className="no-items-container">
+                <span className="no-items-text">No items found</span>
+              </div>
+            )}
+            {(!results.length || isSearching)  && (
+              <>
+              <div className="search-skeleton-wrapper">
+                <SkeletonCircle size="10" />
+                <div className="search-skeleton-text">
+                  <SkeletonText noOfLines={2} spacing="2" />
+                </div>
+                <SkeletonCircle size="4" />
+              </div>
+              <div className="search-skeleton-wrapper">
+              <SkeletonCircle size="10" />
+              <div className="search-skeleton-text">
+                <SkeletonText noOfLines={2} spacing="2" />
+              </div>
+              <SkeletonCircle size="4" />
+            </div>
+            <div className="search-skeleton-wrapper">
+              <SkeletonCircle size="10" />
+              <div className="search-skeleton-text">
+                <SkeletonText noOfLines={2} spacing="2" />
+              </div>
+              <SkeletonCircle size="4" />
+            </div>
+            </>
+            )}
             {results && results.map(({id, name, price, images}) => {
               return (
-                <>
+                <div key={id}>
                   <div className="search-results-divider" />
-                  <div key={id} className="search-product-wrapper">
+                  <div className="search-product-wrapper">
                     <img src={images[0]} className="search-product-image" />
                     <div className="search-product-text">
                       <span className="search-product-name">
@@ -69,7 +102,7 @@ export default function SearchBar(): JSX.Element {
                       <div className="button-to-product" />
                     </Link>
                   </div>
-                </>
+                </div>
               )
             })}
           </div>

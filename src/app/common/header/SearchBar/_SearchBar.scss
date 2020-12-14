@@ -8,7 +8,6 @@
   margin: auto 0;
   border-radius: 16px;
   position: relative;
-
 }
 
 .search-bar {
@@ -26,7 +25,7 @@
 
 .search-bar-active {
   width: 100%;
-  height: 45px;
+  height: 47px;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   border: none;
@@ -47,7 +46,7 @@
   width: 14px;
   height: 14px;
   position: absolute;
-  right: 0px;
+  right: 14px;
   top: 7px;
   background: $searchIcon;
 }
@@ -66,12 +65,13 @@
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   overflow: hidden;
-  width: 400px;
+  width: 380px;
   box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.1);
   position: relative;
   padding-top: 1px;
   max-height: 345px;
   overflow-y: scroll;
+  overscroll-behavior-y: contain;
 }
 
 .search-product-image { 
@@ -101,7 +101,7 @@
 
 .search-results-divider {
   height: 1px;
-  width: 400px;
+  width: 380px;
   background: $grey;
 }
 
@@ -116,7 +116,7 @@
   width: 15px;
   height: 15px;
   position: absolute;
-  right: 1px;
+  right: 18px;
   top: 15px;
   z-index: 10;
   cursor: pointer;
@@ -127,9 +127,40 @@
   width: 15px;
   height: 15px;
   position: absolute;
-  right: 0;
+  right: 14px;
   top: 6px;
   z-index: 10;
   cursor: pointer;
   background: url('../../../../../public/svg/CloseButton.svg') no-repeat
+}
+
+.search-skeleton-wrapper {
+  width: 380px;
+  display: flex;
+  background: $white;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 12px 18px 0 16px;
+  z-index: 10;
+  position: relative;
+}
+
+.search-skeleton-text {
+  height: 20px;
+  width: 230px;
+}
+
+.no-items-container {
+  width: 380px;
+  display: flex;
+  background: $white;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-items-text {
+  font-family: 'Medium';
+  font-size: 14px;
 }
