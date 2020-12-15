@@ -4,7 +4,7 @@ import ProductCard from './product-card/ProductCard'
 
 export default function HomePage(): JSX.Element {
   return (
-    <div id="homepage">
+    <div>
       <CarouselComponent style={{marginTop: '34px'}} />
       <div style={{marginTop: '40px'}} className="title-1">
         Produsele Cegoltar
