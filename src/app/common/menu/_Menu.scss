@@ -1,9 +1,9 @@
 @import '../../../styles/constants.scss';
 
 .menu-container {
-  position: absolute;
-  top: 50px;
-  width: $fullWidth;
+  //position: absolute;
+  //top: 50px;
+  //width: $fullWidth;
   height: 450px;
   background: $primaryColor;
   border-bottom-left-radius: 16px;
@@ -65,5 +65,5 @@
 }
 
 .hide-menu {
-  top: -550px;
+  //top: -550px;
 }

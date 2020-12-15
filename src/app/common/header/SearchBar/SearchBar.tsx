@@ -30,7 +30,7 @@ export default function SearchBar(): JSX.Element {
       setResults([]);
     }
   }, [debouncedSearchTerm]);
-  
+
   return (
     <>
       <div id="search-container" className="search-container" ref={searchInputRef}>
@@ -42,11 +42,12 @@ export default function SearchBar(): JSX.Element {
           document.getElementById('Search').focus()
         }}/> : <div className="search-icon" />}
           <input
+            autoComplete="off"
             id="Search"
             placeholder="Search..."
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
-            className={showOverlay ? "search-bar-active" : "search-bar"} 
+            className={showOverlay ? "search-bar-active" : "search-bar"}
             onFocus={() => {
               setShowOverlay(true)
               document.getElementById('menu').classList.add('hide-menu')
@@ -59,7 +60,7 @@ export default function SearchBar(): JSX.Element {
           />
         </div>
       </div>
-      {showOverlay && 
+      {showOverlay &&
         (<Overlay anchor={searchInputRef.current} onBackdropClick={(e) => setShowOverlay(false)}>
           <div className={!results.length ? "search-results-container" : "search-results-container-scroll"} >
             {isSearching && !results.length && (

@@ -1,31 +1,37 @@
-import { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {toggleHeader, toggleMenu} from '../../../utils'
 import Menu from '../menu/Menu'
 import SearchBar from './SearchBar/SearchBar'
 import LangSwitch from './LangSwitch/LangSwitch'
+import Overlay from '../overlay/Overlay'
 
 export default function Header(): JSX.Element {
   const router = useRouter()
-  
+
   useEffect(() => {
     toggleHeader()
     toggleMenu()
   }, [])
 
+  const [showMenu, setShowMenu] = useState(false);
+  const header = useRef(null);
+
   const handleMenu = () => {
-    const menu = document.getElementById('menu')
-    // Decide if add or remove
-    if(menu.classList.contains('hide-menu')) {
-      // Remove
-      menu.classList.remove('hide-menu')
-    } else {
-      // Add
-      menu.classList.add('hide-menu')
-    }
+    setShowMenu(true);
+    // const menu = document.getElementById('menu')
+    // // Decide if add or remove
+    // if(menu.classList.contains('hide-menu')) {
+    //   // Remove
+    //   menu.classList.remove('hide-menu')
+    // } else {
+    //   // Add
+    //   menu.classList.add('hide-menu')
+    // }
+
   }
- 
+
   return (
     <header className="header">
       <div className="header-static">
@@ -49,7 +55,7 @@ export default function Header(): JSX.Element {
             </Link>
           </div>
       </div>
-      <div id="header-relative">
+      <div id="header-relative" ref={header}>
         <Link href={`/`}>
           <div className="logo-wrapper">
             <div className="logo" />
@@ -57,9 +63,14 @@ export default function Header(): JSX.Element {
         </Link>
         <button className="header-menu" onClick={handleMenu}>
           <div className="burger-icon"/>
-          <span className="button-text">Catalogul produselor</span>
+          <span className="button-text">Catalogul produselor {showMenu}</span>
         </button>
-        <Menu />
+        {showMenu && (
+          <Overlay anchor={header.current}>
+            <Menu></Menu>
+          </Overlay>
+        )}
+        {/*<Menu />*/}
         <SearchBar />
         <div className="header-cart-section">
           <div className="icons-wrapper">
@@ -77,7 +88,7 @@ export default function Header(): JSX.Element {
           <LangSwitch />
         </div>
       </div>
-      
+
     </header>
   )
 }

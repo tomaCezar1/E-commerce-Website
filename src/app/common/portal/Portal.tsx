@@ -24,7 +24,7 @@ export function PortalOverlay({children, onBackdropClick}) {
         // Direction up
       } else {
         if (event.target.classList.contains('portal-wrapper')){
-          onBackdropClick(event)
+          onBackdropClick && onBackdropClick(event)
           searchContainer.blur()
         }
       }
