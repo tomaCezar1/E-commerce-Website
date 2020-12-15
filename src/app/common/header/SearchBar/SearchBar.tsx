@@ -4,7 +4,7 @@ import { SearchProductsQuery } from './SearchProductsQuery'
 import { useDebounce } from '../../../../utils'
 import { apolloClient } from '../../../lib/apolloClient'
 import Overlay from '../../overlay/Overlay';
-import { SkeletonText, SkeletonCircle, Box } from '@chakra-ui/react';
+import { SkeletonText, SkeletonCircle } from '@chakra-ui/react';
 
 export default function SearchBar(): JSX.Element {
   const client = apolloClient;
@@ -25,13 +25,12 @@ export default function SearchBar(): JSX.Element {
         .then(res => {
           setResults(res.data.products)
           setIsSearching(false)
-          
         });
     } else {
       setResults([]);
     }
   }, [debouncedSearchTerm]);
- 
+  
   return (
     <>
       <div id="search-container" className="search-container" ref={searchInputRef}>
@@ -39,6 +38,8 @@ export default function SearchBar(): JSX.Element {
         {searchTerm ? <div className={showOverlay ? "close-circle-icon" : "close-circle-icon2"} onClick={() => {
           setResults([])
           setSearchTerm('')
+          setIsSearching(true)
+          document.getElementById('Search').focus()
         }}/> : <div className="search-icon" />}
           <input
             id="Search"
@@ -46,43 +47,50 @@ export default function SearchBar(): JSX.Element {
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
             className={showOverlay ? "search-bar-active" : "search-bar"} 
-            onFocus={() => setShowOverlay(true)}
-            onBlur={!searchTerm ? () => setShowOverlay(false) : null}
+            onFocus={() => {
+              setShowOverlay(true)
+              document.getElementById('menu').classList.add('hide-menu')
+              setIsSearching(true)
+            }}
+            onBlur={!searchTerm ? () => {
+              setShowOverlay(false)
+              setIsSearching(false)
+            } : null}
           />
         </div>
       </div>
       {showOverlay && 
         (<Overlay anchor={searchInputRef.current} onBackdropClick={(e) => setShowOverlay(false)}>
-          <div className="search-results-container">
-            {(!results.length && searchTerm && !isSearching) && (
-              <div className="no-items-container">
-                <span className="no-items-text">No items found</span>
-              </div>
-            )}
-            {(!results.length || isSearching)  && (
+          <div className={!results.length ? "search-results-container" : "search-results-container-scroll"} >
+            {isSearching && !results.length && (
               <>
-              <div className="search-skeleton-wrapper">
+                <div className="search-skeleton-wrapper">
+                  <SkeletonCircle size="10" />
+                  <div className="search-skeleton-text">
+                    <SkeletonText noOfLines={2} spacing="2" />
+                  </div>
+                  <SkeletonCircle size="4" />
+                </div>
+                <div className="search-skeleton-wrapper">
                 <SkeletonCircle size="10" />
                 <div className="search-skeleton-text">
                   <SkeletonText noOfLines={2} spacing="2" />
                 </div>
                 <SkeletonCircle size="4" />
+                </div>
+                <div className="search-skeleton-wrapper">
+                  <SkeletonCircle size="10" />
+                  <div className="search-skeleton-text">
+                    <SkeletonText noOfLines={2} spacing="2" />
+                  </div>
+                  <SkeletonCircle size="4" />
+                </div>
+              </>
+            )}
+            {!isSearching && !results.length && (
+              <div className="no-items-container">
+                <span className="no-items-text">No items found</span>
               </div>
-              <div className="search-skeleton-wrapper">
-              <SkeletonCircle size="10" />
-              <div className="search-skeleton-text">
-                <SkeletonText noOfLines={2} spacing="2" />
-              </div>
-              <SkeletonCircle size="4" />
-            </div>
-            <div className="search-skeleton-wrapper">
-              <SkeletonCircle size="10" />
-              <div className="search-skeleton-text">
-                <SkeletonText noOfLines={2} spacing="2" />
-              </div>
-              <SkeletonCircle size="4" />
-            </div>
-            </>
             )}
             {results && results.map(({id, name, price, images}) => {
               return (

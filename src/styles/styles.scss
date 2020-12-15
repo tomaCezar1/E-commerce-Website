@@ -16,6 +16,7 @@
 @import '../app/common/portal/Portal';
 @import '../app/common/breadcrumbs/Breadcrumbs';
 @import './utils';
+@import './constants.scss';
 
 .cursor-pointer {
   cursor: pointer;
@@ -33,7 +34,7 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color: #f8f8f8;
+  background-color: $background !important;
 }
 
 li {

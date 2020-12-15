@@ -36,6 +36,7 @@
   padding: 2px 0 0 20px;
   z-index: 5;
   position: relative;
+  overflow: hidden;
 }
 
 .search-bar:focus, .search-bar-active:focus {
@@ -70,8 +71,20 @@
   position: relative;
   padding-top: 1px;
   max-height: 345px;
+  z-index: 15 !important;
+  position: relative;
+}
+
+.search-results-container-scroll {
   overflow-y: scroll;
-  overscroll-behavior-y: contain;
+  overflow-x: hidden;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  width: 380px;
+  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  padding-top: 1px;
+  max-height: 345px;
 }
 
 .search-product-image { 

@@ -15,8 +15,8 @@ export default function Header(): JSX.Element {
   }, [])
 
   const handleMenu = () => {
-    // Decide if add or remove
     const menu = document.getElementById('menu')
+    // Decide if add or remove
     if(menu.classList.contains('hide-menu')) {
       // Remove
       menu.classList.remove('hide-menu')
@@ -25,7 +25,6 @@ export default function Header(): JSX.Element {
       menu.classList.add('hide-menu')
     }
   }
-
  
   return (
     <header className="header">
