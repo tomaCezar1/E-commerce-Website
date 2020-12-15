@@ -10,6 +10,12 @@ export async function getServerSideProps(context) {
   const apolloClient = initializeApollo()
   const homePageData = await apolloClient.query({
     query: ProductListQuery,
+    variables: {
+      filter: {
+        isHomePage: { is: true },
+      },
+      sorting: [{ field: 'sortOrder', direction: 'ASC' }],
+    },
   })
 
   return {
