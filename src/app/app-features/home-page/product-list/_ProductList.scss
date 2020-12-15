@@ -1,0 +1,20 @@
+@import '../../../../styles/constants.scss';
+
+.product-list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-list-header {
+  font-family: $bold;
+  font-size: 36px;
+  color: $black;
+  margin-bottom: 32px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px 32px;
+  width: 100%;
+}

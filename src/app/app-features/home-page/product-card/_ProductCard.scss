@@ -14,7 +14,6 @@
   }
 }
 
-
 .product-card-container-flex {
   @extend %flex-column;
   margin: auto;
@@ -107,8 +106,13 @@
 
 .out-of-stock {
   opacity: 0.5;
+  cursor: default;
   * {
     cursor: default;
+  }
+
+  &:hover {
+    box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -122,7 +126,7 @@
 .crossed-price {
   font-family: $medium;
   text-decoration: line-through;
-  color: $semiTransparentWhite;
+  color: $grey;
   font-size: 20px;
 }
 
