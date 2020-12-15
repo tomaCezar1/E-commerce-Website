@@ -1,5 +1,6 @@
 import { Skeleton } from '@chakra-ui/react'
 import { useState } from 'react'
+import ReactImageMagnify from 'react-image-magnify'
 
 function ProductImages(props) {
   // const { loading, error, data } = useQuery<ICarouselItems>(CarouselQuery)
@@ -14,7 +15,23 @@ function ProductImages(props) {
   return (
     <>
       <div>
-        <img className="big-image" src={props.images[currentImg]} />
+        <ReactImageMagnify
+          {...{
+            smallImage: {
+              alt: 'error',
+              src: props.images[currentImg],
+              width: 333,
+              height: 333,
+            },
+            largeImage: {
+              src: props.images[currentImg],
+              width: 600,
+              height: 800,
+            },
+            imageClassName: 'big-image',
+            enlargedImageStyle: { objectFit: 'cover' },
+          }}
+        />
       </div>
       <div className="small-img-container">
         {/* <Skeleton h="100%" w="100%"> */}

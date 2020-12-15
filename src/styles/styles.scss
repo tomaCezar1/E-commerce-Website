@@ -8,7 +8,11 @@
 @import '../app/common/menu/Menu';
 @import '../app/common/header/LangSwitch/LangSwitch';
 @import '../app/app-features/product-details/ProductDetails';
+@import '../app/app-features/blog/BlogPage';
+@import '../app/app-features/regional-store/RegionalStore';
+@import '../app/app-features/regional-store/contact-box/ContactBox';
 @import '../app/common/breadcrumbs/Breadcrumbs';
+@import './utils';
 
 .cursor-pointer {
   cursor: pointer;

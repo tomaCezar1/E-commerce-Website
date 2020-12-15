@@ -8,7 +8,7 @@ import LeftArrow from '../../../../../public/svg/LeftArrow.svg'
 import { useQuery } from '@apollo/client'
 import { ICarouselItems, CarouselQuery } from './CarouselQuery'
 
-function CarouselComponent(): JSX.Element {
+function CarouselComponent({style = {}}): JSX.Element {
   const { loading, error, data } = useQuery<ICarouselItems>(CarouselQuery)
 
   const items = data?.carouselItems
@@ -96,7 +96,7 @@ function CarouselComponent(): JSX.Element {
   }
 
   return (
-    <div className="carousel-container">
+    <div className="carousel-container" style={style}>
       <Skeleton isLoaded={!loading} h="100%" w="100%">
         <Slider {...settings}>{slide()}</Slider>
       </Skeleton>

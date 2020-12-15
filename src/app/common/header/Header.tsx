@@ -8,7 +8,7 @@ import LangSwitch from './LangSwitch/LangSwitch'
 export default function Header(): JSX.Element {
   const router = useRouter()
   const [searchValue, setSearchValue] = useState('')
-  
+
   useEffect(() => {
     toggleHeader()
     toggleMenu()
@@ -33,7 +33,7 @@ export default function Header(): JSX.Element {
   const handleSubmit = (e) => {
     e.preventDefault()
   }
- 
+
   return (
     <header className="header">
       <div className="header-static">
@@ -52,7 +52,7 @@ export default function Header(): JSX.Element {
             <Link href={`/${router.locale}/service`}>
               Service centru
             </Link>
-            <Link href={`/${router.locale}/news`}>
+            <Link href={`/news`} locale={router.locale}>
               Știri
             </Link>
           </div>
@@ -96,7 +96,7 @@ export default function Header(): JSX.Element {
           <LangSwitch />
         </div>
       </div>
-      
+
     </header>
   )
 }

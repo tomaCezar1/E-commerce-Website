@@ -1,0 +1,12 @@
+@import './constants';
+
+.title-1 {
+  font-family: $bold;
+  font-size: 36px;
+  color: #000000;
+  margin: 0 0 32px 0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
