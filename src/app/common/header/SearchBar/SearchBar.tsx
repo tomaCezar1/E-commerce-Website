@@ -44,7 +44,7 @@ export default function SearchBar(): JSX.Element {
           <input
             autoComplete="off"
             id="Search"
-            placeholder="Search..."
+            placeholder="Caută..."
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
             className={showOverlay ? "search-bar-active" : "search-bar"}
@@ -60,7 +60,10 @@ export default function SearchBar(): JSX.Element {
         </div>
       </div>
       {showOverlay &&
-        (<Overlay anchor={searchInputRef.current} onBackdropClick={(e) => setShowOverlay(false)}>
+        (<Overlay
+            className="search-overlay"
+            anchor={searchInputRef.current}
+            onBackdropClick={() => setShowOverlay(false)}>
           <div className={!results.length ? "search-results-container" : "search-results-container-scroll"} >
             {isSearching && !results.length && (
               <>
@@ -89,7 +92,7 @@ export default function SearchBar(): JSX.Element {
             )}
             {!isSearching && !results.length && (
               <div className="no-items-container">
-                <span className="no-items-text">No items found</span>
+                <span className="no-items-text">Nu au fost găsite produse</span>
               </div>
             )}
             {results && results.map(({id, name, price, images}) => {
