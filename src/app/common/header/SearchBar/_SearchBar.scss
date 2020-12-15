@@ -58,7 +58,7 @@
   justify-content: space-between;
   align-items: center;
   width: 375px;
-  background: $white;
+  background: $background;
   padding: 0 8px;
 }
 
@@ -68,7 +68,6 @@
   overflow: hidden;
   width: 380px;
   box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.1);
-  position: relative;
   padding-top: 1px;
   max-height: 345px;
   z-index: 15 !important;
