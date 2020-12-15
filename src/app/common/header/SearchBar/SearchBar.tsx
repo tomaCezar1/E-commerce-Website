@@ -50,7 +50,6 @@ export default function SearchBar(): JSX.Element {
             className={showOverlay ? "search-bar-active" : "search-bar"}
             onFocus={() => {
               setShowOverlay(true)
-              document.getElementById('menu').classList.add('hide-menu')
               setIsSearching(true)
             }}
             onBlur={!searchTerm ? () => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
-import {toggleHeader, toggleMenu} from '../../../utils'
+import {toggleHeader} from '../../../utils'
 import Menu from '../menu/Menu'
 import SearchBar from './SearchBar/SearchBar'
 import LangSwitch from './LangSwitch/LangSwitch'
@@ -12,7 +12,6 @@ export default function Header(): JSX.Element {
 
   useEffect(() => {
     toggleHeader()
-    toggleMenu()
   }, [])
 
   const [showMenu, setShowMenu] = useState(false);
@@ -66,7 +65,7 @@ export default function Header(): JSX.Element {
           <span className="button-text">Catalogul produselor {showMenu}</span>
         </button>
         {showMenu && (
-          <Overlay anchor={header.current}>
+          <Overlay anchor={header.current} onBackdropClick={() => setShowMenu(false)}>
             <Menu></Menu>
           </Overlay>
         )}
