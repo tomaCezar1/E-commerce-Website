@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 
 export const ProductListQuery = gql`
   query {
-    products {
+    products(filter: { isHomePage: { is: false } }) {
       id
       name
       images

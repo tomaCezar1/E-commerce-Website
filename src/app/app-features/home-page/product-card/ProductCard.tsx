@@ -1,17 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import FavoriteEmpty from '../../../../../public/svg/FavoriteEmpty.svg'
 import FavoriteActive from '../../../../../public/svg/FavoriteActive.svg'
 import CartIcon from '../../../../../public/svg/CartIcon.svg'
 
-function ProductCard(props) {
+function ProductCard({ product }: IProductListData) {
   const [isActive, setActive] = useState(false)
   const [onSale, setSale] = useState(false)
-  const [outOfStock, setStock] = useState(false)
+  const [outOfStock, setStock] = useState(product?.available)
+
+  useEffect(() => {
+    if (product?.newPrice !== 0) {
+      setSale(true)
+    }
+  })
 
   return (
     <>
       <div
-        className={`product-card-container ${outOfStock ? 'out-of-stock' : ''}`}
+        className={`product-card-container ${outOfStock ? '' : 'out-of-stock'}`}
       >
         {onSale && (
           <div className="on-sale">
@@ -19,19 +25,26 @@ function ProductCard(props) {
           </div>
         )}
         <div className="product-card-container-flex">
-          <img src={props.image} alt="image" className="product-card-image" />
-          <p className="product-card-name">{props.name}</p>
+          <img
+            src={product?.images}
+            alt="image"
+            className="product-card-image"
+          />
+          <p className="product-card-name">{product?.name}</p>
           <div className="product-card-price">
             {onSale ? (
               <div className="discounted-price-div">
                 <p className="crossed-price">50 lei</p>
-                <p className="discounted-price">50 lei</p>
+                <p className="discounted-price">{product?.newPrice} lei</p>
               </div>
             ) : (
-              <p className="basic-price">50 lei</p>
+              <p className="basic-price">{product?.price} lei</p>
             )}
-            {outOfStock && (
-              <p className="produs-in-stock">Produsul nu este in stock</p>
+            {outOfStock ? null : (
+              <p className="produs-in-stock">
+                {product?.notAvailableCustomText}
+                Produsul nu este in stock
+              </p>
             )}
           </div>
           <div className="product-card-cart">
@@ -50,3 +63,15 @@ function ProductCard(props) {
 }
 
 export default ProductCard
+
+interface IProductListData {
+  product: {
+    id: string
+    name: string
+    images: string
+    price: number
+    newPrice: number
+    available: boolean
+    notAvailableCustomText: string
+  }
+}
