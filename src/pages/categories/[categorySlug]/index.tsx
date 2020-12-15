@@ -10,6 +10,7 @@ function ProductCategoryPage({subcategories, categoryDetails}) {
 }
 
 export async function getServerSideProps(context) {
+  console.log(context);
 
   const slug = context.query.categorySlug;
 
