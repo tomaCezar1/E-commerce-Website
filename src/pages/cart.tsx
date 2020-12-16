@@ -1,16 +1,5 @@
-import {useState, useCallback, useContext} from 'react';
-import { AppContext } from '../context'
-import Breadcrumbs from '../app/common/breadcrumbs/Breadcrumbs'
+import CartPage from '../app/app-features/cart-page/CartPage'
 
 export default function Cart(): JSX.Element {
-  const { cart, addToCart, removeFromCart } = useContext(AppContext)
-  const [, updateState] = useState()
-
-  const forceUpdate = useCallback(() => updateState({}), [])
-
-  return (
-    <div>
-      <Breadcrumbs />
-    </div>
-  )
+  return <CartPage />
 }
