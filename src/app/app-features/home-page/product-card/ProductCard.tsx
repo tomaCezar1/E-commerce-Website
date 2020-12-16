@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import FavoriteEmpty from '../../../../../public/svg/FavoriteEmpty.svg'
 import FavoriteActive from '../../../../../public/svg/FavoriteActive.svg'
 import CartIcon from '../../../../../public/svg/CartIcon.svg'
+import { AppContext } from '../../../../context'
 
 function ProductCard({ product }: IProductListData) {
   const [isActive, setActive] = useState(false)
   const [onSale, setSale] = useState(false)
   const [outOfStock, setStock] = useState(product?.available)
+
+  const { addToCart } = useContext(AppContext)
 
   useEffect(() => {
     if (product?.newPrice !== 0) {
@@ -51,7 +54,7 @@ function ProductCard({ product }: IProductListData) {
             <i style={{ cursor: 'pointer' }}>
               {isActive ? <FavoriteActive /> : <FavoriteEmpty />}
             </i>
-            <div className="add-to-cart">
+            <div className="add-to-cart" onClick={() => addToCart(product, 1)}>
               <CartIcon />
               <p className="product-card-add-text">Adaugă în coș</p>
             </div>
