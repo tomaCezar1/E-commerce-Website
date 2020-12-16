@@ -55,14 +55,11 @@ export default function Header(): JSX.Element {
           </div>
       </div>
       <div id="header-relative" className={showMenu ? 'menu-is-opened' : undefined} ref={header}>
-        {/*{ !showMenu &&  */}
-          <Link href={`/`}>
-            {/*${showMenu && 'hidden'}*/}
-            <div className={`logo-wrapper `}>
-              <div className="logo" />
-            </div>
-          </Link>
-        {/*}*/}
+        <Link href={`/`}>
+          <div className={`logo-wrapper `}>
+            <div className="logo" />
+          </div>
+        </Link>
         <div className="header-clipped-part">
           <button className="header-menu" onClick={handleMenu}>
             <div className="burger-icon"/>
@@ -73,7 +70,6 @@ export default function Header(): JSX.Element {
               <Menu></Menu>
             </Overlay>
           )}
-          {/*<Menu />*/}
           <SearchBar />
           <div className="header-cart-section">
             <div className="icons-wrapper">
