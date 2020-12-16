@@ -28,10 +28,10 @@ const AppContextProvider = ({ children, initialState }) => {
       //Update the quantity
       copy[indexOfProduct].qty += parseInt(qty)
 
-      if (copy[indexOfProduct].qty === 0) {
-        // Remove the product from the cart
-        copy.splice(indexOfProduct, 1)
+      if (copy[indexOfProduct].qty < 2) {
+        product.qty = 1
       }
+      
     } else {
       // Set the quantity to 1
       product.qty = parseInt(qty)
