@@ -14,7 +14,7 @@ export default function SearchBar(): JSX.Element {
   const [isSearching, setIsSearching] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false)
 
-  const searchInputRef = useRef(null);
+  const searchContainerRef = useRef(null);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
@@ -33,7 +33,7 @@ export default function SearchBar(): JSX.Element {
 
   return (
     <>
-      <div id="search-container" className="search-container" ref={searchInputRef}>
+      <div id="search-container" className="search-container" ref={searchContainerRef}>
         <div style={{ margin: "0 auto", position: 'relative' }}>
         {searchTerm ? <div className={showOverlay ? "close-circle-icon" : "close-circle-icon2"} onClick={() => {
           setResults([])
@@ -62,8 +62,11 @@ export default function SearchBar(): JSX.Element {
       {showOverlay &&
         (<Overlay
             className="search-overlay"
-            anchor={searchInputRef.current}
-            onBackdropClick={() => setShowOverlay(false)}>
+            anchor={searchContainerRef.current}
+            onBackdropClick={() => {
+              setShowOverlay(false);
+              document.getElementById('Search').blur()
+            }}>
           <div className={!results.length ? "search-results-container" : "search-results-container-scroll"} >
             {isSearching && !results.length && (
               <>

@@ -16,17 +16,21 @@
 }
 
 .categories-list {
+  overscroll-behavior: contain;
+  overflow-x: auto;
   width: 350px;
   margin: 32px 0 32px 50px;
   position: relative;
 }
 
 .subcategories {
+  overscroll-behavior: contain;
+  overflow-x: auto;
   position: absolute;
-  height: 100%;
+  height: 387px;
   width: 666px;
-  left: 385px;
-  top: 0;
+  left: 436px;
+  top: 31px;
   background: $primaryAccentColor;
   border-radius: 16px;
   padding-left: 20px;

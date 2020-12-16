@@ -54,37 +54,42 @@ export default function Header(): JSX.Element {
             </Link>
           </div>
       </div>
-      <div id="header-relative" ref={header}>
-        <Link href={`/`}>
-          <div className="logo-wrapper">
-            <div className="logo" />
+      <div id="header-relative" className={showMenu ? 'menu-is-opened' : undefined} ref={header}>
+        {/*{ !showMenu &&  */}
+          <Link href={`/`}>
+            {/*${showMenu && 'hidden'}*/}
+            <div className={`logo-wrapper `}>
+              <div className="logo" />
+            </div>
+          </Link>
+        {/*}*/}
+        <div className="header-clipped-part">
+          <button className="header-menu" onClick={handleMenu}>
+            <div className="burger-icon"/>
+            <span className="button-text">Catalogul produselor {showMenu}</span>
+          </button>
+          {showMenu && (
+            <Overlay anchor={header.current} onBackdropClick={() => setShowMenu(false)}>
+              <Menu></Menu>
+            </Overlay>
+          )}
+          {/*<Menu />*/}
+          <SearchBar />
+          <div className="header-cart-section">
+            <div className="icons-wrapper">
+              <Link href={`/${router.locale}/cart`}>
+                <div className="header-cart-icon">
+                  <div className="cart-notification">1</div>
+                </div>
+              </Link>
+              <Link href={`/${router.locale}/favorites`}>
+                <div className="header-favorites-icon">
+                  <div className="cart-notification">1</div>
+                </div>
+              </Link>
+            </div>
+            <LangSwitch />
           </div>
-        </Link>
-        <button className="header-menu" onClick={handleMenu}>
-          <div className="burger-icon"/>
-          <span className="button-text">Catalogul produselor {showMenu}</span>
-        </button>
-        {showMenu && (
-          <Overlay anchor={header.current} onBackdropClick={() => setShowMenu(false)}>
-            <Menu></Menu>
-          </Overlay>
-        )}
-        {/*<Menu />*/}
-        <SearchBar />
-        <div className="header-cart-section">
-          <div className="icons-wrapper">
-            <Link href={`/${router.locale}/cart`}>
-              <div className="header-cart-icon">
-                <div className="cart-notification">1</div>
-              </div>
-            </Link>
-            <Link href={`/${router.locale}/favorites`}>
-              <div className="header-favorites-icon">
-                <div className="cart-notification">1</div>
-              </div>
-            </Link>
-          </div>
-          <LangSwitch />
         </div>
       </div>
 

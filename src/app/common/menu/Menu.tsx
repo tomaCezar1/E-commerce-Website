@@ -49,6 +49,8 @@ export default function Menu(): JSX.Element {
             </Link>
           )
         })}
+
+      </ul>
         <ul className="subcategories">
           {childCategories?.map(element => {
               const {id, title, slug} = element
@@ -66,7 +68,6 @@ export default function Menu(): JSX.Element {
               )
           })}
         </ul>
-      </ul>
     </div>
   )
 }

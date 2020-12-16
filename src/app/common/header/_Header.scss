@@ -17,20 +17,55 @@
 }
 
 #header-relative {
-  transition: all .3s ease;
+  transition: top .3s ease;
   height: 65px;
   width: $width;
+  top: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.header-clipped-part {
+  position: relative;
+  width: calc(100% + 100px);
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 16px;
-  background: $primaryColor;
+  border-radius: 0 16px 16px 0;
   font-family: $medium;
   font-size: 12px;
   color: $white;
-  top: 0;
-  position: relative;
+  background: $primaryColor;
+  //background: radial-gradient(circle at center left, transparent, transparent 46px, #124193 35px, #124193);
 }
+
+
+.header-clipped-part:before {
+  content: "";
+  position: absolute;
+  left: -65px;
+  width: 82px;
+  height: 65px;
+  clip-path: ellipse(98% 94% at 0% 50%);
+  background: #f8f8f8;
+  border-radius: 32px 0 0 32px;
+  transition: border-radius 350ms ease;
+}
+
+
+.menu-is-opened {
+  .header-clipped-part {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .header-clipped-part:before {
+    border-radius: 16px 0 0 0;
+    background: $primaryColor;
+  }
+}
+
 
 .header-fixed {
   position: fixed !important;
@@ -77,18 +112,41 @@
 }
 
 .logo-wrapper {
+  background: $primaryColor;
+  border-radius: 50%;
+  transition: opacity 100ms ease;
+  //opacity: 1;
   position: relative;
   cursor: pointer;
   z-index: 9999 !important;
+  //position: relative;
 }
 
+//.logo-wrapper:before {
+//  content: '';
+//  width: 100px;
+//  height: 100px;
+//  -moz-border-radius: 100px;
+//  -webkit-border-radius: 100px;
+//  border-radius: 100px;
+//  background: rgba(0, 0, 0, 0);
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//  border: 40px solid rgba(0, 0, 0, 0.5);
+//}
+
 .logo {
-  position: absolute;
-  top: -45px;
-  left: -12px;
-  width: 90px;
-  height: 90px;
-  background: $companyLogo;
+  //position: absolute;
+  //top: -45px;
+  //left: -12px;
+  width: 65px;
+  height: 65px;
+  //background: $logoClear no-repeat;
+  background-image: $logoClear;
+  background-repeat: no-repeat;
+  background-position: center;
+  //background-repeat: no-repeat;
 }
 
 .header-links {
@@ -110,8 +168,9 @@
 
 // Mega menu button
 .header-menu {
+  padding-left: 30px;
   display: flex;
-  width: 200px;
+  width: 227px;
   justify-content: space-between;
   align-items: center;
   font-size: 18px;
@@ -120,7 +179,6 @@
   margin: auto 0;
   background: none;
   border: none;
-  padding: 0;
 }
 
 .header-menu:focus {

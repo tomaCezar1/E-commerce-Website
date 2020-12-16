@@ -61,7 +61,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 375px;
+  //width: 375px; DE CE WIDTH? Dacă este ancoră! Și el are width dinamic. VĂ rog nu mai repetați această greașală critică
   background: $background;
   padding: 0 8px;
 }
@@ -75,7 +75,7 @@
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   overflow: hidden;
-  width: 380px;
+  //width: 380px; DE CE WIDTH? Dacă este ancoră! Și el are width dinamic. VĂ rog nu mai repetați această greașală critică
   padding-top: 1px;
   max-height: 345px;
   z-index: 15 !important;
@@ -83,11 +83,11 @@
 }
 
 .search-results-container-scroll {
+  overscroll-behavior: contain;
   overflow-y: scroll;
   overflow-x: hidden;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-  width: 380px;
   box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.1);
   position: relative;
   padding-top: 1px;
@@ -121,7 +121,7 @@
 
 .search-results-divider {
   height: 1px;
-  width: 380px;
+  //width: 380px; DE CE WIDTH? Dacă este ancoră! Și el are width dinamic. VĂ rog nu mai repetați această greașală critică
   background: $grey;
 }
 
@@ -155,7 +155,7 @@
 }
 
 .search-skeleton-wrapper {
-  width: 380px;
+  //width: 380px; DE CE WIDTH? Dacă este ancoră! Și el are width dinamic. VĂ rog nu mai repetați această greașală critică
   display: flex;
   background: $white;
   justify-content: space-between;
@@ -172,7 +172,7 @@
 }
 
 .no-items-container {
-  width: 380px;
+  //width: 380px;
   display: flex;
   background: $white;
   height: 70px;
