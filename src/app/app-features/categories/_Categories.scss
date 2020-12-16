@@ -1,0 +1,47 @@
+@import '../../../styles/constants.scss';
+
+.subcat-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subcategories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.subcat-card-wrapper {
+  width: 180px;
+  height: 260px;
+  border-radius: 14px;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 14px 14px 0 14px;
+  align-items: center;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1)
+}
+
+.subcat-card-image {
+  margin-bottom: 10px;
+  width: 152px;
+  height: 178px;
+}
+
+.subcat-title-text {
+  font-family: "Medium";
+  font-size: 14px;
+  text-align: center;
+}
+
+.subcat-banner {
+  width: 342px;
+  height: 610px;
+  border-radius: 16px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
