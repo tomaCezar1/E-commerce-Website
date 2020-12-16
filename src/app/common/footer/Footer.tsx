@@ -4,67 +4,56 @@ import LinkedInIcon from '../../../../public/svg/LinkedInIcon.svg'
 import InstagramIcon from '../../../../public/svg/InstagramIcon.svg'
 import CegoltarLogo from '../../../../public/svg/cegoltar-footer-logo.svg'
 
+const date = new Date()
+
 export default function Footer() {
   return (
     <footer className="footer">
-      <div
-        style={{ display: 'flex', width: '1152px', flexDirection: 'column' }}
-      >
-        <div className="footer-container">
-          <div className="footer-info-container">
-            <div className="footer-info">
-              <p className="footer-titles">Informatii</p>
-              <Link href="/about-us">Despre noi</Link>
-              <Link href="/">Condiții de garanție</Link>
-              <Link href="/">Magazine regionale</Link>
-              <Link href="/">Livrare</Link>
-              <Link href="/">Termeni și condiții</Link>
+      <div className="footer-wrapper">
+        <div className="footer-links-container">
+          <div className="footer-links-wrapper">
+            <div className="footer-links-group">
+              <p className="footer-links-heading">Link-uri</p>
+              <p className="footer-link">Service centru</p>
+              <p className="footer-link">Magazine regionale</p>
             </div>
-            <div className="footer-info footer-info-ml">
-              <p className="footer-titles">Informatii</p>
-              <Link href="/about-us">Despre noi</Link>
-              <Link href="/">Condiții de garanție</Link>
-              <Link href="/">Magazine regionale</Link>
-              <Link href="/">Livrare</Link>
-              <Link href="/">Termeni și condiții</Link>
-            </div>
-            <div className="footer-info footer-info-ml">
-              <p className="footer-titles">Informatii</p>
-              <Link href="/about-us">Despre noi</Link>
-              <Link href="/">Condiții de garanție</Link>
-              <Link href="/">Magazine regionale</Link>
-              <Link href="/">Livrare</Link>
-              <Link href="/">Termeni și condiții</Link>
+            <div className="footer-links-group" style={{marginLeft: 50}}>
+              <p className="footer-links-heading">Informații</p>
+              <p className="footer-link">Condiții de garanție</p>
+              <p className="footer-link">Despre noi</p>
+              <p className="footer-link">Livrare</p>
+              <p className="footer-link">Politica de confidențialitate</p>
+              <p className="footer-link">Termeni de utilizare</p>
             </div>
           </div>
-          <div className="contact-info-container">
-            <p className="contact-info">
-              <span className="display-block">Call centru:</span>
-              <span className="display-block"> +373 69 606 707</span>
-            </p>
-            <i style={{ height: '52px', width: '256px' }}>
-              <CegoltarLogo />
-            </i>
+          <div className="footer-phone-wrapper">
+            <div className="footer-phone-number">
+              <p>Call centru: </p>
+              <a href="tel: +373 69 606 707">+373 69 606 707</a>
+            </div>
+            <div className="footer-logo">
+              <i style={{ height: '52px', width: '256px' }}>
+                <CegoltarLogo />
+              </i>
+            </div>
           </div>
         </div>
-
-        <hr className="footer-hr" />
-
-        <div className="icons-footer-wrapper">
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <i className="footer-icons">
+        <div className="footer-divider" />
+        <div className="footer-copyright">
+          <div className="footer-social-icons">
+            <i className="footer-icon">
               <FacebookIcon />
             </i>
-            <i className="footer-icons">
+            <i className="footer-icon">
               <InstagramIcon />
             </i>
-            <i className="footer-icons">
+            <i className="footer-icon">
               <LinkedInIcon />
             </i>
           </div>
-          <p className="footer-copywright">
-            Copywright &copy; 2020 Cegoltar S.R.L. str. Petricani, 21 MD-2005
-          </p>
+          <div className="footer-copyright-text">
+            Copyright &copy; {date.getFullYear()} Cegoltar S.R.L. str. Petricani, 21 MD-2005
+          </div>
         </div>
       </div>
     </footer>
