@@ -5,7 +5,7 @@ import ProductList from "./product-list/ProductList";
 
 export default function HomePage({ homePageInfo }): JSX.Element {
   return (
-    <div id="homepage">
+    <div>
       <CarouselComponent style={{ marginTop: "34px" }} />
       <div style={{ marginTop: "40px" }} className="title-1">
         Produsele Cegoltar
