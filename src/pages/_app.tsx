@@ -2,12 +2,13 @@ import React from 'react'
 import Head from 'next/head'
 import App, { AppProps } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
+import { ChakraProvider } from "@chakra-ui/react"
 import { initializeApollo, useApollo } from '../app/lib/apolloClient'
+import { ProductCategoriesQuery } from '../app/app-features/categories/ProductCategoriesQueries'
 import Layout from '../app/common/layout/Layout'
 import { AppContextProvider } from '../context'
 
 import '../styles/styles.scss'
-import { ProductCategoriesQuery } from '../app/app-features/categories/ProductCategoriesQueries'
 
 function MyApp({ Component, pageProps, initialState }: AppProps & any): JSX.Element {
   const apolloClient = useApollo(pageProps)
@@ -18,13 +19,15 @@ function MyApp({ Component, pageProps, initialState }: AppProps & any): JSX.Elem
         <meta name="description" content="Test" />
         <title>Cegoltar</title>
       </Head>
-      <AppContextProvider initialState={initialState}>
-        <ApolloProvider client={apolloClient}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-        </ApolloProvider>
-      </AppContextProvider>
+      <ChakraProvider>
+        <AppContextProvider initialState={initialState}>
+          <ApolloProvider client={apolloClient}>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+          </ApolloProvider>
+        </AppContextProvider>
+      </ChakraProvider>
     </>
   )
 }

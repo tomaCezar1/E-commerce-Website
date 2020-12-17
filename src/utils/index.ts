@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 export function toggleHeader() {
   const doc = document.documentElement;
   const w = window;
@@ -15,11 +17,11 @@ export function toggleHeader() {
     // 0 - initial, 1 - up, 2 - down
 
     curScroll = w.scrollY || doc.scrollTop;
-    if (curScroll > prevScroll) { 
+    if (curScroll > prevScroll) {
       //scrolled up
       direction = 2;
     }
-    else if (curScroll < prevScroll) { 
+    else if (curScroll < prevScroll) {
       //scrolled down
       direction = 1;
     }
@@ -27,7 +29,7 @@ export function toggleHeader() {
     if (direction !== prevDirection) {
       toggleHeader(direction, curScroll);
     }
-    
+
     prevScroll = curScroll;
 
     if(direction === 1 && curScroll < 65) {
@@ -50,7 +52,7 @@ export function toggleHeader() {
   };
 
   const toggleHeader = function(direction: number, curScroll: number) {
-    if (direction === 2 && curScroll > 150) { 
+    if (direction === 2 && curScroll > 150) {
       //replace 150 with the height of your header in px
       header.classList.add('hide');
       prevDirection = direction;
@@ -63,66 +65,10 @@ export function toggleHeader() {
       prevDirection = direction;
     }
   };
-  
+
   window.addEventListener('scroll', checkScroll);
 }
 
-export function toggleMenu() {
-  const doc = document.documentElement;
-  const w = window;
-
-  let prevScroll = w.scrollY || doc.scrollTop;
-  let curScroll: number;
-  let direction = 0;
-  let prevDirection = 0;
-
-  const menu = document.getElementById('menu')
-
-  const checkScroll = function() {
-    // Find the direction of scroll
-    // 0 - initial, 1 - up, 2 - down
-
-    curScroll = w.scrollY || doc.scrollTop;
-    if (curScroll > prevScroll) { 
-      //scrolled up
-      direction = 2;
-    }
-    else if (curScroll < prevScroll) { 
-      //scrolled down
-      direction = 1;
-    }
-
-    if (direction !== prevDirection) {
-      toggleMenu(direction, curScroll);
-    }
-    
-    prevScroll = curScroll;
-
-    if(direction === 1 && curScroll < 65) {
-      menu.classList.add("hide-menu")
-    }
-    if(direction === 2 && curScroll < 150) {
-      menu.classList.add("hide-menu")
-    }
-    if(direction === 2 && curScroll > 150) {
-      menu.classList.add('hide-menu')
-    }
-  };
-
-  const toggleMenu = function(direction: number, curScroll: number) {
-    if (direction === 2 && curScroll > 150) { 
-      //replace 150 with the height of your header in px
-      menu.classList.remove("hide-menu")
-      prevDirection = direction;
-    }
-    if (direction === 1) {
-      menu.classList.add('hide-menu')
-      prevDirection = direction;
-    }
-  };
-  
-  window.addEventListener('scroll', checkScroll);
-}
 
 export const convertBreadcrumb = (string: string) => {
   const breadcrumb = string[0].toUpperCase() + string.substring(1)
@@ -130,3 +76,42 @@ export const convertBreadcrumb = (string: string) => {
   return breadcrumb
     .replace(/-/g, ' ')
 };
+
+export function useDebounce(value: string, delay: number) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(
+    () => {
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+
+      return () => {
+        clearTimeout(handler);
+      };
+    },
+
+    [value]
+  );
+
+  return debouncedValue;
+}
+
+export const getViewportScrollPosition = (): {top: number; left: number} =>  {
+  // The top-left-corner of the viewport is determined by the scroll position of the document
+  // body, normally just (scrollLeft, scrollTop). However, Chrome and Firefox disagree about
+  // whether `document.body` or `document.documentElement` is the scrolled element, so reading
+  // `scrollTop` and `scrollLeft` is inconsistent. However, using the bounding rect of
+  // `document.documentElement` works consistently, where the `top` and `left` values will
+  // equal negative the scroll position.
+  const documentElement = document.documentElement!;
+  const documentRect = documentElement.getBoundingClientRect();
+
+  const top = -documentRect.top || document.body.scrollTop || window.scrollY ||
+    documentElement.scrollTop || 0;
+
+  const left = -documentRect.left || document.body.scrollLeft || window.scrollX ||
+    documentElement.scrollLeft || 0;
+
+  return {top, left};
+}

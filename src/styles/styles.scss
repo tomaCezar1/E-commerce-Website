@@ -8,11 +8,16 @@
 @import '../app/common/menu/Menu';
 @import '../app/common/header/LangSwitch/LangSwitch';
 @import '../app/app-features/product-details/ProductDetails';
+@import '../app/common/header/SearchBar/SearchBar';
+
 @import '../app/app-features/blog/BlogPage';
 @import '../app/app-features/regional-store/RegionalStore';
 @import '../app/app-features/regional-store/contact-box/ContactBox';
+@import '../app/common/overlay/Overlay';
+@import '../app/common/portal/Portal';
 @import '../app/common/breadcrumbs/Breadcrumbs';
 @import './utils';
+@import './constants.scss';
 
 .cursor-pointer {
   cursor: pointer;
@@ -30,7 +35,7 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color: #f8f8f8;
+  background-color: $background !important;
 }
 
 li {
@@ -61,3 +66,5 @@ header {
   src: local('Roboto-Bold'),
     url('../../public/fonts/Roboto-Bold.ttf') format('truetype');
 }
+
+

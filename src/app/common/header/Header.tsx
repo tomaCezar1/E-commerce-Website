@@ -1,37 +1,34 @@
-import { useState, useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
-import {toggleHeader, toggleMenu} from '../../../utils'
+import {toggleHeader} from '../../../utils'
 import Menu from '../menu/Menu'
+import SearchBar from './SearchBar/SearchBar'
 import LangSwitch from './LangSwitch/LangSwitch'
+import Overlay from '../overlay/Overlay'
 
 export default function Header(): JSX.Element {
   const router = useRouter()
-  const [searchValue, setSearchValue] = useState('')
 
   useEffect(() => {
     toggleHeader()
-    toggleMenu()
   }, [])
 
+  const [showMenu, setShowMenu] = useState(false);
+  const header = useRef(null);
+
   const handleMenu = () => {
-    // Decide if add or remove
-    const menu = document.getElementById('menu')
-    if(menu.classList.contains('hide-menu')) {
-      // Remove
-      menu.classList.remove('hide-menu')
-    } else {
-      // Add
-      menu.classList.add('hide-menu')
-    }
-  }
+    setShowMenu(true);
+    // const menu = document.getElementById('menu')
+    // // Decide if add or remove
+    // if(menu.classList.contains('hide-menu')) {
+    //   // Remove
+    //   menu.classList.remove('hide-menu')
+    // } else {
+    //   // Add
+    //   menu.classList.add('hide-menu')
+    // }
 
-  const handleChange = (e) => {
-    setSearchValue(e.target.value)
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
   }
 
   return (
@@ -52,48 +49,43 @@ export default function Header(): JSX.Element {
             <Link href={`/${router.locale}/service`}>
               Service centru
             </Link>
-            <Link href={`/news`} locale={router.locale}>
+            <Link href={`/${router.locale}/news`}>
               Știri
             </Link>
           </div>
       </div>
-      <div id="header-relative">
+      <div id="header-relative" className={showMenu ? 'menu-is-opened' : undefined} ref={header}>
         <Link href={`/`}>
-          <div className="logo-wrapper">
+          <div className={`logo-wrapper `}>
             <div className="logo" />
           </div>
         </Link>
-        <button className="header-menu" onClick={handleMenu}>
-          <div className="burger-icon"/>
-          <span className="button-text">Catalogul produselor</span>
-        </button>
-        <Menu />
-        <div className="search-container">
-          <form onSubmit={handleSubmit}>
-            <div style={{ margin: "0 auto" }}>
-              <div className="search-icon" />
-              <input
-                id="Search"
-                placeholder="Search..."
-                value={searchValue}
-                onChange={handleChange}
-                className="search-bar"
-              />
+        <div className="header-clipped-part">
+          <button className="header-menu" onClick={handleMenu}>
+            <div className="burger-icon"/>
+            <span className="button-text">Catalogul produselor {showMenu}</span>
+          </button>
+          {showMenu && (
+            <Overlay anchor={header.current} onBackdropClick={() => setShowMenu(false)}>
+              <Menu></Menu>
+            </Overlay>
+          )}
+          <SearchBar />
+          <div className="header-cart-section">
+            <div className="icons-wrapper">
+              <Link href={`/${router.locale}/cart`}>
+                <div className="header-cart-icon">
+                  <div className="cart-notification">1</div>
+                </div>
+              </Link>
+              <Link href={`/${router.locale}/favorites`}>
+                <div className="header-favorites-icon">
+                  <div className="cart-notification">1</div>
+                </div>
+              </Link>
             </div>
-          </form>
-        </div>
-        <div className="header-cart-section">
-          <div className="icons-wrapper">
-            <Link href={`/${router.locale}/cart`}>
-              <div className="header-cart-icon">
-                <div className="cart-notification">1</div>
-              </div>
-            </Link>
-            <Link href={`/${router.locale}/favorites`}>
-              <div className="header-favorites-icon" />
-            </Link>
+            <LangSwitch />
           </div>
-          <LangSwitch />
         </div>
       </div>
 
