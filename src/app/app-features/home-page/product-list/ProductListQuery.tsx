@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client";
 
 export const ProductListQuery = gql`
   query ProductList(
@@ -12,21 +12,10 @@ export const ProductListQuery = gql`
       images
       price
       newPrice
+      promoDiscount
       available
+      slug
       notAvailableCustomText
     }
   }
-`
-export interface IProductList {
-  products: IProductListItems[]
-}
-
-export interface IProductListItems {
-  id: string
-  name: string
-  images: [string]
-  price: number
-  newPrice: number
-  available: boolean
-  notAvailableCustomText: string
-}
+`;
