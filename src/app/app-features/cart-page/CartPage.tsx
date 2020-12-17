@@ -1,10 +1,11 @@
 import { useState, useCallback, useContext } from "react";
 import { AppContext } from '../../../context'
-import { cartTotal, clearCart } from '../../../utils'
+import { cartTotal } from '../../../utils'
+import CheckoutForm from './CheckoutForm/CheckoutForm'
 import Breadcrumbs from "../../common/breadcrumbs/Breadcrumbs";
 
 export default function CartPage(): JSX.Element {
-  const { cart, addToCart, removeFromCart } = useContext(AppContext)
+  const { cart, addToCart, removeFromCart, clearCart } = useContext(AppContext)
 
   const [, updateState] = useState()
 
@@ -86,7 +87,7 @@ export default function CartPage(): JSX.Element {
             <div className="cart-total-price">Total: {cartTotal(cart)} lei</div>
           </div>
         </div>
-        <div className="checkout-wrapper" />
+        <CheckoutForm />
       </div>
       ) : (
         <div className="no-items-text">
