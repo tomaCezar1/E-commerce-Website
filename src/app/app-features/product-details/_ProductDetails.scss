@@ -2,20 +2,11 @@
 
 //Image Component
 .big-image {
-  // width: 333px;
-  // height: 333px;
+  width: 333px;
+  height: 333px;
   object-fit: cover;
   border-radius: 16px;
 }
-
-// .enlargedImageClassName {
-//   width: 800px !important;
-//   height: 800px;
-//   position: absolute;
-//   left: 0 !important;
-//   top: 0 !important;
-//   transform: translateX(50%);
-// }
 
 .small-img-container {
   display: flex;
