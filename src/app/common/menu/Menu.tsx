@@ -3,7 +3,7 @@ import { AppContext } from '../../../context'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
-export default function Menu(): JSX.Element {
+export default function Menu({onClose}): JSX.Element {
   const router = useRouter()
   const { appContext } = useContext(AppContext)
   const [activeCategory, setActiveCategory] = useState(0)
@@ -22,9 +22,6 @@ export default function Menu(): JSX.Element {
     setChildCategories(appContext.categories.filter(c => c.parent === id))
   }
 
-  const closeMenu = (): void => {
-    document.getElementById('menu').classList.add('hide-menu')
-  }
 
   return (
     <div id="menu" className="menu-container hide-menu">
@@ -42,7 +39,7 @@ export default function Menu(): JSX.Element {
               <li
                 className={activeCategory === index ? "menu-list-item highlighted" : "menu-list-item"}
                 onMouseEnter={() => toggleMouse(index, id)}
-                onClick={closeMenu}
+                onClick={() => onClose(false)}
               >
                 <span className="menu-item-title">{title}</span>
               </li>
@@ -61,7 +58,7 @@ export default function Menu(): JSX.Element {
                   locale={router.locale}
                   key={id}
                 >
-                  <li className="children-item" onClick={closeMenu}>
+                  <li className="children-item" onClick={() => onClose(false)}>
                     <span className="children-title">{title}</span>
                   </li>
                 </Link>
