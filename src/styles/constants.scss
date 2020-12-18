@@ -4,27 +4,28 @@ $primaryColor: #124193;
 $black: #000000;
 $green: #36b368;
 $grey: #acb5bd;
+$red: #ff0000;
 $lightGrey: #f9f9f9;
-$grey: #DDDDDD;
+$grey: #dddddd;
 $background: #f8f8f8;
 $semiTransparentWhite: rgba(255, 255, 255, 0.33);
 $primaryAccentColor: #355da3;
 $width: 1152px;
 $fullWidth: 100%;
 
-$companyLogo: url('../../../../public/svg/Logo.svg');
-$logoClear: url('../../../../public/svg/LogoClear.svg');
-$phoneIcon: url('../../../../public/svg/PhoneIcon.svg');
-$burgerIcon: url('../../../../public/svg/BurgerIcon.svg');
-$cartIcon: url('../../../../public/svg/ShoppingCartIcon.svg');
-$heartIcon: url('../../../../public/svg/HeartIcon.svg');
-$searchIcon: url('../../../../../public/svg/Search.svg') no-repeat;
+$companyLogo: url("../../../../public/svg/Logo.svg");
+$logoClear: url("../../../../public/svg/LogoClear.svg");
+$phoneIcon: url("../../../../public/svg/PhoneIcon.svg");
+$burgerIcon: url("../../../../public/svg/BurgerIcon.svg");
+$cartIcon: url("../../../../public/svg/ShoppingCartIcon.svg");
+$heartIcon: url("../../../../public/svg/HeartIcon.svg");
+$searchIcon: url("../../../../../public/svg/Search.svg") no-repeat;
 $notificationIconBg: #ffc91a;
 
 // Use these as the font-family rule for appropriate weights
-$regular: 'Regular'; // 400
-$medium: 'Medium'; //500
-$bold: 'Bold'; //700
+$regular: "Regular"; // 400
+$medium: "Medium"; //500
+$bold: "Bold"; //700
 
 %flex-row {
   display: flex;
