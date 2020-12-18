@@ -1,5 +1,6 @@
-import Link from "next/link"
 import { useState } from "react"
+import Link from "next/link"
+import InputMask from 'react-input-mask';
 
 const initialValues = {
   name: '',
@@ -11,8 +12,6 @@ export default function CheckoutForm({validate}): JSX.Element {
   const [values, setValues] = useState(initialValues)
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
-
-  const {name, phone, callTime} = values
 
   const handleChange = (event) => {
     const { name, value: newValue, type } = event.target;
@@ -27,8 +26,6 @@ export default function CheckoutForm({validate}): JSX.Element {
       [name]: true
     });
   }
-
-  console.log(errors.phone)
 
   const handleBlur = event => {
     const { name, value } = event.target;
@@ -76,6 +73,8 @@ export default function CheckoutForm({validate}): JSX.Element {
         Object.values(values).length && // All fields were touched
       Object.values(formValidation.touched).every(t => t === true) // Every touched field is true
     ) {
+
+      // Make the request to place an order instead of the alert
       alert(JSON.stringify(values, null, 2));
     }
   };
@@ -102,7 +101,10 @@ export default function CheckoutForm({validate}): JSX.Element {
             Asd
           </div>
         )}
-        <input
+        <InputMask
+          mask="+373 99 999 999"
+          maskChar={null}
+          alwaysShowMask
           value={values.phone}
           name="phone"
           required
