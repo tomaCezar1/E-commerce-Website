@@ -1,16 +1,13 @@
-import { Skeleton } from '@chakra-ui/react'
-import { useState } from 'react'
-import ReactImageMagnify from 'react-image-magnify'
+import { Skeleton } from "@chakra-ui/react";
+import { useState } from "react";
+import ReactImageMagnify from "react-image-magnify";
 
 function ProductImages(props) {
-  // const { loading, error, data } = useQuery<ICarouselItems>(CarouselQuery)
-  // const items = data?.carouselItems
-
-  const [currentImg, setCurrentImg] = useState(0)
+  const [currentImg, setCurrentImg] = useState(0);
 
   const toggleClick = (index) => {
-    setCurrentImg(index)
-  }
+    setCurrentImg(index);
+  };
 
   return (
     <>
@@ -18,7 +15,7 @@ function ProductImages(props) {
         <ReactImageMagnify
           {...{
             smallImage: {
-              alt: 'error',
+              alt: "error",
               src: props.images[currentImg],
               width: 333,
               height: 333,
@@ -28,8 +25,8 @@ function ProductImages(props) {
               width: 600,
               height: 800,
             },
-            imageClassName: 'big-image',
-            enlargedImageStyle: { objectFit: 'cover' },
+            imageClassName: "big-image",
+            enlargedImageStyle: { objectFit: "cover" },
           }}
         />
       </div>
@@ -39,7 +36,7 @@ function ProductImages(props) {
           <img
             onClick={() => toggleClick(index)}
             className={`small-img ${
-              currentImg === index ? 'small-img-active' : ''
+              currentImg === index ? "small-img-active" : ""
             }`}
             key={index}
             src={img}
@@ -50,7 +47,7 @@ function ProductImages(props) {
         {/* </Skeleton> */}
       </div>
     </>
-  )
+  );
 }
 
-export default ProductImages
+export default ProductImages;
