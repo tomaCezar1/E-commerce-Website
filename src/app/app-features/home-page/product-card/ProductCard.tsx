@@ -6,32 +6,30 @@ import Link from "next/link";
 
 function ProductCard({ product }) {
   const [isActive, setActive] = useState(false);
-  const [onSale, setSale] = useState(false);
-  // const [outOfStock, setStock] = useState(product?.available)
-  const [outOfStock, setStock] = useState(true);
-  const [discount, setDiscount] = useState(false);
-  const [productPrice, setProductPrice] = useState(0);
 
-  useEffect(() => {
-    if (product.promoDiscount > 0) {
-      setProductPrice(product.newPrice / product.price);
-      setSale(true);
-    }
-  });
-  console.log(product);
+  let sale;
+
+  if (product.isPromo) {
+    sale = Math.floor(
+      ((product.price - product.newPrice) / product.price) * 100
+    );
+  } else {
+    sale = 0;
+  }
+
   return (
     <>
       <Link href="/Produs/[slug]" as={`/Produs/${product.slug}`}>
         <div
           className={`product-card-container ${
-            outOfStock ? "" : "out-of-stock"
+            product.available ? "" : "out-of-stock"
           }`}
         >
-          {onSale && (
+          {sale ? (
             <div className="on-sale">
-              <p className="on-sale-text">{productPrice}%</p>
+              <p className="on-sale-text">{sale ? `-${sale}%` : null}</p>
             </div>
-          )}
+          ) : null}
           <div className="product-card-container-flex">
             <img
               src={product?.images}
@@ -41,15 +39,15 @@ function ProductCard({ product }) {
             <p className="product-card-name">{product?.name}</p>
             <div className="product-card-bottom">
               <div className="product-card-price">
-                {onSale ? (
+                {sale > 0 ? (
                   <div className="discounted-price-div">
-                    <p className="crossed-price">50 lei</p>
+                    <p className="crossed-price">{product.price}</p>
                     <p className="discounted-price">{product?.newPrice} lei</p>
                   </div>
                 ) : (
                   <p className="basic-price">{product?.price} lei</p>
                 )}
-                {outOfStock ? null : (
+                {product.available ? null : (
                   <p className="produs-in-stock">
                     {product?.notAvailableCustomText}
                     Produsul nu este in stock

@@ -1,33 +1,34 @@
-import 'slick-carousel/slick/slick-theme.css'
-import RightArrow from '../../../../../public/svg/RightPartnerIcon.svg'
-import LeftArrow from '../../../../../public/svg/LeftPartnerIcon.svg'
-import { useQuery } from '@apollo/client'
-import { useState } from 'react'
+import "slick-carousel/slick/slick-theme.css";
+import RightArrow from "../../../../../public/svg/RightPartnerIcon.svg";
+import LeftArrow from "../../../../../public/svg/LeftPartnerIcon.svg";
+import { useState } from "react";
 
 function PartnerList(): JSX.Element {
   const paths = [
-    'https://source.unsplash.com/RyRpq9SUwAU/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/yXpA_eCbtzI/1600x900',
-    'https://source.unsplash.com/RyRpq9SUwAU/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-  ]
+    "https://source.unsplash.com/RyRpq9SUwAU/1600x900",
+    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
+    "https://source.unsplash.com/yXpA_eCbtzI/1600x900",
+    "https://source.unsplash.com/RyRpq9SUwAU/1600x900",
+    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
+    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
+    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
+    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
+    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
+    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
+    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
+  ];
 
-  const [x, setX] = useState(0)
+  const [x, setX] = useState(0);
 
   const goLeft = () => {
-    x === 0 ? null : setX(x + 100)
-  }
+    x === 0 ? null : setX(x + 100);
+  };
 
   const goRight = () => {
-    x === -100 * (paths.length - 5) ? null : setX(x - 100)
-  }
+    x === -100 * (paths.length - 5) ? null : setX(x - 100);
+  };
+
+  console.log(x);
 
   return (
     <div className="slider-container">
@@ -42,16 +43,16 @@ function PartnerList(): JSX.Element {
               className="slide"
               style={{ transform: `translateX(${x}%)` }}
             >
-              <img src={item} alt="" className="partner-img display" />
+              <img src={item} alt="" className="partner-img" />
             </div>
-          )
+          );
         })}
       </div>
       <i id="goRight" onClick={goRight}>
         <RightArrow />
       </i>
     </div>
-  )
+  );
 }
 
-export default PartnerList
+export default PartnerList;

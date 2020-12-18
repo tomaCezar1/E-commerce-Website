@@ -12,6 +12,7 @@ export const ProductListQuery = gql`
       images
       price
       newPrice
+      isPromo
       promoDiscount
       available
       slug
