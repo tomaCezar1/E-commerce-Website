@@ -139,8 +139,6 @@ export const cartTotal = cart => {
   // Sum up all of the individual products costs
   const total = cart.reduce((counter, product) => {
     if(product.isPromo) {
-      console.log(counter, 'counter')
-      console.log(product.newPrice)
       return counter + parseFloat((product.newPrice * product.qty).toFixed(2))
     } else {
       return counter + parseFloat((product.price * product.qty).toFixed(2))
@@ -155,10 +153,46 @@ export const clearCart = () => {
 }
 
 export const formatPrice = (priceWithDecimal: number) => {
-  console.log(priceWithDecimal, 'pricewithdecimal asdasd')
   const dec = priceWithDecimal.toString().split(".")[1]
 
   const len = dec && dec.length > 2 ? dec.length : 2
   
   return priceWithDecimal.toFixed(len)
 }
+
+const nameValidation = (fieldName, fieldValue) => {
+  if (fieldValue.trim() === "") {
+    return 'Numele este obligatoriu';
+  }
+
+  if (fieldValue.trim().length < 1) {
+    return 'Numele este obligatoriu';
+  }
+  return null;
+};
+
+const phoneValidation = (fieldName, fieldValue) => {
+
+  if (String(fieldValue).length < 8) {
+    return "Număr inexistent"
+  }
+
+  if (String(fieldValue).trim().length < 1) {
+    return 'Numele este obligatoriu';
+  }
+  return null
+}
+
+const callTimeValidation = (fieldName, fieldValue) => {
+  if (fieldValue.trim().length < 1) {
+    return "Indicați ora apelului"
+  }
+
+  return null;
+}
+
+export const validate = {
+  name: name => nameValidation("name", name),
+  phone: phone => phoneValidation('phone', phone),
+  callTime: callTime => callTimeValidation('callTime', callTime),
+};

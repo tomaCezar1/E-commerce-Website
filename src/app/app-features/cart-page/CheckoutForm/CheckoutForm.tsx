@@ -1,99 +1,173 @@
-import { Formik } from "formik"
 import Link from "next/link"
-import * as yup from "yup"
+import { useState } from "react"
 
-export default function CheckoutForm(): JSX.Element {
-  const handleSubmit = async (event, info) => {
-    event.preventDefault()
-    console.log(info)
+const initialValues = {
+  name: '',
+  phone: '',
+  callTime: ''
+}
+
+export default function CheckoutForm({validate}): JSX.Element {
+  const [values, setValues] = useState(initialValues)
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
+
+  const {name, phone, callTime} = values
+
+  const handleChange = (event) => {
+    const { name, value: newValue, type } = event.target;
+    // Keep phone field as numbers
+    const value = type === "number" ? +newValue : newValue;
+    setValues({
+      ...values,
+      [name]: value
+    });
+    setTouched({
+      ...touched,
+      [name]: true
+    });
   }
+
+  console.log(errors.phone)
+
+  const handleBlur = event => {
+    const { name, value } = event.target;
+
+    const { [name]: removedError, ...rest } = errors;
+
+    const error = validate[name](value);
+
+    // // validate the field if the value has been touched
+    setErrors({
+      ...rest,
+      ...(error && { [name]: touched[name] && error })
+    });
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    const formValidation = Object.keys(values).reduce(
+      (acc, key) => {
+        const newError = validate[key](values[key]);
+        const newTouched = { [key]: true };
+        return {
+          errors: {
+            ...acc.errors,
+            ...(newError && { [key]: newError })
+          },
+          touched: {
+            ...acc.touched,
+            ...newTouched
+          }
+        };
+      },
+      {
+        errors: { ...errors },
+        touched: { ...touched }
+      }
+    );
+    setErrors(formValidation.errors);
+    setTouched(formValidation.touched);
+
+    if (
+      !Object.values(formValidation.errors).length && // Errors object is empty
+      Object.values(formValidation.touched).length ===
+        Object.values(values).length && // All fields were touched
+      Object.values(formValidation.touched).every(t => t === true) // Every touched field is true
+    ) {
+      alert(JSON.stringify(values, null, 2));
+    }
+  };
 
   return (
     <div className="checkout-wrapper">
-      <Formik
-        initialValues={{
-          name: "",
-          phone: "",
-          time: "Ora apelului",
-        }}
-        onSubmit={handleSubmit}
-        validationSchema={yup.object().shape({
-          name: yup.string().required("Numele este obligatoriu"),
-          phone: yup
-            .string()
-            .min(8, "Număr de telefon inexistent")
-            .max(12, "Număr de telefon inexistent")
-            .required("Numărul de telefon este obligatoriu"),
-        })}
-      >{({
-          values,
-          handleChange,
-          isValid
-        }) => {
-        return (
-          <>
-            <p className="checkout-form-heading">Plasează comanda</p>
-            <input
-              value={values.name}
-              onChange={handleChange('name')}
-              placeholder="Nume"
-              className="checkout-form-input"
-            />
-            <input
-              value={values.phone}
-              onChange={handleChange('phone')}
-              placeholder="Telefon"
-              className="checkout-form-input"
-            />
-            <select
-              className="checkout-form-input"
-              name="time"
-              id="time"
-              onChange={handleChange('time')}
-              style={values.time === "Ora apelului" ? {color: '#ACB5BD'} : null}
-            >
-              <option
-                value="Ora apelului"
-                disabled
-                selected
-              >
-                {values.time}
-              </option>
-              <option value="9:00 - 12:00" className="checkout-option-text">9:00 - 12:00</option>
-              <option value="12:00 - 15:00" className="checkout-option-text">12:00 - 15:00</option>
-              <option value="15:00 - 18:00" className="checkout-option-text">15:00 - 18:00</option>
-              <option value="Cît de curînd posibil" className="checkout-option-text">
-                Cît de curînd posibil
-              </option>
-            </select>
-            <button
-              className="checkout-form-button"
-              onClick={values.name && values.phone && isValid
-                ? event => handleSubmit(event, {...values})
-                : null
-              }
-            >
-              Comandă
-            </button>
-            <div className="checkout-terms-text">
-              *Apăsînd butonul Comandă dvs. confirmați că ați 
-              luat cunoștință și sînteți de acord cu{" "}
-              <Link href="/">
-                <span className="checkout-privacy-link">
-                 politica de confidențialitate
-                </span>
-              </Link>
-                <span>{" "}și{" "}</span>
-              <Link href="/">
-                <span className="checkout-privacy-link">
-                 termenii de utilizare
-                </span>
-              </Link>
-              .
-            </div>
-          </>
-        )
-      }}</Formik>
+      <p className="checkout-form-heading">Plasează comanda</p>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={values.name}
+          name="name"
+          required
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="Nume"
+          className={touched.name && errors.name ? "checkout-form-error-input" : "checkout-form-input"}
+        />
+        {touched.name && errors.name ? (
+          <div className="checkout-error">
+            {touched.name && errors.name}
+          </div>
+        ) : (
+          <div className="checkout-error-invis">
+            Asd
+          </div>
+        )}
+        <input
+          value={values.phone}
+          name="phone"
+          required
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="Telefon"
+          className={touched.phone && errors.phone ? "checkout-form-error-input" : "checkout-form-input"}
+        />
+        {touched.phone && errors.phone ? (
+          <div className="checkout-error">
+            {touched.phone && errors.phone}
+          </div>
+        ) : (
+          <div className="checkout-error-invis">
+            Asd
+          </div>
+        )}
+        <select
+          name="callTime"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.callTime}
+          className={touched.callTime && errors.callTime ? "checkout-form-error-input" : "checkout-form-input"}
+          required
+        >
+          <option value="" disabled hidden>Ora apelului</option>
+          <option value="9:00 - 12:00" className="checkout-option-text">9:00 - 12:00</option>
+          <option value="12:00 - 15:00" className="checkout-option-text">12:00 - 15:00</option>
+          <option value="15:00 - 18:00" className="checkout-option-text">15:00 - 18:00</option>
+          <option value="Cît de curînd posibil" className="checkout-option-text">
+            Cît de curînd posibil
+          </option>
+        </select>
+        {touched.callTime && errors.callTime ? (
+          <div className="checkout-error">
+            {touched.callTime && errors.callTime}
+          </div>
+        ) : (
+          <div className="checkout-error-invis">
+            Asd
+          </div>
+        )}
+        <input
+          type="submit"
+          value="Comandă"
+          className="checkout-form-button"
+        />
+
+        <div className="checkout-terms-text">
+          *Apăsînd butonul Comandă dvs. confirmați că ați 
+          luat cunoștință și sînteți de acord cu{" "}
+          <Link href="/">
+            <span className="checkout-privacy-link">
+              politica de confidențialitate
+            </span>
+          </Link>
+            <span>{" "}și{" "}</span>
+          <Link href="/">
+            <span className="checkout-privacy-link">
+              termenii de utilizare
+            </span>
+          </Link>
+          .
+        </div>
+      </form>
     </div>
   )
 }

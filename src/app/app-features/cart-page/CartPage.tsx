@@ -2,6 +2,7 @@ import { useState, useCallback, useContext } from "react";
 import { AppContext } from '../../../context'
 import { cartTotal, formatPrice } from '../../../utils'
 import CheckoutForm from './CheckoutForm/CheckoutForm'
+import { validate } from '../../../utils'
 import Breadcrumbs from "../../common/breadcrumbs/Breadcrumbs";
 
 export default function CartPage(): JSX.Element {
@@ -91,7 +92,7 @@ export default function CartPage(): JSX.Element {
             <div className="cart-total-price">Total: {formatPrice(cartTotal(cart))} lei</div>
           </div>
         </div>
-        <CheckoutForm />
+        <CheckoutForm validate={validate} />
       </div>
       ) : (
         <div className="no-items-text">
