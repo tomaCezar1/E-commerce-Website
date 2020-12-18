@@ -24,6 +24,7 @@ export default function CartPage(): JSX.Element {
             <span>Total</span>
           </div>
           {cart.map((product) => {
+            console.log(product)
             return (
               <div key={product.id} className="cart-product-wrapper">
                 <div className="cart-product-image-info">

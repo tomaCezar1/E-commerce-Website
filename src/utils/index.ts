@@ -138,10 +138,14 @@ export const cartTotal = cart => {
 
   // Sum up all of the individual products costs
   const total = cart.reduce((counter, product) => {
-    return (
-      counter +
-      (product.price - (product.price / 100) * product.promoDiscount) * product.qty
-    )
+    if(product.isPromo) {
+      return (
+        counter +
+        (((product.price - product.newPrice) / product.price) * 100) * product.qty
+      )
+    } else {
+      return counter + product.price * product.qty
+    }
   }, 0)
 
   return total

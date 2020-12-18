@@ -22,10 +22,6 @@ export default function Header(): JSX.Element {
     setShowMenu(true);
   }
 
-  const cartItemsQty = cart.reduce((counter, product) => {
-    return counter + product.qty
-  }, 0)
-
   return (
     <header className="header">
       <div className="header-static">
@@ -70,9 +66,9 @@ export default function Header(): JSX.Element {
             <div className="icons-wrapper">
               <Link href={`/${router.locale}/cart`}>
                 <div className="header-cart-icon">
-                  {cartItemsQty > 0 && (
-                    <div className="cart-notification">{cartItemsQty}</div>
-                  )}
+                  {cart.length ? (
+                    <div className="cart-notification">{cart.length}</div>
+                  ) : null}
                 </div>
               </Link>
               <Link href={`/${router.locale}/favorites`}>

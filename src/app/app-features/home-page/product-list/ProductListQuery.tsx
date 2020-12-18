@@ -10,6 +10,7 @@ export const ProductListQuery = gql`
       newPrice
       available
       notAvailableCustomText
+      isPromo
     }
   }
 `
