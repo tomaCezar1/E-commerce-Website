@@ -67,7 +67,7 @@ export default function Header(): JSX.Element {
           </button>
           {showMenu && (
             <Overlay anchor={header.current} onBackdropClick={() => setShowMenu(false)}>
-              <Menu></Menu>
+              <Menu onClose={setShowMenu}></Menu>
             </Overlay>
           )}
           <SearchBar />
