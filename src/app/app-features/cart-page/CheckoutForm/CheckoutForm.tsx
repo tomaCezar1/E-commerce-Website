@@ -104,7 +104,6 @@ export default function CheckoutForm({validate}): JSX.Element {
         <InputMask
           mask="+373 99 999 999"
           maskChar={null}
-          alwaysShowMask
           value={values.phone}
           name="phone"
           required
