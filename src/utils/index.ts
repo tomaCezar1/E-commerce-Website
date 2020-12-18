@@ -115,3 +115,42 @@ export const getViewportScrollPosition = (): {top: number; left: number} =>  {
 
   return {top, left};
 }
+
+// Cart utilities
+export const saveCart = cart => {
+  localStorage.setItem("cart", JSON.stringify(cart))
+}
+
+export const getCart = () => {
+  try {
+    const cart = JSON.parse(localStorage.getItem("cart"))
+    if (cart) {
+      return cart
+    }
+  } catch (e) {}
+  return []
+}
+
+export const cartTotal = cart => {
+  if (cart.length === 0) {
+    return 0
+  }
+
+  // Sum up all of the individual products costs
+  const total = cart.reduce((counter, product) => {
+    if(product.isPromo) {
+      return (
+        counter +
+        (((product.price - product.newPrice) / product.price) * 100) * product.qty
+      )
+    } else {
+      return counter + product.price * product.qty
+    }
+  }, 0)
+
+  return total
+}
+
+export const clearCart = () => {
+  localStorage.removeItem("cart")
+}

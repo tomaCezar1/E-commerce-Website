@@ -33,7 +33,7 @@ export default function Breadcrumbs(): JSX.Element {
         {breadcrumbs.map((breadcrumb, index, array) => {
           return (
             <>
-              <span>&nbsp;/&nbsp;</span>
+              <span className="breadcrumb-item">&nbsp;/&nbsp;</span>
               <li>
                 <Link href={breadcrumb.href}>
                   <a className={index === array.length - 1 ? "breadcrumb-last-item" : "breadcrumb-item"}>

@@ -1,9 +1,5 @@
-import Breadcrumbs from '../app/common/breadcrumbs/Breadcrumbs'
+import CartPage from '../app/app-features/cart-page/CartPage'
 
 export default function Cart(): JSX.Element {
-  return (
-    <div>
-      <Breadcrumbs />
-    </div>
-  )
+  return <CartPage />
 }

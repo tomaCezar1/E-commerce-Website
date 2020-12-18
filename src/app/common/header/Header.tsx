@@ -1,34 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useContext } from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {toggleHeader} from '../../../utils'
+import {AppContext} from '../../../context'
 import Menu from '../menu/Menu'
 import SearchBar from './SearchBar/SearchBar'
 import LangSwitch from './LangSwitch/LangSwitch'
 import Overlay from '../overlay/Overlay'
 
 export default function Header(): JSX.Element {
+  const [showMenu, setShowMenu] = useState(false);
+  const header = useRef(null);
   const router = useRouter()
+  const { cart } = useContext(AppContext)
 
   useEffect(() => {
     toggleHeader()
   }, [])
 
-  const [showMenu, setShowMenu] = useState(false);
-  const header = useRef(null);
-
   const handleMenu = () => {
     setShowMenu(true);
-    // const menu = document.getElementById('menu')
-    // // Decide if add or remove
-    // if(menu.classList.contains('hide-menu')) {
-    //   // Remove
-    //   menu.classList.remove('hide-menu')
-    // } else {
-    //   // Add
-    //   menu.classList.add('hide-menu')
-    // }
-
   }
 
   return (
@@ -67,7 +58,7 @@ export default function Header(): JSX.Element {
           </button>
           {showMenu && (
             <Overlay anchor={header.current} onBackdropClick={() => setShowMenu(false)}>
-              <Menu></Menu>
+              <Menu onClose={setShowMenu}></Menu>
             </Overlay>
           )}
           <SearchBar />
@@ -75,7 +66,9 @@ export default function Header(): JSX.Element {
             <div className="icons-wrapper">
               <Link href={`/${router.locale}/cart`}>
                 <div className="header-cart-icon">
-                  <div className="cart-notification">1</div>
+                  {cart.length ? (
+                    <div className="cart-notification">{cart.length}</div>
+                  ) : null}
                 </div>
               </Link>
               <Link href={`/${router.locale}/favorites`}>

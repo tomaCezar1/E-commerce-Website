@@ -17,6 +17,7 @@ export const ProductListQuery = gql`
       available
       slug
       notAvailableCustomText
+      isPromo
     }
   }
 `;
