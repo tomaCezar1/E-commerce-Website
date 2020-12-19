@@ -63,7 +63,7 @@
 }
 
 .checkout-terms-text {
-  color: $grey;
+  color: $darkGrey;
   font-size: 12px;
   font-family: "Medium";
   text-align: center;
@@ -71,6 +71,7 @@
 
 .checkout-privacy-link {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .checkout-error {
