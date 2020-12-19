@@ -160,25 +160,23 @@ export const formatPrice = (priceWithDecimal: number) => {
   return priceWithDecimal.toFixed(len)
 }
 
+
+// Form fields validation
 const nameValidation = (fieldName, fieldValue) => {
   if (fieldValue.trim() === "") {
     return 'Numele este obligatoriu';
   }
 
-  if (fieldValue.trim().length < 1) {
-    return 'Numele este obligatoriu';
-  }
   return null;
 };
 
 const phoneValidation = (fieldName, fieldValue) => {
-
   if (String(fieldValue).length < 8) {
     return "Număr inexistent"
   }
 
   if (String(fieldValue).trim().length < 1) {
-    return 'Numele este obligatoriu';
+    return 'Telefonul este obligatoriu';
   }
   return null
 }
