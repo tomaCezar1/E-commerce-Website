@@ -7,6 +7,7 @@ export default function Layout({children}): JSX.Element {
       <div className="layout-container" id="homepage">
         <Header />
         {children}
+        <div className="footer-push" />
       </div>
       <Footer />
     </>

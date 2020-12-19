@@ -32,7 +32,7 @@ export default function Breadcrumbs(): JSX.Element {
         </li>
         {breadcrumbs.map((breadcrumb, index, array) => {
           return (
-            <>
+            <div key={breadcrumb.href} style={{ display: 'flex'}}>
               <span className="breadcrumb-item">&nbsp;/&nbsp;</span>
               <li>
                 <Link href={breadcrumb.href}>
@@ -41,7 +41,7 @@ export default function Breadcrumbs(): JSX.Element {
                   </a>
                 </Link>
               </li>
-            </>
+            </div>
           );
         })}
       </ul>

@@ -1,9 +1,5 @@
-import Breadcrumbs from '../app/common/breadcrumbs/Breadcrumbs'
+import FavoritesPage from '../app/app-features/favorites-page/FavoritesPage'
 
 export default function Favorites(): JSX.Element {
-  return (
-    <div>
-      <Breadcrumbs />
-    </div>
-  )
+  return <FavoritesPage />
 }
