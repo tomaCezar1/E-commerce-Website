@@ -16,7 +16,7 @@ export default function Header(): JSX.Element {
 
   useEffect(() => {
     toggleHeader()
-  }, [])
+  }, [showMenu])
 
   const handleMenu = () => {
     setShowMenu(true);
@@ -45,7 +45,9 @@ export default function Header(): JSX.Element {
             </Link>
           </div>
       </div>
-      <div id="header-relative" className={showMenu ? 'menu-is-opened' : undefined} ref={header}>
+      <div id="header-relative" className={showMenu ? (
+        window && window.scrollY > 135 ? 'menu-is-opened header-fixed' : 'menu-is-opened'
+      ) : undefined} ref={header}>
         <Link href={`/`}>
           <div className={`logo-wrapper `}>
             <div className="logo" />
@@ -54,7 +56,7 @@ export default function Header(): JSX.Element {
         <div className="header-clipped-part">
           <button className="header-menu" onClick={handleMenu}>
             <div className="burger-icon"/>
-            <span className="button-text">Catalogul produselor {showMenu}</span>
+            <span className="button-text">Catalogul produselor</span>
           </button>
           {showMenu && (
             <Overlay anchor={header.current} onBackdropClick={() => setShowMenu(false)}>

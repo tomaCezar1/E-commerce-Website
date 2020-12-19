@@ -160,7 +160,6 @@ export const formatPrice = (priceWithDecimal: number) => {
   return priceWithDecimal.toFixed(len)
 }
 
-
 // Form fields validation
 const nameValidation = (fieldName, fieldValue) => {
   if (fieldValue.trim() === "") {
