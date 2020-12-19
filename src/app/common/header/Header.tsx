@@ -34,13 +34,13 @@ export default function Header(): JSX.Element {
             </a>
           </div>
           <div className="header-links">
-            <Link href={`/${router.locale}/regional-store`}>
+            <Link href={`/regional-store`} locale={router.locale}>
               Magazine regionale
             </Link>
-            <Link href={`/${router.locale}/service`}>
+            <Link href={`/service`} locale={router.locale}>
               Service centru
             </Link>
-            <Link href={`/${router.locale}/news`}>
+            <Link href={`/news`} locale={router.locale}>
               Știri
             </Link>
           </div>
@@ -64,14 +64,14 @@ export default function Header(): JSX.Element {
           <SearchBar />
           <div className="header-cart-section">
             <div className="icons-wrapper">
-              <Link href={`/${router.locale}/cart`}>
+              <Link href={`/cart`} locale={router.locale}>
                 <div className="header-cart-icon">
                   {cart.length ? (
                     <div className="cart-notification">{cart.length}</div>
                   ) : null}
                 </div>
               </Link>
-              <Link href={`/${router.locale}/favorites`}>
+              <Link href={`/favorites`} locale={router.locale}>
                 <div className="header-favorites-icon">
                   <div className="cart-notification">1</div>
                 </div>
