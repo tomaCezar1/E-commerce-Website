@@ -1,7 +1,8 @@
 import { useState, useCallback, useContext } from "react";
 import { AppContext } from '../../../context'
-import { cartTotal } from '../../../utils'
+import { cartTotal, formatPrice } from '../../../utils'
 import CheckoutForm from './CheckoutForm/CheckoutForm'
+import { validate } from '../../../utils'
 import Breadcrumbs from "../../common/breadcrumbs/Breadcrumbs";
 
 export default function CartPage(): JSX.Element {
@@ -24,7 +25,6 @@ export default function CartPage(): JSX.Element {
             <span>Total</span>
           </div>
           {cart.map((product) => {
-            console.log(product)
             return (
               <div key={product.id} className="cart-product-wrapper">
                 <div className="cart-product-image-info">
@@ -44,7 +44,7 @@ export default function CartPage(): JSX.Element {
                   </div>
                 </div>
                 <div className="cart-product-price">
-                  {product.price} lei
+                  {product.isPromo ? product.newPrice : product.price} lei
                 </div>
                 <div className="cart-product-qty-wrap">
                   <div
@@ -69,7 +69,11 @@ export default function CartPage(): JSX.Element {
                   </div>
                 </div>
                 <div className="cart-product-total">
-                  50 lei
+                  {product.isPromo ? (
+                    (product.newPrice * product.qty).toFixed(2)
+                  ) : (
+                    (product.price * product.qty).toFixed(2)
+                  )} lei
                 </div>
                 <div
                   className="remove-cart-item"
@@ -85,10 +89,10 @@ export default function CartPage(): JSX.Element {
             >
               Golește coșul
             </div>
-            <div className="cart-total-price">Total: {cartTotal(cart)} lei</div>
+            <div className="cart-total-price">Total: {formatPrice(cartTotal(cart))} lei</div>
           </div>
         </div>
-        <CheckoutForm />
+        <CheckoutForm validate={validate} />
       </div>
       ) : (
         <div className="no-items-text">

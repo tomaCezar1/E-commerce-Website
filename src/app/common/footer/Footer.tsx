@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from "next/router";
 import FacebookIcon from '../../../../public/svg/FacebookIcon.svg'
 import LinkedInIcon from '../../../../public/svg/LinkedInIcon.svg'
 import InstagramIcon from '../../../../public/svg/InstagramIcon.svg'
@@ -7,6 +8,7 @@ import CegoltarLogo from '../../../../public/svg/cegoltar-footer-logo.svg'
 const date = new Date()
 
 export default function Footer() {
+  const router = useRouter()
   return (
     <footer className="footer">
       <div className="footer-wrapper">
@@ -14,16 +16,44 @@ export default function Footer() {
           <div className="footer-links-wrapper">
             <div className="footer-links-group">
               <p className="footer-links-heading">Link-uri</p>
-              <p className="footer-link">Service centru</p>
-              <p className="footer-link">Magazine regionale</p>
+              <Link href={`/service`} locale={router.locale}>
+                <span className="footer-link">
+                  Service centru
+                </span>
+              </Link>
+              <Link href={`/regional-store`} locale={router.locale}>
+                <span className="footer-link">
+                  Magazine regionale
+                </span>
+              </Link>
             </div>
             <div className="footer-links-group" style={{marginLeft: 50}}>
               <p className="footer-links-heading">Informații</p>
-              <p className="footer-link">Condiții de garanție</p>
-              <p className="footer-link">Despre noi</p>
-              <p className="footer-link">Livrare</p>
-              <p className="footer-link">Politica de confidențialitate</p>
-              <p className="footer-link">Termeni de utilizare</p>
+              <Link href={`/guarantee`} locale={router.locale}>
+                <span className="footer-link">
+                  Condiții de garanție
+                </span>
+              </Link>
+              <Link href={`/about`} locale={router.locale}>
+                <span className="footer-link">
+                  Despre noi
+                </span>
+              </Link>
+              <Link href={`/delivery`} locale={router.locale}>
+                <span className="footer-link">
+                  Livrare
+                </span>
+              </Link>
+              <Link href={`/privacy`} locale={router.locale}>
+                <span className="footer-link">
+                  Politica de confidențialitate
+                </span> 
+              </Link>
+              <Link href={`/terms`} as={`/terms-and-conditions`}  locale={router.locale}>
+                <span className="footer-link">
+                  Termeni de utilizare
+                </span>
+              </Link>
             </div>
           </div>
           <div className="footer-phone-wrapper">

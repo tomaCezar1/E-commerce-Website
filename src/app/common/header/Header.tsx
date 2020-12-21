@@ -16,7 +16,7 @@ export default function Header(): JSX.Element {
 
   useEffect(() => {
     toggleHeader()
-  }, [])
+  }, [showMenu])
 
   const handleMenu = () => {
     setShowMenu(true);
@@ -34,18 +34,20 @@ export default function Header(): JSX.Element {
             </a>
           </div>
           <div className="header-links">
-            <Link href={`/${router.locale}/regional-store`}>
+            <Link href={`/regional-store`} locale={router.locale}>
               Magazine regionale
             </Link>
-            <Link href={`/${router.locale}/service`}>
+            <Link href={`/service`} locale={router.locale}>
               Service centru
             </Link>
-            <Link href={`/${router.locale}/news`}>
+            <Link href={`/news`} locale={router.locale}>
               Știri
             </Link>
           </div>
       </div>
-      <div id="header-relative" className={showMenu ? 'menu-is-opened' : undefined} ref={header}>
+      <div id="header-relative" className={showMenu ? (
+        window && window.scrollY > 135 ? 'menu-is-opened header-fixed' : 'menu-is-opened'
+      ) : undefined} ref={header}>
         <Link href={`/`}>
           <div className={`logo-wrapper `}>
             <div className="logo" />
@@ -54,7 +56,7 @@ export default function Header(): JSX.Element {
         <div className="header-clipped-part">
           <button className="header-menu" onClick={handleMenu}>
             <div className="burger-icon"/>
-            <span className="button-text">Catalogul produselor {showMenu}</span>
+            <span className="button-text">Catalogul produselor</span>
           </button>
           {showMenu && (
             <Overlay anchor={header.current} onBackdropClick={() => setShowMenu(false)}>
@@ -64,14 +66,14 @@ export default function Header(): JSX.Element {
           <SearchBar />
           <div className="header-cart-section">
             <div className="icons-wrapper">
-              <Link href={`/${router.locale}/cart`}>
+              <Link href={`/cart`} locale={router.locale}>
                 <div className="header-cart-icon">
                   {cart.length ? (
                     <div className="cart-notification">{cart.length}</div>
                   ) : null}
                 </div>
               </Link>
-              <Link href={`/${router.locale}/favorites`}>
+              <Link href={`/favorites`} locale={router.locale}>
                 <div className="header-favorites-icon">
                   <div className="cart-notification">1</div>
                 </div>

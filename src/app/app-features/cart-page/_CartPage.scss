@@ -1,7 +1,7 @@
 @import '../../../styles/constants.scss';
 
 .cart-page-container {
-  padding-top: 32px;
+
   min-height: 500px;
 }
 
@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 32px 0 50px 0;
+  margin-bottom: 50px;
 }
 
 .cart-items-list {
@@ -152,7 +152,6 @@
 }
 
 .no-items-text {
-  height: 80px;
   font-size: 26px;
   font-family: "Medium";
   display: flex;
