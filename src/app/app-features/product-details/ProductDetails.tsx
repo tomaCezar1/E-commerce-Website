@@ -16,10 +16,10 @@ function ProductDetails({ productDetails }) {
 
   const techSpecs = data?.techSpecs;
   const fieldsLength = data?.techSpecs.fields.length;
-  console.log(techSpecs);
-  const firstHalf = fieldsLength / 2 - 1;
-  const secondHalf = fieldsLength / 2;
-  console.log(firstHalf, secondHalf);
+  // console.log(techSpecs);
+  // const firstHalf = fieldsLength / 2 - 1;
+  // const secondHalf = fieldsLength / 2;
+  // console.log(firstHalf, secondHalf);
 
   useEffect(() => {
     if (details.available) {
@@ -28,6 +28,12 @@ function ProductDetails({ productDetails }) {
       setAvailable(false);
     }
   }, []);
+
+  const createMarkup = (html) => {
+    return {
+      __html: html,
+    };
+  };
 
   const [counter, setCounter] = useState(0);
 
@@ -63,7 +69,10 @@ function ProductDetails({ productDetails }) {
 
               <p className="product-details-serial-nb">{details.articleCode}</p>
             </div>
-            <p className="product-details-text">{details.description}</p>
+            <div
+              className="product-details-text"
+              dangerouslySetInnerHTML={createMarkup(details.description)}
+            />
             <a className="product-details-detalii">Mai multe detalii</a>
             <div className="product-details-cart-price">
               <h1 className="product-details-price">{details.price} lei</h1>
@@ -108,9 +117,9 @@ function ProductDetails({ productDetails }) {
               </thead>
               {fieldsLength < 7 ? (
                 <tbody>
-                  {techSpecs.fields.map((spec) => {
+                  {techSpecs.fields.map((spec, index) => {
                     return (
-                      <tr>
+                      <tr key={index}>
                         <th>{spec.name}</th>
                         <td>{spec.value}</td>
                       </tr>
@@ -130,37 +139,6 @@ function ProductDetails({ productDetails }) {
               })}
             </tbody>
             : null} */}
-            </table>
-          </div>
-          <div className="characteristics-table">
-            <table className="table">
-              <thead>
-                <tr className="table-head">
-                  <th>Caracteristici</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>Tip</th>
-                  <td>Standard</td>
-                </tr>
-                <tr>
-                  <th>Putere</th>
-                  <td>1500W</td>
-                </tr>
-                <tr>
-                  <th>Tensiune</th>
-                  <td>220V</td>
-                </tr>
-                <tr>
-                  <th>Model</th>
-                  <td>PTWT21</td>
-                </tr>
-                <tr>
-                  <th>Temperatura</th>
-                  <td>5600K</td>
-                </tr>
-              </tbody>
             </table>
           </div>
         </div>

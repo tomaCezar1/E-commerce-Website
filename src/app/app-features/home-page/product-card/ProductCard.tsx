@@ -34,12 +34,14 @@ function ProductCard({ product }) {
             </div>
           ) : null}
           <div className="product-card-container-flex">
-            <img
-              src={product?.images}
-              alt="image"
-              className="product-card-image"
-            />
-            <p className="product-card-name">{product?.name}</p>
+            <div>
+              <img
+                src={product?.images[0]}
+                alt="image"
+                className="product-card-image"
+              />
+              <p className="product-card-name">{product?.name}</p>
+            </div>
             <div className="product-card-bottom">
               <div className="product-card-price">
                 {sale > 0 ? (
