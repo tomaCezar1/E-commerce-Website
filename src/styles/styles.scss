@@ -21,6 +21,7 @@
 @import './constants.scss';
 @import '../app/app-features/cart-page/CartPage';
 @import '../app/app-features/cart-page/CheckoutForm/CheckoutForm';
+@import '../app/app-features/guarantees-page/GuaranteesPage';
 
 .cursor-pointer {
   cursor: pointer;
@@ -71,5 +72,3 @@ header {
   src: local('Roboto-Bold'),
     url('../../public/fonts/Roboto-Bold.ttf') format('truetype');
 }
-
-
