@@ -1,26 +1,26 @@
-@import '../app/common/footer/Footer';
-@import '../app/app-features/home-page/CarouselComponent/Slider';
-@import '../app/app-features/home-page/PartnerList/PartnerList';
-@import '../app/common/header/Header';
-@import '../app/common/layout/Layout';
-@import '../app/app-features/home-page/product-card/ProductCard';
-@import '../app/app-features/home-page/product-list/ProductList';
-@import '../app/common/menu/Menu';
-@import '../app/common/header/LangSwitch/LangSwitch';
-@import '../app/app-features/product-details/ProductDetails';
-@import '../app/common/header/SearchBar/SearchBar';
+@import "../app/common/footer/Footer";
+@import "../app/app-features/home-page/CarouselComponent/Slider";
+@import "../app/app-features/home-page/PartnerList/PartnerList";
+@import "../app/common/header/Header";
+@import "../app/common/layout/Layout";
+@import "../app/app-features/home-page/product-card/ProductCard";
+@import "../app/app-features/home-page/product-list/ProductList";
+@import "../app/common/menu/Menu";
+@import "../app/common/header/LangSwitch/LangSwitch";
+@import "../app/app-features/product-details/ProductDetails";
+@import "../app/common/header/SearchBar/SearchBar";
 
-@import '../app/app-features/blog/BlogPage';
-@import '../app/app-features/regional-store/RegionalStore';
-@import '../app/app-features/regional-store/contact-box/ContactBox';
-@import '../app/common/overlay/Overlay';
-@import '../app/common/portal/Portal';
-@import '../app/app-features/categories/Categories';
-@import '../app/common/breadcrumbs/Breadcrumbs';
-@import './utils';
-@import './constants.scss';
-@import '../app/app-features/cart-page/CartPage';
-@import '../app/app-features/cart-page/CheckoutForm/CheckoutForm';
+@import "../app/app-features/blog/BlogPage";
+@import "../app/app-features/regional-store/RegionalStore";
+@import "../app/app-features/regional-store/contact-box/ContactBox";
+@import "../app/common/overlay/Overlay";
+@import "../app/common/portal/Portal";
+@import "../app/app-features/categories/Categories";
+@import "../app/common/breadcrumbs/Breadcrumbs";
+@import "./utils";
+@import "./constants.scss";
+@import "../app/app-features/cart-page/CartPage";
+@import "../app/app-features/cart-page/CheckoutForm/CheckoutForm";
 
 .cursor-pointer {
   cursor: pointer;
@@ -32,6 +32,11 @@ a {
 
 p {
   margin: 0;
+}
+
+img {
+  max-width: none !important;
+  height: none !important;
 }
 
 body {
@@ -54,21 +59,19 @@ header {
 }
 
 @font-face {
-  font-family: 'Regular';
-  src: local('Roboto-Regular'),
-    url('../../public/fonts/Roboto-Regular.ttf') format('truetype');
+  font-family: "Regular";
+  src: local("Roboto-Regular"),
+    url("../../public/fonts/Roboto-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Medium';
-  src: local('Roboto-Medium'),
-    url('../../public/fonts/Roboto-Medium.ttf') format('truetype');
+  font-family: "Medium";
+  src: local("Roboto-Medium"),
+    url("../../public/fonts/Roboto-Medium.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Bold';
-  src: local('Roboto-Bold'),
-    url('../../public/fonts/Roboto-Bold.ttf') format('truetype');
+  font-family: "Bold";
+  src: local("Roboto-Bold"),
+    url("../../public/fonts/Roboto-Bold.ttf") format("truetype");
 }
-
-
