@@ -3,8 +3,8 @@ import { initializeApollo } from '../../../app/lib/apolloClient';
 import { ProductCategoriesQuery } from '../../../app/app-features/categories/ProductCategoriesQueries';
 import { ProductListQuery } from '../../../app/app-features/home-page/product-list/ProductListQuery';
 
-export default function SubcategoryPage({ products }) {
-  return <Subcategories products={products} />;
+export default function SubcategoryPage({ products, subcategory }) {
+  return <Subcategories products={products} subcategory={subcategory} />;
 }
 
 export async function getServerSideProps(context) {
@@ -43,6 +43,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       products: productsData.data.products,
+      subcategory: productCategoriesData?.data?.productCategories[0]
     },
   };
 }

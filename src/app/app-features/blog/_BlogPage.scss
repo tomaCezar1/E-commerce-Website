@@ -84,7 +84,9 @@ a {
 
 //Details Page
 .blog-details-container {
-  margin: 0 236px;
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
 }
 
 .blog-details-content-container {

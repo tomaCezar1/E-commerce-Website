@@ -14,3 +14,12 @@
 .hidden {
   opacity: 0;
 }
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.full-width {
+  width: 100%;
+}
