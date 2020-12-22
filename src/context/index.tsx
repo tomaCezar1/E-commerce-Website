@@ -16,7 +16,7 @@ const AppContextProvider = ({ children, initialState }) => {
     saveCart(updatedCart)
   }
 
-  const addToCart = (product, qty = 1) => {
+  const addToCart = (product, qty: any = 1) => {
     const copy = [...cart]
 
     // If the product is already in cart
@@ -31,7 +31,7 @@ const AppContextProvider = ({ children, initialState }) => {
       if (copy[indexOfProduct].qty < 2) {
         product.qty = 1
       }
-      
+
     } else {
       // Set the quantity to 1
       product.qty = parseInt(qty)
