@@ -9,12 +9,12 @@ export default function LangSwitch(): JSX.Element {
   }
 
   return (
-    <div className="lang-wrapper">
+    <div className={`lang-wrapper ${router.locale === 'ro' ? 'ro-active' : 'ru-active'}`}>
       <div className={router.locale === 'ro' ? "lang active" : 'lang'} onClick={() => handleClick('ro')}>
         Ro
       </div>
       <div className={router.locale === 'ru' ? "lang active" : 'lang'}  onClick={() => handleClick('ru')}>
-        Ru
+        Ру
       </div>
     </div>
   )
