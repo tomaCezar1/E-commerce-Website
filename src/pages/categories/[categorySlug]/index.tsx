@@ -10,8 +10,6 @@ function ProductCategoryPage({subcategories, categoryDetails}) {
 }
 
 export async function getServerSideProps(context) {
-  console.log(context);
-
   const slug = context.query.categorySlug;
 
   const apolloClient = initializeApollo();
@@ -30,6 +28,7 @@ export async function getServerSideProps(context) {
       id: categoryId
     }
   });
+
   return {
     props: {
       categoryDetails: productCategoriesData.data.productCategories[0],

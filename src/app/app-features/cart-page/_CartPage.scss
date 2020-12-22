@@ -63,12 +63,22 @@
 
 .cart-product-name {
   font-size: 18px;
-  font-family: "Bold"
+  font-family: "Bold";
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .cart-product-description {
   font-size: 12px;
-  font-family: "Medium"
+  font-family: "Medium";
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .cart-product-price, .cart-product-total {

@@ -1,0 +1,17 @@
+.subcategories-products-container{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.subcategories-filter {
+  width: 234px;
+  height: 700px;
+  //background: red;
+  //border: 1px solid #ccc;
+}
+
+.subcategories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
