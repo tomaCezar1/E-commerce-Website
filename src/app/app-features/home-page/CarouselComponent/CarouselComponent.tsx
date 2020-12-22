@@ -1,17 +1,20 @@
-import { Flex, Icon, Skeleton } from '@chakra-ui/react'
-import Router from 'next/router'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import RightArrow from '../../../../../public/svg/RightArrow.svg'
-import LeftArrow from '../../../../../public/svg/LeftArrow.svg'
-import { useQuery } from '@apollo/client'
-import { ICarouselItems, CarouselQuery } from './CarouselQuery'
+import { Flex, Icon, Skeleton } from '@chakra-ui/react';
+import Router from 'next/router';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import RightArrow from '../../../../../public/svg/RightArrow.svg';
+import LeftArrow from '../../../../../public/svg/LeftArrow.svg';
+import { useQuery } from '@apollo/client';
+import { CarouselItems, CarouselQuery } from './CarouselQuery';
 
-function CarouselComponent({style = {}}): JSX.Element {
-  const { loading, error, data } = useQuery<ICarouselItems>(CarouselQuery)
+function CarouselComponent({ style = {} }): JSX.Element {
+  const { loading, error, data } = useQuery<CarouselItems>(CarouselQuery, {
+    variables: { sorting: [{ field: 'sortOrder', direction: 'ASC' }] },
+  });
 
-  const items = data?.carouselItems
+  const items = data?.carouselItems;
+  console.log(data);
 
   const settings = {
     dots: true,
@@ -23,11 +26,11 @@ function CarouselComponent({style = {}}): JSX.Element {
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-  }
+  };
 
   const handleClick = (link) => {
-    Router.push(`${link}`)
-  }
+    Router.push(`${link}`);
+  };
 
   function slide() {
     if (!items?.length) {
@@ -39,7 +42,7 @@ function CarouselComponent({style = {}}): JSX.Element {
             className="carousel-img"
           />
         </div>
-      )
+      );
     } else
       return items?.map((item, index) => {
         return (
@@ -51,12 +54,12 @@ function CarouselComponent({style = {}}): JSX.Element {
               onClick={() => handleClick(item.link)}
             />
           </div>
-        )
-      })
+        );
+      });
   }
 
   function SampleNextArrow(props) {
-    const { className, style, onClick } = props
+    const { className, style, onClick } = props;
     return (
       <div className="slick-arrow-bg slick-arrow-bg-next">
         <div
@@ -72,11 +75,11 @@ function CarouselComponent({style = {}}): JSX.Element {
           </i>
         </div>
       </div>
-    )
+    );
   }
 
   function SamplePrevArrow(props) {
-    const { className, style, onClick } = props
+    const { className, style, onClick } = props;
     return (
       <div className="slick-arrow-bg">
         <div
@@ -92,7 +95,7 @@ function CarouselComponent({style = {}}): JSX.Element {
           </i>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -101,7 +104,7 @@ function CarouselComponent({style = {}}): JSX.Element {
         <Slider {...settings}>{slide()}</Slider>
       </Skeleton>
     </div>
-  )
+  );
 }
 
-export default CarouselComponent
+export default CarouselComponent;
