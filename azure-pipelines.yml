@@ -27,7 +27,7 @@ steps:
     script: 'cp package.json cegoltar-ui/'
 - task: CmdLine@2
   inputs:
-    script: 'cp .next cegoltar-ui/'
+    script: 'cp -r .next cegoltar-ui/.next'
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Pipeline Artifact'
   inputs:
