@@ -1,11 +1,11 @@
 import { useState, useContext, useEffect } from 'react';
 import { AppContext } from '../../../../context';
 import Link from 'next/link';
-import { Select } from '@chakra-ui/react';
+import { Select, useToast } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import InputMask from 'react-input-mask';
 import { useMutation } from '@apollo/client';
-import { OrdersMutation } from '../CartPageQuery';
+import { OrdersMutation } from '../CartPageMutation';
 
 const initialValues = {
   name: '',
@@ -18,7 +18,7 @@ export default function CheckoutForm({ validate }): JSX.Element {
   const [errors, setErrors] = useState({} as any);
   const [touched, setTouched] = useState({} as any);
   const [productsArray, setProductsArray] = useState([] as any);
-
+  const toast = useToast();
   const { cart } = useContext(AppContext);
 
   const router = useRouter();
@@ -98,6 +98,14 @@ export default function CheckoutForm({ validate }): JSX.Element {
     ) {
       // Make the request to place an order instead of the alert
       sendOrder();
+      toast({
+        title: 'Comanda dumneavoastră a fost procesată cu succes.',
+        description: 'Licuricii noștri vă vor contacta imediat!',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        position: 'top',
+      });
     }
   };
 
