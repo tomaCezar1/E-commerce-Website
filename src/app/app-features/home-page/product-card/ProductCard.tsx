@@ -1,14 +1,14 @@
-import { useState, useEffect, useContext } from 'react'
-import FavoriteEmpty from "../../../../../public/svg/FavoriteEmpty.svg";
-import FavoriteActive from "../../../../../public/svg/FavoriteActive.svg";
-import CartIcon from "../../../../../public/svg/CartIcon.svg";
-import Link from "next/link";
-import { AppContext } from '../../../../context'
+import { useState, useEffect, useContext } from 'react';
+import FavoriteEmpty from '../../../../../public/svg/FavoriteEmpty.svg';
+import FavoriteActive from '../../../../../public/svg/FavoriteActive.svg';
+import CartIcon from '../../../../../public/svg/CartIcon.svg';
+import Link from 'next/link';
+import { AppContext } from '../../../../context';
 
 function ProductCard({ product }) {
   const [isActive, setActive] = useState(false);
 
-  const { addToCart } = useContext(AppContext)
+  const { addToCart } = useContext(AppContext);
 
   let sale;
 
@@ -25,7 +25,7 @@ function ProductCard({ product }) {
       <Link href="/Produs/[slug]" as={`/Produs/${product.slug}`}>
         <div
           className={`product-card-container ${
-            product.available ? "" : "out-of-stock"
+            product.available ? '' : 'out-of-stock'
           }`}
         >
           {sale ? (
@@ -34,12 +34,14 @@ function ProductCard({ product }) {
             </div>
           ) : null}
           <div className="product-card-container-flex">
-            <img
-              src={product?.images}
-              alt="image"
-              className="product-card-image"
-            />
-            <p className="product-card-name">{product?.name}</p>
+            <div>
+              <img
+                src={product?.images[0]}
+                alt="image"
+                className="product-card-image"
+              />
+              <p className="product-card-name">{product?.name}</p>
+            </div>
             <div className="product-card-bottom">
               <div className="product-card-price">
                 {sale > 0 ? (
@@ -58,10 +60,16 @@ function ProductCard({ product }) {
                 )}
               </div>
               <div className="product-card-cart">
-                <i style={{ cursor: "pointer" }}>
+                <i style={{ cursor: 'pointer' }}>
                   {isActive ? <FavoriteActive /> : <FavoriteEmpty />}
                 </i>
-                <div className="add-to-cart" onClick={() => addToCart(product, 1)}>
+                <div
+                  className="add-to-cart"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addToCart(product, 1);
+                  }}
+                >
                   <CartIcon />
                   <p className="product-card-add-text">Adaugă în coș</p>
                 </div>

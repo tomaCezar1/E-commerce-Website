@@ -38,6 +38,7 @@
   font-size: 12px;
   color: $white;
   background: $primaryColor;
+  transition: border-raius 125ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 
@@ -49,8 +50,9 @@
   height: 65px;
   clip-path: ellipse(98% 94% at 0% 50%);
   background: #f8f8f8;
-  border-radius: 32px 0 0 32px;
-  transition: border-radius 350ms ease;
+  border-top-left-radius: 32px;
+  border-bottom-left-radius: 32px;
+  transition: border-raius 125ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .menu-is-opened {

@@ -3,6 +3,7 @@ import CartIcon from "../../../../public/svg/CartIcon.svg";
 import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { TechSpecsQuery } from "./ProductDetailsQuery";
+import { Skeleton } from '@chakra-ui/react';
 
 function ProductDetails({ productDetails }) {
   const details = productDetails?.products[0];
@@ -14,12 +15,25 @@ function ProductDetails({ productDetails }) {
     variables: { id },
   });
 
-  const techSpecs = data?.techSpecs;
+
+  let techFields = [];
+  let techFieldsSecond = [];
+
+  if (data && data.techSpecs && data.techSpecs.fields) {
+    const fields = data.techSpecs.fields;
+    if (fields.length > 7) {
+      techFields = fields.slice(0, Math.round(fields.length / 2))
+      techFieldsSecond = fields.slice(Math.round(fields.length / 2))
+    } else {
+      techFields = fields;
+    }
+  }
+
   const fieldsLength = data?.techSpecs.fields.length;
-  console.log(techSpecs);
-  const firstHalf = fieldsLength / 2 - 1;
-  const secondHalf = fieldsLength / 2;
-  console.log(firstHalf, secondHalf);
+  // console.log(techSpecs);
+  // const firstHalf = fieldsLength / 2 - 1;
+  // const secondHalf = fieldsLength / 2;
+  // console.log(firstHalf, secondHalf);
 
   useEffect(() => {
     if (details.available) {
@@ -28,6 +42,12 @@ function ProductDetails({ productDetails }) {
       setAvailable(false);
     }
   }, []);
+
+  const createMarkup = (html) => {
+    return {
+      __html: html,
+    };
+  };
 
   const [counter, setCounter] = useState(0);
 
@@ -63,8 +83,10 @@ function ProductDetails({ productDetails }) {
 
               <p className="product-details-serial-nb">{details.articleCode}</p>
             </div>
-            <p className="product-details-text">{details.description}</p>
-            <a className="product-details-detalii">Mai multe detalii</a>
+            <div
+              className="product-details-text"
+              dangerouslySetInnerHTML={createMarkup(details.description)}
+            />
             <div className="product-details-cart-price">
               <h1 className="product-details-price">{details.price} lei</h1>
 
@@ -98,72 +120,61 @@ function ProductDetails({ productDetails }) {
         </div>
 
         {/* Characteristics tables */}
-        <div className="characteristics-tables">
+
+        {!loading && <div className="characteristics-tables">
           <div className="characteristics-table">
             <table className="table">
               <thead>
-                <tr className="table-head">
-                  <th>Caracteristici</th>
-                </tr>
+              <tr className="table-head">
+                <th>Caracteristici</th>
+              </tr>
               </thead>
-              {fieldsLength < 7 ? (
-                <tbody>
-                  {techSpecs.fields.map((spec) => {
-                    return (
-                      <tr>
-                        <th>{spec.name}</th>
-                        <td>{spec.value}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              ) : null}
-              {/* {fieldsLength > 7 ? 
               <tbody>
-              {techSpecs.fields.map((spec) => {
+              {techFields.map((spec, index) => {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <th>{spec.name}</th>
                     <td>{spec.value}</td>
                   </tr>
                 );
               })}
-            </tbody>
-            : null} */}
-            </table>
-          </div>
-          <div className="characteristics-table">
-            <table className="table">
-              <thead>
-                <tr className="table-head">
-                  <th>Caracteristici</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>Tip</th>
-                  <td>Standard</td>
-                </tr>
-                <tr>
-                  <th>Putere</th>
-                  <td>1500W</td>
-                </tr>
-                <tr>
-                  <th>Tensiune</th>
-                  <td>220V</td>
-                </tr>
-                <tr>
-                  <th>Model</th>
-                  <td>PTWT21</td>
-                </tr>
-                <tr>
-                  <th>Temperatura</th>
-                  <td>5600K</td>
-                </tr>
               </tbody>
             </table>
           </div>
+          {techFieldsSecond.length > 0 &&
+          <div className="characteristics-table" style={{ marginLeft: '56px' }}>
+            <table className="table">
+              <thead>
+              <tr className="table-head">
+                <th>Caracteristici</th>
+              </tr>
+              </thead>
+              <tbody>
+              {techFieldsSecond.map((spec, index) => {
+                return (
+                  <tr key={index}>
+                    <th>{spec.name}</th>
+                    <td>{spec.value}</td>
+                  </tr>
+                );
+              })}
+              </tbody>
+            </table>
+          </div>
+          }
         </div>
+        }
+        { loading &&
+        <div className='flex-row full-width' style={{ margin: '80px 0 62px' }}>
+          <div className='full-width'>
+            <Skeleton height='51px' style={{ borderRadius: '16px' }} />
+            <Skeleton height='201px' style={{ marginTop: '16px', borderRadius: '16px' }} />
+          </div>
+          <div className='full-width' style={{ marginLeft: '56px' }}>
+            <Skeleton height='51px' style={{ borderRadius: '16px' }} />
+            <Skeleton height='201px' style={{ marginTop: '16px', borderRadius: '16px' }} />
+          </div>
+        </div>}
       </div>
     </>
   );

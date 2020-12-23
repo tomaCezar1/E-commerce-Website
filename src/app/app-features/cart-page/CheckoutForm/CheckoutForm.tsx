@@ -11,8 +11,8 @@ const initialValues = {
 
 export default function CheckoutForm({ validate }): JSX.Element {
   const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
+  const [errors, setErrors] = useState({} as any);
+  const [touched, setTouched] = useState({} as any);
   const router = useRouter();
 
   const handleChange = (event) => {
@@ -32,6 +32,7 @@ export default function CheckoutForm({ validate }): JSX.Element {
   const handleBlur = (event) => {
     const { name, value } = event.target;
 
+    // @ts-ignore
     const { [name]: removedError, ...rest } = errors;
 
     const error = validate[name](value);

@@ -7,6 +7,7 @@ function ProductDetailsComponent({ productDetails }) {
   console.log(productDetails);
   return (
     <>
+      <div style={{ marginTop: "32px" }}></div>
       <Breadcrumbs />
       <ProductDetails productDetails={productDetails} />
     </>

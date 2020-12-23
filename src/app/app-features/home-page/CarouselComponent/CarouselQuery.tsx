@@ -1,18 +1,22 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 
 export const CarouselQuery = gql`
-  query {
-    carouselItems {
+  query CarouselQuery(
+    $sorting: [CarouselItemSort!] = [{ field: sortOrder, direction: ASC }]
+  ) {
+    carouselItems(sorting: $sorting) {
       image
       link
+      sortOrder
     }
   }
-`
-export interface ICarouselItems {
-  carouselItems: ICarouselItem[]
+`;
+export interface CarouselItems {
+  carouselItems: CarouselItem[];
 }
 
-export interface ICarouselItem {
-  image: string
-  link: string
+export interface CarouselItem {
+  image: string;
+  link: string;
+  sortOrder: number;
 }

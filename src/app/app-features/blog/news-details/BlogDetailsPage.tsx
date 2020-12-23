@@ -4,11 +4,12 @@ function BlogDetailsPage(): JSX.Element {
   return (
     <>
       <div className="blog-details-container">
-        <div className="blog-card-title-flex">
-          <h1 className="blog-details-title">Titlul</h1>
-          <p className="blog-card-date blog-details-date">03.12.2020</p>
-        </div>
-        <div className="blog-details-content-container">
+        <div style={{width: '669px'}}>
+          <div className="blog-card-title-flex">
+            <h1 className="blog-details-title">Titlul</h1>
+            <p className="blog-card-date blog-details-date">03.12.2020</p>
+          </div>
+          <div className="blog-details-content-container">
           <p className="blog-details-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida
             bibendum eu vulputate congue vestibulum. Sed pellentesque id
@@ -74,6 +75,7 @@ function BlogDetailsPage(): JSX.Element {
             quis nulla sollicitudin. Tortor vel imperdiet sit interdum in dui ut
             urna
           </p>
+        </div>
         </div>
       </div>
       <h1 className="blog-details-title" style={{ marginBottom: '32px' }}>

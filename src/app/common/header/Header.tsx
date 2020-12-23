@@ -13,9 +13,17 @@ export default function Header(): JSX.Element {
   const header = useRef(null);
   const router = useRouter()
   const { cart } = useContext(AppContext)
+  const [renderCartLength, setRenderCartLength] = useState(false);
 
   useEffect(() => {
-    toggleHeader()
+    toggleHeader();
+    /** @Mihai
+     * Fix to prevent browser error "Warning: Expected server HTML to contain a matching <div> in <div>"
+     * check more at: https://haodong.io/render-client-side-only-component-in-next-js
+     * It cause by the fact that cart is stored in the localstorage and the SSR Dom differs from the Client side DOM
+     * at first hydration.
+     */
+    setRenderCartLength(true);
   }, [showMenu])
 
   const handleMenu = () => {
@@ -68,7 +76,7 @@ export default function Header(): JSX.Element {
             <div className="icons-wrapper">
               <Link href={`/cart`} locale={router.locale}>
                 <div className="header-cart-icon">
-                  {cart.length ? (
+                  {renderCartLength && cart.length ? (
                     <div className="cart-notification">{cart.length}</div>
                   ) : null}
                 </div>
