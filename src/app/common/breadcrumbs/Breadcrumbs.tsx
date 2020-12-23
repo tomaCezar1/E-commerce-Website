@@ -3,14 +3,14 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { convertBreadcrumb } from '../../../utils';
 
-export default function Breadcrumbs({ path }): JSX.Element {
+export default function Breadcrumbs({ path = [] }): JSX.Element {
   const router = useRouter();
   const [breadcrumbs, setBreadcrumbs] = useState(null);
 
   useEffect(() => {
     let pathArray;
     if (router) {
-      if (path) {
+      if (path && path.length > 0) {
         pathArray = path.map((element, i) => {
           return {
             breadcrumb: element.name,
@@ -74,3 +74,7 @@ export default function Breadcrumbs({ path }): JSX.Element {
     </nav>
   );
 }
+
+Breadcrumbs.defaultProps = {
+  path: [],
+};
