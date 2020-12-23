@@ -13,7 +13,9 @@
 }
 
 .cart-items-list {
-  width: 70%;
+  height: calc(100vh - 410px);
+  min-height: 500px;
+  overflow: auto;
 }
 
 .cart-heading-first {
@@ -136,7 +138,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .clear-cart-button {
