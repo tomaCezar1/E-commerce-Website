@@ -8,7 +8,7 @@ function ProductList({ homePageInfo }): JSX.Element {
       <h1 className="product-list-header">Produsele Cegoltar</h1>
       <div className="cards-container">
         {items?.map((item, index) => {
-          return <ProductCard product={item} key={index} />;
+          return <ProductCard product={item} key={index} size="medium" />;
         })}
       </div>
     </div>

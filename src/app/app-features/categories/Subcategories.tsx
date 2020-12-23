@@ -18,10 +18,14 @@ export default function Subcategories({ products, subcategory }): JSX.Element {
               height: 35,
               marginBottom: 15,
             }}
-          >Sortarea</div>
+          >
+            Sortarea
+          </div>
           <div className="subcategories-grid">
             {products.map((product) => {
-              return <ProductCard key={product.id} product={product} />;
+              return (
+                <ProductCard key={product.id} product={product} size="small" />
+              );
             })}
           </div>
         </div>
