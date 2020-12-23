@@ -1,12 +1,12 @@
-import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import InputMask from "react-input-mask";
+import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import InputMask from 'react-input-mask';
 
 const initialValues = {
-  name: "",
-  phone: "",
-  callTime: "",
+  name: '',
+  phone: '',
+  callTime: '',
 };
 
 export default function CheckoutForm({ validate }): JSX.Element {
@@ -18,7 +18,7 @@ export default function CheckoutForm({ validate }): JSX.Element {
   const handleChange = (event) => {
     const { name, value: newValue, type } = event.target;
     // Keep phone field as numbers
-    const value = type === "number" ? +newValue : newValue;
+    const value = type === 'number' ? +newValue : newValue;
     setValues({
       ...values,
       [name]: value,
@@ -94,8 +94,8 @@ export default function CheckoutForm({ validate }): JSX.Element {
           placeholder="Nume"
           className={
             touched.name && errors.name
-              ? "checkout-form-error-input"
-              : "checkout-form-input"
+              ? 'checkout-form-error-input'
+              : 'checkout-form-input'
           }
         />
         {touched.name && errors.name ? (
@@ -113,8 +113,8 @@ export default function CheckoutForm({ validate }): JSX.Element {
           placeholder="Telefon"
           className={
             touched.phone && errors.phone
-              ? "checkout-form-error-input"
-              : "checkout-form-input"
+              ? 'checkout-form-error-input'
+              : 'checkout-form-input'
           }
         />
         {touched.phone && errors.phone ? (
@@ -129,8 +129,8 @@ export default function CheckoutForm({ validate }): JSX.Element {
           value={values.callTime}
           className={
             touched.callTime && errors.callTime
-              ? "checkout-form-error-input"
-              : "checkout-form-input"
+              ? 'checkout-form-error-input'
+              : 'checkout-form-input'
           }
         >
           <option value="" disabled hidden>
@@ -162,15 +162,15 @@ export default function CheckoutForm({ validate }): JSX.Element {
         <input type="submit" value="Comandă" className="checkout-form-button" />
 
         <div className="checkout-terms-text">
-          *Apăsînd butonul &#39;Comandă&#39;  dvs. confirmați că ați luat cunoștință și
-          sînteți de acord cu{" "}
-          <Link href={`/privacy`} as={`/privacy-policy`} locale={router.locale}>
+          *Apăsînd butonul &#39;Comandă&#39; dvs. confirmați că ați luat
+          cunoștință și sînteți de acord cu{' '}
+          <Link href="/privacy" as="/privacy-policy" locale={router.locale}>
             <span className="checkout-privacy-link">
               politica de confidențialitate
             </span>
           </Link>
           <span> și </span>
-          <Link href={`/terms`} as={`/terms-and-conditions`} locale={router.locale}>
+          <Link href="/terms" as="/terms-and-conditions" locale={router.locale}>
             <span className="checkout-privacy-link">termenii de utilizare</span>
           </Link>
           .

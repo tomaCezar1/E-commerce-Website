@@ -48,7 +48,22 @@ export default function Breadcrumbs({ path }): JSX.Element {
         </li>
         {breadcrumbs.map((breadcrumb, index, array) => {
           if (index === 0 && !path) {
-            return null;
+            return (
+              <div key={breadcrumb.href} style={{ display: 'flex' }}>
+                <span className="breadcrumb-item">&nbsp;/&nbsp;</span>
+                <li>
+                  <div
+                    className={
+                      index === array.length - 1
+                        ? 'breadcrumb-last-item'
+                        : 'breadcrumb-item'
+                    }
+                  >
+                    {convertBreadcrumb(breadcrumb.breadcrumb)}
+                  </div>
+                </li>
+              </div>
+            );
           } else {
             return (
               <div key={breadcrumb.href} style={{ display: 'flex' }}>

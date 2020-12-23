@@ -1,4 +1,4 @@
-import { useState, useCallback, useContext, useEffect } from 'react';
+import { useState, useCallback, useContext } from 'react';
 import { AppContext } from '../../../context';
 import { cartTotal, formatPrice } from '../../../utils';
 import CheckoutForm from './CheckoutForm/CheckoutForm';
@@ -7,10 +7,6 @@ import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function CartPage(): JSX.Element {
   const { cart, addToCart, removeFromCart, clearCart } = useContext(AppContext);
-
-  useEffect(() => {
-    console.log(cart.length);
-  }, [cart]);
 
   const [, updateState] = useState();
 
