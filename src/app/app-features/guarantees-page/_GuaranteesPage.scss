@@ -1,0 +1,31 @@
+@import '../../../styles/constants.scss';
+
+.guarantees-container {
+  width: $width;
+  font-size: 16px;
+  font-family: $regular;
+  margin-bottom: 50px;
+}
+
+.terms-page-name {
+  font-family: $bold;
+  font-size: 32px;
+  margin-bottom: 26px;
+}
+
+.terms-list {
+  text-indent: -22px;
+  margin-left: 26px;
+  margin-top: 15px;
+}
+
+.terms-list-item {
+  list-style: disc inside;
+  margin-bottom: 10px;
+}
+
+.terms-heading {
+  margin: 30px 0;
+  font-size: 18px;
+  font-family: $bold;
+}
