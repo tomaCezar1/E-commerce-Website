@@ -18,7 +18,6 @@
   border-bottom-right-radius: 16px;
   display: flex;
   justify-content: space-between;
-  z-index: 5;
   color: $white;
 }
 
@@ -28,6 +27,7 @@
   width: 350px;
   margin: 32px 0 32px 50px;
   position: relative;
+  z-index: 9999 !important;
 }
 
 .subcategories {

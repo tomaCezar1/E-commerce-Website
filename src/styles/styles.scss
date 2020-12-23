@@ -21,6 +21,7 @@
 @import './constants.scss';
 @import '../app/app-features/cart-page/CartPage';
 @import '../app/app-features/cart-page/CheckoutForm/CheckoutForm';
+@import '../app/app-features/guarantees-page/GuaranteesPage';
 @import '../app/app-features/categories/Subcategories';
 
 .cursor-pointer {
@@ -38,6 +39,10 @@ p {
 img {
   max-width: none !important;
   height: none !important;
+}
+
+.leaflet-top {
+  z-index: 900 !important;
 }
 
 body {
