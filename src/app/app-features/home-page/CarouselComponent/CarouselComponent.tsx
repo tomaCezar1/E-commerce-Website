@@ -14,7 +14,6 @@ function CarouselComponent({ style = {} }): JSX.Element {
   });
 
   const items = data?.carouselItems;
-  console.log(data);
 
   const settings = {
     dots: true,
@@ -28,8 +27,12 @@ function CarouselComponent({ style = {} }): JSX.Element {
     prevArrow: <SamplePrevArrow />,
   };
 
-  const handleClick = (link) => {
-    Router.push(`${link}`);
+  const handleClick = (e, link) => {
+    if (link === '/') {
+      e.stopPropagation();
+    } else {
+      Router.push(`${link}`);
+    }
   };
 
   function slide() {
@@ -51,7 +54,7 @@ function CarouselComponent({ style = {} }): JSX.Element {
               src={item.image}
               alt="image"
               className="carousel-img"
-              onClick={() => handleClick(item.link)}
+              onClick={(e) => handleClick(e, item.link)}
             />
           </div>
         );
