@@ -3,23 +3,34 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { convertBreadcrumb } from '../../../utils';
 
-export default function Breadcrumbs(): JSX.Element {
+export default function Breadcrumbs({ path }): JSX.Element {
   const router = useRouter();
   const [breadcrumbs, setBreadcrumbs] = useState(null);
 
   useEffect(() => {
+    let pathArray;
     if (router) {
-      const linkPath = router.asPath.split('/');
-      linkPath.shift();
+      if (path) {
+        pathArray = path.map((element, i) => {
+          return {
+            breadcrumb: element.name,
+            href: element.path === '/' ? element.path : '/' + element.path,
+          };
+        });
+        setBreadcrumbs(pathArray);
+      } else {
+        const linkPath = router.asPath.split('/');
+        linkPath.shift();
 
-      const pathArray = linkPath.map((path, i = 1) => {
-        return {
-          breadcrumb: path,
-          href: '/' + linkPath.slice(0, i + 1).join('/'),
-        };
-      });
+        pathArray = linkPath.map((element, i) => {
+          return {
+            breadcrumb: element,
+            href: '/' + linkPath.slice(0, i + 1).join('/'),
+          };
+        });
 
-      setBreadcrumbs(pathArray);
+        setBreadcrumbs(pathArray);
+      }
     }
   }, [router]);
 
@@ -36,7 +47,7 @@ export default function Breadcrumbs(): JSX.Element {
           </a>
         </li>
         {breadcrumbs.map((breadcrumb, index, array) => {
-          if (index === 0) {
+          if (index === 0 && !path) {
             return null;
           } else {
             return (
