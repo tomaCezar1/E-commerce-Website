@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { AppContext } from '../../../../context';
 import Link from 'next/link';
+import { Select } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import InputMask from 'react-input-mask';
+import { useMutation } from '@apollo/client';
+import { OrdersMutation } from '../CartPageQuery';
 
 const initialValues = {
   name: '',
@@ -13,7 +17,22 @@ export default function CheckoutForm({ validate }): JSX.Element {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({} as any);
   const [touched, setTouched] = useState({} as any);
+  const [productsArray, setProductsArray] = useState([] as any);
+
+  const { cart } = useContext(AppContext);
+
   const router = useRouter();
+
+  useEffect(() => {
+    const trimmedProducts = cart.map(({ id, articleCode, qty }) => {
+      return {
+        id,
+        articleCode: articleCode || '777',
+        quantity: qty,
+      };
+    });
+    setProductsArray(trimmedProducts);
+  }, []);
 
   const handleChange = (event) => {
     const { name, value: newValue, type } = event.target;
@@ -78,9 +97,20 @@ export default function CheckoutForm({ validate }): JSX.Element {
       Object.values(formValidation.touched).every((t) => t === true) // Every touched field is true
     ) {
       // Make the request to place an order instead of the alert
-      alert(JSON.stringify(values, null, 2));
+      sendOrder();
     }
   };
+
+  const [sendOrder] = useMutation(OrdersMutation, {
+    variables: {
+      order: {
+        name: values.name,
+        phoneNumber: values.phone,
+        callTime: values.callTime,
+        products: productsArray,
+      },
+    },
+  });
 
   return (
     <div className="checkout-wrapper">
@@ -122,7 +152,7 @@ export default function CheckoutForm({ validate }): JSX.Element {
         ) : (
           <div className="checkout-error-invis">Asd</div>
         )}
-        <select
+        <Select
           name="callTime"
           onChange={handleChange}
           onBlur={handleBlur}
@@ -151,7 +181,7 @@ export default function CheckoutForm({ validate }): JSX.Element {
           >
             Cît de curînd posibil
           </option>
-        </select>
+        </Select>
         {touched.callTime && errors.callTime ? (
           <div className="checkout-error">
             {touched.callTime && errors.callTime}
