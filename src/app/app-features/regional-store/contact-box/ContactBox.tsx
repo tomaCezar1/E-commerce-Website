@@ -1,6 +1,6 @@
 import MailIcon from '../../../../../public/svg/MailIcon.svg'
 import MapIcon from '../../../../../public/svg/MapIcon.svg'
-import PhoneIcon from '../../../../../public/svg/PhoneIcon.svg'
+import LargePhone from '../../../../../public/svg/LargePhone.svg'
 
 export default function ContactBox(props): JSX.Element {
   return (
@@ -22,7 +22,7 @@ export default function ContactBox(props): JSX.Element {
           </div>
           <div className="contact-box-info">
             <i className="svg">
-              <PhoneIcon />
+              <LargePhone />
             </i>
             {props.phone}
           </div>
