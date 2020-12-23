@@ -28,7 +28,6 @@
 
 .svg {
   width: 22px !important;
-  height: 28px !important;
   margin-right: 20px;
 }
 
@@ -45,6 +44,7 @@
 
 .contact-box-info {
   display: flex;
+  height: 32px;
   align-items: center;
   margin-bottom: 16px;
   &:last-child {
