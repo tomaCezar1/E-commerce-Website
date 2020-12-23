@@ -1,4 +1,4 @@
-import { useState, useCallback, useContext } from 'react';
+import { useState, useCallback, useContext, useEffect } from 'react';
 import { AppContext } from '../../../context';
 import { cartTotal, formatPrice } from '../../../utils';
 import CheckoutForm from './CheckoutForm/CheckoutForm';
@@ -11,11 +11,16 @@ export default function CartPage(): JSX.Element {
   const [, updateState] = useState();
 
   const forceUpdate = useCallback(() => updateState({}), []);
+  const [renderCartLength, setRenderCartLength] = useState(false);
+
+  useEffect(() => {
+    setRenderCartLength(true);
+  }, []);
 
   return (
-    <div className="cart-page-container">
+    <div className="cart-page-container" suppressHydrationWarning={true}>
       <Breadcrumbs />
-      {cart.length > 0 ? (
+      {renderCartLength && cart.length > 0 ? (
         <div className="cart-items-wrapper">
           <div className="cart-items-list">
             <div className="cart-items-headings">
