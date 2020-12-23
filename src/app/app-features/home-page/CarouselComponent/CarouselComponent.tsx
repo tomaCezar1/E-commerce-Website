@@ -17,6 +17,8 @@ function CarouselComponent({ style = {} }): JSX.Element {
   console.log(data);
 
   const settings = {
+    autoplay: true,
+    autoplaySpeed: 5000,
     dots: true,
     infinite: true,
     speed: 500,
