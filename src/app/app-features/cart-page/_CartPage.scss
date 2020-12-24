@@ -13,7 +13,7 @@
 }
 
 .cart-items-list {
-  height: calc(100vh - 410px);
+  max-height: calc(100vh - 410px);
   min-height: 500px;
   overflow: auto;
 }

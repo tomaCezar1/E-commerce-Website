@@ -3,12 +3,13 @@ import FavoriteEmpty from '../../../../../public/svg/FavoriteEmpty.svg';
 import FavoriteActive from '../../../../../public/svg/FavoriteActive.svg';
 import CartIcon from '../../../../../public/svg/CartIcon.svg';
 import Link from 'next/link';
+import {useToast } from '@chakra-ui/react';
 import { AppContext } from '../../../../context';
 
 function ProductCard({ product }) {
   const [isActive, setActive] = useState(false);
-
   const { addToCart } = useContext(AppContext);
+  const toast = useToast();
 
   let sale;
 
@@ -68,6 +69,13 @@ function ProductCard({ product }) {
                   onClick={(e) => {
                     e.stopPropagation();
                     addToCart(product, 1);
+                    toast({
+                      title: `Produsul ${product.name} a fost adăugat cu succes!`,
+                      status: 'success',
+                      duration: 5000,
+                      isClosable: true,
+                      position: 'top',
+                    });
                   }}
                 >
                   <CartIcon />
