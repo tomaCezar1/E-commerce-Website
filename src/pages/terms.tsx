@@ -1,5 +1,5 @@
-import TermsPage from '../app/app-features/terms-page/TermsPage'
+import TermsPage from '../app/app-features/terms-page/TermsPage';
 
 export default function Terms(): JSX.Element {
-  return <TermsPage />
+  return <TermsPage />;
 }

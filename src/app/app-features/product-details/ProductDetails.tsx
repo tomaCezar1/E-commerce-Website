@@ -1,13 +1,16 @@
-import ProductImages from "./ProductImages";
-import CartIcon from "../../../../public/svg/CartIcon.svg";
-import { useState, useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { TechSpecsQuery } from "./ProductDetailsQuery";
+import ProductImages from './ProductImages';
+import CartIcon from '../../../../public/svg/CartIcon.svg';
+import { useState, useEffect, useContext } from 'react';
+import { useQuery } from '@apollo/client';
+import { TechSpecsQuery } from './ProductDetailsQuery';
 import { Skeleton } from '@chakra-ui/react';
+import { AppContext } from '../../../context';
 
 function ProductDetails({ productDetails }) {
   const details = productDetails?.products[0];
+
   const id = details.id;
+  const { addToCart } = useContext(AppContext);
 
   const [isAvailable, setAvailable] = useState(null);
 
@@ -15,15 +18,14 @@ function ProductDetails({ productDetails }) {
     variables: { id },
   });
 
-
   let techFields = [];
   let techFieldsSecond = [];
 
   if (data && data.techSpecs && data.techSpecs.fields) {
     const fields = data.techSpecs.fields;
     if (fields.length > 7) {
-      techFields = fields.slice(0, Math.round(fields.length / 2))
-      techFieldsSecond = fields.slice(Math.round(fields.length / 2))
+      techFields = fields.slice(0, Math.round(fields.length / 2));
+      techFieldsSecond = fields.slice(Math.round(fields.length / 2));
     } else {
       techFields = fields;
     }
@@ -106,7 +108,12 @@ function ProductDetails({ productDetails }) {
                   </div>
                 </div>
 
-                <div className="product-details-add-to-cart">
+                <div
+                  className="product-details-add-to-cart"
+                  onClick={() => {
+                    addToCart(details, 1);
+                  }}
+                >
                   <CartIcon />
                   <p className="product-details-add-text">Adaugă în coș</p>
                 </div>
@@ -121,60 +128,74 @@ function ProductDetails({ productDetails }) {
 
         {/* Characteristics tables */}
 
-        {!loading && <div className="characteristics-tables">
-          <div className="characteristics-table">
-            <table className="table">
-              <thead>
-              <tr className="table-head">
-                <th>Caracteristici</th>
-              </tr>
-              </thead>
-              <tbody>
-              {techFields.map((spec, index) => {
-                return (
-                  <tr key={index}>
-                    <th>{spec.name}</th>
-                    <td>{spec.value}</td>
+        {!loading && (
+          <div className="characteristics-tables">
+            <div className="characteristics-table">
+              <table className="table">
+                <thead>
+                  <tr className="table-head">
+                    <th>Caracteristici</th>
                   </tr>
-                );
-              })}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {techFields.map((spec, index) => {
+                    return (
+                      <tr key={index}>
+                        <th>{spec.name}</th>
+                        <td>{spec.value}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            {techFieldsSecond.length > 0 && (
+              <div
+                className="characteristics-table"
+                style={{ marginLeft: '56px' }}
+              >
+                <table className="table">
+                  <thead>
+                    <tr className="table-head">
+                      <th>Caracteristici</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {techFieldsSecond.map((spec, index) => {
+                      return (
+                        <tr key={index}>
+                          <th>{spec.name}</th>
+                          <td>{spec.value}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
-          {techFieldsSecond.length > 0 &&
-          <div className="characteristics-table" style={{ marginLeft: '56px' }}>
-            <table className="table">
-              <thead>
-              <tr className="table-head">
-                <th>Caracteristici</th>
-              </tr>
-              </thead>
-              <tbody>
-              {techFieldsSecond.map((spec, index) => {
-                return (
-                  <tr key={index}>
-                    <th>{spec.name}</th>
-                    <td>{spec.value}</td>
-                  </tr>
-                );
-              })}
-              </tbody>
-            </table>
+        )}
+        {loading && (
+          <div
+            className="flex-row full-width"
+            style={{ margin: '80px 0 62px' }}
+          >
+            <div className="full-width">
+              <Skeleton height="51px" style={{ borderRadius: '16px' }} />
+              <Skeleton
+                height="201px"
+                style={{ marginTop: '16px', borderRadius: '16px' }}
+              />
+            </div>
+            <div className="full-width" style={{ marginLeft: '56px' }}>
+              <Skeleton height="51px" style={{ borderRadius: '16px' }} />
+              <Skeleton
+                height="201px"
+                style={{ marginTop: '16px', borderRadius: '16px' }}
+              />
+            </div>
           </div>
-          }
-        </div>
-        }
-        { loading &&
-        <div className='flex-row full-width' style={{ margin: '80px 0 62px' }}>
-          <div className='full-width'>
-            <Skeleton height='51px' style={{ borderRadius: '16px' }} />
-            <Skeleton height='201px' style={{ marginTop: '16px', borderRadius: '16px' }} />
-          </div>
-          <div className='full-width' style={{ marginLeft: '56px' }}>
-            <Skeleton height='51px' style={{ borderRadius: '16px' }} />
-            <Skeleton height='201px' style={{ marginTop: '16px', borderRadius: '16px' }} />
-          </div>
-        </div>}
+        )}
       </div>
     </>
   );

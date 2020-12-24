@@ -1,24 +1,43 @@
-import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import InputMask from "react-input-mask";
+import { useState, useContext, useEffect } from 'react';
+import { AppContext } from '../../../../context';
+import Link from 'next/link';
+import { Select, useToast } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import InputMask from 'react-input-mask';
+import { useMutation } from '@apollo/client';
+import { OrdersMutation } from '../CartPageMutation';
 
 const initialValues = {
-  name: "",
-  phone: "",
-  callTime: "",
+  name: '',
+  phone: '',
+  callTime: '',
 };
 
 export default function CheckoutForm({ validate }): JSX.Element {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({} as any);
   const [touched, setTouched] = useState({} as any);
+  const [productsArray, setProductsArray] = useState([] as any);
+  const toast = useToast();
+  const { cart } = useContext(AppContext);
+
   const router = useRouter();
+
+  useEffect(() => {
+    const trimmedProducts = cart.map(({ id, articleCode, qty }) => {
+      return {
+        id,
+        articleCode: articleCode || '777',
+        quantity: qty,
+      };
+    });
+    setProductsArray(trimmedProducts);
+  }, []);
 
   const handleChange = (event) => {
     const { name, value: newValue, type } = event.target;
     // Keep phone field as numbers
-    const value = type === "number" ? +newValue : newValue;
+    const value = type === 'number' ? +newValue : newValue;
     setValues({
       ...values,
       [name]: value,
@@ -78,9 +97,28 @@ export default function CheckoutForm({ validate }): JSX.Element {
       Object.values(formValidation.touched).every((t) => t === true) // Every touched field is true
     ) {
       // Make the request to place an order instead of the alert
-      alert(JSON.stringify(values, null, 2));
+      sendOrder();
+      toast({
+        title: 'Comanda dumneavoastră a fost procesată cu succes.',
+        description: 'Licuricii noștri vă vor contacta imediat!',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        position: 'top',
+      });
     }
   };
+
+  const [sendOrder] = useMutation(OrdersMutation, {
+    variables: {
+      order: {
+        name: values.name,
+        phoneNumber: values.phone,
+        callTime: values.callTime,
+        products: productsArray,
+      },
+    },
+  });
 
   return (
     <div className="checkout-wrapper">
@@ -94,8 +132,8 @@ export default function CheckoutForm({ validate }): JSX.Element {
           placeholder="Nume"
           className={
             touched.name && errors.name
-              ? "checkout-form-error-input"
-              : "checkout-form-input"
+              ? 'checkout-form-error-input'
+              : 'checkout-form-input'
           }
         />
         {touched.name && errors.name ? (
@@ -113,8 +151,8 @@ export default function CheckoutForm({ validate }): JSX.Element {
           placeholder="Telefon"
           className={
             touched.phone && errors.phone
-              ? "checkout-form-error-input"
-              : "checkout-form-input"
+              ? 'checkout-form-error-input'
+              : 'checkout-form-input'
           }
         />
         {touched.phone && errors.phone ? (
@@ -122,15 +160,15 @@ export default function CheckoutForm({ validate }): JSX.Element {
         ) : (
           <div className="checkout-error-invis">Asd</div>
         )}
-        <select
+        <Select
           name="callTime"
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.callTime}
           className={
             touched.callTime && errors.callTime
-              ? "checkout-form-error-input"
-              : "checkout-form-input"
+              ? 'checkout-form-error-input'
+              : 'checkout-form-input'
           }
         >
           <option value="" disabled hidden>
@@ -151,7 +189,7 @@ export default function CheckoutForm({ validate }): JSX.Element {
           >
             Cît de curînd posibil
           </option>
-        </select>
+        </Select>
         {touched.callTime && errors.callTime ? (
           <div className="checkout-error">
             {touched.callTime && errors.callTime}
@@ -162,15 +200,15 @@ export default function CheckoutForm({ validate }): JSX.Element {
         <input type="submit" value="Comandă" className="checkout-form-button" />
 
         <div className="checkout-terms-text">
-          *Apăsînd butonul &#39;Comandă&#39;  dvs. confirmați că ați luat cunoștință și
-          sînteți de acord cu{" "}
-          <Link href={`/privacy`} as={`/privacy-policy`} locale={router.locale}>
+          *Apăsînd butonul &#39;Comandă&#39; dvs. confirmați că ați luat
+          cunoștință și sînteți de acord cu{' '}
+          <Link href="/privacy" as="/privacy-policy" locale={router.locale}>
             <span className="checkout-privacy-link">
               politica de confidențialitate
             </span>
           </Link>
           <span> și </span>
-          <Link href={`/terms`} as={`/terms-and-conditions`} locale={router.locale}>
+          <Link href="/terms" as="/terms-and-conditions" locale={router.locale}>
             <span className="checkout-privacy-link">termenii de utilizare</span>
           </Link>
           .
