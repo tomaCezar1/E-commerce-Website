@@ -1,24 +1,32 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const ProductCategoriesQuery = gql`
   query ProductCategories($filter: ProductCategoryFilter = {}) {
-    productCategories(filter: $filter) {
+    productCategories(
+      filter: $filter,
+      sorting: { field: sortOrder, direction: ASC }
+    ) {
       id
       title
       parent
       slug
+      sortOrder
     }
   }
 `;
 
 export const SubcategoriesQuery = gql`
-  query ProductCategories($id: String){
-    productCategories(filter: {parent:{eq: $id}}) {
+  query ProductCategories($id: String) {
+    productCategories(
+      filter: { parent: { eq: $id } },
+      sorting: { field: sortOrder, direction: ASC }
+    ) {
       id
       title
       parent
       slug
       images
+      sortOrder
     }
   }
 `;
@@ -30,5 +38,5 @@ export interface IProductCategories {
 }
 
 export interface IProductCategoriesData {
-  productCategories: IProductCategories[]
+  productCategories: IProductCategories[];
 }
