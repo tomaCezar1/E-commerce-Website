@@ -1,4 +1,4 @@
-import { useState, useCallback, useContext } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import { AppContext } from '../../../context';
 import { cartTotal, formatPrice } from '../../../utils';
 import CheckoutForm from './CheckoutForm/CheckoutForm';

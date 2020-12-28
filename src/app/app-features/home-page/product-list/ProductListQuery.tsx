@@ -1,11 +1,16 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const ProductListQuery = gql`
   query ProductList(
     $filter: ProductFilter = {}
     $sorting: [ProductSort!] = [{ field: createdAt, direction: ASC }]
+    $offset: Int
   ) {
-    products(filter: $filter, sorting: $sorting) {
+    products(
+      filter: $filter
+      sorting: $sorting
+      paging: { limit: 20, offset: $offset }
+    ) {
       id
       sortOrder
       name
@@ -18,6 +23,16 @@ export const ProductListQuery = gql`
       slug
       notAvailableCustomText
       isPromo
+    }
+  }
+`;
+
+export const ProductsCountQuery = gql`
+  query ProductList($filter: ProductAggregateFilter = {}) {
+    productAggregate(filter: $filter) {
+      count {
+        id
+      }
     }
   }
 `;
