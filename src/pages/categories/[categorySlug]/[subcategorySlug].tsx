@@ -27,6 +27,22 @@ export async function getServerSideProps(context) {
 
   const page = context.query.page || 1;
 
+  let field = 'sortOrder';
+  let direction = 'DESC';
+  if (context.query.sort === 'cheap') {
+    field = 'price';
+    direction = 'ASC';
+  } else if (context.query.sort === 'expensive') {
+    field = 'price';
+    direction = 'DESC';
+  } else if (context.query.sort === 'new') {
+    field = 'createdAt';
+    direction = 'DESC';
+  } else if (context.query.sort === 'old') {
+    field = 'createdAt';
+    direction = 'ASC';
+  }
+
   const apolloClient = initializeApollo();
 
   const productCategoriesData = await apolloClient.query({
@@ -58,8 +74,8 @@ export async function getServerSideProps(context) {
       offset: offset,
       sorting: [
         {
-          field: 'price',
-          direction: 'ASC',
+          field: field,
+          direction: direction,
         },
       ],
     },

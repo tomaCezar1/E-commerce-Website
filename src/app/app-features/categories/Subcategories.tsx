@@ -11,7 +11,6 @@ export default function Subcategories({
   productsCount,
   currentPage,
 }): JSX.Element {
-  const [sortOption, setSortOption] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [pagesCount, setPagesCount] = useState(1);
   const router = useRouter();
@@ -23,6 +22,16 @@ export default function Subcategories({
   useEffect(() => {
     Router.events.on('routeChangeStart', startLoading);
     Router.events.on('routeChangeComplete', stopLoading);
+
+    const currentPath = router.pathname;
+    const currentQuery = router.query;
+
+    currentQuery.sort = '';
+
+    Router.push({
+      pathname: currentPath,
+      query: currentQuery,
+    });
 
     setPagesCount(Math.ceil(productsCount / limit));
 
@@ -45,8 +54,16 @@ export default function Subcategories({
     window.scrollTo(0, 0);
   };
 
-  const handleChange = (e) => {
-    setSortOption(e.target.value);
+  const sortingHandler = async (event) => {
+    const currentPath = router.pathname;
+    const currentQuery = router.query;
+
+    currentQuery.sort = event.target.value;
+
+    await router.push({
+      pathname: currentPath,
+      query: currentQuery,
+    });
   };
 
   return (
@@ -60,24 +77,24 @@ export default function Subcategories({
             <div className="sorting-options">
               <Select
                 name="sorting"
-                onChange={handleChange}
-                value={sortOption}
+                onChange={sortingHandler}
+                value={router.query.sort}
                 className="sorting-input"
               >
                 <option value="" disabled hidden>
                   Sortare după
                 </option>
-                <option value="Preț ascendent" className="sorting-option-text">
+                <option value="cheap" className="sorting-option-text">
                   Preț ascendent
                 </option>
-                <option value="Preț descendent" className="sorting-option-text">
+                <option value="expensive" className="sorting-option-text">
                   Preț descendent
                 </option>
-                <option value="Popularitate" className="sorting-option-text">
-                  Popularitate
+                <option value="new" className="sorting-option-text">
+                  Cele mai noi
                 </option>
-                <option value="Popularitate" className="sorting-option-text">
-                  Data adăugării
+                <option value="old" className="sorting-option-text">
+                  Cele mai vechi
                 </option>
               </Select>
             </div>
