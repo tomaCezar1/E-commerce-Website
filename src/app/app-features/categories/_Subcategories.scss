@@ -1,3 +1,5 @@
+@import '../../../styles/constants.scss';
+
 .subcategories-products-container{
   display: flex;
   justify-content: space-between;
@@ -14,4 +16,29 @@
 .subcategories-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+}
+
+.sorting-bar-wrapper {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.sorting-input {
+  width: 180px !important;
+  height: 32px;
+  border: 1px solid $darkGrey !important;
+  border-radius: 8px !important;
+}
+
+.sorting-options {
+  background-color: $white;
+  border-radius: 8px;
+}
+
+.sorting-option-text {
+
 }

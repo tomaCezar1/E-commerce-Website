@@ -13,7 +13,12 @@ function ProductList({ homePageInfo }): JSX.Element {
       <div className="cards-container">
         {items?.map((item, index) => {
           return (
-            <ProductCard product={item} key={index} isFavorite={isFavorite} />
+            <ProductCard
+              product={item}
+              key={index}
+              isFavorite={isFavorite}
+              size="medium"
+            />
           );
         })}
       </div>
