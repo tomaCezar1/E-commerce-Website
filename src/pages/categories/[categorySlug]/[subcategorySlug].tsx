@@ -10,18 +10,21 @@ export default function SubcategoryPage({
   products,
   subcategory,
   productsCount,
+  currentPage,
 }) {
   return (
     <Subcategories
       products={products}
       subcategory={subcategory}
       productsCount={productsCount}
+      currentPage={currentPage}
     />
   );
 }
 
 export async function getServerSideProps(context) {
   const slug = context.query.subcategorySlug;
+
   const page = context.query.page || 1;
 
   const apolloClient = initializeApollo();
@@ -84,6 +87,7 @@ export async function getServerSideProps(context) {
       products: productsData.data.products,
       subcategory: productCategoriesData?.data?.productCategories[0],
       productsCount: productsCountData?.data.productAggregate.count.id,
+      currentPage: page,
     },
   };
 }

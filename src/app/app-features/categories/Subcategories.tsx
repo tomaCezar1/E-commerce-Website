@@ -9,14 +9,13 @@ export default function Subcategories({
   products,
   subcategory,
   productsCount,
+  currentPage,
 }): JSX.Element {
   const [sortOption, setSortOption] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [pagesCount, setPagesCount] = useState(1);
   const router = useRouter();
   const limit = 20;
-
-  // const { subcategorySlug } = useRouter().query;
 
   const startLoading = () => setLoading(true);
   const stopLoading = () => setLoading(false);
@@ -94,6 +93,7 @@ export default function Subcategories({
             <Pagination
               paginationHandler={paginationHandler}
               pageCount={pagesCount}
+              currentPage={currentPage}
             />
           )}
         </div>
