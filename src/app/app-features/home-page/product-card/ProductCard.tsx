@@ -89,12 +89,13 @@ function ProductCard({ product, size, isFavorite = [] }) {
               </div>
               <div className={`product-card-cart product-card-cart-${size}`}>
                 <i
+                  className="fav-icons"
                   style={{ cursor: 'pointer' }}
                   onClick={(event) => {
                     addToFavoritesList(event, product);
                   }}
                 >
-                  {filtered.length > 0 && loaded ? (
+                  {product.available && filtered.length > 0 && loaded ? (
                     <FavoriteActive />
                   ) : (
                     <FavoriteEmpty />
@@ -102,17 +103,23 @@ function ProductCard({ product, size, isFavorite = [] }) {
                 </i>
                 <div
                   className={`add-to-cart add-to-cart-${size}`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    addToCart(product, 1);
-                    toast({
-                      title: `Produsul ${product.name} a fost adăugat cu succes!`,
-                      status: 'success',
-                      duration: 5000,
-                      isClosable: true,
-                      position: 'top',
-                    });
-                  }}
+                  onClick={
+                    product.available
+                      ? (e) => {
+                          e.stopPropagation();
+                          addToCart(product, 1);
+                          toast({
+                            title: `Produsul ${product.name} a fost adăugat cu succes!`,
+                            status: 'success',
+                            duration: 5000,
+                            isClosable: true,
+                            position: 'top',
+                          });
+                        }
+                      : (event) => {
+                          event.stopPropagation();
+                        }
+                  }
                 >
                   <CartIcon />
                   <p

@@ -5,14 +5,23 @@ import { useQuery } from '@apollo/client';
 import { TechSpecsQuery } from './ProductDetailsQuery';
 import { Skeleton } from '@chakra-ui/react';
 import { AppContext } from '../../../context';
+import { useToast } from '@chakra-ui/react';
+import FavoriteEmpty from '../../../../public/svg/FavoriteEmpty.svg';
+import FavoriteActive from '../../../../public/svg/FavoriteActive.svg';
 
 function ProductDetails({ productDetails }) {
   const details = productDetails?.products[0];
-
+  const toast = useToast();
   const id = details.id;
-  const { addToCart } = useContext(AppContext);
-
+  const { addToCart, favorites, addToFavorites } = useContext(AppContext);
   const [isAvailable, setAvailable] = useState(null);
+
+  const filtered = favorites.filter((favorite) => favorite.id === details.id);
+
+  const addToFavoritesList = (event, product) => {
+    event.stopPropagation();
+    addToFavorites(product);
+  };
 
   const { loading, error, data } = useQuery(TechSpecsQuery, {
     variables: { id },
@@ -31,11 +40,13 @@ function ProductDetails({ productDetails }) {
     }
   }
 
-  const fieldsLength = data?.techSpecs.fields.length;
-  // console.log(techSpecs);
-  // const firstHalf = fieldsLength / 2 - 1;
-  // const secondHalf = fieldsLength / 2;
-  // console.log(firstHalf, secondHalf);
+  const useLoaded = () => {
+    const [loaded, setLoaded] = useState(false);
+    useEffect(() => setLoaded(true), []);
+    return loaded;
+  };
+
+  const loaded = useLoaded();
 
   useEffect(() => {
     if (details.available) {
@@ -108,10 +119,32 @@ function ProductDetails({ productDetails }) {
                   </div>
                 </div>
 
+                <i
+                  className="product-details-favorites"
+                  style={{ cursor: 'pointer' }}
+                  onClick={(event) => {
+                    addToFavoritesList(event, details);
+                  }}
+                >
+                  {filtered.length > 0 && loaded ? (
+                    <FavoriteActive />
+                  ) : (
+                    <FavoriteEmpty />
+                  )}
+                </i>
+
                 <div
                   className="product-details-add-to-cart"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     addToCart(details, 1);
+                    toast({
+                      title: `Produsul ${details.name} a fost adăugat cu succes!`,
+                      status: 'success',
+                      duration: 5000,
+                      isClosable: true,
+                      position: 'top',
+                    });
                   }}
                 >
                   <CartIcon />
