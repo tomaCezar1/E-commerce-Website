@@ -1,17 +1,25 @@
-import { useState, useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import FavoriteEmpty from '../../../../../public/svg/FavoriteEmpty.svg';
 import FavoriteActive from '../../../../../public/svg/FavoriteActive.svg';
 import CartIcon from '../../../../../public/svg/CartIcon.svg';
 import Link from 'next/link';
-import {useToast } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 import { AppContext } from '../../../../context';
 
-function ProductCard({ product, size }) {
+function ProductCard({ product, size, isFavorite }) {
   const [isActive, setActive] = useState(false);
-  const { addToCart } = useContext(AppContext);
+  const { addToCart, addToFavorites } = useContext(AppContext);
   const toast = useToast();
 
   let sale: number;
+
+  const useLoaded = () => {
+    const [loaded, setLoaded] = useState(false);
+    useEffect(() => setLoaded(true), []);
+    return loaded;
+  };
+
+  const loaded = useLoaded();
 
   if (product.isPromo) {
     sale = Math.floor(
@@ -20,6 +28,13 @@ function ProductCard({ product, size }) {
   } else {
     sale = 0;
   }
+
+  const filtered = isFavorite.filter((id) => id === product.id);
+
+  const addToFavoritesList = (event, product) => {
+    event.stopPropagation();
+    addToFavorites(product);
+  };
 
   return (
     <>
@@ -64,9 +79,18 @@ function ProductCard({ product, size }) {
                   </p>
                 )}
               </div>
-              <div className={`product-card-cart-${size}`}>
-                <i style={{ cursor: 'pointer' }}>
-                  {isActive ? <FavoriteActive /> : <FavoriteEmpty />}
+              <div className="product-card-cart">
+                <i
+                  style={{ cursor: 'pointer' }}
+                  onClick={(event) => {
+                    addToFavoritesList(event, product);
+                  }}
+                >
+                  {filtered.length > 0 && loaded ? (
+                    <FavoriteActive />
+                  ) : (
+                    <FavoriteEmpty />
+                  )}
                 </i>
                 <div
                   className={`add-to-cart-${size}`}

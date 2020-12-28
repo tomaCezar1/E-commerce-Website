@@ -160,6 +160,25 @@ export const formatPrice = (priceWithDecimal: number) => {
   return priceWithDecimal.toFixed(len)
 }
 
+// Favorites utilities
+export const getFavorites = () => {
+  try {
+    const favorites = JSON.parse(localStorage.getItem("favorites"));
+    if (favorites) {
+      return favorites;
+    }
+  } catch (e) {}
+  return [];
+};
+
+export const saveFavorites = (favorites) => {
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+}
+
+export const removeFavorites = () => {
+  localStorage.removeItem('favorites');
+}
+
 // Form fields validation
 const nameValidation = (fieldName, fieldValue) => {
   if (fieldValue.trim() === "") {
