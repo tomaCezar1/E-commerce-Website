@@ -1,4 +1,4 @@
-@import "../../../styles/constants.scss";
+@import '../../../styles/constants.scss';
 
 //Image Component
 .big-image {
@@ -114,7 +114,6 @@
   border-radius: 8px;
   background: $primaryColor;
   cursor: pointer;
-  margin-left: 16px;
 
   svg {
     width: 16px;
@@ -129,6 +128,12 @@
 
 .product-details-add-to-cart-flex {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-details-favorites {
+  margin: 0 16px;
 }
 
 .product-details-add-text {

@@ -75,12 +75,13 @@ function ProductCard({ product, isFavorite }) {
               </div>
               <div className="product-card-cart">
                 <i
+                  className="fav-icons"
                   style={{ cursor: 'pointer' }}
                   onClick={(event) => {
                     addToFavoritesList(event, product);
                   }}
                 >
-                  {filtered.length > 0 && loaded ? (
+                  {product.available && filtered.length > 0 && loaded ? (
                     <FavoriteActive />
                   ) : (
                     <FavoriteEmpty />
@@ -88,17 +89,23 @@ function ProductCard({ product, isFavorite }) {
                 </i>
                 <div
                   className="add-to-cart"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    addToCart(product, 1);
-                    toast({
-                      title: `Produsul ${product.name} a fost adăugat cu succes!`,
-                      status: 'success',
-                      duration: 5000,
-                      isClosable: true,
-                      position: 'top',
-                    });
-                  }}
+                  onClick={
+                    product.available
+                      ? (e) => {
+                          e.stopPropagation();
+                          addToCart(product, 1);
+                          toast({
+                            title: `Produsul ${product.name} a fost adăugat cu succes!`,
+                            status: 'success',
+                            duration: 5000,
+                            isClosable: true,
+                            position: 'top',
+                          });
+                        }
+                      : (event) => {
+                          event.stopPropagation();
+                        }
+                  }
                 >
                   <CartIcon />
                   <p className="product-card-add-text">Adaugă în coș</p>
