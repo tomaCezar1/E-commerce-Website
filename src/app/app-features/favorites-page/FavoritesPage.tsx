@@ -1,12 +1,13 @@
-import Breadcrumbs from '../../../app/common/breadcrumbs/Breadcrumbs'
+import Breadcrumbs from '../../../app/common/breadcrumbs/Breadcrumbs';
+import ProductCard from '../home-page/product-card/ProductCard';
 
 export default function FavoritesPage(): JSX.Element {
   return (
     <>
       <Breadcrumbs />
       <div className="no-items-text">
-          Nu ați adăugat încă nici un produs la favorite
+        <ProductCard />
       </div>
     </>
-  )
+  );
 }
