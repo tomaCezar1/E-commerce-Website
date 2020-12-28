@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useToast } from '@chakra-ui/react';
 import { AppContext } from '../../../../context';
 
-function ProductCard({ product, size, isFavorite }) {
+function ProductCard({ product, size, isFavorite = [] }) {
   const [isActive, setActive] = useState(false);
   const { addToCart, addToFavorites } = useContext(AppContext);
   const toast = useToast();
@@ -40,46 +40,54 @@ function ProductCard({ product, size, isFavorite }) {
     <>
       <Link href="/Produs/[slug]" as={`/Produs/${product.slug}`}>
         <div
-          className={`product-card-container-${size} ${
+          className={`product-card-container product-card-container-${size} ${
             product.available ? '' : 'out-of-stock'
           }`}
         >
           {sale ? (
-            <div className={`on-sale-${size}`}>
-              <p className={`on-sale-text-${size}`}>
+            <div className={`on-sale on-sale-${size}`}>
+              <p className={`on-sale-text on-sale-text-${size}`}>
                 {sale ? `-${sale}%` : null}
               </p>
             </div>
           ) : null}
-          <div className={`product-card-container-flex-${size}`}>
+          <div className="product-card-container-flex">
             <div>
               <img
                 src={product?.images[0]}
                 alt="image"
-                className={`product-card-image-${size}`}
+                className={`product-card-image product-card-image-${size}`}
               />
-              <p className={`product-card-name-${size}`}>{product?.name}</p>
+              <p className={`product-card-name product-card-name-${size}`}>
+                {product?.name}
+              </p>
             </div>
-            <div className={`product-card-bottom-${size}`}>
-              <div className={`product-card-price-${size}`}>
+            <div className={`product-card-bottom product-card-bottom-${size}`}>
+              <div className={`product-card-price product-card-price-${size}`}>
                 {sale > 0 ? (
-                  <div className={`discounted-price-div-${size}`}>
-                    <p className={`crossed-price-${size}`}>{product.price}</p>
-                    <p className={`discounted-price-${size}`}>
+                  <div
+                    className={`discounted-price-div discounted-price-div-${size}`}
+                  >
+                    <p className={`crossed-price crossed-price-${size}`}>
+                      {product.price}
+                    </p>
+                    <p className={`discounted-price discounted-price-${size}`}>
                       {product?.newPrice} lei
                     </p>
                   </div>
                 ) : (
-                  <p className={`basic-price-${size}`}>{product?.price} lei</p>
+                  <p className={`basic-price basic-price-${size}`}>
+                    {product?.price} lei
+                  </p>
                 )}
                 {product.available ? null : (
-                  <p className={`produs-in-stock-${size}`}>
+                  <p className={`produs-in-stock produs-in-stock-${size}`}>
                     {product?.notAvailableCustomText}
                     Produsul nu este in stock
                   </p>
                 )}
               </div>
-              <div className="product-card-cart">
+              <div className={`product-card-cart product-card-cart-${size}`}>
                 <i
                   style={{ cursor: 'pointer' }}
                   onClick={(event) => {
@@ -93,7 +101,7 @@ function ProductCard({ product, size, isFavorite }) {
                   )}
                 </i>
                 <div
-                  className={`add-to-cart-${size}`}
+                  className={`add-to-cart add-to-cart-${size}`}
                   onClick={(e) => {
                     e.stopPropagation();
                     addToCart(product, 1);
@@ -107,7 +115,9 @@ function ProductCard({ product, size, isFavorite }) {
                   }}
                 >
                   <CartIcon />
-                  <p className={`product-card-add-text-${size}`}>
+                  <p
+                    className={`product-card-add-text product-card-add-text-${size}`}
+                  >
                     Adaugă în coș
                   </p>
                 </div>

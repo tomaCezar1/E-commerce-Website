@@ -1,6 +1,6 @@
-@import "../../../../styles/constants.scss";
+@import '../../../../styles/constants.scss';
 
-.product-card-container-medium {
+.product-card-container {
   width: 248px;
   padding: 15px;
   background: $white;
@@ -16,9 +16,13 @@
   flex-direction: column;
   align-self: stretch;
   justify-content: center;
+  &-small {
+    width: 218px;
+    padding: 0 14px 12px 14px;
+  }
 }
 
-.product-card-container-flex-medium {
+.product-card-container-flex {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -29,7 +33,7 @@
   align-self: end;
 }
 
-.product-card-name-medium {
+.product-card-name {
   margin: 20px 0 24px;
   font-family: $regular;
   font-size: 20px;
@@ -39,33 +43,49 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  &-small {
+    margin: 10px 0 14px;
+    font-size: 18px;
+  }
 }
 
-.product-card-image-medium {
+.product-card-image {
   width: 100%;
   height: 214px;
   border-radius: 16px;
   object-fit: cover;
+  &-small {
+    height: 188px;
+  }
 }
 
-.basic-price-medium {
+.basic-price {
   font-family: $bold;
   font-size: 26px;
   color: $black;
   align-self: start;
   margin-bottom: 24px;
+  &-small {
+    font-size: 24px;
+    margin-bottom: 0;
+  }
 }
 
-.product-card-cart-medium {
+.product-card-cart {
   @extend %flex-row;
   justify-content: space-between;
   align-items: center !important;
   i {
     @extend %flex-row;
   }
+  &-small {
+    justify-content: space-between;
+    align-items: center !important;
+    margin-top: 20px;
+  }
 }
 
-.add-to-cart-medium {
+.add-to-cart {
   @extend %flex-row;
   width: 165px;
   height: 32px;
@@ -73,18 +93,28 @@
   background: rgba(18, 65, 147, 1);
   cursor: pointer;
   margin-left: 27px;
+  &-small {
+    @extend %flex-row;
+    width: 145px;
+    height: 32px;
+    margin-left: 20px;
+  }
 }
 
-.product-card-add-text-medium {
+.product-card-add-text {
   margin-left: 13px;
   font-family: $bold;
   font-size: 14px;
-  color: #ffffff;
+  color: $white;
   letter-spacing: 0.5px;
+  &-small {
+    font-size: 12px;
+    margin-left: 12px;
+  }
 }
 
 // Conditional styles
-.on-sale-medium {
+.on-sale {
   @extend %flex-row;
   visibility: visible;
   width: 77px;
@@ -95,22 +125,27 @@
   top: 0;
   right: 0;
   letter-spacing: 0.75px;
+  &-small {
+    width: 60px;
+    height: 36px;
+    letter-spacing: 0.5px;
+  }
 }
 
-.on-sale-text-medium {
+.on-sale-text {
   font-family: $bold;
   font-size: 20px;
-  color: #ffffff;
+  color: $white;
 }
 
-.product-card-price-medium {
+.product-card-price {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
 
-.produs-in-stock-medium {
+.produs-in-stock {
   font-size: 12px;
   font-family: $medium;
   color: #ea5230;
@@ -131,154 +166,76 @@
   }
 }
 
-.discounted-price-div-medium {
+.discounted-price-div {
   display: flex;
   align-items: center;
   align-self: end;
   margin: 0 0 20px 0;
 }
 
-.crossed-price-medium {
+.crossed-price {
   font-family: $medium;
   text-decoration: line-through;
   color: $grey;
   font-size: 20px;
+  &-small {
+    font-size: 18px;
+  }
 }
 
-.discounted-price-medium {
+.discounted-price {
   font-family: $bold;
   color: #36b368;
   font-size: 26px;
   margin-left: 8px;
+  &-small {
+    font-size: 22px;
+    margin-left: 8px;
+  }
 }
 
 .product-card-container-small {
-  width: 218px;
-  padding: 0 14px 12px 14px;
-  background: $white;
-  border-radius: 16px;
-  position: relative;
-  box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: box-shadow 350ms ease;
-  &:hover {
-    box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.2);
-  }
-  display: flex;
-  flex-direction: column;
-  
-  justify-content: space-between;
 }
 
 .product-card-container-flex-small {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
 }
 
 .product-card-image-small {
-  width: 100%;
-  height: 188px;
-  border-radius: 16px;
-  object-fit: cover;
 }
 
 .product-card-name-small {
-  margin: 10px 0 14px;
-  font-family: $regular;
-  font-size: 18px;
-  white-space: normal;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 }
 
 .basic-price-small {
-  font-family: $bold;
-  font-size: 24px;
-  color: $black;
 }
 
 .product-card-cart-small {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
 }
 
 .add-to-cart-small {
-  @extend %flex-row;
-  width: 145px;
-  height: 32px;
-  border-radius: 31px;
-  background: rgba(18, 65, 147, 1);
-  cursor: pointer;
 }
 
 .product-card-add-text-small {
-  font-family: $bold;
-  font-size: 12px;
-  color: $white;
-  letter-spacing: 0.5px;
-  margin-left: 12px;
 }
 
 // Conditional styles
 .on-sale-small {
-  @extend %flex-row;
-  visibility: visible;
-  width: 60px;
-  height: 36px;
-  border-radius: 28px 0px 0px 28px;
-  background: #ea3030;
-  position: absolute;
-  top: 0;
-  right: 0;
-  letter-spacing: 0.75px;
 }
 
 .on-sale-text-small {
-  font-family: $bold;
-  font-size: 20px;
-  color: $white;
 }
 
 .product-card-price-medium {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
 }
 
 .produs-in-stock-medium {
-  font-size: 12px;
-  font-family: $medium;
-  color: #ea5230;
-  width: 93px;
-  height: 16px;
-  text-align: right;
 }
 
 .discounted-price-div-small {
-  display: flex;
-  align-items: center;
-  align-self: end;
-  margin: 0 0 20px 0;
 }
 
 .crossed-price-small {
-  font-family: $medium;
-  text-decoration: line-through;
-  color: $grey;
-  font-size: 18px;
 }
 
 .discounted-price-small {
-  font-family: $bold;
-  color: #36b368;
-  font-size: 22px;
-  margin-left: 8px;
 }
