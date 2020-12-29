@@ -1,14 +1,22 @@
-import ProductDetails from "../../app/app-features/product-details/ProductDetails";
-import { ProductDetailsQuery } from "../../app/app-features/product-details/ProductDetailsQuery";
-import Breadcrumbs from "../../app/common/breadcrumbs/Breadcrumbs";
-import { initializeApollo } from "../../app/lib/apolloClient";
+import ProductDetails from '../../app/app-features/product-details/ProductDetails';
+import { ProductDetailsQuery } from '../../app/app-features/product-details/ProductDetailsQuery';
+import Breadcrumbs from '../../app/common/breadcrumbs/Breadcrumbs';
+import { initializeApollo } from '../../app/lib/apolloClient';
+import { ProductCategoriesQuery } from '../../app/app-features/categories/ProductCategoriesQueries';
 
-function ProductDetailsComponent({ productDetails }) {
-  console.log(productDetails);
+function ProductDetailsComponent({
+  productDetails,
+  productSubCategoryData,
+  productCategoryData,
+}) {
+  const path = [
+    productCategoryData.data.productCategories[0],
+    productSubCategoryData.data.productCategories[0],
+  ];
+
   return (
     <>
-      <div style={{ marginTop: "32px" }}></div>
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       <ProductDetails productDetails={productDetails} />
     </>
   );
@@ -27,9 +35,33 @@ export async function getServerSideProps(context) {
     },
   });
 
+  const subCategoryId = productDetails.data.products[0].categoryId;
+
+  const productSubCategoryData = await apolloClient.query({
+    query: ProductCategoriesQuery,
+    variables: {
+      filter: {
+        id: { eq: subCategoryId },
+      },
+    },
+  });
+
+  const categoryId = productSubCategoryData.data.productCategories[0].parent;
+
+  const productCategoryData = await apolloClient.query({
+    query: ProductCategoriesQuery,
+    variables: {
+      filter: {
+        id: { eq: categoryId },
+      },
+    },
+  });
+
   return {
     props: {
       productDetails: productDetails.data,
+      productSubCategoryData: productSubCategoryData,
+      productCategoryData: productCategoryData,
     },
   };
 }

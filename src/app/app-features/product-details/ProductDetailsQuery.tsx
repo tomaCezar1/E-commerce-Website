@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const ProductDetailsQuery = gql`
   query ProductDetails($filter: ProductFilter = {}) {
@@ -11,6 +11,7 @@ export const ProductDetailsQuery = gql`
       price
       available
       articleCode
+      categoryId
     }
   }
 `;
