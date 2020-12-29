@@ -12,7 +12,7 @@ export default function Header(): JSX.Element {
   const [showMenu, setShowMenu] = useState(false);
   const header = useRef(null);
   const router = useRouter();
-  const { cart } = useContext(AppContext);
+  const { cart, favorites } = useContext(AppContext);
   const [renderCartLength, setRenderCartLength] = useState(false);
 
   useEffect(() => {
@@ -96,7 +96,11 @@ export default function Header(): JSX.Element {
                   </Link>
                   <Link href="/favorites" locale={router.locale}>
                     <div className="header-favorites-icon">
-                      <div className="cart-notification">1</div>
+                      {favorites.length ? (
+                        <div className="cart-notification">
+                          {favorites.length}
+                        </div>
+                      ) : null}
                     </div>
                   </Link>
                 </div>

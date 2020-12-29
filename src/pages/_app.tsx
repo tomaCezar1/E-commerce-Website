@@ -1,17 +1,21 @@
-import React from 'react'
-import Head from 'next/head'
-import App, { AppProps } from 'next/app'
-import { ApolloProvider } from '@apollo/client'
-import { ChakraProvider } from "@chakra-ui/react"
-import { initializeApollo, useApollo } from '../app/lib/apolloClient'
-import { ProductCategoriesQuery } from '../app/app-features/categories/ProductCategoriesQueries'
-import Layout from '../app/common/layout/Layout'
-import { AppContextProvider } from '../context'
+import React from 'react';
+import Head from 'next/head';
+import App, { AppProps } from 'next/app';
+import { ApolloProvider } from '@apollo/client';
+import { ChakraProvider } from '@chakra-ui/react';
+import { initializeApollo, useApollo } from '../app/lib/apolloClient';
+import { ProductCategoriesQuery } from '../app/app-features/categories/ProductCategoriesQueries';
+import Layout from '../app/common/layout/Layout';
+import { AppContextProvider } from '../context';
 
-import '../styles/styles.scss'
+import '../styles/styles.scss';
 
-function MyApp({ Component, pageProps, initialState }: AppProps & any): JSX.Element {
-  const apolloClient = useApollo(pageProps)
+function MyApp({
+  Component,
+  pageProps,
+  initialState,
+}: AppProps & any): JSX.Element {
+  const apolloClient = useApollo(pageProps);
 
   return (
     <>
@@ -22,14 +26,14 @@ function MyApp({ Component, pageProps, initialState }: AppProps & any): JSX.Elem
       <ChakraProvider>
         <AppContextProvider initialState={initialState}>
           <ApolloProvider client={apolloClient}>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </ApolloProvider>
         </AppContextProvider>
       </ChakraProvider>
     </>
-  )
+  );
 }
 
 /**
@@ -40,20 +44,20 @@ function MyApp({ Component, pageProps, initialState }: AppProps & any): JSX.Elem
  * load translations this way, soo... we are in a shitty situation anyway
  * TODO: Run some tests and see what performance is
  * TODO: Probably we will load categories client side and compromise the SEO
-*/
+ */
 MyApp.getInitialProps = async (appContext) => {
   const apolloClient = initializeApollo();
   const productCategoriesData = await apolloClient.query({
-    query: ProductCategoriesQuery
-  })
+    query: ProductCategoriesQuery,
+  });
   const initialState = {
-    categories: productCategoriesData.data.productCategories
-  }
+    categories: productCategoriesData.data.productCategories,
+  };
   const appProps = await App.getInitialProps(appContext);
   return {
     ...appProps,
-    initialState
-  }
-}
+    initialState,
+  };
+};
 
 export default MyApp;
