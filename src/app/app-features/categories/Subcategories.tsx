@@ -101,9 +101,7 @@ export default function Subcategories({
           </div>
           <div className="subcategories-grid">
             {products.map((product) => {
-              return (
-                <ProductCard key={product.id} product={product} size="small" />
-              );
+              return <ProductCard key={product.id} product={product} small />;
             })}
           </div>
           {pagesCount > 1 && (
