@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useToast } from '@chakra-ui/react';
 import { AppContext } from '../../../../context';
 
-function ProductCard({ product, small, isFavorite = [] }) {
+function ProductCard({ product, small = false, isFavorite = [] }) {
   const [isActive, setActive] = useState(false);
   const { addToCart, addToFavorites } = useContext(AppContext);
   const toast = useToast();
@@ -15,7 +15,7 @@ function ProductCard({ product, small, isFavorite = [] }) {
 
   const useLoaded = () => {
     const [loaded, setLoaded] = useState(false);
-    useEffect(() => setLoaded(true), []);
+    useEffect(() => setLoaded(true), [small]);
     return loaded;
   };
 

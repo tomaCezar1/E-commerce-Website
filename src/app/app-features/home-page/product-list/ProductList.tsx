@@ -17,7 +17,7 @@ function ProductList({ homePageInfo }): JSX.Element {
               product={item}
               key={index}
               isFavorite={isFavorite}
-              small
+              small={false}
             />
           );
         })}
