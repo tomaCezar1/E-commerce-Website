@@ -38,7 +38,7 @@ function ProductCard({ product, size, isFavorite = [] }) {
 
   return (
     <>
-      <Link href="/Produs/[slug]" as={`/Produs/${product.slug}`}>
+      <Link href="/product/[slug]" as={`/product/${product.slug}`}>
         <div
           className={`product-card-container product-card-container-${size} ${
             product.available ? '' : 'out-of-stock'
