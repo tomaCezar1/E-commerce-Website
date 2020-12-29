@@ -24,13 +24,15 @@ export default function CheckoutForm({ validate }): JSX.Element {
   const router = useRouter();
 
   useEffect(() => {
-    const trimmedProducts = cart.map(({ id, articleCode, qty }) => {
+    const trimmedProducts = cart.map(({ id, name, articleCode, qty }) => {
       return {
         id,
-        articleCode: articleCode || '777',
+        name,
+        articleCode,
         quantity: qty,
       };
     });
+
     setProductsArray(trimmedProducts);
   }, []);
 
