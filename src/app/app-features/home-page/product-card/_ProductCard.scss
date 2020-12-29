@@ -1,4 +1,4 @@
-@import "../../../../styles/constants.scss";
+@import '../../../../styles/constants.scss';
 
 .product-card-container {
   width: 248px;
@@ -150,4 +150,18 @@
   color: #36b368;
   font-size: 26px;
   margin-left: 8px;
+}
+
+//to change
+@media screen and (min-width: 300px) and (max-width: 768px) {
+  .product-card-container {
+    width: 166px;
+  }
+
+  .add-to-cart {
+    width: 110px;
+  }
+  .product-card-add-text {
+    font-size: 10px;
+  }
 }

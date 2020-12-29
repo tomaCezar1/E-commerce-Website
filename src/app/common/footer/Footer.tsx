@@ -1,14 +1,14 @@
-import Link from 'next/link'
-import { useRouter } from "next/router";
-import FacebookIcon from '../../../../public/svg/FacebookIcon.svg'
-import LinkedInIcon from '../../../../public/svg/LinkedInIcon.svg'
-import InstagramIcon from '../../../../public/svg/InstagramIcon.svg'
-import CegoltarLogo from '../../../../public/svg/cegoltar-footer-logo.svg'
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import FacebookIcon from '../../../../public/svg/FacebookIcon.svg';
+import LinkedInIcon from '../../../../public/svg/LinkedInIcon.svg';
+import InstagramIcon from '../../../../public/svg/InstagramIcon.svg';
+import CegoltarLogo from '../../../../public/svg/cegoltar-footer-logo.svg';
 
-const date = new Date()
+const date = new Date();
 
 export default function Footer() {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <footer className="footer">
       <div className="footer-wrapper">
@@ -17,42 +17,34 @@ export default function Footer() {
             <div className="footer-links-group">
               <p className="footer-links-heading">Link-uri</p>
               <Link href={`/service`} locale={router.locale}>
-                <span className="footer-link">
-                  Service centru
-                </span>
+                <span className="footer-link">Service centru</span>
               </Link>
               <Link href={`/regional-store`} locale={router.locale}>
-                <span className="footer-link">
-                  Magazine regionale
-                </span>
+                <span className="footer-link">Magazine regionale</span>
               </Link>
             </div>
-            <div className="footer-links-group" style={{marginLeft: 50}}>
+            <div className="footer-links-group" style={{ marginLeft: 50 }}>
               <p className="footer-links-heading">Informații</p>
               <Link href={`/guarantee`} locale={router.locale}>
-                <span className="footer-link">
-                  Condiții de garanție
-                </span>
+                <span className="footer-link">Condiții de garanție</span>
               </Link>
               <Link href={`/about`} locale={router.locale}>
-                <span className="footer-link">
-                  Despre noi
-                </span>
+                <span className="footer-link">Despre noi</span>
               </Link>
               <Link href={`/delivery`} locale={router.locale}>
-                <span className="footer-link">
-                  Livrare
-                </span>
+                <span className="footer-link">Livrare</span>
               </Link>
               <Link href={`/privacy`} locale={router.locale}>
                 <span className="footer-link">
                   Politica de confidențialitate
-                </span> 
-              </Link>
-              <Link href={`/terms`} as={`/terms-and-conditions`}  locale={router.locale}>
-                <span className="footer-link">
-                  Termeni de utilizare
                 </span>
+              </Link>
+              <Link
+                href={`/terms`}
+                as={`/terms-and-conditions`}
+                locale={router.locale}
+              >
+                <span className="footer-link">Termeni de utilizare</span>
               </Link>
             </div>
           </div>
@@ -81,11 +73,14 @@ export default function Footer() {
               <LinkedInIcon />
             </i>
           </div>
+
           <div className="footer-copyright-text">
-            Copyright &copy; {date.getFullYear()} Cegoltar S.R.L. str. Petricani, 21 MD-2005
+            Copyright &copy; {date.getFullYear()} Cegoltar S.R.L. str.
+            Petricani, 21 MD-2005
           </div>
         </div>
+        <div className="footer-divider" />
       </div>
     </footer>
-  )
+  );
 }

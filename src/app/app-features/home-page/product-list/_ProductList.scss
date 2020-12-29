@@ -1,4 +1,4 @@
-@import "../../../../styles/constants.scss";
+@import '../../../../styles/constants.scss';
 
 .product-list-container {
   display: flex;
@@ -17,4 +17,11 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 25px 32px;
   width: 100%;
+}
+
+//to change
+@media (max-width: 376px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

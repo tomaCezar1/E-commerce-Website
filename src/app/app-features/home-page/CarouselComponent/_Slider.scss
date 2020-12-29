@@ -95,3 +95,17 @@ $carousel-height: 434px;
   font-size: 1rem !important;
   color: #124193 !important;
 }
+
+//to review
+@media (max-width: 376px) {
+  .carousel-container,
+  .slick-slider,
+  .slick-slide,
+  .slick-current,
+  .slick-slide > *,
+  .carousel-img {
+    height: 130px !important;
+    // height: 100%;
+    width: 343px;
+  }
+}
