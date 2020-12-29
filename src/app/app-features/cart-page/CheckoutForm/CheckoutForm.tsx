@@ -13,13 +13,16 @@ const initialValues = {
   callTime: '',
 };
 
-export default function CheckoutForm({ validate }): JSX.Element {
+export default function CheckoutForm({
+  validate,
+  setOrderSuccess,
+}): JSX.Element {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({} as any);
   const [touched, setTouched] = useState({} as any);
   const [productsArray, setProductsArray] = useState([] as any);
   const toast = useToast();
-  const { cart } = useContext(AppContext);
+  const { cart, clearCart } = useContext(AppContext);
 
   const router = useRouter();
 
@@ -108,6 +111,8 @@ export default function CheckoutForm({ validate }): JSX.Element {
         isClosable: true,
         position: 'top',
       });
+      setOrderSuccess(true);
+      clearCart();
     }
   };
 

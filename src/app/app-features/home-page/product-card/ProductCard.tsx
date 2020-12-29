@@ -13,8 +13,6 @@ function ProductCard({ product, small, isFavorite = [] }) {
 
   let sale: number;
 
-  console.log(small)
-
   const useLoaded = () => {
     const [loaded, setLoaded] = useState(false);
     useEffect(() => setLoaded(true), []);
