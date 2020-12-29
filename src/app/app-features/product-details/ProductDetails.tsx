@@ -23,7 +23,7 @@ function ProductDetails({ productDetails }) {
     addToFavorites(product);
   };
 
-  const { loading, error, data } = useQuery(TechSpecsQuery, {
+  const { loading, data } = useQuery(TechSpecsQuery, {
     variables: { id },
   });
 
@@ -31,7 +31,7 @@ function ProductDetails({ productDetails }) {
   let techFieldsSecond = [];
 
   if (data && data.techSpecs && data.techSpecs.fields) {
-    const fields = data.techSpecs.fields;
+    const fields = data.techSpecs.fields.filter((product) => product.value);
     if (fields.length > 7) {
       techFields = fields.slice(0, Math.round(fields.length / 2));
       techFieldsSecond = fields.slice(Math.round(fields.length / 2));
@@ -161,7 +161,7 @@ function ProductDetails({ productDetails }) {
 
         {/* Characteristics tables */}
 
-        {!loading && (
+        {!loading && techFields && techFields.length > 0 && (
           <div className="characteristics-tables">
             <div className="characteristics-table">
               <table className="table">
@@ -175,14 +175,17 @@ function ProductDetails({ productDetails }) {
                     return (
                       <tr key={index}>
                         <th>{spec.name}</th>
-                        <td>{spec.value}</td>
+                        <td>
+                          {spec.value}&nbsp;
+                          {spec.suffix}
+                        </td>
                       </tr>
                     );
                   })}
                 </tbody>
               </table>
             </div>
-            {techFieldsSecond.length > 0 && (
+            {techFieldsSecond && techFieldsSecond.length > 0 && (
               <div
                 className="characteristics-table"
                 style={{ marginLeft: '56px' }}
@@ -198,7 +201,10 @@ function ProductDetails({ productDetails }) {
                       return (
                         <tr key={index}>
                           <th>{spec.name}</th>
-                          <td>{spec.value}</td>
+                          <td>
+                            {spec.value}&nbsp;
+                            {spec.suffix}
+                          </td>
                         </tr>
                       );
                     })}
@@ -208,7 +214,7 @@ function ProductDetails({ productDetails }) {
             )}
           </div>
         )}
-        {loading && (
+        {loading && techFields && techFields.length > 0 && (
           <div
             className="flex-row full-width"
             style={{ margin: '80px 0 62px' }}
