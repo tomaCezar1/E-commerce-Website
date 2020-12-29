@@ -51,9 +51,7 @@ export default function CartPage(): JSX.Element {
                           {product.name}
                         </span>
                         <span className="cart-product-description">
-                          In mattis enim fringilla id et tincidunt id dignissim
-                          pellentesque. Nunc turpis nulla lectus posuere nisl,
-                          pellentesque lorem cursus semper.
+                          {product.description}
                         </span>
                       </div>
                     </div>
