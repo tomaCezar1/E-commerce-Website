@@ -21,6 +21,7 @@ export default function FavoritesPage(): JSX.Element {
                 product={favorite}
                 key={index}
                 isFavorite={isFavorite}
+                size="medium"
               />
             );
           })}
