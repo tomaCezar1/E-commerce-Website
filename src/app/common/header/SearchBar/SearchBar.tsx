@@ -139,7 +139,7 @@ export default function SearchBar(): JSX.Element {
                           {price} lei
                         </span>
                       </div>
-                      <Link href="/Produs/[slug]" as={`/Produs/${slug}`}>
+                      <Link href="/product/[slug]" as={`/product/${slug}`}>
                         <div
                           className="button-to-product"
                           onClick={() => setShowOverlay(false)}
