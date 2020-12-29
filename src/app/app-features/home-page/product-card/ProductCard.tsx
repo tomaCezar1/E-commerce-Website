@@ -96,9 +96,13 @@ function ProductCard({ product, size, isFavorite = [] }) {
                   }}
                 >
                   {product.available && filtered.length > 0 && loaded ? (
-                    <FavoriteActive />
+                    <i className="product-fav-icons">
+                      <FavoriteActive />
+                    </i>
                   ) : (
-                    <FavoriteEmpty />
+                    <i className="product-fav-icons">
+                      <FavoriteEmpty />
+                    </i>
                   )}
                 </i>
                 <div
@@ -121,7 +125,9 @@ function ProductCard({ product, size, isFavorite = [] }) {
                         }
                   }
                 >
-                  <CartIcon />
+                  <i className="product-fav-cart-icon">
+                    <CartIcon />
+                  </i>
                   <p
                     className={`product-card-add-text product-card-add-text-${size}`}
                   >

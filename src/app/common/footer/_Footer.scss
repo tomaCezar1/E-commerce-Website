@@ -91,7 +91,7 @@
 }
 
 .footer-copyright-text {
-  font-family: $medium;
+  font-family: $regular;
   font-size: 12px;
   color: $grey;
 }
@@ -120,6 +120,7 @@
   a {
     font-size: 12px;
     margin-left: 8px;
+    font-family: $regular;
   }
 }
 
@@ -145,6 +146,19 @@
     justify-content: space-between;
   }
 
+  .footer-link {
+    font-size: 12px;
+  }
+
+  .footer-links-heading {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .footer-divider {
+    display: none;
+  }
+
   .footer-divider-mobile {
     display: inline-block;
   }
@@ -162,23 +176,25 @@
     display: none;
   }
 
+  .footer-copyright-text {
+    font-size: 9px;
+    color: $white;
+  }
+
+  .footer {
+    padding-bottom: 0;
+  }
+
+  //delete from here
   .header-relative {
-    max-width: 300px !important;
+    display: none;
   }
 
   .header {
-    max-width: 300px !important;
+    display: none;
   }
 
   .header-static {
-    max-width: 300px !important;
-  }
-
-  .layout-container {
-    max-width: 300px !important;
-  }
-
-  html > * {
-    max-width: 300px;
+    display: none;
   }
 }

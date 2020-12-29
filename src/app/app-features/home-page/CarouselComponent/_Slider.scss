@@ -93,19 +93,38 @@ $carousel-height: 434px;
 
 .slick-dots li.slick-active button:before {
   font-size: 1rem !important;
-  color: #124193 !important;
+  color: $primaryColor !important;
 }
 
 //to review
-@media (max-width: 376px) {
-  .carousel-container,
-  .slick-slider,
-  .slick-slide,
-  .slick-current,
-  .slick-slide > *,
+@media screen and (min-width: 300px) and (max-width: $xs) {
   .carousel-img {
-    height: 130px !important;
-    // height: 100%;
-    width: 343px;
+    height: 130px;
+  }
+  .carousel-container {
+    height: 130px;
+  }
+
+  .slick-dots {
+    top: 75% !important;
+    li {
+      width: 2px !important;
+      height: 2px !important;
+      margin: 0 10px !important;
+    }
+    li .active {
+      width: 3px !important;
+      height: 3px;
+    }
+  }
+
+  .slick-arrow-bg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icons > * {
+    width: 10px !important;
+    height: 25px !important;
   }
 }
