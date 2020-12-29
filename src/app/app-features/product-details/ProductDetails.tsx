@@ -30,8 +30,34 @@ function ProductDetails({ productDetails }) {
   let techFields = [];
   let techFieldsSecond = [];
 
+  // const noNullData = data.techSpecs.fields;
+  // const mapping = noNullData.forEach((produs) => {
+  //   if (produs?.value != '' && produs?.value != null) {
+  //     return produs;
+  //   }
+  //   // console.log(produs);
+  // });
+  // console.log(mapping);
+
+  // console.log(data);
+  // data.techSpecs.fields.filter(
+  //   (produs) => produs.value != ' ' && produs.value != null
+  // );
+
   if (data && data.techSpecs && data.techSpecs.fields) {
     const fields = data.techSpecs.fields;
+    const filterMethod = [];
+    // const noNullFields = fields.filter(
+    //   (product) =>
+    //     product.value != ' ' &&
+    //     product.value != null &&
+    //     product.value != undefined
+    // );
+    fields.filter((product) => {
+      !product.value && product.value != ' ' && product.value != null;
+      console.log(fields);
+    });
+    // console.log(fields);
     if (fields.length > 7) {
       techFields = fields.slice(0, Math.round(fields.length / 2));
       techFieldsSecond = fields.slice(Math.round(fields.length / 2));
