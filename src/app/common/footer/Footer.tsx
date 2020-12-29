@@ -4,6 +4,7 @@ import FacebookIcon from '../../../../public/svg/FacebookIcon.svg';
 import LinkedInIcon from '../../../../public/svg/LinkedInIcon.svg';
 import InstagramIcon from '../../../../public/svg/InstagramIcon.svg';
 import CegoltarLogo from '../../../../public/svg/cegoltar-footer-logo.svg';
+import Phone from '../../../../public/svg/phone-white.svg';
 
 const date = new Date();
 
@@ -79,7 +80,37 @@ export default function Footer() {
             Petricani, 21 MD-2005
           </div>
         </div>
-        <div className="footer-divider" />
+
+        <div className="footer-phone-wrapper-mobile">
+          <div className="footer-divider footer-divider-mobile" />
+          <div className="footer-copyright-mobile">
+            <div className="footer-social-icons">
+              <i className="footer-icon">
+                <FacebookIcon />
+              </i>
+              <i className="footer-icon">
+                <InstagramIcon />
+              </i>
+              <i className="footer-icon">
+                <LinkedInIcon />
+              </i>
+            </div>
+
+            <div className="cursor-pointer footer-phone-mobile">
+              <i>
+                <Phone />
+              </i>
+              <a className="" href="tel:+373 69 000 000">
+                069 00 00 00
+              </a>
+            </div>
+          </div>
+          <div className="footer-divider footer-divider-mobile" />
+          <div className="footer-copyright-text">
+            Copyright &copy; {date.getFullYear()} Cegoltar S.R.L. str.
+            Petricani, 21 MD-2005
+          </div>
+        </div>
       </div>
     </footer>
   );
