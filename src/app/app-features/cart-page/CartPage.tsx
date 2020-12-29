@@ -7,6 +7,7 @@ import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function CartPage(): JSX.Element {
   const { cart, addToCart, removeFromCart, clearCart } = useContext(AppContext);
+  const [orderSuccess, setOrderSuccess] = useState(false);
 
   const [, updateState] = useState();
 
@@ -20,7 +21,11 @@ export default function CartPage(): JSX.Element {
   return (
     <div className="cart-page-container" suppressHydrationWarning={true}>
       <Breadcrumbs />
-      {renderCartLength && cart.length > 0 ? (
+      {orderSuccess ? (
+        <div className="no-items-text">
+          Comanda dumneavoastră a fost procesată cu success
+        </div>
+      ) : renderCartLength && cart.length > 0 ? (
         <div className="cart-items-wrapper">
           <div
             style={{ display: 'flex', flexDirection: 'column', width: '70%' }}
@@ -46,9 +51,7 @@ export default function CartPage(): JSX.Element {
                           {product.name}
                         </span>
                         <span className="cart-product-description">
-                          In mattis enim fringilla id et tincidunt id dignissim
-                          pellentesque. Nunc turpis nulla lectus posuere nisl,
-                          pellentesque lorem cursus semper.
+                          {product.description}
                         </span>
                       </div>
                     </div>
@@ -99,7 +102,7 @@ export default function CartPage(): JSX.Element {
               </div>
             </div>
           </div>
-          <CheckoutForm validate={validate} />
+          <CheckoutForm validate={validate} setOrderSuccess={setOrderSuccess} />
         </div>
       ) : (
         <div className="no-items-text">Coșul dumneavoastră este gol</div>

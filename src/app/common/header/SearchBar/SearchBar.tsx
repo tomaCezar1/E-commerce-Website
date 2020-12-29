@@ -129,24 +129,31 @@ export default function SearchBar(): JSX.Element {
             {results &&
               results.map(({ id, name, price, images, slug }) => {
                 return (
-                  <div key={id}>
-                    <div className="search-results-divider" />
-                    <div className="search-product-wrapper">
-                      <img src={images[0]} className="search-product-image" />
-                      <div className="search-product-text">
-                        <span className="search-product-name">{name}</span>
-                        <span className="search-product-price">
-                          {price} lei
-                        </span>
+                  <>
+                    <Link href="/Produs/[slug]" as={`/Produs/${slug}`}>
+                      <div
+                        key={id}
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => setShowOverlay(false)}
+                      >
+                        <div className="search-results-divider" />
+                        <div className="search-product-wrapper">
+                          <img
+                            src={images[0]}
+                            className="search-product-image"
+                          />
+                          <div className="search-product-text">
+                            <span className="search-product-name">{name}</span>
+                            <span className="search-product-price">
+                              {price} lei
+                            </span>
+                          </div>
+
+                          <div className="button-to-product" />
+                        </div>
                       </div>
-                      <Link href="/product/[slug]" as={`/product/${slug}`}>
-                        <div
-                          className="button-to-product"
-                          onClick={() => setShowOverlay(false)}
-                        />
-                      </Link>
-                    </div>
-                  </div>
+                    </Link>
+                  </>
                 );
               })}
           </div>

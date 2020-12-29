@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Router, { useRouter } from 'next/router';
 import { Select } from '@chakra-ui/react';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 import ProductCard from '../../app-features/home-page/product-card/ProductCard';
 import Pagination from '../../common/pagination/Pagination';
+import { AppContext } from '../../../context';
 
 export default function Subcategories({
   products,
@@ -11,22 +12,16 @@ export default function Subcategories({
   productsCount,
   currentPage,
 }): JSX.Element {
-  const [isLoading, setLoading] = useState(false);
   const [pagesCount, setPagesCount] = useState(1);
+  const { sortOrder, setOrder } = useContext(AppContext);
   const router = useRouter();
   const limit = 20;
 
-  const startLoading = () => setLoading(true);
-  const stopLoading = () => setLoading(false);
-
   useEffect(() => {
-    Router.events.on('routeChangeStart', startLoading);
-    Router.events.on('routeChangeComplete', stopLoading);
-
     const currentPath = router.pathname;
     const currentQuery = router.query;
 
-    currentQuery.sort = '';
+    currentQuery.sort = sortOrder;
 
     Router.push({
       pathname: currentPath,
@@ -34,11 +29,6 @@ export default function Subcategories({
     });
 
     setPagesCount(Math.ceil(productsCount / limit));
-
-    return () => {
-      Router.events.off('routeChangeStart', startLoading);
-      Router.events.off('routeChangeComplete', stopLoading);
-    };
   }, []);
 
   const paginationHandler = async (page) => {
@@ -60,6 +50,8 @@ export default function Subcategories({
 
     currentQuery.sort = event.target.value;
 
+    setOrder(event.target.value);
+
     await router.push({
       pathname: currentPath,
       query: currentQuery,
@@ -78,7 +70,7 @@ export default function Subcategories({
               <Select
                 name="sorting"
                 onChange={sortingHandler}
-                value={router.query.sort}
+                value={sortOrder}
                 className="sorting-input"
               >
                 <option value="" disabled hidden>
@@ -101,9 +93,7 @@ export default function Subcategories({
           </div>
           <div className="subcategories-grid">
             {products.map((product) => {
-              return (
-                <ProductCard key={product.id} product={product} size="small" />
-              );
+              return <ProductCard key={product.id} product={product} small />;
             })}
           </div>
           {pagesCount > 1 && (

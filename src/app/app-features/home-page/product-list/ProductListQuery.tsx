@@ -22,6 +22,7 @@ export const ProductListQuery = gql`
       available
       slug
       notAvailableCustomText
+      articleCode
       isPromo
     }
   }
