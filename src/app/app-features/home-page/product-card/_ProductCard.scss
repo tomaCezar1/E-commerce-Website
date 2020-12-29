@@ -16,6 +16,10 @@
   flex-direction: column;
   align-self: stretch;
   justify-content: center;
+  &-small {
+    width: 218px;
+    padding: 0 14px 12px 14px;
+  }
 }
 
 .product-card-container-flex {
@@ -39,6 +43,10 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  &-small {
+    margin: 10px 0 14px;
+    font-size: 18px;
+  }
 }
 
 .product-card-image {
@@ -46,6 +54,9 @@
   height: 214px;
   border-radius: 16px;
   object-fit: cover;
+  &-small {
+    height: 188px;
+  }
 }
 
 .basic-price {
@@ -54,6 +65,10 @@
   color: $black;
   align-self: start;
   margin-bottom: 24px;
+  &-small {
+    font-size: 24px;
+    margin-bottom: 0;
+  }
 }
 
 .product-card-cart {
@@ -62,6 +77,11 @@
   align-items: center !important;
   i {
     @extend %flex-row;
+  }
+  &-small {
+    justify-content: space-between;
+    align-items: center !important;
+    margin-top: 20px;
   }
 }
 
@@ -73,14 +93,24 @@
   background: rgba(18, 65, 147, 1);
   cursor: pointer;
   margin-left: 27px;
+  &-small {
+    @extend %flex-row;
+    width: 145px;
+    height: 32px;
+    margin-left: 20px;
+  }
 }
 
 .product-card-add-text {
   margin-left: 13px;
   font-family: $bold;
   font-size: 14px;
-  color: #ffffff;
+  color: $white;
   letter-spacing: 0.5px;
+  &-small {
+    font-size: 12px;
+    margin-left: 12px;
+  }
 }
 
 // Conditional styles
@@ -95,12 +125,17 @@
   top: 0;
   right: 0;
   letter-spacing: 0.75px;
+  &-small {
+    width: 60px;
+    height: 36px;
+    letter-spacing: 0.5px;
+  }
 }
 
 .on-sale-text {
   font-family: $bold;
   font-size: 20px;
-  color: #ffffff;
+  color: $white;
 }
 
 .product-card-price {
@@ -143,6 +178,9 @@
   text-decoration: line-through;
   color: $grey;
   font-size: 20px;
+  &-small {
+    font-size: 18px;
+  }
 }
 
 .discounted-price {
@@ -150,6 +188,14 @@
   color: #36b368;
   font-size: 26px;
   margin-left: 8px;
+  &-small {
+    font-size: 22px;
+    margin-left: 8px;
+  }
+}
+
+.fav-icons {
+  background-size: 24px 27px;
 }
 
 //to change
