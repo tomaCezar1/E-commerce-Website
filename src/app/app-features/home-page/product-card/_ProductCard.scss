@@ -154,7 +154,7 @@
 }
 
 .product-container-small {
-  .product-card-container {
+  &.product-card-container {
     width: 218px;
     padding: 14px;
   }
