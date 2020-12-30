@@ -28,13 +28,6 @@ $regular: 'Regular'; // 400
 $medium: 'Medium'; //500
 $bold: 'Bold'; //700
 
-//Breakpoints
-$xs: 580px;
-$sm: 770px;
-$md: 1250px;
-$lg: 1500px;
-$xl: 10000px;
-
 %flex-row {
   display: flex;
   flex-direction: row;
