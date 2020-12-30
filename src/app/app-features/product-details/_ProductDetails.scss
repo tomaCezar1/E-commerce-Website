@@ -195,7 +195,6 @@
   font-family: $bold;
   background: $white;
   border-radius: 16px;
-  // width: 548px;
   width: 1152px;
   height: 100%;
   box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.1);
@@ -249,13 +248,118 @@
   }
 }
 
+.product-details-title {
+  display: block;
+}
+
+.product-details-title-responsive {
+  display: none;
+  font-family: $medium;
+  font-size: 24px;
+  text-align: left;
+  margin: 0;
+}
+
+.product-details-add-to-cart-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.mobile-image-component {
+  display: none;
+}
+
 //xs
 @media screen and (min-width: 300px) and (max-width: $xs) {
   .product-details-flex {
     flex-direction: column;
   }
 
+  .product-details-content {
+    max-width: 280px;
+    height: 100%;
+  }
+
+  .big-image,
+  .small-img-container {
+    width: 280px !important;
+  }
+
   .product-details-title {
     font-size: 24px;
+  }
+
+  .product-details-title-responsive {
+    display: block;
+  }
+
+  .product-details-title {
+    display: none;
+  }
+
+  .product-details-add-to-cart {
+    width: 132px;
+    height: 38px;
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .product-details-add-text {
+    font-size: 12px;
+    margin-left: 4px;
+    margin-top: 1px;
+  }
+
+  .product-details-questions {
+    display: none;
+  }
+
+  .product-details-price {
+    font-size: 26px;
+    justify-content: flex-end;
+  }
+
+  .product-details-add-to-cart-mobile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-details-add-to-cart-flex {
+    display: none;
+  }
+
+  .counter-and-fav-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    width: 132px;
+  }
+
+  .product-details-favorites {
+    margin-left: 0;
+  }
+
+  .characteristics-tables {
+    margin: 0 0 20px;
+    flex-direction: column;
+  }
+
+  .characteristics-table {
+    margin-left: 0 !important;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .mobile-image-component {
+    display: block;
+  }
+
+  .react-magnify-lib {
+    display: none;
   }
 }

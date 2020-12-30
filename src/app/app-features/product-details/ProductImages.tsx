@@ -1,6 +1,6 @@
-import { Skeleton } from "@chakra-ui/react";
-import { useState } from "react";
-import ReactImageMagnify from "react-image-magnify";
+import { Skeleton } from '@chakra-ui/react';
+import { useState } from 'react';
+import ReactImageMagnify from 'react-image-magnify';
 
 function ProductImages(props) {
   const [currentImg, setCurrentImg] = useState(0);
@@ -11,11 +11,11 @@ function ProductImages(props) {
 
   return (
     <>
-      <div>
+      <div className="react-magnify-lib">
         <ReactImageMagnify
           {...{
             smallImage: {
-              alt: "error",
+              alt: 'error',
               src: props.images[currentImg],
               width: 333,
               height: 333,
@@ -25,10 +25,13 @@ function ProductImages(props) {
               width: 600,
               height: 800,
             },
-            imageClassName: "big-image",
-            enlargedImageStyle: { objectFit: "cover" },
+            imageClassName: 'big-image',
+            enlargedImageStyle: { objectFit: 'cover' },
           }}
         />
+      </div>
+      <div className="mobile-image-component">
+        <img src={props.images[currentImg]} alt="" className="big-image" />
       </div>
       <div className="small-img-container">
         {/* <Skeleton h="100%" w="100%"> */}
@@ -36,7 +39,7 @@ function ProductImages(props) {
           <img
             onClick={() => toggleClick(index)}
             className={`small-img ${
-              currentImg === index ? "small-img-active" : ""
+              currentImg === index ? 'small-img-active' : ''
             }`}
             key={index}
             src={img}

@@ -151,6 +151,59 @@ function ProductDetails({ productDetails }) {
                   <p className="product-details-add-text">Adaugă în coș</p>
                 </div>
               </div>
+
+              <div className="product-details-add-to-cart-mobile">
+                <div className="counter-and-fav-mobile">
+                  <i
+                    className="product-details-favorites"
+                    style={{ cursor: 'pointer' }}
+                    onClick={(event) => {
+                      addToFavoritesList(event, details);
+                    }}
+                  >
+                    {filtered.length > 0 && loaded ? (
+                      <FavoriteActive />
+                    ) : (
+                      <FavoriteEmpty />
+                    )}
+                  </i>
+
+                  <div className="product-details-counter">
+                    <div
+                      className="product-details-counters"
+                      onClick={handleRemove}
+                    >
+                      <p>-</p>
+                    </div>
+                    <div className="product-details-center-counter">
+                      <p>{counter}</p>
+                    </div>
+                    <div
+                      className="product-details-counters"
+                      onClick={handleAdd}
+                    >
+                      <p>+</p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="product-details-add-to-cart"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addToCart(details, 1);
+                    toast({
+                      title: `Produsul ${details.name} a fost adăugat cu succes!`,
+                      status: 'success',
+                      duration: 5000,
+                      isClosable: true,
+                      position: 'top',
+                    });
+                  }}
+                >
+                  <CartIcon />
+                  <p className="product-details-add-text">Adaugă în coș</p>
+                </div>
+              </div>
             </div>
             <div className="product-details-questions">
               <p>Ai o intrebare?</p>&nbsp;
