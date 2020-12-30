@@ -213,3 +213,17 @@ export const validate = {
   phone: (phone) => phoneValidation('phone', phone),
   callTime: (callTime) => callTimeValidation('callTime', callTime),
 };
+
+export const getSortOrder = () => {
+  try {
+    const sortOrder = localStorage.getItem('sortOrder');
+    if (sortOrder) {
+      return sortOrder;
+    }
+  } catch (e) {}
+  return '';
+};
+
+export const setSortOrder = (order) => {
+  localStorage.setItem('sortOrder', order);
+};

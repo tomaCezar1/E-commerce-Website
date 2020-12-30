@@ -13,7 +13,7 @@ export default function Subcategories({
   currentPage,
 }): JSX.Element {
   const [pagesCount, setPagesCount] = useState(1);
-  const { sortOrder, setOrder } = useContext(AppContext);
+  const { order, saveOrder } = useContext(AppContext);
   const router = useRouter();
   const limit = 20;
 
@@ -21,7 +21,9 @@ export default function Subcategories({
     const currentPath = router.pathname;
     const currentQuery = router.query;
 
-    currentQuery.sort = sortOrder;
+    currentQuery.sort = order;
+
+    console.log(order)
 
     Router.push({
       pathname: currentPath,
@@ -50,13 +52,38 @@ export default function Subcategories({
 
     currentQuery.sort = event.target.value;
 
-    setOrder(event.target.value);
+    saveOrder(event.target.value);
 
     await router.push({
       pathname: currentPath,
       query: currentQuery,
     });
   };
+
+  const { data } = useQuery(ProductCategoriesQuery, {
+    variables: {
+      filter: {
+        id: {
+          eq: subcategory.parent,
+        },
+      },
+    },
+  });
+
+  const path = [
+    {
+      name: data?.productCategories[0].title,
+      link: '/categories/' + router.query.categorySlug,
+    },
+    {
+      name: subcategory.title,
+      link:
+        '/categories/' +
+        router.query.categorySlug +
+        '/' +
+        router.query.subcategorySlug,
+    },
+  ];
 
   return (
     <div className="subcategories-page-wrapper">
@@ -70,7 +97,7 @@ export default function Subcategories({
               <Select
                 name="sorting"
                 onChange={sortingHandler}
-                value={sortOrder}
+                value={order}
                 className="sorting-input"
               >
                 <option value="" disabled hidden>

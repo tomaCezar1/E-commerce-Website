@@ -39,54 +39,24 @@ export default function Breadcrumbs({ path = [] }): JSX.Element {
   }
 
   return (
-    <nav aria-label="breadcrumbs" className="breadcrumb-nav">
-      <ul className="breadcrumb">
-        <li>
-          <a href="/" className="breadcrumb-item">
-            Cegoltar
+    <div className="breadcrumb">
+      <a href={basePath.link} className="breadcrumb-item">
+        {basePath.name}
+      </a>
+      {path.map((e, i, a) => (
+        <div key={i} style={{ display: 'flex' }}>
+          <span className="breadcrumb-item">&nbsp;/&nbsp;</span>
+          <a
+            href={e.link}
+            className={
+              i === a.length - 1 ? 'breadcrumb-last-item' : 'breadcrumb-item'
+            }
+          >
+            {e.name}
           </a>
-        </li>
-        {breadcrumbs.map((breadcrumb, index, array) => {
-          if (index === 0 && !path) {
-            return (
-              <div key={breadcrumb.href} style={{ display: 'flex' }}>
-                <span className="breadcrumb-item">&nbsp;/&nbsp;</span>
-                <li>
-                  <div
-                    className={
-                      index === array.length - 1
-                        ? 'breadcrumb-last-item'
-                        : 'breadcrumb-item'
-                    }
-                  >
-                    {convertBreadcrumb(breadcrumb.breadcrumb)}
-                  </div>
-                </li>
-              </div>
-            );
-          } else {
-            return (
-              <div key={breadcrumb.href} style={{ display: 'flex' }}>
-                <span className="breadcrumb-item">&nbsp;/&nbsp;</span>
-                <li>
-                  <Link href={breadcrumb.href}>
-                    <a
-                      className={
-                        index === array.length - 1
-                          ? 'breadcrumb-last-item'
-                          : 'breadcrumb-item'
-                      }
-                    >
-                      {convertBreadcrumb(breadcrumb.breadcrumb)}
-                    </a>
-                  </Link>
-                </li>
-              </div>
-            );
-          }
-        })}
-      </ul>
-    </nav>
+        </div>
+      ))}
+    </div>
   );
 }
 
