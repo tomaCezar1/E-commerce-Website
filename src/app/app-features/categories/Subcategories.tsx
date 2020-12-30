@@ -19,8 +19,7 @@ export default function Subcategories({
   const limit = 20;
 
   useEffect(() => {
-    const temp = router.query.sort;
-    setSortOrder(temp as any);
+    setSortOrder(router.query.sort as any);
 
     setPagesCount(Math.ceil(productsCount / limit));
   }, []);
