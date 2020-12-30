@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'next/link';
 
 interface BreadPath {
   name: string;
@@ -11,28 +12,22 @@ interface BreadProps {
 
 export default function Breadcrumbs({ path }: BreadProps) {
   const basePath: BreadPath = {
-    name: 'Cegoltar',
+    name: 'Cegoltar' + '\xa0' + '/',
     link: '/',
   };
 
   return (
     <div className="breadcrumb">
-      <a href={basePath.link} className="breadcrumb-item">
-        {basePath.name}
-      </a>
-      {path.map((e, i, a) => (
-        <div key={i} style={{ display: 'flex' }}>
-          <span className="breadcrumb-item">&nbsp;/&nbsp;</span>
-          <a
-            href={e.link}
-            className={
-              i === a.length - 1 ? 'breadcrumb-last-item' : 'breadcrumb-item'
-            }
-          >
+      <div className="breadcrumb-default-item">
+        <Link href={basePath.link}>{basePath.name}</Link>
+      </div>
+      <div className="breadcrumb-item">
+        {path.map((e, i) => (
+          <Link key={i} href={e.link}>
             {e.name}
-          </a>
-        </div>
-      ))}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

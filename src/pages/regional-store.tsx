@@ -5,7 +5,7 @@ import Breadcrumbs from '../app/common/breadcrumbs/Breadcrumbs';
 export default function RegionalStorePage() {
   const path = [
     {
-      name: 'Magazine Regionale',
+      name: '\xa0' + 'Magazine Regionale',
       link: '/regional-store',
     },
   ];

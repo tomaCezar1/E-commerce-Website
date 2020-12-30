@@ -8,7 +8,7 @@ import Arrow from '../../../../public/svg/arrow.svg';
 export default function Service(): JSX.Element {
   const path = [
     {
-      name: 'Service centru',
+      name: '\xa0' + 'Service centru',
       link: '/service',
     },
   ];

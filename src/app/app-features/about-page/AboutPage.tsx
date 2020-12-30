@@ -3,7 +3,7 @@ import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 export default function AboutPage() {
   const path = [
     {
-      name: 'Despre noi',
+      name: '\xa0' + 'Despre noi',
       link: '/about',
     },
   ];

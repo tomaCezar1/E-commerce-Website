@@ -9,7 +9,7 @@ export default function FavoritesPage(): JSX.Element {
 
   const path = [
     {
-      name: 'Favorite',
+      name: '\xa0' + 'Favorite',
       link: '/favorites',
     },
   ];

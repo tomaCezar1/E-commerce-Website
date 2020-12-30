@@ -63,11 +63,11 @@ export default function Subcategories({
 
   const path = [
     {
-      name: data?.productCategories[0].title,
+      name: '\xa0' + data?.productCategories[0].title + '\xa0',
       link: '/categories/' + router.query.categorySlug,
     },
     {
-      name: subcategory.title,
+      name: '/' + '\xa0' + subcategory.title,
       link:
         '/categories/' +
         router.query.categorySlug +

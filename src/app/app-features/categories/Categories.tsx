@@ -11,7 +11,7 @@ export default function Categories({
 
   const path = [
     {
-      name: categoryDetails.title,
+      name: '\xa0' + categoryDetails.title,
       link: '/' + categoryDetails.slug,
     },
   ];

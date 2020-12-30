@@ -8,20 +8,27 @@
 }
 
 .breadcrumb-item {
+  display: flex;
+}
+
+.breadcrumb-item a {
   font-family: 'Medium';
   font-size: 12px;
   text-decoration: none;
   color: $black;
-  margin: auto 0;
   display: flex;
   cursor: pointer;
 }
 
-.breadcrumb-last-item {
+.breadcrumb-item a:last-child {
   color: $primaryColor;
+}
+
+.breadcrumb-default-item a {
   font-family: 'Medium';
   font-size: 12px;
   text-decoration: none;
-  margin: auto 0;
+  color: $black;
   display: flex;
+  cursor: pointer;
 }
