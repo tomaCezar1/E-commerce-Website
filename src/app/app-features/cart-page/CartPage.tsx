@@ -25,6 +25,12 @@ export default function CartPage(): JSX.Element {
     },
   ];
 
+  const createMarkup = (html) => {
+    return {
+      __html: html,
+    };
+  };
+
   return (
     <div className="cart-page-container" suppressHydrationWarning={true}>
       <Breadcrumbs path={path} />
@@ -57,9 +63,12 @@ export default function CartPage(): JSX.Element {
                         <span className="cart-product-name">
                           {product.name}
                         </span>
-                        <span className="cart-product-description">
-                          {product.description}
-                        </span>
+                        <div
+                          className="cart-product-description"
+                          dangerouslySetInnerHTML={createMarkup(
+                            product.description
+                          )}
+                        ></div>
                       </div>
                     </div>
                     <div className="cart-product-price">
