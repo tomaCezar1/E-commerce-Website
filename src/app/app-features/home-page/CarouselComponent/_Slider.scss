@@ -1,4 +1,5 @@
-$white: #ffffff;
+@import '../../../../styles/constants.scss';
+
 $carousel-height: 434px;
 
 %flex {
@@ -74,7 +75,7 @@ $carousel-height: 434px;
 //dots position
 .slick-dots {
   position: absolute;
-  bottom: 40px !important;
+  bottom: 5% !important;
   display: block;
   width: 100%;
   padding: 10;
@@ -96,7 +97,7 @@ $carousel-height: 434px;
   color: $primaryColor !important;
 }
 
-//to review
+//xs
 @media screen and (min-width: 300px) and (max-width: $xs) {
   .carousel-img {
     height: 130px;
@@ -107,6 +108,108 @@ $carousel-height: 434px;
 
   .slick-dots {
     top: 75% !important;
+    li {
+      width: 2px !important;
+      height: 2px !important;
+      margin: 0 10px !important;
+    }
+    li .active {
+      width: 3px !important;
+      height: 3px;
+    }
+  }
+
+  .slick-arrow-bg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icons > * {
+    width: 10px !important;
+    height: 25px !important;
+  }
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .carousel-img {
+    height: 250px;
+  }
+
+  .carousel-container {
+    height: 250px;
+  }
+
+  .slick-dots {
+    top: 85% !important;
+    li {
+      width: 2px !important;
+      height: 2px !important;
+      margin: 0 10px !important;
+    }
+    li .active {
+      width: 3px !important;
+      height: 3px;
+    }
+  }
+
+  .slick-arrow-bg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icons > * {
+    width: 10px !important;
+    height: 25px !important;
+  }
+}
+
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .carousel-img {
+    height: 250px;
+  }
+
+  .carousel-container {
+    height: 250px;
+  }
+
+  .slick-dots {
+    top: 85% !important;
+    li {
+      width: 2px !important;
+      height: 2px !important;
+      margin: 0 10px !important;
+    }
+    li .active {
+      width: 3px !important;
+      height: 3px;
+    }
+  }
+
+  .slick-arrow-bg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icons > * {
+    width: 10px !important;
+    height: 25px !important;
+  }
+}
+
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+  .carousel-img {
+    height: 400px;
+  }
+
+  .carousel-container {
+    height: 400px;
+  }
+
+  .slick-dots {
+    bottom: 5% !important;
     li {
       width: 2px !important;
       height: 2px !important;

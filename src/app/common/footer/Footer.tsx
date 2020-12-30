@@ -63,7 +63,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-divider" />
-        <div className="footer-divider footer-divider-mobile" />
+        <div className=" footer-divider-mobile" />
 
         <div className="footer-copyright">
           <div className="footer-social-icons">
@@ -105,7 +105,7 @@ export default function Footer() {
               <a href="tel:+373 69 000 000">069 00 00 00</a>
             </div>
           </div>
-          <div className="footer-divider footer-divider-mobile" />
+          <div className=" footer-divider-mobile" />
           <div className="footer-copyright-text">
             Copyright &copy; {date.getFullYear()} Cegoltar S.R.L. str.
             Petricani, 21 MD-2005
