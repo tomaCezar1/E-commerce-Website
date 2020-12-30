@@ -3,7 +3,7 @@ import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 export default function GuaranteesPage(): JSX.Element {
   const path = [
     {
-      name: '\xa0' + 'Garanții',
+      name: 'Garanții',
       link: '/guarantees',
     },
   ];

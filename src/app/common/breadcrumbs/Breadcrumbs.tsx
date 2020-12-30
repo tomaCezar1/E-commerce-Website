@@ -12,7 +12,7 @@ interface BreadProps {
 
 export default function Breadcrumbs({ path }: BreadProps) {
   const basePath: BreadPath = {
-    name: 'Cegoltar' + '\xa0' + '/',
+    name: 'Cegoltar',
     link: '/',
   };
 
@@ -23,9 +23,12 @@ export default function Breadcrumbs({ path }: BreadProps) {
       </div>
       <div className="breadcrumb-item">
         {path.map((e, i) => (
-          <Link key={i} href={e.link}>
-            {e.name}
-          </Link>
+          <>
+            <span className="breadcrumb-separator">&nbsp;/&nbsp;</span>
+            <Link key={i} href={e.link}>
+              {e.name}
+            </Link>
+          </>
         ))}
       </div>
     </div>

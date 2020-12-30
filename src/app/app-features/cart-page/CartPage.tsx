@@ -20,7 +20,7 @@ export default function CartPage(): JSX.Element {
 
   const path = [
     {
-      name: '\xa0' + 'Coș',
+      name: 'Coș',
       link: '/cart',
     },
   ];

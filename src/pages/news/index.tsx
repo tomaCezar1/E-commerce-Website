@@ -4,7 +4,7 @@ import Breadcrumbs from '../../app/common/breadcrumbs/Breadcrumbs';
 export default function Index(): JSX.Element {
   const path = [
     {
-      name: '\xa0' + 'Știri',
+      name: 'Știri',
       link: '/news',
     },
   ];

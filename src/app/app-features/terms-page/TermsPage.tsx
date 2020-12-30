@@ -3,7 +3,7 @@ import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 export default function TermsPage() {
   const path = [
     {
-      name: '\xa0' + 'Termeni de utilizare',
+      name: 'Termeni de utilizare',
       link: '/terms',
     },
   ];

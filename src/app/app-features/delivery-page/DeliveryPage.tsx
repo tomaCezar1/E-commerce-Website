@@ -3,7 +3,7 @@ import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 export default function DeliveryPage() {
   const path = [
     {
-      name: '\xa0' + 'Livrare',
+      name: 'Livrare',
       link: '/delivery',
     },
   ];

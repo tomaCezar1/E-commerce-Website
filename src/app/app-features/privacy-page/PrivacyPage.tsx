@@ -3,7 +3,7 @@ import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 export default function PrivacyPage() {
   const path = [
     {
-      name: '\xa0' + 'Politica de confidențialitate',
+      name: 'Politica de confidențialitate',
       link: '/privacy',
     },
   ];
