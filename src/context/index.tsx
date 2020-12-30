@@ -1,19 +1,11 @@
 import React, { createContext, useState } from 'react';
-import {
-  getCart,
-  saveCart,
-  getFavorites,
-  saveFavorites,
-  getSortOrder,
-  setSortOrder,
-} from '../utils';
+import { getCart, saveCart, getFavorites, saveFavorites } from '../utils';
 
 const AppContext = createContext(null);
 
 const AppContextProvider = ({ children, initialState }) => {
   const [appContext, setAppContext] = useState(initialState);
   const [cart, setCart] = useState(getCart());
-  const [order, setOrder] = useState(getSortOrder());
   const [favorites, setFavorites] = useState(getFavorites());
 
   const updateCart = (updatedCart) => {
@@ -84,11 +76,6 @@ const AppContextProvider = ({ children, initialState }) => {
     updateFavorites(copy);
   };
 
-  const saveOrder = (arg) => {
-    setOrder(arg);
-    setSortOrder(arg);
-  };
-
   return (
     <AppContext.Provider
       value={{
@@ -100,8 +87,6 @@ const AppContextProvider = ({ children, initialState }) => {
         clearCart,
         favorites,
         addToFavorites,
-        order,
-        saveOrder,
       }}
     >
       {children}
