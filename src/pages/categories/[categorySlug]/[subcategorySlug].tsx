@@ -11,6 +11,7 @@ export default function SubcategoryPage({
   subcategory,
   productsCount,
   currentPage,
+  category,
 }) {
   return (
     <Subcategories
@@ -18,6 +19,7 @@ export default function SubcategoryPage({
       subcategory={subcategory}
       productsCount={productsCount}
       currentPage={currentPage}
+      category={category}
     />
   );
 }
@@ -55,6 +57,17 @@ export async function getServerSideProps(context) {
   });
 
   const categoryId = productCategoriesData.data.productCategories[0].id;
+
+  const categoryData = await apolloClient.query({
+    query: ProductCategoriesQuery,
+    variables: {
+      filter: {
+        id: {
+          eq: productCategoriesData.data.productCategories[0].parent,
+        },
+      },
+    },
+  });
 
   const limit = 20;
 
@@ -103,6 +116,7 @@ export async function getServerSideProps(context) {
       products: productsData.data.products,
       subcategory: productCategoriesData?.data?.productCategories[0],
       productsCount: productsCountData?.data.productAggregate.count.id,
+      category: categoryData.data.productCategories[0],
       currentPage: page,
     },
   };

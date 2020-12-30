@@ -9,10 +9,10 @@ export function toggleHeader() {
   let direction = 0;
   let prevDirection = 0;
 
-  const header = document.getElementById("header-relative");
-  const homepage = document.getElementById('homepage')
+  const header = document.getElementById('header-relative');
+  const homepage = document.getElementById('homepage');
 
-  const checkScroll = function() {
+  const checkScroll = function () {
     // Find the direction of scroll
     // 0 - initial, 1 - up, 2 - down
 
@@ -20,8 +20,7 @@ export function toggleHeader() {
     if (curScroll > prevScroll) {
       //scrolled up
       direction = 2;
-    }
-    else if (curScroll < prevScroll) {
+    } else if (curScroll < prevScroll) {
       //scrolled down
       direction = 1;
     }
@@ -32,26 +31,26 @@ export function toggleHeader() {
 
     prevScroll = curScroll;
 
-    if(direction === 1 && curScroll < 65) {
+    if (direction === 1 && curScroll < 65) {
       header.classList.remove('header-fixed');
       header.classList.add('header-relative');
       header.classList.remove('hide');
-      homepage.classList.remove('add-padding')
+      homepage.classList.remove('add-padding');
     }
-    if(direction === 2 && curScroll < 150) {
+    if (direction === 2 && curScroll < 150) {
       header.classList.remove('header-fixed');
       header.classList.add('header-relative');
     }
-    if(direction === 2 && curScroll > 150) {
+    if (direction === 2 && curScroll > 150) {
       header.classList.remove('header-fixed');
       header.classList.add('hide');
     }
-    if(direction === 2 && curScroll > 65) {
-      homepage.classList.remove('add-padding')
+    if (direction === 2 && curScroll > 65) {
+      homepage.classList.remove('add-padding');
     }
   };
 
-  const toggleHeader = function(direction: number, curScroll: number) {
+  const toggleHeader = function (direction: number, curScroll: number) {
     if (direction === 2 && curScroll > 150) {
       //replace 150 with the height of your header in px
       header.classList.add('hide');
@@ -61,7 +60,7 @@ export function toggleHeader() {
       header.classList.remove('header-relative');
       header.classList.add('header-fixed');
       header.classList.remove('hide');
-      homepage.classList.add('add-padding')
+      homepage.classList.add('add-padding');
       prevDirection = direction;
     }
   };
@@ -69,35 +68,29 @@ export function toggleHeader() {
   window.addEventListener('scroll', checkScroll);
 }
 
-
 export const convertBreadcrumb = (string: string) => {
-  const breadcrumb = string[0].toUpperCase() + string.substring(1)
+  const breadcrumb = string[0].toUpperCase() + string.substring(1);
 
-  return breadcrumb
-    .replace(/-/g, ' ')
+  return breadcrumb.replace(/-/g, ' ');
 };
 
 export function useDebounce(value: string, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
-  useEffect(
-    () => {
-      const handler = setTimeout(() => {
-        setDebouncedValue(value);
-      }, delay);
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
 
-      return () => {
-        clearTimeout(handler);
-      };
-    },
-
-    [value]
-  );
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value]);
 
   return debouncedValue;
 }
 
-export const getViewportScrollPosition = (): {top: number; left: number} =>  {
+export const getViewportScrollPosition = (): { top: number; left: number } => {
   // The top-left-corner of the viewport is determined by the scroll position of the document
   // body, normally just (scrollLeft, scrollTop). However, Chrome and Firefox disagree about
   // whether `document.body` or `document.documentElement` is the scrolled element, so reading
@@ -107,63 +100,71 @@ export const getViewportScrollPosition = (): {top: number; left: number} =>  {
   const documentElement = document.documentElement!;
   const documentRect = documentElement.getBoundingClientRect();
 
-  const top = -documentRect.top || document.body.scrollTop || window.scrollY ||
-    documentElement.scrollTop || 0;
+  const top =
+    -documentRect.top ||
+    document.body.scrollTop ||
+    window.scrollY ||
+    documentElement.scrollTop ||
+    0;
 
-  const left = -documentRect.left || document.body.scrollLeft || window.scrollX ||
-    documentElement.scrollLeft || 0;
+  const left =
+    -documentRect.left ||
+    document.body.scrollLeft ||
+    window.scrollX ||
+    documentElement.scrollLeft ||
+    0;
 
-  return {top, left};
-}
+  return { top, left };
+};
 
 // Cart utilities
-export const saveCart = cart => {
-  localStorage.setItem("cart", JSON.stringify(cart))
-}
+export const saveCart = (cart) => {
+  localStorage.setItem('cart', JSON.stringify(cart));
+};
 
 export const getCart = () => {
   try {
-    const cart = JSON.parse(localStorage.getItem("cart"))
+    const cart = JSON.parse(localStorage.getItem('cart'));
     if (cart) {
-      return cart
+      return cart;
     }
   } catch (e) {}
-  return []
-}
+  return [];
+};
 
-export const cartTotal = cart => {
+export const cartTotal = (cart) => {
   if (cart.length === 0) {
-    return 0
+    return 0;
   }
 
   // Sum up all of the individual products costs
   const total = cart.reduce((counter, product) => {
-    if(product.isPromo) {
-      return counter + parseFloat((product.newPrice * product.qty).toFixed(2))
+    if (product.isPromo) {
+      return counter + parseFloat((product.newPrice * product.qty).toFixed(2));
     } else {
-      return counter + parseFloat((product.price * product.qty).toFixed(2))
+      return counter + parseFloat((product.price * product.qty).toFixed(2));
     }
-  }, 0)
+  }, 0);
 
-  return total
-}
+  return total;
+};
 
 export const clearCart = () => {
-  localStorage.removeItem("cart")
-}
+  localStorage.removeItem('cart');
+};
 
 export const formatPrice = (priceWithDecimal: number) => {
-  const dec = priceWithDecimal.toString().split(".")[1]
+  const dec = priceWithDecimal.toString().split('.')[1];
 
-  const len = dec && dec.length > 2 ? dec.length : 2
-  
-  return priceWithDecimal.toFixed(len)
-}
+  const len = dec && dec.length > 2 ? dec.length : 2;
+
+  return priceWithDecimal.toFixed(len);
+};
 
 // Favorites utilities
 export const getFavorites = () => {
   try {
-    const favorites = JSON.parse(localStorage.getItem("favorites"));
+    const favorites = JSON.parse(localStorage.getItem('favorites'));
     if (favorites) {
       return favorites;
     }
@@ -173,15 +174,15 @@ export const getFavorites = () => {
 
 export const saveFavorites = (favorites) => {
   localStorage.setItem('favorites', JSON.stringify(favorites));
-}
+};
 
 export const removeFavorites = () => {
   localStorage.removeItem('favorites');
-}
+};
 
 // Form fields validation
 const nameValidation = (fieldName, fieldValue) => {
-  if (fieldValue.trim() === "") {
+  if (fieldValue.trim() === '') {
     return 'Numele este obligatoriu';
   }
 
@@ -190,25 +191,26 @@ const nameValidation = (fieldName, fieldValue) => {
 
 const phoneValidation = (fieldName, fieldValue) => {
   if (String(fieldValue).length < 8) {
-    return "Număr inexistent"
+    return 'Număr inexistent';
   }
 
   if (String(fieldValue).trim().length < 1) {
     return 'Telefonul este obligatoriu';
   }
-  return null
-}
+  return null;
+};
 
 const callTimeValidation = (fieldName, fieldValue) => {
   if (fieldValue.trim().length < 1) {
-    return "Indicați ora apelului"
+    return 'Indicați ora apelului';
   }
 
   return null;
-}
+};
 
 export const validate = {
-  name: name => nameValidation("name", name),
-  phone: phone => phoneValidation('phone', phone),
-  callTime: callTime => callTimeValidation('callTime', callTime),
+  name: (name) => nameValidation('name', name),
+  phone: (phone) => phoneValidation('phone', phone),
+  callTime: (callTime) => callTimeValidation('callTime', callTime),
 };
+

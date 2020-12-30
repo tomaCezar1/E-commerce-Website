@@ -1,9 +1,16 @@
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function GuaranteesPage(): JSX.Element {
+  const path = [
+    {
+      name: 'Garanții',
+      link: '/guarantees',
+    },
+  ];
+
   return (
     <>
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       <div className="guarantees-container">
         <h2 className="terms-page-name">Garanție și returnări</h2>
         <p>

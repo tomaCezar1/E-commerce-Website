@@ -13,24 +13,29 @@ const initialValues = {
   callTime: '',
 };
 
-export default function CheckoutForm({ validate }): JSX.Element {
+export default function CheckoutForm({
+  validate,
+  setOrderSuccess,
+}): JSX.Element {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({} as any);
   const [touched, setTouched] = useState({} as any);
   const [productsArray, setProductsArray] = useState([] as any);
   const toast = useToast();
-  const { cart } = useContext(AppContext);
+  const { cart, clearCart } = useContext(AppContext);
 
   const router = useRouter();
 
   useEffect(() => {
-    const trimmedProducts = cart.map(({ id, articleCode, qty }) => {
+    const trimmedProducts = cart.map(({ id, name, articleCode, qty }) => {
       return {
         id,
-        articleCode: articleCode || '777',
+        name,
+        articleCode,
         quantity: qty,
       };
     });
+
     setProductsArray(trimmedProducts);
   }, []);
 
@@ -100,12 +105,13 @@ export default function CheckoutForm({ validate }): JSX.Element {
       sendOrder();
       toast({
         title: 'Comanda dumneavoastră a fost procesată cu succes.',
-        description: 'Licuricii noștri vă vor contacta imediat!',
         status: 'success',
         duration: 5000,
         isClosable: true,
         position: 'top',
       });
+      setOrderSuccess(true);
+      clearCart();
     }
   };
 

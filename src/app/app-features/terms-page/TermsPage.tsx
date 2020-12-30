@@ -1,9 +1,16 @@
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function TermsPage() {
+  const path = [
+    {
+      name: 'Termeni de utilizare',
+      link: '/terms',
+    },
+  ];
+
   return (
     <>
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       <div className="guarantees-container">
         <h2 className="terms-page-name">Termenii de utilizare</h2>
 

@@ -1,13 +1,19 @@
-import React from 'react'
-import RegionalStore from '../app/app-features/regional-store/RegionalStore'
-import Breadcrumbs from '../app/common/breadcrumbs/Breadcrumbs'
-
+import React from 'react';
+import RegionalStore from '../app/app-features/regional-store/RegionalStore';
+import Breadcrumbs from '../app/common/breadcrumbs/Breadcrumbs';
 
 export default function RegionalStorePage() {
+  const path = [
+    {
+      name: 'Magazine Regionale',
+      link: '/regional-store',
+    },
+  ];
+
   return (
     <>
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       <RegionalStore />
     </>
-  )
+  );
 }

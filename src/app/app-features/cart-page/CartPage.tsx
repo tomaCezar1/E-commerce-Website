@@ -7,6 +7,7 @@ import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function CartPage(): JSX.Element {
   const { cart, addToCart, removeFromCart, clearCart } = useContext(AppContext);
+  const [orderSuccess, setOrderSuccess] = useState(false);
 
   const [, updateState] = useState();
 
@@ -17,10 +18,27 @@ export default function CartPage(): JSX.Element {
     setRenderCartLength(true);
   }, []);
 
+  const path = [
+    {
+      name: 'Coș',
+      link: '/cart',
+    },
+  ];
+
+  const createMarkup = (html) => {
+    return {
+      __html: html,
+    };
+  };
+
   return (
     <div className="cart-page-container" suppressHydrationWarning={true}>
-      <Breadcrumbs />
-      {renderCartLength && cart.length > 0 ? (
+      <Breadcrumbs path={path} />
+      {orderSuccess ? (
+        <div className="no-items-text">
+          Comanda dumneavoastră a fost procesată cu succes
+        </div>
+      ) : renderCartLength && cart.length > 0 ? (
         <div className="cart-items-wrapper">
           <div
             style={{ display: 'flex', flexDirection: 'column', width: '70%' }}
@@ -45,11 +63,12 @@ export default function CartPage(): JSX.Element {
                         <span className="cart-product-name">
                           {product.name}
                         </span>
-                        <span className="cart-product-description">
-                          In mattis enim fringilla id et tincidunt id dignissim
-                          pellentesque. Nunc turpis nulla lectus posuere nisl,
-                          pellentesque lorem cursus semper.
-                        </span>
+                        <div
+                          className="cart-product-description"
+                          dangerouslySetInnerHTML={createMarkup(
+                            product.description
+                          )}
+                        ></div>
                       </div>
                     </div>
                     <div className="cart-product-price">
@@ -99,7 +118,7 @@ export default function CartPage(): JSX.Element {
               </div>
             </div>
           </div>
-          <CheckoutForm validate={validate} />
+          <CheckoutForm validate={validate} setOrderSuccess={setOrderSuccess} />
         </div>
       ) : (
         <div className="no-items-text">Coșul dumneavoastră este gol</div>

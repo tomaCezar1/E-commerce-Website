@@ -1,9 +1,16 @@
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function PrivacyPage() {
+  const path = [
+    {
+      name: 'Politica de confidențialitate',
+      link: '/privacy',
+    },
+  ];
+
   return (
     <>
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       <div className="guarantees-container">
         <h2 className="terms-page-name">Politica de confidențialitate</h2>
         <p className="terms-paragraph-18-regular">

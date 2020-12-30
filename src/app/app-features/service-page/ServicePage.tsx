@@ -6,9 +6,16 @@ import Guarantee from '../../../../public/svg/guarantee.svg';
 import Arrow from '../../../../public/svg/arrow.svg';
 
 export default function Service(): JSX.Element {
+  const path = [
+    {
+      name: 'Service centru',
+      link: '/service',
+    },
+  ];
+
   return (
     <>
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       <div className="guarantees-container">
         <h2 className="terms-page-name">Service centru</h2>
         <div className="service-flex-container">
