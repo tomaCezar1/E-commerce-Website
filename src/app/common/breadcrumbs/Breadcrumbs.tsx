@@ -22,14 +22,17 @@ export default function Breadcrumbs({ path }: BreadProps) {
         <Link href={basePath.link}>{basePath.name}</Link>
       </div>
       <div className="breadcrumb-item">
-        {path.map((e, i) => (
-          <>
-            <span className="breadcrumb-separator">&nbsp;/&nbsp;</span>
-            <Link key={i} href={e.link}>
-              {e.name}
-            </Link>
-          </>
-        ))}
+        {path.map((e, i) => {
+          console.log(e.name, 'element from breadcrumbs');
+          return (
+            <>
+              <span className="breadcrumb-separator">&nbsp;/&nbsp;</span>
+              <Link key={i} href={e.link}>
+                {e.name}
+              </Link>
+            </>
+          );
+        })}
       </div>
     </div>
   );

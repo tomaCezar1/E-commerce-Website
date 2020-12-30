@@ -12,6 +12,7 @@ export default function Subcategories({
   subcategory,
   productsCount,
   currentPage,
+  category,
 }): JSX.Element {
   const [pagesCount, setPagesCount] = useState(1);
   const [sortOrder, setSortOrder] = useState('');
@@ -51,19 +52,9 @@ export default function Subcategories({
     });
   };
 
-  const { data } = useQuery(ProductCategoriesQuery, {
-    variables: {
-      filter: {
-        id: {
-          eq: subcategory.parent,
-        },
-      },
-    },
-  });
-
   const path = [
     {
-      name: data?.productCategories[0].title,
+      name: category.title,
       link: '/categories/' + router.query.categorySlug,
     },
     {

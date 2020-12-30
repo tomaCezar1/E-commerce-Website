@@ -12,7 +12,6 @@ function ProductDetailsComponent({
   const path = [
     {
       name: productCategoryData.data.productCategories[0].title,
-
       link: '/categories/' + productCategoryData.data.productCategories[0].slug,
     },
     {
