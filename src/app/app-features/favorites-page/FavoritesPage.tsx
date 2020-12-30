@@ -7,9 +7,16 @@ export default function FavoritesPage(): JSX.Element {
   const { favorites } = useContext(AppContext);
   const isFavorite = favorites.map((el) => el.id);
 
+  const path = [
+    {
+      name: 'Favorite',
+      link: '/favorites',
+    },
+  ];
+
   return (
     <>
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       <h1 className="product-list-header" style={{ marginTop: 32 }}>
         Produsele favorite
       </h1>
