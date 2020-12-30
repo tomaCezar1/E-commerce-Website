@@ -6,7 +6,6 @@ const AppContext = createContext(null);
 const AppContextProvider = ({ children, initialState }) => {
   const [appContext, setAppContext] = useState(initialState);
   const [cart, setCart] = useState(getCart());
-  const [sortOrder, setSortOrder] = useState('');
   const [favorites, setFavorites] = useState(getFavorites());
 
   const updateCart = (updatedCart) => {
@@ -77,10 +76,6 @@ const AppContextProvider = ({ children, initialState }) => {
     updateFavorites(copy);
   };
 
-  const setOrder = (arg) => {
-    setSortOrder(arg);
-  };
-
   return (
     <AppContext.Provider
       value={{
@@ -92,8 +87,6 @@ const AppContextProvider = ({ children, initialState }) => {
         clearCart,
         favorites,
         addToFavorites,
-        sortOrder,
-        setOrder,
       }}
     >
       {children}

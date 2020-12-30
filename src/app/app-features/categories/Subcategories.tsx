@@ -1,11 +1,10 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import Router, { useRouter } from 'next/router';
 import { Select } from '@chakra-ui/react';
 import { useQuery } from '@apollo/client';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 import ProductCard from '../../app-features/home-page/product-card/ProductCard';
 import Pagination from '../../common/pagination/Pagination';
-import { AppContext } from '../../../context';
 import { ProductCategoriesQuery } from './ProductCategoriesQueries';
 
 export default function Subcategories({
@@ -15,20 +14,12 @@ export default function Subcategories({
   currentPage,
 }): JSX.Element {
   const [pagesCount, setPagesCount] = useState(1);
-  const { sortOrder, setOrder } = useContext(AppContext);
+  const [sortOrder, setSortOrder] = useState('');
   const router = useRouter();
   const limit = 20;
 
   useEffect(() => {
-    const currentPath = router.pathname;
-    const currentQuery = router.query;
-
-    currentQuery.sort = sortOrder;
-
-    Router.push({
-      pathname: currentPath,
-      query: currentQuery,
-    });
+    setSortOrder(router.query.sort as any);
 
     setPagesCount(Math.ceil(productsCount / limit));
   }, []);
@@ -52,7 +43,7 @@ export default function Subcategories({
 
     currentQuery.sort = event.target.value;
 
-    setOrder(event.target.value);
+    setSortOrder(event.target.value);
 
     await router.push({
       pathname: currentPath,
@@ -72,7 +63,7 @@ export default function Subcategories({
 
   const path = [
     {
-      name: data.productCategories[0].title,
+      name: data?.productCategories[0].title,
       link: '/categories/' + router.query.categorySlug,
     },
     {

@@ -21,7 +21,7 @@ export default function Breadcrumbs({ path }: BreadProps) {
         {basePath.name}
       </a>
       {path.map((e, i, a) => (
-        <>
+        <div key={i} style={{ display: 'flex' }}>
           <span className="breadcrumb-item">&nbsp;/&nbsp;</span>
           <a
             href={e.link}
@@ -31,7 +31,7 @@ export default function Breadcrumbs({ path }: BreadProps) {
           >
             {e.name}
           </a>
-        </>
+        </div>
       ))}
     </div>
   );

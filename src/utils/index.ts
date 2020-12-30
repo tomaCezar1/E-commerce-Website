@@ -213,3 +213,4 @@ export const validate = {
   phone: (phone) => phoneValidation('phone', phone),
   callTime: (callTime) => callTimeValidation('callTime', callTime),
 };
+
