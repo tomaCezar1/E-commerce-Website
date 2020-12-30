@@ -18,9 +18,16 @@ export default function CartPage(): JSX.Element {
     setRenderCartLength(true);
   }, []);
 
+  const path = [
+    {
+      name: 'Coș',
+      link: '/cart',
+    },
+  ];
+
   return (
     <div className="cart-page-container" suppressHydrationWarning={true}>
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       {orderSuccess ? (
         <div className="no-items-text">
           Comanda dumneavoastră a fost procesată cu success

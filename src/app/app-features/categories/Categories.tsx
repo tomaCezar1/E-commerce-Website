@@ -9,9 +9,16 @@ export default function Categories({
 }): JSX.Element {
   const router = useRouter();
 
+  const path = [
+    {
+      name: categoryDetails.title,
+      link: '/' + categoryDetails.slug,
+    },
+  ];
+
   return (
     <div style={{ margin: '32px 0' }}>
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       <div className="title-1">{categoryDetails.title}</div>
       <div className="subcat-container">
         <div className="subcategories-grid">

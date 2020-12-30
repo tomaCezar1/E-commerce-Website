@@ -1,9 +1,15 @@
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function AboutPage() {
+  const path = [
+    {
+      name: 'Despre noi',
+      link: '/about',
+    },
+  ];
   return (
     <>
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       <div className="guarantees-container">
         <h2 className="terms-page-name">Despre noi</h2>
 
