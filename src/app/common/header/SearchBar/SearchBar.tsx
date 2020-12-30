@@ -130,7 +130,7 @@ export default function SearchBar(): JSX.Element {
               results.map(({ id, name, price, images, slug }) => {
                 return (
                   <>
-                    <Link href="/Produs/[slug]" as={`/Produs/${slug}`}>
+                    <Link href="/product/[slug]" as={`/product/${slug}`}>
                       <div
                         key={id}
                         style={{ cursor: 'pointer' }}
