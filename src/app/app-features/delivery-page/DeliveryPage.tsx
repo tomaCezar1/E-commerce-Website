@@ -1,9 +1,16 @@
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function DeliveryPage() {
+  const path = [
+    {
+      name: 'Livrare',
+      link: '/delivery',
+    },
+  ];
+
   return (
     <>
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       <div className="guarantees-container">
         <h2 className="terms-page-name">Livrare</h2>
         <h4 className="terms-heading">Ridicare in magazin</h4>

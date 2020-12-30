@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import Router, { useRouter } from 'next/router';
 import { Select } from '@chakra-ui/react';
+import { useQuery } from '@apollo/client';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 import ProductCard from '../../app-features/home-page/product-card/ProductCard';
 import Pagination from '../../common/pagination/Pagination';
+import { ProductCategoriesQuery } from './ProductCategoriesQueries';
 
 export default function Subcategories({
   products,
@@ -11,34 +13,15 @@ export default function Subcategories({
   productsCount,
   currentPage,
 }): JSX.Element {
-  const [isLoading, setLoading] = useState(false);
   const [pagesCount, setPagesCount] = useState(1);
+  const [sortOrder, setSortOrder] = useState('');
   const router = useRouter();
   const limit = 20;
 
-  const startLoading = () => setLoading(true);
-  const stopLoading = () => setLoading(false);
-
   useEffect(() => {
-    Router.events.on('routeChangeStart', startLoading);
-    Router.events.on('routeChangeComplete', stopLoading);
-
-    const currentPath = router.pathname;
-    const currentQuery = router.query;
-
-    currentQuery.sort = '';
-
-    Router.push({
-      pathname: currentPath,
-      query: currentQuery,
-    });
+    setSortOrder(router.query.sort as any);
 
     setPagesCount(Math.ceil(productsCount / limit));
-
-    return () => {
-      Router.events.off('routeChangeStart', startLoading);
-      Router.events.off('routeChangeComplete', stopLoading);
-    };
   }, []);
 
   const paginationHandler = async (page) => {
@@ -60,15 +43,42 @@ export default function Subcategories({
 
     currentQuery.sort = event.target.value;
 
+    setSortOrder(event.target.value);
+
     await router.push({
       pathname: currentPath,
       query: currentQuery,
     });
   };
 
+  const { data } = useQuery(ProductCategoriesQuery, {
+    variables: {
+      filter: {
+        id: {
+          eq: subcategory.parent,
+        },
+      },
+    },
+  });
+
+  const path = [
+    {
+      name: data?.productCategories[0].title,
+      link: '/categories/' + router.query.categorySlug,
+    },
+    {
+      name: subcategory.title,
+      link:
+        '/categories/' +
+        router.query.categorySlug +
+        '/' +
+        router.query.subcategorySlug,
+    },
+  ];
+
   return (
     <div className="subcategories-page-wrapper">
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       <div className="title-1">{subcategory?.title}</div>
       <div className="subcategories-products-container">
         <div className="subcategories-filter">filtre</div>
@@ -78,7 +88,7 @@ export default function Subcategories({
               <Select
                 name="sorting"
                 onChange={sortingHandler}
-                value={router.query.sort}
+                value={sortOrder}
                 className="sorting-input"
               >
                 <option value="" disabled hidden>
@@ -101,9 +111,7 @@ export default function Subcategories({
           </div>
           <div className="subcategories-grid">
             {products.map((product) => {
-              return (
-                <ProductCard key={product.id} product={product} size="small" />
-              );
+              return <ProductCard key={product.id} product={product} small />;
             })}
           </div>
           {pagesCount > 1 && (

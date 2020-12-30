@@ -19,8 +19,11 @@
   color: $white;
   font-family: $regular;
   font-size: 14px;
-  padding: 2px 0 0 20px;
+  padding: 2px 35px 0 20px;
   margin-top: -2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
 
 .search-bar::placeholder {
@@ -37,10 +40,14 @@
   color: $black;
   font-size: 14px;
   font-family: $medium;
-  padding: 2px 0 0 20px;
+  padding: 2px 35px 0 20px;
   z-index: 5;
   position: relative;
   overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .search-bar:focus, .search-bar-active:focus {
