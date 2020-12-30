@@ -86,9 +86,13 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
                   }}
                 >
                   {product.available && filtered.length > 0 && loaded ? (
-                    <FavoriteActive />
+                    <i className="product-fav-icons">
+                      <FavoriteActive />
+                    </i>
                   ) : (
-                    <FavoriteEmpty />
+                    <i className="product-fav-icons">
+                      <FavoriteEmpty />
+                    </i>
                   )}
                 </i>
                 <div
@@ -111,7 +115,9 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
                         }
                   }
                 >
-                  <CartIcon />
+                  <i className="product-fav-cart-icon">
+                    <CartIcon />
+                  </i>
                   <p className="product-card-add-text">Adaugă în coș</p>
                 </div>
               </div>
