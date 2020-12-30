@@ -36,7 +36,7 @@ export default function CartPage(): JSX.Element {
       <Breadcrumbs path={path} />
       {orderSuccess ? (
         <div className="no-items-text">
-          Comanda dumneavoastră a fost procesată cu success
+          Comanda dumneavoastră a fost procesată cu succes
         </div>
       ) : renderCartLength && cart.length > 0 ? (
         <div className="cart-items-wrapper">

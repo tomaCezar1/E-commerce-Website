@@ -105,7 +105,6 @@ export default function CheckoutForm({
       sendOrder();
       toast({
         title: 'Comanda dumneavoastră a fost procesată cu succes.',
-        description: 'Licuricii noștri vă vor contacta imediat!',
         status: 'success',
         duration: 5000,
         isClosable: true,

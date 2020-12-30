@@ -26,8 +26,13 @@
   color: $black;
 }
 
-.breadcrumb-item a:last-child {
+.breadcrumb-last-item {
   color: $primaryColor;
+  font-family: 'Medium';
+  font-size: 12px;
+  text-decoration: none;
+  display: flex;
+  cursor: pointer;
 }
 
 .breadcrumb-default-item a {
