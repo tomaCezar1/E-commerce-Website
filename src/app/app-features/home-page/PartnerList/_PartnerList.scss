@@ -1,4 +1,4 @@
-@import "../../../../styles/constants.scss";
+@import '../../../../styles/constants.scss';
 $height: 100px;
 
 .slider-container {
@@ -30,6 +30,9 @@ $height: 100px;
   height: 100px !important;
   width: 200px !important;
   margin: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .partner-img {
@@ -64,4 +67,94 @@ $height: 100px;
 #goRight {
   padding-left: 16px;
   @extend %btn-styles;
+}
+
+//xs
+@media screen and (min-width: 300px) and (max-width: $xs) {
+  .partner-img {
+    height: 50px;
+  }
+
+  .slide {
+    height: 50px !important;
+    width: 100px !important;
+    margin: 0;
+  }
+
+  #goLeft > *,
+  #goRight > * {
+    width: 10px;
+    height: 16px;
+  }
+
+  .slider {
+    margin-left: -10px;
+  }
+
+  .slider-container {
+    margin: 35px 0;
+  }
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .partner-img {
+    height: 80px;
+  }
+
+  .slide {
+    height: 80px !important;
+    width: 170px !important;
+    margin: 0;
+  }
+
+  #goLeft > *,
+  #goRight > * {
+    width: 12px;
+    height: 18px;
+  }
+
+  .slider {
+    margin-left: -10px;
+  }
+
+  .slider-container {
+    margin: 35px 0;
+  }
+}
+
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .partner-img {
+    height: 80px;
+  }
+
+  .slide {
+    height: 80px !important;
+    width: 160px !important;
+    margin: 0;
+  }
+
+  #goLeft > *,
+  #goRight > * {
+    width: 12px;
+    height: 18px;
+  }
+
+  .slider-container {
+    margin: 40px 0;
+  }
+}
+
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+  .partner-img {
+    height: 110px;
+  }
+
+  .slide {
+    height: 110px !important;
+    width: 230px !important;
+    margin: 0;
+  }
 }

@@ -1,4 +1,4 @@
-@import "../../../../styles/constants.scss";
+@import '../../../../styles/constants.scss';
 
 .product-list-container {
   display: flex;
@@ -16,5 +16,52 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 25px 32px;
-  width: 100%;
+  max-width: 100%;
+}
+
+//xs
+@media screen and (min-width: 300px) and (max-width: $xs) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px 10px;
+    max-width: 300px !important;
+  }
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 12px 12px;
+    max-width: 508px !important;
+  }
+
+  .product-list-container {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .cards-container {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 12px 12px;
+    max-width: 739px !important;
+    justify-content: center;
+  }
+
+  .product-list-container {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+//lg
+@media screen and (min-width: 1251px) and (max-width: $sm) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 12px 12px;
+    max-width: 581px !important;
+  }
 }
