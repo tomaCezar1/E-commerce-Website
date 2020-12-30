@@ -248,3 +248,14 @@
     border-bottom-right-radius: 16px;
   }
 }
+
+//xs
+@media screen and (min-width: 300px) and (max-width: $xs) {
+  .product-details-flex {
+    flex-direction: column;
+  }
+
+  .product-details-title {
+    font-size: 24px;
+  }
+}

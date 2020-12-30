@@ -44,3 +44,55 @@
   font-size: 18px;
   font-family: $bold;
 }
+
+//xs
+@media screen and (min-width: 300px) and (max-width: $xs) {
+  .guarantees-container {
+    max-width: 280px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .terms-page-name {
+    font-size: 24px;
+  }
+  .terms-list-item {
+    font-size: 14px;
+  }
+  .terms-heading {
+    margin-bottom: 4px;
+  }
+}
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .guarantees-container {
+    max-width: 549px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .terms-page-name {
+    font-size: 24px;
+  }
+  .terms-list-item {
+    font-size: 14px;
+  }
+  .terms-heading {
+    margin-bottom: 4px;
+  }
+}
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .guarantees-container {
+    max-width: 739px;
+  }
+  .terms-heading {
+    margin-bottom: 4px;
+  }
+}
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+  .guarantees-container {
+    max-width: 1152px;
+  }
+}
