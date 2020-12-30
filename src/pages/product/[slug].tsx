@@ -10,8 +10,18 @@ function ProductDetailsComponent({
   productCategoryData,
 }) {
   const path = [
-    productCategoryData.data.productCategories[0],
-    productSubCategoryData.data.productCategories[0],
+    {
+      name: productCategoryData.data.productCategories[0].title,
+      link: '/categories/' + productCategoryData.data.productCategories[0].slug,
+    },
+    {
+      name: productSubCategoryData.data.productCategories[0].title,
+      link:
+        '/categories/' +
+        productCategoryData.data.productCategories[0].slug +
+        '/' +
+        productSubCategoryData.data.productCategories[0].slug,
+    },
   ];
 
   return (

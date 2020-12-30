@@ -1,10 +1,12 @@
 import { useEffect, useState, useContext } from 'react';
 import Router, { useRouter } from 'next/router';
 import { Select } from '@chakra-ui/react';
+import { useQuery } from '@apollo/client';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 import ProductCard from '../../app-features/home-page/product-card/ProductCard';
 import Pagination from '../../common/pagination/Pagination';
 import { AppContext } from '../../../context';
+import { ProductCategoriesQuery } from './ProductCategoriesQueries';
 
 export default function Subcategories({
   products,
@@ -22,8 +24,6 @@ export default function Subcategories({
     const currentQuery = router.query;
 
     currentQuery.sort = order;
-
-    console.log(order)
 
     Router.push({
       pathname: currentPath,
@@ -87,7 +87,7 @@ export default function Subcategories({
 
   return (
     <div className="subcategories-page-wrapper">
-      <Breadcrumbs />
+      <Breadcrumbs path={path} />
       <div className="title-1">{subcategory?.title}</div>
       <div className="subcategories-products-container">
         <div className="subcategories-filter">filtre</div>

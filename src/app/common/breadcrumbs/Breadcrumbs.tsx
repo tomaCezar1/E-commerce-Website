@@ -1,42 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { convertBreadcrumb } from '../../../utils';
+import * as React from 'react';
 
-export default function Breadcrumbs({ path = [] }): JSX.Element {
-  const router = useRouter();
-  const [breadcrumbs, setBreadcrumbs] = useState(null);
+interface BreadPath {
+  name: string;
+  link: string;
+}
 
-  useEffect(() => {
-    let pathArray;
-    if (router) {
-      if (path && path.length > 0) {
-        pathArray = path.map((element, i) => {
-          return {
-            breadcrumb: element.name,
-            href: element.path === '/' ? element.path : '/' + element.path,
-          };
-        });
-        setBreadcrumbs(pathArray);
-      } else {
-        const linkPath = router.asPath.split('/');
-        linkPath.shift();
+interface BreadProps {
+  path: BreadPath[];
+}
 
-        pathArray = linkPath.map((element, i) => {
-          return {
-            breadcrumb: element,
-            href: '/' + linkPath.slice(0, i + 1).join('/'),
-          };
-        });
-
-        setBreadcrumbs(pathArray);
-      }
-    }
-  }, [router]);
-
-  if (!breadcrumbs) {
-    return null;
-  }
+export default function Breadcrumbs({ path }: BreadProps) {
+  const basePath: BreadPath = {
+    name: 'Cegoltar',
+    link: '/',
+  };
 
   return (
     <div className="breadcrumb">
@@ -59,7 +36,3 @@ export default function Breadcrumbs({ path = [] }): JSX.Element {
     </div>
   );
 }
-
-Breadcrumbs.defaultProps = {
-  path: [],
-};
