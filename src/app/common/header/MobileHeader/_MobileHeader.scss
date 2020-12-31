@@ -89,3 +89,31 @@
   font-size: 16px;
   color: $white;
 }
+
+.mobile-menu-item {
+  font-family: $bold;
+  font-size: 16px;
+  margin-left: -10px;
+}
+
+.mobile-menu-child-item {
+  font-family: $medium;
+  font-size: 16px;
+  margin: 5px 0 12px 8px;
+}
+
+.drawer-logo {
+  display: flex;
+  background: url('../../../../../public/svg/cegoltar-drawer-logo.svg');
+  width: 146px;
+  height: 28px;
+  position: absolute;
+  left: 30px;
+  top: 20px;
+}
+
+@media screen and (min-width: $md) {
+  .mobile-header-container {
+    display: none;
+  }
+}

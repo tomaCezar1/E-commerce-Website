@@ -1,8 +1,14 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../../../../context';
 import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Box,
   Drawer,
   DrawerBody,
   DrawerFooter,
@@ -14,7 +20,17 @@ import {
 
 export default function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
-  const { cart, favorites } = useContext(AppContext);
+  const { cart, favorites, appContext } = useContext(AppContext);
+  const [rootCategories, setRootCategories] = useState([]);
+  const [childCategories, setChildCategories] = useState([]);
+
+  useEffect(() => {
+    const rooCats = appContext.categories.filter((c) => !c.parent);
+    setRootCategories(rooCats);
+    setChildCategories(
+      appContext.categories.filter((c) => c.parent === rooCats[0].id)
+    );
+  }, [appContext]);
 
   const onClose = () => {
     setIsOpen(false);
@@ -30,32 +46,66 @@ export default function MobileHeader() {
       </div>
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay>
-          <DrawerContent>
-            <DrawerCloseButton onClick={onClose} />
-            <DrawerHeader>Create your account</DrawerHeader>
-
-            <DrawerBody>
-              <div>asdasdasd</div>
-            </DrawerBody>
-
-            <div className="drawer-footer-wrapper">
-              <DrawerFooter>
-                <div className="mobile-drawer-footer">
-                  <Link href="/regional-store" locale={router.locale}>
-                    <span className="mobile-header-link">
-                      Magazine regionale
-                    </span>
-                  </Link>
-                  <Link href="/service" locale={router.locale}>
-                    <span className="mobile-header-link">Service Centru</span>
-                  </Link>
-                  <Link href="/news" locale={router.locale}>
-                    <span className="mobile-header-link">Știri</span>
-                  </Link>
+          <div>
+            <DrawerContent>
+              <DrawerCloseButton onClick={onClose} />
+              <DrawerHeader>
+                <div className="drawer-logo" />
+              </DrawerHeader>
+              <DrawerBody>
+                <div style={{ marginTop: 30 }}>
+                  <Accordion allowMultiple allowToggle>
+                    {rootCategories.map((parentCat) => {
+                      return (
+                        <AccordionItem key={parentCat.id}>
+                          <AccordionButton>
+                            <Box flex="1" textAlign="left">
+                              <div className="mobile-menu-item">
+                                {parentCat.title}
+                              </div>
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                          <AccordionPanel pb={4}>
+                            {appContext.categories
+                              .filter((c) => c.parent === parentCat.id)
+                              .map((child) => {
+                                return (
+                                  <div
+                                    key={child.id}
+                                    className="mobile-menu-child-item"
+                                  >
+                                    {child.title}
+                                  </div>
+                                );
+                              })}
+                          </AccordionPanel>
+                        </AccordionItem>
+                      );
+                    })}
+                  </Accordion>
                 </div>
-              </DrawerFooter>
-            </div>
-          </DrawerContent>
+              </DrawerBody>
+
+              <div className="drawer-footer-wrapper">
+                <DrawerFooter>
+                  <div className="mobile-drawer-footer">
+                    <Link href="/regional-store" locale={router.locale}>
+                      <span className="mobile-header-link">
+                        Magazine regionale
+                      </span>
+                    </Link>
+                    <Link href="/service" locale={router.locale}>
+                      <span className="mobile-header-link">Service Centru</span>
+                    </Link>
+                    <Link href="/news" locale={router.locale}>
+                      <span className="mobile-header-link">Știri</span>
+                    </Link>
+                  </div>
+                </DrawerFooter>
+              </div>
+            </DrawerContent>
+          </div>
         </DrawerOverlay>
       </Drawer>
       <Link href="/">
