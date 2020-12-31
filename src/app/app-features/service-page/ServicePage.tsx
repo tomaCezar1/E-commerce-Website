@@ -112,7 +112,7 @@ export default function Service(): JSX.Element {
             </a>
           </div>
 
-          <i>
+          <i className="service-arrow">
             <Arrow />
           </i>
 
@@ -126,7 +126,7 @@ export default function Service(): JSX.Element {
             <div className="service-algoritm-text">1-3 zile</div>
           </div>
 
-          <i>
+          <i className="service-arrow">
             <Arrow />
           </i>
 
@@ -142,7 +142,7 @@ export default function Service(): JSX.Element {
             </div>
           </div>
 
-          <i>
+          <i className="service-arrow">
             <Arrow />
           </i>
 
