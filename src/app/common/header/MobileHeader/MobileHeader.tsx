@@ -22,27 +22,40 @@ export default function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const { cart, favorites, appContext } = useContext(AppContext);
   const [rootCategories, setRootCategories] = useState([]);
-  const [childCategories, setChildCategories] = useState([]);
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [showLogo, setShowLogo] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const rooCats = appContext.categories.filter((c) => !c.parent);
     setRootCategories(rooCats);
-    setChildCategories(
-      appContext.categories.filter((c) => c.parent === rooCats[0].id)
-    );
   }, [appContext]);
 
   const onClose = () => {
     setIsOpen(false);
   };
 
-  const router = useRouter();
+  const handleChange = (activeIndex) => {
+    setActiveCategory(activeIndex[0]);
+  };
 
   return (
     <div className="mobile-header-container">
       <div className="mobile-icons-wrapper">
         <div className="mobile-burger-icon" onClick={() => setIsOpen(true)} />
-        <div className="mobile-search-icon" />
+        <form className="mobile-search-bar">
+          <input
+            type="search"
+            placeholder="Caută"
+            className="mobile-search-input"
+            onFocus={() => setShowLogo(false)}
+            onBlur={() => {
+              setTimeout(() => {
+                setShowLogo(true);
+              }, 500);
+            }}
+          />
+        </form>
       </div>
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay>
@@ -54,15 +67,25 @@ export default function MobileHeader() {
               </DrawerHeader>
               <DrawerBody>
                 <div style={{ marginTop: 30 }}>
-                  <Accordion allowMultiple allowToggle>
+                  <Accordion allowMultiple allowToggle onChange={handleChange}>
                     {rootCategories.map((parentCat) => {
                       return (
                         <AccordionItem key={parentCat.id}>
                           <AccordionButton>
                             <Box flex="1" textAlign="left">
-                              <div className="mobile-menu-item">
-                                {parentCat.title}
-                              </div>
+                              <Link
+                                href={'/categories/[categorySlug]'}
+                                as={`/categories/${parentCat.slug}`}
+                                locale={router.locale}
+                                key={parentCat.id}
+                              >
+                                <div
+                                  className="mobile-menu-item"
+                                  onClick={onClose}
+                                >
+                                  {parentCat.title}
+                                </div>
+                              </Link>
                             </Box>
                             <AccordionIcon />
                           </AccordionButton>
@@ -71,12 +94,22 @@ export default function MobileHeader() {
                               .filter((c) => c.parent === parentCat.id)
                               .map((child) => {
                                 return (
-                                  <div
+                                  <Link
+                                    href={
+                                      '/categories/[categorySlug]/[subcategorySlug]'
+                                    }
+                                    as={`/categories/${rootCategories[activeCategory]?.slug}/${child.slug}`}
+                                    locale={router.locale}
                                     key={child.id}
-                                    className="mobile-menu-child-item"
                                   >
-                                    {child.title}
-                                  </div>
+                                    <div
+                                      key={child.id}
+                                      className="mobile-menu-child-item"
+                                      onClick={onClose}
+                                    >
+                                      {child.title}
+                                    </div>
+                                  </Link>
                                 );
                               })}
                           </AccordionPanel>
@@ -108,11 +141,13 @@ export default function MobileHeader() {
           </div>
         </DrawerOverlay>
       </Drawer>
-      <Link href="/">
-        <div className="mobile-logo-wrapper">
-          <div className="mobile-logo" />
-        </div>
-      </Link>
+      {showLogo && (
+        <Link href="/">
+          <div className="mobile-logo-wrapper">
+            <div className="mobile-logo" />
+          </div>
+        </Link>
+      )}
       <div className="mobile-icons-wrapper">
         <Link href="/cart" locale={router.locale}>
           <div className="mobile-cart-icon">
