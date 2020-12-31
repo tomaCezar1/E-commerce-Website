@@ -35,7 +35,7 @@
 }
 
 .mobile-search-icon {
-  background: url('../../../../../public/svg/SearchIconSmall.svg');
+  background: url();
   width: 15px;
   height: 15px;
   margin-left: 15px;
@@ -88,4 +88,83 @@
   font-family: $medium;
   font-size: 16px;
   color: $white;
+}
+
+.mobile-menu-item {
+  font-family: $bold;
+  font-size: 16px;
+  margin-left: -10px;
+  width: 95%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.mobile-menu-child-item {
+  font-family: $medium;
+  font-size: 16px;
+  margin: 5px 0 12px 8px;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.drawer-logo {
+  display: flex;
+  background: url('../../../../../public/svg/cegoltar-drawer-logo.svg');
+  width: 146px;
+  height: 28px;
+  position: absolute;
+  left: 30px;
+  top: 20px;
+}
+
+.mobile-search-input {
+  outline: none;
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  font-family: $medium;
+  color: $darkGrey;
+  font-size: 14px;
+
+  background: $primaryColor
+    url('../../../../../public/svg/SearchIconSmall.svg') no-repeat
+    9px center;
+  border: none;
+  padding: 6px 6px 6px 30px;
+  
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+  width: 0px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.mobile-search-input:focus {
+  color: $black;
+  width: 70%;
+  margin-left: 16px;
+  background: $white
+    url('../../../../../public/svg/search-icon-gray.svg') no-repeat
+    9px center;
+	padding-left: 32px;
+  background-color: $white;
+}
+
+.mobile-search-input::-webkit-search-decoration,
+.mobile-search-input::-webkit-search-cancel-button {
+  display: none;
+}
+
+@media screen and (min-width: $md) {
+  .mobile-header-container {
+    display: none;
+  }
 }
