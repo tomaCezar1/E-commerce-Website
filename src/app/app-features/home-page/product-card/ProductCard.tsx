@@ -7,7 +7,6 @@ import { useToast } from '@chakra-ui/react';
 import { AppContext } from '../../../../context';
 
 function ProductCard({ product, small = false, isFavorite = [] }) {
-  const [isActive, setActive] = useState(false);
   const { addToCart, addToFavorites } = useContext(AppContext);
   const toast = useToast();
 

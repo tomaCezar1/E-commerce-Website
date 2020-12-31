@@ -23,6 +23,16 @@ function ProductDetails({ productDetails }) {
     addToFavorites(product);
   };
 
+  let sale: number;
+
+  if (details.isPromo) {
+    sale = Math.floor(
+      ((details.price - details.newPrice) / details.price) * 100
+    );
+  } else {
+    sale = 0;
+  }
+
   const { loading, data } = useQuery(TechSpecsQuery, {
     variables: { id },
   });
@@ -78,6 +88,7 @@ function ProductDetails({ productDetails }) {
     <>
       <div className="product-details-container">
         <div className="product-details-flex">
+          <h1 className="product-details-title-responsive">{details.name}</h1>
           <div className="product-details-slideshow">
             <ProductImages images={details.images} />
           </div>
@@ -101,7 +112,14 @@ function ProductDetails({ productDetails }) {
               dangerouslySetInnerHTML={createMarkup(details.description)}
             />
             <div className="product-details-cart-price">
-              <h1 className="product-details-price">{details.price} lei</h1>
+              {sale > 0 ? (
+                <div className="discounted-price-div-mobile">
+                  <p className="crossed-price">{details?.price}</p>
+                  <p className="discounted-price">{details?.newPrice} lei</p>
+                </div>
+              ) : (
+                <p className="product-details-price">{details?.price} lei</p>
+              )}
 
               <div className="product-details-add-to-cart-flex">
                 <div className="product-details-counter">
@@ -133,6 +151,59 @@ function ProductDetails({ productDetails }) {
                   )}
                 </i>
 
+                <div
+                  className="product-details-add-to-cart"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addToCart(details, 1);
+                    toast({
+                      title: `Produsul ${details.name} a fost adăugat cu succes!`,
+                      status: 'success',
+                      duration: 5000,
+                      isClosable: true,
+                      position: 'top',
+                    });
+                  }}
+                >
+                  <CartIcon />
+                  <p className="product-details-add-text">Adaugă în coș</p>
+                </div>
+              </div>
+
+              <div className="product-details-add-to-cart-mobile">
+                <div className="counter-and-fav-mobile">
+                  <i
+                    className="product-details-favorites"
+                    style={{ cursor: 'pointer' }}
+                    onClick={(event) => {
+                      addToFavoritesList(event, details);
+                    }}
+                  >
+                    {filtered.length > 0 && loaded ? (
+                      <FavoriteActive />
+                    ) : (
+                      <FavoriteEmpty />
+                    )}
+                  </i>
+
+                  <div className="product-details-counter">
+                    <div
+                      className="product-details-counters"
+                      onClick={handleRemove}
+                    >
+                      <p>-</p>
+                    </div>
+                    <div className="product-details-center-counter">
+                      <p>{counter}</p>
+                    </div>
+                    <div
+                      className="product-details-counters"
+                      onClick={handleAdd}
+                    >
+                      <p>+</p>
+                    </div>
+                  </div>
+                </div>
                 <div
                   className="product-details-add-to-cart"
                   onClick={(e) => {
