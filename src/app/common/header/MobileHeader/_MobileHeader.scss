@@ -163,6 +163,10 @@
   display: none;
 }
 
+.mobile-search-wrapper {
+  margin-left: 16px;
+}
+
 @media screen and (min-width: $md) {
   .mobile-header-container {
     display: none;
