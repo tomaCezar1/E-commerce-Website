@@ -1,0 +1,91 @@
+@import '../../../../styles/constants.scss';
+
+.mobile-header-container {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 14px;
+  background: $primaryColor;
+}
+
+.mobile-logo-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mobile-icons-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.mobile-logo {
+  background: url('../../../../../public/svg/LogoSmall.svg');
+  width: 33px !important;
+  height: 33px !important;
+  margin: auto;
+}
+
+.mobile-burger-icon {
+  background: url('../../../../../public/svg/BurgerIconSmall.svg') no-repeat;
+  width: 14px;
+  height: 12px;
+}
+
+.mobile-search-icon {
+  background: url('../../../../../public/svg/SearchIconSmall.svg');
+  width: 15px;
+  height: 15px;
+  margin-left: 15px;
+}
+
+.mobile-cart-icon {
+  background: url('../../../../../public/svg/CartIconSmall.svg');
+  width: 23px;
+  height: 20px;
+  position: relative;
+}
+
+.mobile-heart-icon {
+  background: url('../../../../../public/svg/HeartIconSmall.svg');
+  width: 20px;
+  height: 18px;
+  margin-left: 15px;
+  position: relative;
+}
+
+.mobile-notification-icon {
+  width: 10px !important;
+  height: 10px !important;
+  background: $notificationIconBg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: -4px;
+  top: -3px;
+  font-size: 6px;
+  color: $black;
+  font-family: $regular;
+  border-radius: 5px;
+}
+
+.drawer-footer-wrapper {
+  width: 100%;
+  background: $primaryColor;
+}
+
+.mobile-drawer-footer {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background: $bold;
+  font-family: $medium;
+  font-size: 16px;
+  color: $white;
+}

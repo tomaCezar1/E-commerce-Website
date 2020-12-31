@@ -223,3 +223,17 @@
 .add-margin {
   margin-top: 65px;
 }
+
+@media screen and (min-width: 300px) and (max-width: $md) {
+  .header-relative {
+    display: none;
+  }
+
+  .header-static {
+    display: none !important;
+  }
+
+  .header {
+    display: none
+  }
+}
