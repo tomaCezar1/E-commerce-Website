@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../../../../context';
+import SearchBar from '../SearchBar/SearchBar';
 import {
   Accordion,
   AccordionItem,
@@ -20,10 +21,12 @@ import {
 
 export default function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showLogo, setShowLogo] = useState(true);
   const { cart, favorites, appContext } = useContext(AppContext);
   const [rootCategories, setRootCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(0);
-  const [showLogo, setShowLogo] = useState(true);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -36,26 +39,25 @@ export default function MobileHeader() {
   };
 
   const handleChange = (activeIndex) => {
-    setActiveCategory(activeIndex[0]);
+    setActiveCategory(activeIndex);
+  };
+
+  const handleClick = () => {
+    setShowSearchBar(!showSearchBar);
+    setShowLogo(!showLogo);
   };
 
   return (
     <div className="mobile-header-container">
       <div className="mobile-icons-wrapper">
         <div className="mobile-burger-icon" onClick={() => setIsOpen(true)} />
-        <form className="mobile-search-bar">
-          <input
-            type="search"
-            placeholder="Caută"
-            className="mobile-search-input"
-            onFocus={() => setShowLogo(false)}
-            onBlur={() => {
-              setTimeout(() => {
-                setShowLogo(true);
-              }, 500);
-            }}
-          />
-        </form>
+        <div className="mobile-search-wrapper">
+          {showSearchBar ? (
+            <SearchBar mobile onClose={handleClick} />
+          ) : (
+            <div className="mobile-search-icon" onClick={handleClick} />
+          )}
+        </div>
       </div>
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay>
@@ -67,7 +69,12 @@ export default function MobileHeader() {
               </DrawerHeader>
               <DrawerBody>
                 <div style={{ marginTop: 30 }}>
-                  <Accordion allowMultiple allowToggle onChange={handleChange}>
+                  <Accordion
+                    allowMultiple
+                    allowToggle
+                    index={activeCategory}
+                    onChange={handleChange}
+                  >
                     {rootCategories.map((parentCat) => {
                       return (
                         <AccordionItem key={parentCat.id}>

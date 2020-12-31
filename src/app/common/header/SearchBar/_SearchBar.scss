@@ -10,6 +10,18 @@
   position: relative;
 }
 
+.search-container-mobile {
+  min-width: 150px;
+  max-width: 410px;
+  width: 100%;
+  height: 30px;
+  margin: auto 0;
+  border-radius: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .search-bar {
   width: 100%;
   height: 30px;
@@ -23,7 +35,6 @@
   margin-top: -2px;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }
 
 .search-bar::placeholder {
@@ -50,8 +61,31 @@
   -webkit-box-orient: vertical;
 }
 
-.search-bar:focus, .search-bar-active:focus {
-  outline: none
+.search-bar-active-mobile {
+  width: 100%;
+  height: 35px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border: none;
+  background: $white;
+  color: $black;
+  font-size: 14px;
+  font-family: $medium;
+  padding: 2px 35px 0 20px;
+  z-index: 5;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.search-bar:focus,
+.search-bar-active:focus,
+.search-container-mobile:focus,
+.search-bar-active-mobile:focus {
+  outline: none;
 }
 
 .search-icon {
@@ -78,11 +112,14 @@
   box-shadow: 3px 12px 8px rgba(0, 0, 0, 0.1);
 }
 
+.search-overlay-mobile {
+  box-shadow: 3px 12px 8px rgba(0, 0, 0, 0.1);
+}
+
 .search-results-container {
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   overflow: hidden;
-  //width: 380px; DE CE WIDTH? Dacă este ancoră! Și el are width dinamic. VĂ rog nu mai repetați această greașală critică
   padding-top: 1px;
   max-height: 345px;
   z-index: 15 !important;
@@ -101,9 +138,26 @@
   max-height: 345px;
 }
 
+.search-results-container-scroll-mobile {
+  overscroll-behavior: contain;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  padding-top: 1px;
+  max-height: 345px;
+}
+
 .search-product-image {
   width: 52px;
   height: 52px;
+}
+
+.search-product-image-mobile {
+  width: 28px;
+  height: 28px;
 }
 
 .search-product-text {
@@ -122,8 +176,20 @@
   width: 250px;
 }
 
+.search-product-name-mobile {
+  font-size: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100px;
+}
+
 .search-product-price {
   font-size: 12px;
+}
+
+.search-product-price-mobile {
+  font-size: 8px;
 }
 
 .search-results-divider {
@@ -147,7 +213,18 @@
   top: 15px;
   z-index: 10;
   cursor: pointer;
-  background: url('../../../../../public/svg/CloseButtonGray.svg') no-repeat
+  background: url('../../../../../public/svg/CloseButtonGray.svg') no-repeat;
+}
+
+.close-circle-icon-mobile {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  right: 18px;
+  top: 10px;
+  z-index: 10;
+  cursor: pointer;
+  background: url('../../../../../public/svg/CloseButtonGray.svg') no-repeat;
 }
 
 .close-circle-icon2 {
@@ -158,11 +235,10 @@
   top: 6px;
   z-index: 10;
   cursor: pointer;
-  background: url('../../../../../public/svg/CloseButton.svg') no-repeat
+  background: url('../../../../../public/svg/CloseButton.svg') no-repeat;
 }
 
 .search-skeleton-wrapper {
-  //width: 380px; DE CE WIDTH? Dacă este ancoră! Și el are width dinamic. VĂ rog nu mai repetați această greașală critică
   display: flex;
   background: $white;
   justify-content: space-between;
@@ -178,8 +254,20 @@
   width: 230px;
 }
 
+.search-skeleton-text-mobile {
+  width: 100px;
+  height: 25px;
+}
+
 .no-items-container {
-  //width: 380px;
+  display: flex;
+  background: $white;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-items-container-mobile {
   display: flex;
   background: $white;
   height: 70px;
