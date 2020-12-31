@@ -1,10 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useContext, useState, useEffect, useRef } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../../../../context';
-import { SearchProductsQuery } from '../SearchBar/SearchProductsQuery';
-import { useDebounce } from '../../../../utils';
-import { apolloClient } from '../../../lib/apolloClient';
 import SearchBar from '../SearchBar/SearchBar';
 import {
   Accordion,
@@ -20,7 +17,6 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  useTimeout,
 } from '@chakra-ui/react';
 
 export default function MobileHeader() {
