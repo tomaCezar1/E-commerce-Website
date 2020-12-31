@@ -23,7 +23,7 @@
 @media screen and (min-width: 300px) and (max-width: $xs) {
   .cards-container {
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    grid-gap: 6px 6px;
+    grid-gap: 8px 8px;
     justify-content: center;
   }
 

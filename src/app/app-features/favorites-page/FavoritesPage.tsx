@@ -21,7 +21,14 @@ export default function FavoritesPage(): JSX.Element {
         Produsele favorite
       </h1>
       {favorites.length > 0 ? (
-        <div className="cards-container" style={{ marginBottom: 70 }}>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 20,
+            marginBottom: 70,
+          }}
+        >
           {favorites.map((favorite, index) => {
             return (
               <ProductCard

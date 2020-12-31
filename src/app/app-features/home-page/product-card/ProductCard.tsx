@@ -80,9 +80,15 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
                 <i
                   className="fav-icons"
                   style={{ cursor: 'pointer' }}
-                  onClick={(event) => {
-                    addToFavoritesList(event, product);
-                  }}
+                  onClick={
+                    product.available
+                      ? (event) => {
+                          addToFavoritesList(event, product);
+                        }
+                      : (event) => {
+                          event.stopPropagation();
+                        }
+                  }
                 >
                   {product.available && filtered.length > 0 && loaded ? (
                     <i className="product-fav-icons">
