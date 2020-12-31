@@ -23,6 +23,16 @@ function ProductDetails({ productDetails }) {
     addToFavorites(product);
   };
 
+  let sale: number;
+
+  if (details.isPromo) {
+    sale = Math.floor(
+      ((details.price - details.newPrice) / details.price) * 100
+    );
+  } else {
+    sale = 0;
+  }
+
   const { loading, data } = useQuery(TechSpecsQuery, {
     variables: { id },
   });
@@ -78,6 +88,7 @@ function ProductDetails({ productDetails }) {
     <>
       <div className="product-details-container">
         <div className="product-details-flex">
+          <h1 className="product-details-title-responsive">{details.name}</h1>
           <div className="product-details-slideshow">
             <ProductImages images={details.images} />
           </div>
@@ -101,7 +112,14 @@ function ProductDetails({ productDetails }) {
               dangerouslySetInnerHTML={createMarkup(details.description)}
             />
             <div className="product-details-cart-price">
-              <h1 className="product-details-price">{details.price} lei</h1>
+              {sale > 0 ? (
+                <div className="discounted-price-div-mobile">
+                  <p className="crossed-price">{details?.price}</p>
+                  <p className="discounted-price">{details?.newPrice} lei</p>
+                </div>
+              ) : (
+                <p className="product-details-price">{details?.price} lei</p>
+              )}
 
               <div className="product-details-add-to-cart-flex">
                 <div className="product-details-counter">

@@ -22,18 +22,22 @@
 //xs
 @media screen and (min-width: 300px) and (max-width: $xs) {
   .cards-container {
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px 10px;
-    max-width: 300px !important;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-gap: 6px 6px;
+    justify-content: center;
+  }
+
+  .product-list-container {
+    justify-content: center;
   }
 }
 
 //sm
 @media screen and (min-width: 581px) and (max-width: $sm) {
   .cards-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     grid-gap: 12px 12px;
-    max-width: 508px !important;
+    justify-content: center;
   }
 
   .product-list-container {
@@ -45,23 +49,14 @@
 //md
 @media screen and (min-width: 771px) and (max-width: $md) {
   .cards-container {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     grid-gap: 12px 12px;
-    max-width: 739px !important;
+    width: 100%;
     justify-content: center;
   }
 
   .product-list-container {
     justify-content: center;
     align-items: center;
-  }
-}
-
-//lg
-@media screen and (min-width: 1251px) and (max-width: $sm) {
-  .cards-container {
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 12px 12px;
-    max-width: 581px !important;
   }
 }

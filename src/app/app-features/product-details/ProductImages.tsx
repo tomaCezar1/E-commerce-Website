@@ -1,4 +1,3 @@
-import { Skeleton } from '@chakra-ui/react';
 import { useState } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 
@@ -33,8 +32,7 @@ function ProductImages(props) {
       <div className="mobile-image-component">
         <img src={props.images[currentImg]} alt="" className="big-image" />
       </div>
-      <div className="small-img-container">
-        {/* <Skeleton h="100%" w="100%"> */}
+      <div className="mobile-small-img-component">
         {props.images.map((img, index) => (
           <img
             onClick={() => toggleClick(index)}
@@ -47,7 +45,20 @@ function ProductImages(props) {
             data-index={index}
           />
         ))}
-        {/* </Skeleton> */}
+      </div>
+      <div className="small-img-container">
+        {props.images.map((img, index) => (
+          <img
+            onClick={() => toggleClick(index)}
+            className={`small-img ${
+              currentImg === index ? 'small-img-active' : ''
+            }`}
+            key={index}
+            src={img}
+            alt="error"
+            data-index={index}
+          />
+        ))}
       </div>
     </>
   );
