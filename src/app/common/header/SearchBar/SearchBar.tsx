@@ -6,7 +6,7 @@ import { apolloClient } from '../../../lib/apolloClient';
 import Overlay from '../../overlay/Overlay';
 import { SkeletonText, SkeletonCircle } from '@chakra-ui/react';
 
-export default function SearchBar({ mobile = false }): JSX.Element {
+export default function SearchBar({ mobile = false, onClose }): JSX.Element {
   const client = apolloClient;
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -96,6 +96,7 @@ export default function SearchBar({ mobile = false }): JSX.Element {
           anchor={searchContainerRef.current}
           onBackdropClick={() => {
             setShowOverlay(false);
+            onClose();
             document.getElementById('Search').blur();
           }}
         >

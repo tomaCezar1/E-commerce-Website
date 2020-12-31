@@ -20,6 +20,7 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  useTimeout,
 } from '@chakra-ui/react';
 
 export default function MobileHeader() {
@@ -28,6 +29,7 @@ export default function MobileHeader() {
   const { cart, favorites, appContext } = useContext(AppContext);
   const [rootCategories, setRootCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(0);
+  const [showSearchBar, setShowSearchBar] = useState(false);
 
   const router = useRouter();
 
@@ -44,12 +46,21 @@ export default function MobileHeader() {
     setActiveCategory(activeIndex);
   };
 
+  const handleClick = () => {
+    setShowSearchBar(!showSearchBar);
+    setShowLogo(!showLogo);
+  };
+
   return (
     <div className="mobile-header-container">
       <div className="mobile-icons-wrapper">
         <div className="mobile-burger-icon" onClick={() => setIsOpen(true)} />
         <div className="mobile-search-wrapper">
-          <SearchBar mobile />
+          {showSearchBar ? (
+            <SearchBar mobile onClose={handleClick} />
+          ) : (
+            <div className="mobile-search-icon" onClick={handleClick} />
+          )}
         </div>
       </div>
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
