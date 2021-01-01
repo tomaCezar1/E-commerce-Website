@@ -24,6 +24,7 @@ export const ProductListQuery = gql`
       notAvailableCustomText
       articleCode
       isPromo
+      description
     }
   }
 `;

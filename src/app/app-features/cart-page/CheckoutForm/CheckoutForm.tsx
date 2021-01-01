@@ -16,6 +16,7 @@ const initialValues = {
 export default function CheckoutForm({
   validate,
   setOrderSuccess,
+  insideModal = false,
 }): JSX.Element {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({} as any);
@@ -127,7 +128,9 @@ export default function CheckoutForm({
   });
 
   return (
-    <div className="checkout-wrapper">
+    <div
+      className={insideModal ? 'checkout-wrapper-modal' : 'checkout-wrapper'}
+    >
       <p className="checkout-form-heading">Plasează comanda</p>
       <form onSubmit={handleSubmit}>
         <input
@@ -206,8 +209,8 @@ export default function CheckoutForm({
         <input type="submit" value="Comandă" className="checkout-form-button" />
 
         <div className="checkout-terms-text">
-          *Apăsînd butonul &#39;Comandă&#39; dvs. confirmați că ați luat
-          cunoștință și sînteți de acord cu{' '}
+          *Apăsând butonul &#39;Comandă&#39; dvs. confirmați că ați luat
+          cunoștință și sunteți de acord cu{' '}
           <Link href="/privacy" as="/privacy-policy" locale={router.locale}>
             <span className="checkout-privacy-link">
               politica de confidențialitate

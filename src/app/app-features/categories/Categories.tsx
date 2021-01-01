@@ -42,7 +42,7 @@ export default function Categories({
             );
           })}
         </div>
-        <div className="subcat-banner">Baner</div>
+        <div className="subcat-banner" />
       </div>
     </div>
   );

@@ -43,3 +43,31 @@
   display: flex;
   cursor: pointer;
 }
+
+@media screen and (min-width: 0px) and (max-width: $xs) {
+  .breadcrumb {
+    margin: 0 0 16px;
+  }
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .breadcrumb {
+    margin: 0 0 16px;
+  }
+}
+
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .breadcrumb {
+    margin: 0 0 16px;
+  }
+}
+
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+}
+
+//xl
+@media screen and (min-width: 1501px) and (max-width: $xl) {
+}
