@@ -310,9 +310,8 @@
   }
 
   .cart-items-list {
-    max-height: calc(100vh - 400px);
     min-height: 500px;
-    overflow: auto;
+    overflow: visible;
   }
 
   .checkout-wrapper {
@@ -448,12 +447,6 @@
     display: flex;
   }
 
-  .cart-items-list {
-    max-height: calc(100vh - 400px);
-    min-height: 500px;
-    overflow: auto;
-  }
-
   .remove-cart-item {
     margin-right: 20px;
   }
@@ -573,6 +566,11 @@
     margin-left: 8px;
   }
 
+  .cart-items-list {
+    max-height: none;
+    overflow: visible;
+  }
+
   .cart-total-price {
     font-size: 17px;
   }
@@ -585,11 +583,6 @@
     display: flex;
   }
 
-  .cart-items-list {
-    max-height: calc(100vh - 400px);
-    min-height: 500px;
-    overflow: auto;
-  }
 
   .place-order-button {
     width: 180px;

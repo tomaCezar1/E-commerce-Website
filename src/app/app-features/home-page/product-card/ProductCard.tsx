@@ -5,7 +5,6 @@ import CartIcon from '../../../../../public/svg/CartIcon.svg';
 import Link from 'next/link';
 import { useToast } from '@chakra-ui/react';
 import { AppContext } from '../../../../context';
-import Toast from '../../../common/toast/Toast';
 
 function ProductCard({ product, small = false, isFavorite = [] }) {
   const { addToCart, addToFavorites } = useContext(AppContext);
@@ -109,15 +108,11 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
                           e.stopPropagation();
                           addToCart(product, 1);
                           toast({
+                            description: `Produsul ${product.name} a fost adăugat cu succes!`,
                             status: 'success',
                             duration: 5000,
                             isClosable: true,
                             position: 'top',
-                            render: () => (
-                              <Toast
-                                description={`Produsul ${product.name} a fost adăugat cu succes!`}
-                              />
-                            ),
                           });
                         }
                       : (event) => {
