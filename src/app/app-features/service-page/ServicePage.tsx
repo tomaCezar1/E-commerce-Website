@@ -16,11 +16,11 @@ export default function Service(): JSX.Element {
   return (
     <>
       <Breadcrumbs path={path} />
-      <div className="guarantees-container">
-        <h2 className="terms-page-name">Service centru</h2>
+      <div className="service-page-container">
+        <h2 className="service-page-title">Service centru</h2>
         <div className="service-flex-container">
-          <div style={{ width: '70%' }}>
-            <p>
+          <div className="service-wrapper">
+            <p className="service-info-text">
               Service centru Cegoltar SRL – este un service centru modern
               specializat în diagnostica și reparația instrumentelor electrice,
               corpurilor de iluminat, echipament electric de diferită
@@ -40,18 +40,18 @@ export default function Service(): JSX.Element {
               instrumentului electric. Acesta este doar unul dintre avantajele
               oferite.
             </p>
-            <ul className="terms-list">
-              <li className="terms-list-item">
+            <ul className="service-info-list">
+              <li className="service-list-item">
                 Reparații realizate de experți în domeniu.
               </li>
-              <li className="terms-list-item">
-                Utilizarea exclusivă a pieselor de schimb originale.{' '}
+              <li className="service-list-item">
+                Utilizarea exclusivă a pieselor de schimb originale.
               </li>
-              <li className="terms-list-item">
-                Test de siguranță la fiecare reparație efectuată.{' '}
+              <li className="service-list-item">
+                Test de siguranță la fiecare reparație efectuată.
               </li>
-              <li className="terms-list-item">
-                Returnarea instrumentului în decurs de 3-5 zile.{' '}
+              <li className="service-list-item">
+                Returnarea instrumentului în decurs de 3-5 zile.
               </li>
             </ul>
           </div>
@@ -112,7 +112,7 @@ export default function Service(): JSX.Element {
             </a>
           </div>
 
-          <i>
+          <i className="service-icon">
             <Arrow />
           </i>
 
@@ -126,7 +126,7 @@ export default function Service(): JSX.Element {
             <div className="service-algoritm-text">1-3 zile</div>
           </div>
 
-          <i>
+          <i className="service-icon">
             <Arrow />
           </i>
 
@@ -142,7 +142,7 @@ export default function Service(): JSX.Element {
             </div>
           </div>
 
-          <i>
+          <i className="service-icon">
             <Arrow />
           </i>
 
@@ -157,7 +157,7 @@ export default function Service(): JSX.Element {
         </div>
         <h4 className="service-page-algoritm">Service de întreținere:</h4>
         <br />
-        <p>
+        <p className="service-info-text">
           O investiţie bună - service-ul de întreţinere Cegoltar.
           <br />
           <br />
