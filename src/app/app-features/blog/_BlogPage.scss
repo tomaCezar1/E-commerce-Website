@@ -82,53 +82,106 @@ a {
   -webkit-box-orient: vertical;
 }
 
-//Details Page
-.blog-details-container {
-  margin-top: 36px;
-  display: flex;
-  justify-content: center;
+//xs
+@media screen and (min-width: 0) and (max-width: $xs) {
+  .blog-card-container {
+    width: 100%;
+    height: auto;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .blog-page-title {
+    font-size: 24px;
+  }
+
+  .blog-card-img {
+    width: 100%;
+    object-fit: contain;
+    min-height: 162px;
+    height: auto;
+  }
+
+  .blog-card-content {
+    padding: 10px 20px 16px 20px;
+  }
 }
 
-.blog-details-content-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 64px;
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .blog-page-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    & a {
+      width: 47%;
+    }
+  }
+
+  .blog-card-container {
+    width: 100%;
+    height: auto;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .blog-card-img {
+    width: 100%;
+    object-fit: contain;
+    min-height: 145px;
+    height: auto;
+  }
+
+  .blog-card-content {
+    padding: 10px 20px 16px 20px;
+  }
+
+  .blog-page-title {
+    font-size: 24px;
+  }
+}
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .blog-page-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    & a {
+      width: 47%;
+    }
+  }
+
+  .blog-card-container {
+    width: 100%;
+    height: auto;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .blog-card-img {
+    width: 100%;
+    object-fit: contain;
+    min-height: 145px;
+    height: auto;
+  }
+
+  .blog-card-content {
+    padding: 10px 20px 16px 20px;
+  }
+
+  .blog-page-title {
+    font-size: 24px;
+  }
+}
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
 }
 
-.blog-details-title {
-  font-family: $bold;
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.blog-details-text {
-  font-family: $regular;
-  font-size: 18px;
-  color: $black;
-}
-
-.blog-details-date {
-  font-size: 14px !important;
-}
-
-.blog-details-img {
-  height: 444px;
-  width: auto;
-  object-fit: cover;
-  margin: 32px 0;
-}
-
-.blog-details-second-img {
-  height: 680px;
-  width: auto;
-  object-fit: cover;
-  margin: 32px 0;
-}
-
-.blog-details-cards-flex {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+//xl
+@media screen and (min-width: 1501) and (max-width: $xl) {
 }

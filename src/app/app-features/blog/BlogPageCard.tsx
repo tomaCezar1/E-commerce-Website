@@ -1,4 +1,8 @@
-function BlogPageCard(): JSX.Element {
+import { formatDate } from '../../../utils';
+
+function BlogPageCard({ blogPost }): JSX.Element {
+  const { title, createdAt, content } = blogPost;
+
   return (
     <div className="blog-card-container">
       <img
@@ -8,13 +12,10 @@ function BlogPageCard(): JSX.Element {
       />
       <div className="blog-card-content">
         <div className="blog-card-title-flex">
-          <h1 className="blog-card-title">Titlul stirii</h1>
-          <p className="blog-card-date">03.12.2020</p>
+          <h1 className="blog-card-title">{title}</h1>
+          <p className="blog-card-date">{formatDate(createdAt)}</p>
         </div>
-        <p className="blog-card-description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nihil
-          voluptatum fuga maiores modi expedita perferendis culpa ab quam alias.
-        </p>
+        <p className="blog-card-description">{content}</p>
       </div>
     </div>
   );

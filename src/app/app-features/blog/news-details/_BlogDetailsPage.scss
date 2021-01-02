@@ -1,0 +1,140 @@
+@import '../../../../styles/constants.scss';
+
+.blog-details-container {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.blog-title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 15px;
+
+}
+
+.blog-details-title {
+  font-size: 36px;
+  font-family: $bold;
+  line-height: 26px;
+}
+
+.blog-details-date {
+  font-size: 14px;
+  font-family: $medium;
+  color: $darkGrey;
+}
+
+.blog-details-text {
+  margin: 32px 0;
+  font-family: $medium;
+  font-size: 18px;
+}
+
+//xs
+@media screen and (min-width: 0) and (max-width: $xs) {
+  .blog-details-container {
+    width: 100%;
+  }
+
+  .blog-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 15px;
+  }
+
+  .blog-details-title {
+    font-size: 24px;
+    font-family: $bold;
+    line-height: 24px;
+  }
+
+  .blog-details-date {
+    font-size: 12px;
+    font-family: $medium;
+    color: $darkGrey;
+  }
+
+  .blog-details-text {
+    margin: 16px 0;
+    font-family: $medium;
+    font-size: 15px;
+  }
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .blog-details-container {
+    width: 80%;
+  }
+
+  .blog-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 15px;
+  }
+
+  .blog-details-title {
+    font-size: 24px;
+    font-family: $bold;
+    line-height: 24px;
+  }
+
+  .blog-details-date {
+    font-size: 12px;
+    font-family: $medium;
+    color: $darkGrey;
+  }
+
+  .blog-details-text {
+    margin: 16px 0;
+    font-family: $medium;
+    font-size: 15px;
+    & img {
+      width: 100%;
+    }
+  }
+}
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .blog-details-container {
+    width: 70%;
+  }
+
+  .blog-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 15px;
+  }
+
+  .blog-details-title {
+    font-size: 26px;
+    font-family: $bold;
+    line-height: 26px;
+  }
+
+  .blog-details-date {
+    font-size: 14px;
+    font-family: $medium;
+    color: $darkGrey;
+  }
+
+  .blog-details-text {
+    margin: 16px 0;
+    font-family: $medium;
+    font-size: 17px;
+  }
+}
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+}
+
+//xl
+@media screen and (min-width: 1501) and (max-width: $xl) {
+}

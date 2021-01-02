@@ -1,7 +1,9 @@
 import BlogPage from '../../app/app-features/blog/BlogPage';
+import { BlogPostsQuery } from '../../app/app-features/blog/BlogPageQueries';
 import Breadcrumbs from '../../app/common/breadcrumbs/Breadcrumbs';
+import { initializeApollo } from '../../app/lib/apolloClient';
 
-export default function Index(): JSX.Element {
+export default function Index({ blogPosts }): JSX.Element {
   const path = [
     {
       name: 'Știri',
@@ -12,7 +14,21 @@ export default function Index(): JSX.Element {
   return (
     <div>
       <Breadcrumbs path={path} />
-      <BlogPage />
+      <BlogPage blogPosts={blogPosts} />
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const apolloClient = initializeApollo();
+
+  const blogPostsData = await apolloClient.query({
+    query: BlogPostsQuery,
+  });
+
+  return {
+    props: {
+      blogPosts: blogPostsData.data.blogs,
+    },
+  };
 }
