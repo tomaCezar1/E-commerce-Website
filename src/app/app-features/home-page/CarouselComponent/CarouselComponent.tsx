@@ -1,4 +1,5 @@
-import { Flex, Icon, Skeleton } from '@chakra-ui/react';
+import { useCallback, useState } from 'react';
+import { Skeleton } from '@chakra-ui/react';
 import Router from 'next/router';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -9,9 +10,29 @@ import { useQuery } from '@apollo/client';
 import { CarouselItems, CarouselQuery } from './CarouselQuery';
 
 function CarouselComponent({ style = {} }): JSX.Element {
-  const { loading, error, data } = useQuery<CarouselItems>(CarouselQuery, {
+  const { loading, data } = useQuery<CarouselItems>(CarouselQuery, {
     variables: { sorting: [{ field: 'sortOrder', direction: 'ASC' }] },
   });
+  const [dragging, setDragging] = useState(false);
+
+  const handleBeforeChange = useCallback(() => {
+    setDragging(true);
+  }, [setDragging]);
+
+  const handleAfterChange = useCallback(() => {
+    setDragging(false);
+  }, [setDragging]);
+
+  const handleClick = useCallback(
+    (e, link) => {
+      if (!link || link === '/' || dragging) {
+        e.stopPropagation();
+      } else {
+        Router.push(`${link}`);
+      }
+    },
+    [dragging]
+  );
 
   const items = data?.carouselItems;
 
@@ -27,14 +48,6 @@ function CarouselComponent({ style = {} }): JSX.Element {
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-  };
-
-  const handleClick = (e, link) => {
-    if (!link || link === '/') {
-      e.stopPropagation();
-    } else {
-      Router.push(`${link}`);
-    }
   };
 
   function slide() {
@@ -64,7 +77,7 @@ function CarouselComponent({ style = {} }): JSX.Element {
   }
 
   function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
+    const { style, onClick } = props;
     return (
       <div className="slick-arrow-bg slick-arrow-bg-next">
         <div
@@ -84,7 +97,7 @@ function CarouselComponent({ style = {} }): JSX.Element {
   }
 
   function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
+    const { style, onClick } = props;
     return (
       <div className="slick-arrow-bg">
         <div
@@ -106,7 +119,13 @@ function CarouselComponent({ style = {} }): JSX.Element {
   return (
     <div className="carousel-container" style={style}>
       <Skeleton isLoaded={!loading} h="100%" w="100%">
-        <Slider {...settings}>{slide()}</Slider>
+        <Slider
+          {...settings}
+          beforeChange={handleBeforeChange}
+          afterChange={handleAfterChange}
+        >
+          {slide()}
+        </Slider>
       </Skeleton>
     </div>
   );
