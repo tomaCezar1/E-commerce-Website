@@ -23,6 +23,9 @@ export default function Footer() {
               <Link href={`/regional-store`} locale={router.locale}>
                 <span className="footer-link">Magazine regionale</span>
               </Link>
+              <Link href={`/news`} locale={router.locale}>
+                <span className="footer-link">Știri</span>
+              </Link>
             </div>
             <div className="footer-links-group" style={{ marginLeft: 50 }}>
               <p className="footer-links-heading">Informații</p>
