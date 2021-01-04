@@ -1,0 +1,43 @@
+@import '../../../styles/constants.scss';
+
+.toast-wrapper {
+  width: auto;
+  margin: 0 auto;
+  background-color: $green;
+  border-radius: 4px;
+  padding: 5px 16px;
+  max-width: 150px;
+}
+
+//xs
+@media screen and (min-width: 0) and (max-width: $xs) {
+  .toast-wrapper {
+    font-size: 12px;
+  }
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .toast-wrapper {
+    font-size: 13px;
+  }
+}
+
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .toast-wrapper {
+    font-size: 14px;
+  }
+}
+
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+  .toast-wrapper {
+    font-size: 16px;
+  }
+}
+
+//xl
+@media screen and (min-width: 1501px) and (max-width: $xl) {
+
+}

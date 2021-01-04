@@ -215,7 +215,7 @@
 }
 
 //xs
-@media screen and (min-width: 300px) and (max-width: $xs) {
+@media screen and (min-width: 0) and (max-width: $xs) {
   .product-card-container {
     max-width: 130px;
     padding: 10px;

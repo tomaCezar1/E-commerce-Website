@@ -164,10 +164,9 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
             {results &&
               results.map(({ id, name, price, images, slug }) => {
                 return (
-                  <>
+                  <div key={id}>
                     <Link href="/product/[slug]" as={`/product/${slug}`}>
                       <div
-                        key={id}
                         style={{ cursor: 'pointer' }}
                         onClick={() => setShowOverlay(false)}
                       >
@@ -206,7 +205,7 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
                         </div>
                       </div>
                     </Link>
-                  </>
+                  </div>
                 );
               })}
           </div>

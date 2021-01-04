@@ -3,15 +3,13 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
 import { AppContext } from '../../../context';
 import { cartTotal, formatPrice } from '../../../utils';
 import CheckoutForm from './CheckoutForm/CheckoutForm';
-import { validate } from '../../../utils';
+import { validate, createMarkup } from '../../../utils';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function CartPage(): JSX.Element {
@@ -33,12 +31,6 @@ export default function CartPage(): JSX.Element {
       link: '/cart',
     },
   ];
-
-  const createMarkup = (html) => {
-    return {
-      __html: html,
-    };
-  };
 
   const handleClose = () => {
     setShowModal(false);
@@ -141,7 +133,10 @@ export default function CartPage(): JSX.Element {
                     <div
                       className="remove-cart-item"
                       onClick={() => removeFromCart(product)}
-                    />
+                    >
+                      <div className="remove-icon-left" />
+                      <div className="remove-icon-right" />
+                    </div>
                   </div>
                 );
               })}

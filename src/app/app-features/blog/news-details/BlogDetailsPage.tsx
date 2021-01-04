@@ -1,4 +1,4 @@
-import { formatDate } from '../../../../utils';
+import { formatDate, createMarkup } from '../../../../utils';
 import Breadcrumbs from '../../../common/breadcrumbs/Breadcrumbs';
 import BlogPageCard from '../BlogPageCard';
 
@@ -20,7 +20,10 @@ function BlogDetailsPage({ blogPost }): JSX.Element {
           <h1 className="blog-details-title">{title}</h1>
           <p className="blog-details-date">{formatDate(createdAt)}</p>
         </div>
-        <p className="blog-details-text">{content}</p>
+        <div
+          className="blog-details-content"
+          dangerouslySetInnerHTML={createMarkup(content)}
+        />
       </div>
       <h1 className="blog-details-title" style={{ marginBottom: '32px' }}>
         Alte știri

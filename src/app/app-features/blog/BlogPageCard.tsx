@@ -1,4 +1,4 @@
-import { formatDate } from '../../../utils';
+import { formatDate, createMarkup } from '../../../utils';
 
 function BlogPageCard({ blogPost }): JSX.Element {
   const { title, createdAt, content } = blogPost;
@@ -15,7 +15,10 @@ function BlogPageCard({ blogPost }): JSX.Element {
           <h1 className="blog-card-title">{title}</h1>
           <p className="blog-card-date">{formatDate(createdAt)}</p>
         </div>
-        <p className="blog-card-description">{content}</p>
+        <p
+          className="blog-card-description"
+          dangerouslySetInnerHTML={createMarkup(content)}
+        />
       </div>
     </div>
   );
