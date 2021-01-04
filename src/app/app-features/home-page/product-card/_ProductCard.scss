@@ -54,9 +54,9 @@
 }
 
 .product-card-cart {
-  @extend %flex-row;
+  display: flex;
   justify-content: space-between;
-  align-items: center !important;
+  align-items: center;
   i {
     @extend %flex-row;
   }
@@ -192,7 +192,7 @@
 
   .on-sale {
     width: 60px;
-    height: 36px;
+    height: 100%;
     letter-spacing: 0.5px;
   }
 
@@ -217,7 +217,8 @@
 //xs
 @media screen and (min-width: 0) and (max-width: $xs) {
   .product-card-container {
-    max-width: 130px;
+    width: 100%;
+    max-width: 166px;
     padding: 10px;
     align-self: center;
     justify-self: center;
@@ -226,7 +227,7 @@
   .add-to-cart {
     width: 110px !important;
     height: 22px;
-    margin-left: 10px;
+    margin-left: 18px;
   }
 
   .product-fav-icons {
@@ -249,23 +250,28 @@
   }
 
   .product-card-add-text {
-    margin-left: 2px;
-    font-size: 8px;
+    margin-left: 8px;
+    font-size: 10px;
   }
 
   .basic-price {
     font-size: 16px;
-    margin: 6px 0;
+    margin: 0;
+  }
+
+  .product-card-price {
+    margin: 11px 0 14px;
   }
 
   .product-card-name {
-    font-size: 12px;
+    font-size: 14px;
     margin: 8px 0 0;
-    height: 36px;
+    height: 32px;
+    line-height: 16px;
   }
 
   .discounted-price {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .crossed-price {
@@ -287,14 +293,15 @@
   }
 
   .discounted-price-div {
-    margin: 6px 0;
+    margin: 0;
   }
 }
 
 //sm
 @media screen and (min-width: 581px) and (max-width: $sm) {
   .product-card-container {
-    max-width: 170px;
+    width: 100%;
+    max-width: 166px;
     padding: 10px;
     align-self: center;
     justify-self: center;
@@ -326,23 +333,28 @@
   }
 
   .product-card-add-text {
-    margin-left: 4px;
-    font-size: 8px;
+    margin-left: 8px;
+    font-size: 10px;
   }
 
   .basic-price {
     font-size: 16px;
-    margin: 6px 0;
+    margin: 0;
+  }
+
+  .product-card-price {
+    margin: 11px 0 14px;
   }
 
   .product-card-name {
-    font-size: 12px;
+    font-size: 14px;
     margin: 8px 0 0;
-    height: 36px;
+    height: 32px;
+    line-height: 16px;
   }
 
   .discounted-price {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .crossed-price {
@@ -364,15 +376,18 @@
   }
 
   .discounted-price-div {
-    margin: 6px 0;
+    margin: 0;
   }
 }
 
 //md
 @media screen and (min-width: 771px) and (max-width: $md) {
   .product-card-container {
-    max-width: 170px;
+    width: 100%;
+    max-width: 166px;
     padding: 10px;
+    align-self: center;
+    justify-self: center;
   }
 
   .add-to-cart {
@@ -401,19 +416,24 @@
   }
 
   .product-card-add-text {
-    margin-left: 4px;
-    font-size: 9px;
+    margin-left: 8px;
+    font-size: 10px;
   }
 
   .basic-price {
     font-size: 16px;
-    margin: 6px 0;
+    margin: 0;
+  }
+
+  .product-card-price {
+    margin: 11px 0 14px;
   }
 
   .product-card-name {
     font-size: 14px;
     margin: 8px 0 0;
-    height: 40px;
+    height: 32px;
+    line-height: 16px;
   }
 
   .discounted-price {
@@ -439,6 +459,22 @@
   }
 
   .discounted-price-div {
-    margin: 6px 0;
+    margin: 0;
+  }
+}
+
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+  .product-card-container {
+    align-self: center;
+    justify-self: center;
+  }
+}
+
+//xl
+@media screen and (min-width: 1501px) and (max-width: $xl) {
+  .product-card-container {
+    align-self: center;
+    justify-self: center;
   }
 }

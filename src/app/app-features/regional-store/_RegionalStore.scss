@@ -33,32 +33,35 @@
 }
 
 //xs
-@media screen and (min-width: 300px) and (max-width: $xs) {
+@media screen and (min-width: 0px) and (max-width: $xs) {
   .leaflet-container,
   #mapid {
     height: 205px !important;
-    max-width: 300px !important;
+    width: 100% !important;
   }
 
   .regional-store-row {
     flex-direction: column;
-    max-width: 300px !important;
+    width: 100% !important;
   }
 
   .regional-store-map-cards {
-    max-width: 300px;
+    width: 100%;
   }
 
   .boxes-container {
     flex-direction: column !important;
     margin: 16px 0 32px !important;
     align-items: center;
-    max-width: 300px;
+    width: 100%;
   }
 
   .box-containers {
-    width: 300px !important;
+    width: 100% !important;
     margin-right: 0 !important;
+  }
+
+  .box-containers:first-child {
     margin-bottom: 16px;
   }
 
@@ -77,25 +80,25 @@
   .leaflet-container,
   #mapid {
     height: 300px !important;
-    max-width: 549px !important;
+    width: 100% !important;
   }
 
   .regional-store-row {
     flex-direction: column;
-    max-width: 549px !important;
+    width: 100% !important;
   }
 
   .regional-store-map-cards {
-    max-width: 549px;
+    width: 100%;
   }
 
   .boxes-container {
     flex-direction: row !important;
     margin: 16px 0 32px !important;
     align-items: center;
-    max-width: 549px;
     align-self: start;
     justify-content: space-between;
+    width: 100%;
   }
 
   .box-containers {
@@ -117,24 +120,25 @@
   .leaflet-container,
   #mapid {
     height: 350px !important;
-    width: 739px !important;
+    width: 100% !important;
   }
 
   .regional-store-row {
     flex-direction: column;
-    max-width: 739px !important;
     align-items: center;
+    width: 100% !important;
   }
 
   .regional-store-map-cards {
-    max-width: 549px;
+    width: 100%;
     margin: 0 !important;
   }
 
   .boxes-container {
     margin: 16px 0 32px !important;
     align-items: center;
-    max-width: 739px;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .box-containers {

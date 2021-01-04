@@ -4,7 +4,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
+  margin-bottom: 32px;
 }
 
 .service-wrapper {
@@ -244,6 +244,10 @@
   .service-icon svg {
     transform: rotate(90deg);
   }
+
+  .service-page-container {
+    margin-bottom: 16px;
+  }
 }
 
 //sm
@@ -290,6 +294,10 @@
   .service-icon svg {
     transform: rotate(90deg);
   }
+
+  .service-page-container {
+    margin-bottom: 16px;
+  }
 }
 //md
 @media screen and (min-width: 771px) and (max-width: $md) {
@@ -326,11 +334,8 @@
     width: 100%;
     margin: 15px auto;
   }
-}
-//lg
-@media screen and (min-width: 1251px) and (max-width: $lg) {
-}
 
-//xl
-@media screen and (min-width: 1501) and (max-width: $xl) {
+  .service-page-container {
+    margin-bottom: 16px;
+  }
 }
