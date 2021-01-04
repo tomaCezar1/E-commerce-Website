@@ -46,7 +46,7 @@
 }
 
 //xs
-@media screen and (min-width: 300px) and (max-width: $xs) {
+@media screen and (min-width: 0px) and (max-width: $xs) {
   .guarantees-container {
     width: 100%;
     margin-bottom: 10px;

@@ -277,7 +277,7 @@
 }
 
 //xs
-@media screen and (min-width: 300px) and (max-width: $xs) {
+@media screen and (min-width: 0px) and (max-width: $xs) {
   .product-details-flex {
     flex-direction: column;
   }

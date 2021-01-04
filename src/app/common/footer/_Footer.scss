@@ -134,7 +134,7 @@
 }
 
 //xs
-@media (min-width: 300px) and (max-width: $xs) {
+@media screen and (min-width: 0px) and (max-width: $xs) {
   .footer {
     width: 100%;
     padding: 16px;
@@ -188,7 +188,6 @@
   .footer {
     padding-bottom: 0;
   }
-
 }
 
 //sm
@@ -247,4 +246,3 @@
     padding-bottom: 0;
   }
 }
-
