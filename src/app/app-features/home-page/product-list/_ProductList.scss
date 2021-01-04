@@ -17,14 +17,14 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 25px 32px;
   max-width: 100%;
+  justify-content: center;
 }
 
 //xs
 @media screen and (min-width: 300px) and (max-width: $xs) {
   .cards-container {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    grid-gap: 8px 8px;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(166px, 1fr));
+    grid-gap: 12px 12px;
   }
 
   .product-list-container {
@@ -35,9 +35,8 @@
 //sm
 @media screen and (min-width: 581px) and (max-width: $sm) {
   .cards-container {
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(166px, 1fr));
     grid-gap: 12px 12px;
-    justify-content: center;
   }
 
   .product-list-container {
@@ -49,10 +48,9 @@
 //md
 @media screen and (min-width: 771px) and (max-width: $md) {
   .cards-container {
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(166px, 1fr));
     grid-gap: 12px 12px;
     width: 100%;
-    justify-content: center;
   }
 
   .product-list-container {

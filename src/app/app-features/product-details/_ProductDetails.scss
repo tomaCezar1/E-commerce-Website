@@ -304,9 +304,7 @@
 
   .product-details-cart-price {
     margin-top: 22px;
-    width: 90%;
-    margin-right: auto;
-    margin-left: auto;
+    width: 100%;
     align-items: center !important;
   }
 
@@ -340,6 +338,10 @@
   .product-details-price {
     font-size: 32px;
     justify-content: flex-end;
+  }
+
+  .product-details-in-stock {
+    font-size: 12px;
   }
 
   .product-details-add-to-cart-mobile {
@@ -422,14 +424,13 @@
   .discounted-price-div-mobile {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-right: 6px;
 
     .crossed-price {
-      font-size: 16px;
+      font-size: 26px;
     }
     .discounted-price {
-      font-size: 22px;
+      font-size: 32px;
       margin: 0;
     }
   }
@@ -449,9 +450,16 @@
 
   .discounted-price-div-mobile {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin: 0 0 20px 0;
+    align-items: flex-end !important;
+
+    .crossed-price {
+      font-size: 26px;
+      line-height: 20px;
+    }
+    .discounted-price {
+      font-size: 32px;
+      line-height: 22px;
+    }
   }
 
   .big-image,
@@ -470,14 +478,16 @@
 
   .product-details-cart-price {
     margin-top: 22px;
-    width: 90%;
-    margin-right: auto;
-    margin-left: auto;
+    width: 100%;
     align-items: center;
 
     .discounted-price-div-mobile {
       margin: 0;
     }
+  }
+
+  .product-details-in-stock {
+    font-size: 12px;
   }
 
   .product-details-title-responsive {
@@ -635,9 +645,7 @@
 
   .product-details-cart-price {
     margin-top: 22px;
-    width: 90%;
-    margin-right: auto;
-    margin-left: auto;
+    width: 100%;
     align-items: center;
 
     .discounted-price-div-mobile {
@@ -645,15 +653,21 @@
     }
   }
 
+  .product-details-in-stock {
+    font-size: 12px;
+  }
+
   .discounted-price-div-mobile {
     display: flex;
-    align-items: center;
-    margin-right: 6px;
+    align-items: flex-end !important;
+
     .crossed-price {
-      font-size: 24px;
+      font-size: 26px;
+      line-height: 20px;
     }
     .discounted-price {
       font-size: 32px;
+      line-height: 22px;
     }
   }
 
@@ -785,7 +799,9 @@
 @media screen and (min-width: 1251px) and (max-width: $lg) {
   .discounted-price-div-mobile {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     margin-right: 6px;
     line-height: 36px;
     .crossed-price {
@@ -793,6 +809,7 @@
     }
     .discounted-price {
       font-size: 32px;
+      margin: 0;
     }
   }
 }
