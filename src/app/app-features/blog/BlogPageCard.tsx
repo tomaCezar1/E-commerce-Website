@@ -1,7 +1,7 @@
 import { formatDate, createMarkup } from '../../../utils';
 
 function BlogPageCard({ blogPost }): JSX.Element {
-  const { title, createdAt, content } = blogPost;
+  const { title, createdAt, previewDesc } = blogPost;
 
   return (
     <div className="blog-card-container">
@@ -17,7 +17,7 @@ function BlogPageCard({ blogPost }): JSX.Element {
         </div>
         <p
           className="blog-card-description"
-          dangerouslySetInnerHTML={createMarkup(content)}
+          dangerouslySetInnerHTML={createMarkup(previewDesc)}
         />
       </div>
     </div>
