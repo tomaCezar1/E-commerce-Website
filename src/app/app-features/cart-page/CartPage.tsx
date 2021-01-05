@@ -16,6 +16,7 @@ export default function CartPage(): JSX.Element {
   const { cart, addToCart, removeFromCart, clearCart } = useContext(AppContext);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showEmptyModal, setShowEmptyModal] = useState(false);
   const [, updateState] = useState();
 
   const forceUpdate = useCallback(() => updateState({}), []);
@@ -140,9 +141,44 @@ export default function CartPage(): JSX.Element {
             </div>
             <div className="cart-total-wrapper">
               <div className="cart-buttons-wrapper">
-                <div className="clear-cart-button" onClick={() => clearCart()}>
+                <div
+                  className="clear-cart-button"
+                  onClick={() => setShowEmptyModal(true)}
+                >
                   Golește coșul
                 </div>
+                <Modal
+                  isOpen={showEmptyModal}
+                  onClose={() => setShowEmptyModal(false)}
+                  isCentered
+                >
+                  <ModalOverlay />
+                  <ModalContent style={{ maxWidth: 320 }}>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      <div className="modal-empty-text">
+                        Doriți să goliți conținutul coșului dvs.?
+                      </div>
+                      <div className="modal-buttons-wrapper">
+                        <div
+                          className="modal-button-yes"
+                          onClick={() => {
+                            clearCart();
+                            setShowEmptyModal(false);
+                          }}
+                        >
+                          Da
+                        </div>
+                        <div
+                          className="modal-button-no"
+                          onClick={() => setShowEmptyModal(false)}
+                        >
+                          Nu
+                        </div>
+                      </div>
+                    </ModalBody>
+                  </ModalContent>
+                </Modal>
                 <div
                   className="place-order-button"
                   onClick={() => setShowModal(true)}
