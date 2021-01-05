@@ -45,10 +45,8 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
           } ${small ? 'product-container-small' : ''}`}
         >
           {sale ? (
-            <div className="on-sale on-sale">
-              <p className="on-sale-text on-sale-text">
-                {sale ? `-${sale}%` : null}
-              </p>
+            <div className="on-sale">
+              <p className="on-sale-text">{sale ? `-${sale}%` : null}</p>
             </div>
           ) : null}
           <div className="product-card-container-flex">
