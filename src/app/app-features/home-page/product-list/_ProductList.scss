@@ -23,8 +23,9 @@
 //xs
 @media screen and (min-width: 0px) and (max-width: $xs) {
   .cards-container {
-    grid-template-columns: repeat(auto-fit, minmax(166px, 1fr));
-    grid-gap: 12px 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .product-list-container {
@@ -35,8 +36,9 @@
 //sm
 @media screen and (min-width: 581px) and (max-width: $sm) {
   .cards-container {
-    grid-template-columns: repeat(auto-fit, minmax(166px, 1fr));
-    grid-gap: 12px 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .product-list-container {
@@ -48,9 +50,10 @@
 //md
 @media screen and (min-width: 771px) and (max-width: $md) {
   .cards-container {
-    grid-template-columns: repeat(auto-fit, minmax(166px, 1fr));
-    grid-gap: 12px 12px;
-    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
   }
 
   .product-list-container {

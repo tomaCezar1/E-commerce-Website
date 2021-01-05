@@ -114,6 +114,7 @@ export default function Subcategories({
                   key={product.id}
                   product={product}
                   isFavorite={isFavorite}
+                  small
                 />
               );
             })}
