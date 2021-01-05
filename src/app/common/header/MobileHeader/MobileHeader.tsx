@@ -26,7 +26,6 @@ export default function MobileHeader() {
   const [rootCategories, setRootCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(0);
   const [showSearchBar, setShowSearchBar] = useState(false);
-
   const router = useRouter();
 
   useEffect(() => {
@@ -60,10 +59,20 @@ export default function MobileHeader() {
           <div className="mobile-burger-icon" />
         </div>
         <div className="mobile-search-wrapper">
-          {showSearchBar ? (
-            <SearchBar mobile onClose={handleClick} />
+          {showSearchBar && !showLogo ? (
+            <SearchBar mobile onClose={handleClick} withTimeout />
           ) : (
-            <div className="mobile-search-icon" onClick={handleClick} />
+            <div
+              className={
+                !showLogo ? 'mobile-search-icon-expanded' : 'mobile-search-icon'
+              }
+              onClick={() => {
+                setShowLogo(!showLogo);
+                setTimeout(() => {
+                  setShowSearchBar(true);
+                }, 600);
+              }}
+            />
           )}
         </div>
       </div>

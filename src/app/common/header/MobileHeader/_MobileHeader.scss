@@ -39,9 +39,26 @@
 }
 
 .mobile-search-icon {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  background: transparent url('../../../../../public/svg/SearchIconSmall.svg')
+    no-repeat;
   margin-left: 15px;
+}
+
+.mobile-search-icon-expanded {
+  width: 200px !important;
+  height: 30px;
+  margin-bottom: 2px;
+  background: $semiTransparentWhite !important;
+  border-radius: 16px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  margin-left: -4px;
 }
 
 .mobile-cart-icon {
@@ -128,12 +145,6 @@
   top: 20px;
 }
 
-.mobile-search-icon {
-  background: url('../../../../../public/svg/SearchIconSmall.svg') no-repeat;
-  width: 16px;
-  height: 16px;
-}
-
 .mobile-search-input:focus {
   color: $black;
   width: 70%;
@@ -187,6 +198,10 @@
 
   .drawer-wrapper {
     margin-top: 50px;
+  }
+
+  .mobile-search-wrapper {
+    margin-left: 5px;
   }
 }
 

@@ -6,7 +6,11 @@ import { apolloClient } from '../../../lib/apolloClient';
 import Overlay from '../../overlay/Overlay';
 import { SkeletonText, SkeletonCircle } from '@chakra-ui/react';
 
-export default function SearchBar({ mobile = false, onClose }): JSX.Element {
+export default function SearchBar({
+  mobile = false,
+  onClose,
+  withTimeout = false,
+}): JSX.Element {
   const client = apolloClient;
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -53,10 +57,12 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
                   : 'close-circle-icon2'
               }
               onClick={() => {
-                setResults([]);
-                setSearchTerm('');
-                setIsSearching(true);
-                document.getElementById('Search').focus();
+                setTimeout(() => {
+                  setResults([]);
+                  setSearchTerm('');
+                  setIsSearching(true);
+                  document.getElementById('Search').focus();
+                }, 300);
               }}
             />
           ) : (
