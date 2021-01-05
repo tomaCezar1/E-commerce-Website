@@ -796,6 +796,7 @@
   }
 }
 
+//lg
 @media screen and (min-width: 1251px) and (max-width: $lg) {
   .discounted-price-div-mobile {
     display: flex;
@@ -811,5 +812,12 @@
       font-size: 32px;
       margin: 0;
     }
+  }
+}
+
+//xl
+@media screen and (min-width: 1501px) and (max-width: $xl) {
+  .discounted-price-lg {
+    margin-left: 0 !important;
   }
 }

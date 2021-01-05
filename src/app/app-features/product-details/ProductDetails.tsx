@@ -115,7 +115,9 @@ function ProductDetails({ productDetails }) {
               {sale > 0 ? (
                 <div className="discounted-price-div-mobile">
                   <p className="crossed-price">{details?.price}</p>
-                  <p className="discounted-price">{details?.newPrice} lei</p>
+                  <p className="discounted-price discounted-price-lg">
+                    {details?.newPrice} lei
+                  </p>
                 </div>
               ) : (
                 <p className="product-details-price">{details?.price} lei</p>
