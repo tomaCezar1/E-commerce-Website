@@ -34,6 +34,12 @@ export default function MobileHeader() {
     setRootCategories(rooCats);
   }, [appContext]);
 
+  useEffect(() => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  }, [router.asPath]);
+
   const onClose = () => {
     setIsOpen(false);
   };
@@ -50,7 +56,9 @@ export default function MobileHeader() {
   return (
     <div className="mobile-header-container">
       <div className="mobile-icons-wrapper">
-        <div className="mobile-burger-icon" onClick={() => setIsOpen(true)} />
+        <div className="mobile-icon-wrap" onClick={() => setIsOpen(true)}>
+          <div className="mobile-burger-icon" />
+        </div>
         <div className="mobile-search-wrapper">
           {showSearchBar ? (
             <SearchBar mobile onClose={handleClick} />
@@ -86,10 +94,7 @@ export default function MobileHeader() {
                                 locale={router.locale}
                                 key={parentCat.id}
                               >
-                                <div
-                                  className="mobile-menu-item"
-                                  onClick={onClose}
-                                >
+                                <div className="mobile-menu-item">
                                   {parentCat.title}
                                 </div>
                               </Link>
@@ -112,7 +117,6 @@ export default function MobileHeader() {
                                     <div
                                       key={child.id}
                                       className="mobile-menu-child-item"
-                                      onClick={onClose}
                                     >
                                       {child.title}
                                     </div>
@@ -131,15 +135,15 @@ export default function MobileHeader() {
                 <DrawerFooter>
                   <div className="mobile-drawer-footer">
                     <Link href="/regional-store" locale={router.locale}>
-                      <span className="mobile-header-link">
+                      <div className="mobile-header-link">
                         Magazine regionale
-                      </span>
+                      </div>
                     </Link>
                     <Link href="/service" locale={router.locale}>
-                      <span className="mobile-header-link">Service Centru</span>
+                      <div className="mobile-header-link">Service Centru</div>
                     </Link>
                     <Link href="/news" locale={router.locale}>
-                      <span className="mobile-header-link">Știri</span>
+                      <div className="mobile-header-link">Știri</div>
                     </Link>
                   </div>
                 </DrawerFooter>

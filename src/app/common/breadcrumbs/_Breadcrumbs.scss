@@ -46,21 +46,21 @@
 
 @media screen and (min-width: 0px) and (max-width: $xs) {
   .breadcrumb {
-    margin: 0 0 16px;
+    margin: 16px 0;
   }
 }
 
 //sm
 @media screen and (min-width: 581px) and (max-width: $sm) {
   .breadcrumb {
-    margin: 0 0 16px;
+    margin: 16px 0;
   }
 }
 
 //md
 @media screen and (min-width: 771px) and (max-width: $md) {
   .breadcrumb {
-    margin: 0 0 16px;
+    margin: 16px 0;
   }
 }
 
