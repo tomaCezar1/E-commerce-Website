@@ -1,9 +1,12 @@
 @import '../../../styles/constants.scss';
 
-.subcategories-products-container{
+.subcategories-products-container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
+}
+
+.subcategory-title {
+  margin-bottom: 16px !important;
 }
 
 .subcategories-filter {
@@ -13,25 +16,13 @@
   //border: 1px solid #ccc;
 }
 
-.subcategories-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.sorting-bar-wrapper {
-  width: 100%;
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
 .sorting-input {
   width: 180px !important;
   height: 32px;
   border: 1px solid $darkGrey !important;
   border-radius: 8px !important;
+  color: $darkGrey;
+  font-family: $medium;
 }
 
 .sorting-options {
@@ -39,6 +30,87 @@
   border-radius: 8px;
 }
 
-.sorting-option-text {
+.filter-and-sorting {
+  width: 100%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
 
+.sorting-bar-wrapper {
+  margin-left: 32px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.filter-mobile-container {
+  display: none;
+}
+
+.filter-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 143px;
+  height: 28px;
+  background: $primaryColor;
+  border-radius: 8px;
+  color: $white;
+  font-size: 10px;
+  font-family: $bold;
+}
+
+//xs
+@media screen and (min-width: 0px) and (max-width: $xs) {
+  .subcategories-filter {
+    display: none;
+  }
+
+  .filter-mobile-container {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .sorting-input {
+    width: 109px !important;
+    height: 28px !important;
+    font-size: 10px !important;
+  }
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .subcategories-filter {
+    display: none;
+  }
+
+  .filter-mobile-container {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .sorting-input {
+    width: 109px !important;
+    height: 28px !important;
+    font-size: 10px !important;
+  }
+}
+
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .subcategories-filter {
+    display: none;
+  }
+
+  .filter-mobile-container {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .sorting-input {
+    width: 109px !important;
+    height: 28px !important;
+    font-size: 10px !important;
+  }
 }

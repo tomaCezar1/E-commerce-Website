@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
-import Router, { useRouter } from 'next/router';
+import { useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { Select } from '@chakra-ui/react';
-import { useQuery } from '@apollo/client';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 import ProductCard from '../../app-features/home-page/product-card/ProductCard';
 import Pagination from '../../common/pagination/Pagination';
-import { ProductCategoriesQuery } from './ProductCategoriesQueries';
+import { AppContext } from '../../../context';
 
 export default function Subcategories({
   products,
@@ -18,6 +17,8 @@ export default function Subcategories({
   const [sortOrder, setSortOrder] = useState('');
   const router = useRouter();
   const limit = 20;
+  const { favorites } = useContext(AppContext);
+  const isFavorite = favorites.map((el) => el.id);
 
   useEffect(() => {
     setSortOrder(router.query.sort as any);
@@ -70,39 +71,51 @@ export default function Subcategories({
   return (
     <div className="subcategories-page-wrapper">
       <Breadcrumbs path={path} />
-      <div className="title-1">{subcategory?.title}</div>
+      <div className="title-1 subcategory-title">{subcategory?.title}</div>
       <div className="subcategories-products-container">
         <div className="subcategories-filter">filtre</div>
-        <div>
-          <div className="sorting-bar-wrapper">
-            <div className="sorting-options">
-              <Select
-                name="sorting"
-                onChange={sortingHandler}
-                value={sortOrder}
-                className="sorting-input"
-              >
-                <option value="" disabled hidden>
-                  Sortare după
-                </option>
-                <option value="cheap" className="sorting-option-text">
-                  Preț ascendent
-                </option>
-                <option value="expensive" className="sorting-option-text">
-                  Preț descendent
-                </option>
-                <option value="new" className="sorting-option-text">
-                  Cele mai noi
-                </option>
-                <option value="old" className="sorting-option-text">
-                  Cele mai vechi
-                </option>
-              </Select>
+        <div style={{ width: '100%' }}>
+          <div className="filter-and-sorting">
+            <div className="filter-mobile-container">
+              <div className="filter-mobile">Filtre</div>
+            </div>
+
+            <div className="sorting-bar-wrapper">
+              <div className="sorting-options">
+                <Select
+                  name="sorting"
+                  onChange={sortingHandler}
+                  value={sortOrder}
+                  className="sorting-input"
+                >
+                  <option value="" disabled hidden>
+                    Sortare după
+                  </option>
+                  <option value="cheap" className="sorting-option-text">
+                    Preț ascendent
+                  </option>
+                  <option value="expensive" className="sorting-option-text">
+                    Preț descendent
+                  </option>
+                  <option value="new" className="sorting-option-text">
+                    Cele mai noi
+                  </option>
+                  <option value="old" className="sorting-option-text">
+                    Cele mai vechi
+                  </option>
+                </Select>
+              </div>
             </div>
           </div>
-          <div className="subcategories-grid">
+          <div className="cards-container">
             {products.map((product) => {
-              return <ProductCard key={product.id} product={product} small />;
+              return (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  isFavorite={isFavorite}
+                />
+              );
             })}
           </div>
           {pagesCount > 1 && (
