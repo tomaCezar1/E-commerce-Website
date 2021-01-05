@@ -133,10 +133,7 @@ export default function CartPage(): JSX.Element {
                     <div
                       className="remove-cart-item"
                       onClick={() => removeFromCart(product)}
-                    >
-                      <div className="remove-icon-left" />
-                      <div className="remove-icon-right" />
-                    </div>
+                    />
                   </div>
                 );
               })}

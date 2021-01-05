@@ -127,32 +127,9 @@
 }
 
 .remove-cart-item {
-  height: 34px;
-  width: 34px;
-  border: 2px solid $darkGrey;
-  cursor: pointer;
-  position: relative;
-  border-radius: 16px;
-}
-
-.remove-icon-left {
-  width: 2px;
-  height: 10px;
-  position: absolute;
-  left: 7px;
-  top: 3px;
-  background-color: $darkGrey;
-  transform: rotate(45deg);
-}
-
-.remove-icon-right {
-  width: 2px;
-  height: 10px;
-  position: absolute;
-  left: 7px;
-  top: 3px;
-  background-color: $darkGrey;
-  transform: rotate(-45deg);
+  height: 24px;
+  width: 24px;
+  background: url('../../../../public/svg/XButtonLarge.svg') no-repeat;
 }
 
 .container-items {
@@ -297,8 +274,9 @@
   }
 
   .remove-cart-item {
-    width: 20px;
-    height: 20px;
+    height: 16px;
+    width: 16px;
+    background: url('../../../../public/svg/XButtonSmall.svg') no-repeat;
   }
 
   .clear-cart-button {
@@ -439,20 +417,10 @@
   }
 
   .remove-cart-item {
-    width: 25px;
-    height: 25px;
-  }
-
-  .remove-icon-left {
-    height: 12px;
-    left: 9px;
-    top: 4px;
-  }
-
-  .remove-icon-right {
-    height: 12px;
-    left: 9px;
-    top: 4px;
+    height: 21px;
+    width: 21px;
+    background: url('../../../../public/svg/XButtonMedium.svg') no-repeat;
+    margin-right: 20px;
   }
 
   .clear-cart-button {
@@ -482,10 +450,6 @@
 
   .cart-buttons-wrapper {
     display: flex;
-  }
-
-  .remove-cart-item {
-    margin-right: 20px;
   }
 }
 
@@ -574,13 +538,14 @@
     height: 60px;
     & p {
       font-size: 13px;
-      
     }
   }
 
   .remove-cart-item {
-    width: 20px;
-    height: 20px;
+    height: 21px;
+    width: 21px;
+    background: url('../../../../public/svg/XButtonMedium.svg') no-repeat;
+    margin-right: 20px;
   }
 
   .clear-cart-button {
@@ -637,10 +602,6 @@
     margin-right: 20px;
   }
 
-  .remove-cart-item {
-    margin-right: 20px;
-  }
-
 }
 
 //lg
@@ -650,20 +611,6 @@
     display: none;
   }
 
-
-  .remove-icon-left {
-    width: 2px;
-    height: 12px;
-    top: 8px;
-    left: 14px;
-  }
-  
-  .remove-icon-right {
-    width: 2px;
-    height: 12px;
-    top: 8px;
-    left: 14px;
-  }
 }
 
 //xl
