@@ -109,13 +109,14 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
                           e.stopPropagation();
                           addToCart(product, 1);
                           toast({
-                            render: () => (
+                            render: ({ onClose }) => (
                               <Toast
-                                description={`Produsul ${product.name} a fost adăugat cu succes!`}
+                                description={`Produsul "${product.name}" a fost adăugat cu succes!`}
+                                handleClose={onClose}
                               />
                             ),
                             status: 'success',
-                            duration: 5000,
+                            duration: 30000,
                             isClosable: true,
                             position: 'top',
                           });

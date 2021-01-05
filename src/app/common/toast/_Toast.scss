@@ -3,10 +3,46 @@
 .toast-wrapper {
   width: auto;
   margin: 0 auto;
-  background-color: $green;
+  background-color: rgba(54, 179, 104, 0.95);
   border-radius: 4px;
-  padding: 5px 16px;
-  max-width: 150px;
+  padding: 5px 0 5px 5px;
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 300px;
+  position: relative;
+}
+
+.toast-icon-wrapper {
+  width: 20px;
+  height: 100%;
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto 5px auto 0;
+}
+
+.toast-icon {
+  width: 16px;
+  height: 16px;
+  background: url('../../../../public/svg/Success.svg') no-repeat;
+}
+
+.toast-close-icon {
+  width: 12px;
+  height: 12px;
+  background: url('../../../../public/svg/x.svg') no-repeat;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 8px;
+}
+
+.toast-description {
+  color: $white;
+  font-family: $medium;
+  text-align: center;
+  margin: auto 10px auto 5px;
 }
 
 //xs
@@ -35,9 +71,13 @@
   .toast-wrapper {
     font-size: 16px;
   }
+  .toast-icon {
+    width: 18px;
+    height: 18px;
+    background: url('../../../../public/svg/SuccessLarge.svg') no-repeat;
+  }
 }
 
 //xl
 @media screen and (min-width: 1501px) and (max-width: $xl) {
-
 }

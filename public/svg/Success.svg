@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="15px" viewBox="0 0 14 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Success</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Artboard" transform="translate(-656.000000, -325.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="Success" transform="translate(657.000000, 326.000000)">
+                <path d="M12,6.04806 L12,6.60006 C11.99928,7.8939 11.5803,9.15288 10.80558,10.18914 C10.03092,11.22546 8.94198,11.98356 7.70124,12.3504 C6.46044,12.71724 5.13438,12.6732 3.920682,12.22482 C2.707008,11.77644 1.67079,10.94772 0.966576,9.86232 C0.262362,8.77686 -0.072126,7.49292 0.013008,6.20184 C0.098136,4.910802 0.598326,3.681858 1.438968,2.698308 C2.27961,1.714758 3.415674,1.029294 4.677714,0.74415 C5.93976,0.459012 7.26018,0.58947 8.442,1.116066" id="Path"></path>
+                <polyline id="Path" points="12 1.8 6 7.806 4.2 6.006"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>
