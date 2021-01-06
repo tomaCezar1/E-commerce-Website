@@ -3,9 +3,8 @@ import CartIcon from '../../../../public/svg/CartIcon.svg';
 import { useState, useEffect, useContext } from 'react';
 import { useQuery } from '@apollo/client';
 import { TechSpecsQuery } from './ProductDetailsQuery';
-import { Skeleton } from '@chakra-ui/react';
+import { Skeleton, useToast, useMediaQuery } from '@chakra-ui/react';
 import { AppContext } from '../../../context';
-import { useToast } from '@chakra-ui/react';
 import FavoriteEmpty from '../../../../public/svg/FavoriteEmpty.svg';
 import FavoriteActive from '../../../../public/svg/FavoriteActive.svg';
 import { RecommendedProductsQuery } from './RecommendedProdQuery';
@@ -19,8 +18,13 @@ function ProductDetails({ productDetails }) {
   const id = details.id;
   const { addToCart, favorites, addToFavorites } = useContext(AppContext);
   const [isAvailable, setAvailable] = useState(null);
+  const [x, setX] = useState(0);
   const isFavorite = favorites.map((el) => el.id);
   const filtered = favorites.filter((favorite) => favorite.id === details.id);
+  const [isLargerThan1250] = useMediaQuery('(min-width: 1250px)');
+  const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
+  const [isLargerThan580] = useMediaQuery('(min-width: 580px)');
+  const [isLargerThan0] = useMediaQuery('(min-width: 0px)');
 
   const addToFavoritesList = (event, product) => {
     event.stopPropagation();
@@ -95,17 +99,42 @@ function ProductDetails({ productDetails }) {
     }
   };
 
+  let goLeft, goRight;
+
   //Recommended Products Slider
-  const [x, setX] = useState(0);
+  if (isLargerThan1250) {
+    goLeft = () => {
+      x === 0 ? null : setX(x + 100);
+    };
 
-  const goLeft = () => {
-    x === 0 ? null : setX(x + 280);
-  };
+    goRight = () => {
+      x === -100 * (recommendedData.length - 4) ? null : setX(x - 100);
+    };
+  } else if (isLargerThan770) {
+    goLeft = () => {
+      x === 0 ? null : setX(x + 100);
+    };
 
-  const goRight = () => {
-    x === -280 * (recommendedData.length - 4) ? null : setX(x - 280);
-  };
+    goRight = () => {
+      x === -100 * (recommendedData.length - 3) ? null : setX(x - 100);
+    };
+  } else if (isLargerThan580) {
+    goLeft = () => {
+      x === 0 ? null : setX(x + 100);
+    };
 
+    goRight = () => {
+      x === -100 * (recommendedData.length - 2) ? null : setX(x - 100);
+    };
+  } else if (isLargerThan0) {
+    goLeft = () => {
+      x === 0 ? null : setX(x + 100);
+    };
+
+    goRight = () => {
+      x === -100 * (recommendedData.length - 1) ? null : setX(x - 100);
+    };
+  }
   return (
     <>
       <div className="product-details-container">
@@ -346,7 +375,7 @@ function ProductDetails({ productDetails }) {
                   <div
                     className="recommended-slide"
                     key={index}
-                    style={{ transform: `translateX(${x}px)` }}
+                    style={{ transform: `translateX(${x}%)` }}
                   >
                     <ProductCard product={item} isFavorite={isFavorite} />
                   </div>
