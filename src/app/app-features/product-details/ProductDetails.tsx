@@ -68,8 +68,6 @@ function ProductDetails({ productDetails }) {
     }
   }, []);
 
-  console.log(typeof qty);
-
   return (
     <>
       <div className="product-details-container">
@@ -108,7 +106,6 @@ function ProductDetails({ productDetails }) {
               ) : (
                 <p className="product-details-price">{details?.price} lei</p>
               )}
-
               <div className="product-details-add-to-cart-flex">
                 <div className="product-details-counter">
                   <div
@@ -156,7 +153,7 @@ function ProductDetails({ productDetails }) {
                   className="product-details-add-to-cart"
                   onClick={(e) => {
                     e.stopPropagation();
-                    addToCart(details, 1);
+                    addToCart(details, qty);
                     toast({
                       title: `Produsul ${details.name} a fost adăugat cu succes!`,
                       status: 'success',
@@ -219,7 +216,7 @@ function ProductDetails({ productDetails }) {
                   className="product-details-add-to-cart"
                   onClick={(e) => {
                     e.stopPropagation();
-                    addToCart(details, 1);
+                    addToCart(details, qty);
                     toast({
                       title: `Produsul ${details.name} a fost adăugat cu succes!`,
                       status: 'success',

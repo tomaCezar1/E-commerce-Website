@@ -24,13 +24,13 @@
   font-family: $medium;
 }
 
-.sorting-option-text {
-  font-family: $medium !important;
-}
-
 .sorting-options {
   background-color: $white;
   border-radius: 8px;
+  
+  & option {
+    font-family: $medium !important;
+  }
 }
 
 .filter-and-sorting {
