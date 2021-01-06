@@ -122,6 +122,18 @@
   }
 }
 
+.product-qty-input {
+  width: 25px;
+  background-color: $background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-qty-input:focus {
+  outline: none;
+}
+
 .product-details-content {
   width: 627px;
   height: 100%;

@@ -6,6 +6,7 @@ import { TechSpecsQuery } from './ProductDetailsQuery';
 import { Skeleton } from '@chakra-ui/react';
 import { AppContext } from '../../../context';
 import { useToast } from '@chakra-ui/react';
+import { createMarkup } from '../../../utils/index';
 import FavoriteEmpty from '../../../../public/svg/FavoriteEmpty.svg';
 import FavoriteActive from '../../../../public/svg/FavoriteActive.svg';
 
@@ -14,6 +15,7 @@ function ProductDetails({ productDetails }) {
   const toast = useToast();
   const id = details.id;
   const { addToCart, favorites, addToFavorites } = useContext(AppContext);
+  const [qty, setQty] = useState(1);
   const [isAvailable, setAvailable] = useState(null);
 
   const filtered = favorites.filter((favorite) => favorite.id === details.id);
@@ -66,23 +68,7 @@ function ProductDetails({ productDetails }) {
     }
   }, []);
 
-  const createMarkup = (html) => {
-    return {
-      __html: html,
-    };
-  };
-
-  const [counter, setCounter] = useState(0);
-
-  const handleAdd = () => {
-    setCounter(counter + 1);
-  };
-
-  const handleRemove = () => {
-    if (counter > 0) {
-      setCounter(counter - 1);
-    }
-  };
+  console.log(typeof qty);
 
   return (
     <>
@@ -127,14 +113,27 @@ function ProductDetails({ productDetails }) {
                 <div className="product-details-counter">
                   <div
                     className="product-details-counters"
-                    onClick={handleRemove}
+                    onClick={() => {
+                      if (qty > 1) {
+                        setQty(qty - 1);
+                      }
+                    }}
                   >
                     <p>-</p>
                   </div>
                   <div className="product-details-center-counter">
-                    <p>{counter}</p>
+                    <input
+                      className="product-qty-input"
+                      type="number"
+                      value={qty}
+                      onChange={(e) => setQty(+e.target.value)}
+                      min={1}
+                    />
                   </div>
-                  <div className="product-details-counters" onClick={handleAdd}>
+                  <div
+                    className="product-details-counters"
+                    onClick={() => setQty(qty + 1)}
+                  >
                     <p>+</p>
                   </div>
                 </div>
@@ -191,16 +190,26 @@ function ProductDetails({ productDetails }) {
                   <div className="product-details-counter">
                     <div
                       className="product-details-counters"
-                      onClick={handleRemove}
+                      onClick={() => {
+                        if (qty > 1) {
+                          setQty(qty - 1);
+                        }
+                      }}
                     >
                       <p>-</p>
                     </div>
                     <div className="product-details-center-counter">
-                      <p>{counter}</p>
+                      <input
+                        className="product-qty-input"
+                        type="number"
+                        value={qty}
+                        onChange={(e) => setQty(+e.target.value)}
+                        min={1}
+                      />
                     </div>
                     <div
                       className="product-details-counters"
-                      onClick={handleAdd}
+                      onClick={() => setQty(qty + 1)}
                     >
                       <p>+</p>
                     </div>

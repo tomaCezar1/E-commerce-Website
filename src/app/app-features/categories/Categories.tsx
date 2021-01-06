@@ -42,7 +42,12 @@ export default function Categories({
             );
           })}
         </div>
-        <div className="subcat-banner" />
+        <div className="subcat-banner">
+          <img
+            src="https://cdn.incoden.com/Diferite/bec.png"
+            className="banner-image"
+          />
+        </div>
       </div>
     </div>
   );
