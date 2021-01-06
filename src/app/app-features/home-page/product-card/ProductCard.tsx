@@ -114,7 +114,7 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
                               />
                             ),
                             status: 'success',
-                            duration: 30000,
+                            duration: 5000,
                             isClosable: true,
                             position: 'top',
                           });
