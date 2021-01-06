@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { AppContext } from '../../../../context';
 import Link from 'next/link';
 import { Select, useToast } from '@chakra-ui/react';
+import Toast from '../../../common/toast/Toast';
 import { useRouter } from 'next/router';
 import InputMask from 'react-input-mask';
 import { useMutation } from '@apollo/client';
@@ -105,7 +106,12 @@ export default function CheckoutForm({
       // Make the request to place an order instead of the alert
       sendOrder();
       toast({
-        title: 'Comanda dumneavoastră a fost procesată cu succes.',
+        render: ({ onClose }) => (
+          <Toast
+            description="Comanda dumneavoastră a fost procesată cu succes."
+            handleClose={onClose}
+          />
+        ),
         status: 'success',
         duration: 5000,
         isClosable: true,

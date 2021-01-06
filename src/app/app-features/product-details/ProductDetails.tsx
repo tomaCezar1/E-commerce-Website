@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client';
 import { TechSpecsQuery } from './ProductDetailsQuery';
 import { Skeleton } from '@chakra-ui/react';
 import { AppContext } from '../../../context';
+import Toast from '../../common/toast/Toast';
 import { useToast } from '@chakra-ui/react';
 import { createMarkup } from '../../../utils/index';
 import FavoriteEmpty from '../../../../public/svg/FavoriteEmpty.svg';
@@ -155,7 +156,12 @@ function ProductDetails({ productDetails }) {
                     e.stopPropagation();
                     addToCart(details, qty);
                     toast({
-                      title: `Produsul ${details.name} a fost adăugat cu succes!`,
+                      render: ({ onClose }) => (
+                        <Toast
+                          description={`Produsul ${details.name} a fost adăugat cu succes!`}
+                          handleClose={onClose}
+                        />
+                      ),
                       status: 'success',
                       duration: 5000,
                       isClosable: true,
@@ -218,7 +224,12 @@ function ProductDetails({ productDetails }) {
                     e.stopPropagation();
                     addToCart(details, qty);
                     toast({
-                      title: `Produsul ${details.name} a fost adăugat cu succes!`,
+                      render: ({ onClose }) => (
+                        <Toast
+                          description={`Produsul ${details.name} a fost adăugat cu succes!`}
+                          handleClose={onClose}
+                        />
+                      ),
                       status: 'success',
                       duration: 5000,
                       isClosable: true,
