@@ -82,7 +82,9 @@ export default function MobileHeader() {
             <DrawerContent>
               <DrawerCloseButton onClick={onClose} />
               <DrawerHeader>
-                <div className="drawer-logo" />
+                <Link href="/">
+                  <div className="drawer-logo" />
+                </Link>
               </DrawerHeader>
               <DrawerBody>
                 <div style={{ marginTop: 30 }}>

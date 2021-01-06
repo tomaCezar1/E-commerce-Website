@@ -13,7 +13,7 @@
 
 .cart-items-list {
   max-height: calc(100vh - 410px);
-  min-height: 500px;
+  height: auto;
   overflow: auto;
 }
 
@@ -350,7 +350,7 @@
   }
 
   .cart-items-list {
-    min-height: 500px;
+    height: auto;
     overflow: visible;
   }
 
@@ -605,7 +605,7 @@
   }
 
   .cart-items-list {
-    max-height: none;
+    height: auto;
     overflow: visible;
   }
 

@@ -157,7 +157,7 @@
 .product-container-small {
   &.product-card-container {
     width: 218px;
-    padding: 14px;
+    padding: 10px;
   }
 
   .product-card-name {
@@ -298,6 +298,7 @@
     margin: 0;
   }
   .product-container-small {
+
     .on-sale {
       height: 30px;
     }
@@ -329,6 +330,7 @@
 
     .product-card-add-text {
       font-size: 10px;
+      margin-left: 5px;
     }
 
     .add-to-cart {
