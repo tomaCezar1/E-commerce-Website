@@ -8,6 +8,10 @@ import { AppContext } from '../../../context';
 import { useToast } from '@chakra-ui/react';
 import FavoriteEmpty from '../../../../public/svg/FavoriteEmpty.svg';
 import FavoriteActive from '../../../../public/svg/FavoriteActive.svg';
+import { RecommendedProductsQuery } from './RecommendedProdQuery';
+import ProductCard from '../home-page/product-card/ProductCard';
+import LeftArrow from '../../../../public/svg/LeftPartnerIcon.svg';
+import RightArrow from '../../../../public/svg/LeftPartnerIcon.svg';
 
 function ProductDetails({ productDetails }) {
   const details = productDetails?.products[0];
@@ -15,7 +19,7 @@ function ProductDetails({ productDetails }) {
   const id = details.id;
   const { addToCart, favorites, addToFavorites } = useContext(AppContext);
   const [isAvailable, setAvailable] = useState(null);
-
+  const isFavorite = favorites.map((el) => el.id);
   const filtered = favorites.filter((favorite) => favorite.id === details.id);
 
   const addToFavoritesList = (event, product) => {
@@ -32,6 +36,13 @@ function ProductDetails({ productDetails }) {
   } else {
     sale = 0;
   }
+
+  const productId = id;
+  const recommendedQuery = useQuery(RecommendedProductsQuery, {
+    variables: { productId },
+  });
+
+  const recommendedData = recommendedQuery.data?.recommendedProducts;
 
   const { loading, data } = useQuery(TechSpecsQuery, {
     variables: { id },
@@ -82,6 +93,17 @@ function ProductDetails({ productDetails }) {
     if (counter > 0) {
       setCounter(counter - 1);
     }
+  };
+
+  //Recommended Products Slider
+  const [x, setX] = useState(0);
+
+  const goLeft = () => {
+    x === 0 ? null : setX(x + 280);
+  };
+
+  const goRight = () => {
+    x === -280 * (recommendedData.length - 4) ? null : setX(x - 280);
   };
 
   return (
@@ -308,6 +330,39 @@ function ProductDetails({ productDetails }) {
             </div>
           </div>
         )}
+        <h1 className="product-details-title">Produse Recomandate</h1>
+        <div className="recommended-products-container">
+          <i
+            id="goLeft"
+            className="arrows-recommended-slider arr-left"
+            onClick={goLeft}
+          >
+            <LeftArrow />
+          </i>
+          {recommendedData && recommendedData.length > 0 && (
+            <div className="recommended-slider">
+              {recommendedData.map((item, index) => {
+                return (
+                  <div
+                    className="recommended-slide"
+                    key={index}
+                    style={{ transform: `translateX(${x}px)` }}
+                  >
+                    <ProductCard product={item} isFavorite={isFavorite} />
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          <i
+            id="goRight"
+            className="arrows-recommended-slider arr-right"
+            onClick={goRight}
+            style={{ transform: 'rotate(180deg)' }}
+          >
+            <RightArrow />
+          </i>
+        </div>
       </div>
     </>
   );

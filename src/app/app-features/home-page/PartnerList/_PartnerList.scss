@@ -62,11 +62,16 @@ $height: 100px;
 #goLeft {
   padding-right: 16px;
   @extend %btn-styles;
+  width: 18px !important;
 }
 
 #goRight {
   padding-left: 16px;
   @extend %btn-styles;
+  & svg {
+    width: 18px;
+    height: 36px;
+  }
 }
 
 //xs
