@@ -20,6 +20,16 @@ export const RecommendedProductsQuery = gql`
 `;
 
 export interface IRecommendedProducts {
+  articleCode: string;
+  available: boolean;
+  description: string;
+  images: [string];
+  isPromo: boolean;
   name: string;
+  newPrice: number;
+  notAvailableCustomText: string;
   price: number;
+  promoDiscount: number;
+  slug: string;
+  sortOrder: number;
 }

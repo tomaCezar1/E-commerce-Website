@@ -3,6 +3,7 @@ import CartIcon from '../../../../public/svg/CartIcon.svg';
 import { useState, useEffect, useContext } from 'react';
 import { useQuery } from '@apollo/client';
 import { TechSpecsQuery } from './ProductDetailsQuery';
+import { IRecommendedProducts } from './RecommendedProdQuery';
 import { Skeleton, useToast, useMediaQuery } from '@chakra-ui/react';
 import { AppContext } from '../../../context';
 import Toast from '../../common/toast/Toast';
@@ -120,6 +121,7 @@ function ProductDetails({ productDetails }) {
       x === -100 * (recommendedData.length - 1) ? null : setX(x - 100);
     };
   }
+
   return (
     <>
       <div className="product-details-container">
