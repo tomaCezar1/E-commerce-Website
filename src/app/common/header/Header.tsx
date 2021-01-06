@@ -39,8 +39,8 @@ export default function Header(): JSX.Element {
               <div className="phone-icon-wrapper">
                 <div className="header-phone-icon" />
               </div>
-              <a className="header-phone" href="tel:+373 69 000 000">
-                069 00 00 00
+              <a className="header-phone" href="tel:+373 69 606 707">
+                069 60 67 07
               </a>
             </div>
             <div className="header-links">

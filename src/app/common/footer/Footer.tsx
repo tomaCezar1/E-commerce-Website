@@ -17,35 +17,38 @@ export default function Footer() {
           <div className="footer-links-wrapper">
             <div className="footer-links-group">
               <p className="footer-links-heading">Link-uri</p>
-              <Link href={`/service`} locale={router.locale}>
+              <Link href="/service" locale={router.locale}>
                 <span className="footer-link">Service centru</span>
               </Link>
-              <Link href={`/regional-store`} locale={router.locale}>
+              <Link href="/regional-store" locale={router.locale}>
                 <span className="footer-link">Magazine regionale</span>
               </Link>
-              <Link href={`/news`} locale={router.locale}>
+              <Link href="/news" locale={router.locale}>
                 <span className="footer-link">Știri</span>
+              </Link>
+              <Link href="/jobs" locale={router.locale}>
+                <span className="footer-link">Posturi vacante</span>
               </Link>
             </div>
             <div className="footer-links-group" style={{ marginLeft: 50 }}>
               <p className="footer-links-heading">Informații</p>
-              <Link href={`/guarantee`} locale={router.locale}>
+              <Link href="/guarantee" locale={router.locale}>
                 <span className="footer-link">Condiții de garanție</span>
               </Link>
-              <Link href={`/about`} locale={router.locale}>
+              <Link href="/about" locale={router.locale}>
                 <span className="footer-link">Despre noi</span>
               </Link>
-              <Link href={`/delivery`} locale={router.locale}>
+              <Link href="/delivery" locale={router.locale}>
                 <span className="footer-link">Livrare</span>
               </Link>
-              <Link href={`/privacy`} locale={router.locale}>
+              <Link href="/privacy" locale={router.locale}>
                 <span className="footer-link">
                   Politica de confidențialitate
                 </span>
               </Link>
               <Link
-                href={`/terms`}
-                as={`/terms-and-conditions`}
+                href="/terms"
+                as="/terms-and-conditions"
                 locale={router.locale}
               >
                 <span className="footer-link">Termeni de utilizare</span>
@@ -70,15 +73,18 @@ export default function Footer() {
 
         <div className="footer-copyright">
           <div className="footer-social-icons">
-            <i className="footer-icon">
-              <FacebookIcon />
-            </i>
-            <i className="footer-icon">
+            <a href="https://www.facebook.com/cegoltar.md/">
+              <i className="footer-icon">
+                <FacebookIcon />
+              </i>
+            </a>
+
+            {/* <i className="footer-icon">
               <InstagramIcon />
             </i>
             <i className="footer-icon">
               <LinkedInIcon />
-            </i>
+            </i> */}
           </div>
 
           <div className="footer-copyright-text">
