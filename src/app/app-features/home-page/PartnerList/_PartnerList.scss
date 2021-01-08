@@ -12,8 +12,14 @@
 .slider {
   display: inline-grid;
   grid-template-columns: repeat(100, 1fr);
-  overflow: hidden;
+  overflow: auto;
   background: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
 }
 
 .current {

@@ -48,7 +48,7 @@ export default function MobileHeader() {
   };
 
   const handleClick = () => {
-    setShowSearchBar(!showSearchBar);
+    setShowSearchBar(false);
     setShowLogo(!showLogo);
   };
 
@@ -60,7 +60,7 @@ export default function MobileHeader() {
         </div>
         <div className="mobile-search-wrapper">
           {showSearchBar && !showLogo ? (
-            <SearchBar mobile onClose={handleClick} withTimeout />
+            <SearchBar mobile onClose={handleClick} />
           ) : (
             <div
               className={
@@ -70,7 +70,8 @@ export default function MobileHeader() {
                 setShowLogo(!showLogo);
                 setTimeout(() => {
                   setShowSearchBar(true);
-                }, 600);
+                  document.getElementById('Search').focus();
+                }, 300);
               }}
             />
           )}
@@ -81,13 +82,13 @@ export default function MobileHeader() {
           <div>
             <DrawerContent>
               <DrawerCloseButton onClick={onClose} />
-              <DrawerHeader>
+              <DrawerHeader style={{ paddingTop: 50 }}>
                 <Link href="/">
                   <div className="drawer-logo" />
                 </Link>
               </DrawerHeader>
               <DrawerBody>
-                <div style={{ marginTop: 30 }}>
+                <div style={{ marginBottom: 50 }}>
                   <Accordion
                     allowMultiple
                     allowToggle

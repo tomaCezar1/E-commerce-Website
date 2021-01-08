@@ -6,11 +6,7 @@ import { apolloClient } from '../../../lib/apolloClient';
 import Overlay from '../../overlay/Overlay';
 import { SkeletonText, SkeletonCircle } from '@chakra-ui/react';
 
-export default function SearchBar({
-  mobile = false,
-  onClose,
-  withTimeout = false,
-}): JSX.Element {
+export default function SearchBar({ mobile = false, onClose }): JSX.Element {
   const client = apolloClient;
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -91,7 +87,7 @@ export default function SearchBar({
                     setShowOverlay(false);
                     setIsSearching(false);
                   }
-                : null
+                : () => setShowOverlay(false)
             }
           />
         </div>

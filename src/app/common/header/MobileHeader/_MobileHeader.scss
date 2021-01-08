@@ -41,9 +41,9 @@
 .mobile-search-icon {
   width: 16px;
   height: 16px;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  transition: all 0.25s;
   background: transparent url('../../../../../public/svg/SearchIconSmall.svg')
     no-repeat;
   margin-left: 15px;
@@ -55,9 +55,9 @@
   margin-bottom: 2px;
   background: $semiTransparentWhite !important;
   border-radius: 16px;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  transition: all 0.25s;
   margin-left: -4px;
 }
 
