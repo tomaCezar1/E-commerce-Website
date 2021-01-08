@@ -56,14 +56,14 @@ export async function getServerSideProps(context) {
     },
   });
 
-  const categoryId = productCategoriesData.data.productCategories[0].id;
+  const parentId = productCategoriesData.data.productCategories[0].parent;
 
   const categoryData = await apolloClient.query({
     query: ProductCategoriesQuery,
     variables: {
       filter: {
         id: {
-          eq: productCategoriesData.data.productCategories[0].parent,
+          eq: parentId,
         },
       },
     },
@@ -72,6 +72,8 @@ export async function getServerSideProps(context) {
   const limit = 20;
 
   const offset = limit * page - limit;
+
+  const categoryId = productCategoriesData.data.productCategories[0].id;
 
   const productsData = await apolloClient.query({
     query: ProductListQuery,
@@ -94,28 +96,37 @@ export async function getServerSideProps(context) {
     },
   });
 
-  const productsCountData = await apolloClient.query({
-    query: ProductsCountQuery,
-    variables: {
-      filter: {
-        categoryId: {
-          eq: categoryId,
+  let productsCount: number;
+  let productsCountData: any;
+
+  try {
+    productsCountData = await apolloClient.query({
+      query: ProductsCountQuery,
+      variables: {
+        filter: {
+          categoryId: {
+            eq: categoryId,
+          },
         },
+        sorting: [
+          {
+            field: 'price',
+            direction: 'ASC',
+          },
+        ],
       },
-      sorting: [
-        {
-          field: 'price',
-          direction: 'ASC',
-        },
-      ],
-    },
-  });
+    });
+
+    productsCount = productsCountData?.data.productAggregate.count.id;
+  } catch (e) {
+    productsCount = 0;
+  }
 
   return {
     props: {
       products: productsData.data.products,
       subcategory: productCategoriesData?.data?.productCategories[0],
-      productsCount: productsCountData?.data.productAggregate.count.id,
+      productsCount: productsCount,
       category: categoryData.data.productCategories[0],
       currentPage: page,
     },
