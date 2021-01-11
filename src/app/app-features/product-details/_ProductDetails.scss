@@ -169,6 +169,10 @@
   font-size: 18px;
 }
 
+.details-arrow-right {
+  padding: 0 24px 0 0 !important;
+}
+
 .product-details-center-counter {
   @extend %flex-row;
   background: $lightGrey;
@@ -295,6 +299,7 @@
   justify-content: center;
   align-items: center;
   margin: 50px 0 84px;
+  position: relative;
 }
 
 .recommended-slider {
@@ -887,11 +892,35 @@
       margin: 0;
     }
   }
+
+  .goLeft-details {
+    position: absolute !important;
+    top: 50% !important;
+    left: -30px !important;
+  }
+
+  .goRight-details {
+    position: absolute !important;
+    top: 50% !important;
+    right: -35px !important;
+  }
 }
 
 //xl
 @media screen and (min-width: 1501px) and (max-width: $xl) {
   .discounted-price-lg {
     margin-left: 0 !important;
+  }
+
+  .goLeft-details {
+    position: absolute !important;
+    top: 50% !important;
+    left: -30px !important;
+  }
+
+  .goRight-details {
+    position: absolute !important;
+    top: 50% !important;
+    right: -35px !important;
   }
 }

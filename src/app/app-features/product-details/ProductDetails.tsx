@@ -3,7 +3,6 @@ import CartIcon from '../../../../public/svg/CartIcon.svg';
 import { useState, useEffect, useContext } from 'react';
 import { useQuery } from '@apollo/client';
 import { TechSpecsQuery } from './ProductDetailsQuery';
-import { IRecommendedProducts } from './RecommendedProdQuery';
 import { Skeleton, useToast, useMediaQuery } from '@chakra-ui/react';
 import { AppContext } from '../../../context';
 import Toast from '../../common/toast/Toast';
@@ -50,6 +49,8 @@ function ProductDetails({ productDetails }) {
     variables: { productId },
   });
 
+  const loadingRecommended = recommendedQuery.loading;
+
   const recommendedData = recommendedQuery.data?.recommendedProducts;
 
   const { loading, data } = useQuery(TechSpecsQuery, {
@@ -59,6 +60,11 @@ function ProductDetails({ productDetails }) {
   let techFields = [];
   let techFieldsSecond = [];
 
+  const vendorObject = {
+    name: 'Vendor',
+    value: details.vendor,
+  };
+
   if (data && data.techSpecs && data.techSpecs.fields) {
     const fields = data.techSpecs.fields.filter((product) => product.value);
     if (fields.length > 7) {
@@ -66,6 +72,9 @@ function ProductDetails({ productDetails }) {
       techFieldsSecond = fields.slice(Math.round(fields.length / 2));
     } else {
       techFields = fields;
+    }
+    if (details.vendor) {
+      techFields.unshift(vendorObject);
     }
   }
 
@@ -380,39 +389,42 @@ function ProductDetails({ productDetails }) {
             </div>
           </div>
         )}
-        <h1 className="product-details-title">Produse Recomandate</h1>
-        <div className="recommended-products-container">
-          <i
-            id="goLeft"
-            className="arrows-recommended-slider arr-left"
-            onClick={goLeft}
-          >
-            <LeftArrow />
-          </i>
-          {recommendedData && recommendedData.length > 0 && (
-            <div className="recommended-slider">
-              {recommendedData.map((item, index) => {
-                return (
-                  <div
-                    className="recommended-slide"
-                    key={index}
-                    style={{ transform: `translateX(${x}%)` }}
-                  >
-                    <ProductCard product={item} isFavorite={isFavorite} />
-                  </div>
-                );
-              })}
+        {!loadingRecommended && recommendedData && recommendedData.length && (
+          <div>
+            <h1 className="product-details-title">Produse Recomandate</h1>
+            <div className="recommended-products-container">
+              <i id="goLeft" className="goLeft-details" onClick={goLeft}>
+                <LeftArrow />
+              </i>
+              <div className="recommended-slider">
+                {recommendedData.map((item, index) => {
+                  return (
+                    <div
+                      className="recommended-slide"
+                      key={index}
+                      style={{ transform: `translateX(${x}%)` }}
+                    >
+                      <ProductCard product={item} isFavorite={isFavorite} />
+                    </div>
+                  );
+                })}
+              </div>
+              <i
+                id="goRight"
+                className="details-arrow-right goRight-details"
+                onClick={goRight}
+                style={{ transform: 'rotate(180deg)' }}
+              >
+                <RightArrow />
+              </i>
             </div>
-          )}
-          <i
-            id="goRight"
-            className="arrows-recommended-slider arr-right"
-            onClick={goRight}
-            style={{ transform: 'rotate(180deg)' }}
-          >
-            <RightArrow />
-          </i>
-        </div>
+          </div>
+        )}
+        {loadingRecommended && (
+          <div className=" full-width" style={{ margin: '80px 0 62px' }}>
+            <Skeleton height="445px" style={{ borderRadius: '16px' }} />
+          </div>
+        )}
       </div>
     </>
   );
