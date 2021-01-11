@@ -79,14 +79,12 @@ function CarouselComponent({ style = {} }): JSX.Element {
   function SampleNextArrow(props) {
     const { style, onClick } = props;
     return (
-      <div className="slick-arrow-bg slick-arrow-bg-next">
+      <div className="slick-arrow-bg slick-arrow-bg-next" onClick={onClick}>
         <div
           className="slick-arrow"
           style={{
             ...style,
-            right: '9%',
           }}
-          onClick={onClick}
         >
           <i className="icons">
             <RightArrow />
@@ -99,14 +97,12 @@ function CarouselComponent({ style = {} }): JSX.Element {
   function SamplePrevArrow(props) {
     const { style, onClick } = props;
     return (
-      <div className="slick-arrow-bg">
+      <div className="slick-arrow-bg" onClick={onClick}>
         <div
           className="slick-arrow"
           style={{
             ...style,
-            left: '8%',
           }}
-          onClick={onClick}
         >
           <i className="icons">
             <LeftArrow />

@@ -14,6 +14,7 @@ export const ProductDetailsQuery = gql`
       available
       articleCode
       categoryId
+      vendor
     }
   }
 `;
