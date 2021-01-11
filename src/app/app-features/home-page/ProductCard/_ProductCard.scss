@@ -30,8 +30,8 @@
   font-family: $regular;
   font-size: 20px;
   white-space: normal;
-  height: 60px;
   overflow: hidden;
+  height: 60px;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -107,10 +107,23 @@
   width: 100%;
 }
 
-.produs-in-stock {
-  font-size: 12px;
+.product-in-stock,
+.product-in-stock-invis {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none;
+  font-size: 14px;
   font-family: $medium;
+  margin-bottom: 5px;
+}
+
+.product-in-stock {
   color: #ea5230;
+}
+
+.product-in-stock-invis {
+  color: $white;
 }
 
 .out-of-stock {
@@ -216,7 +229,7 @@
   .product-card-container {
     width: 100%;
     padding: 10px;
-    max-width: 166px;
+    max-width: 165px;
     align-self: center;
     justify-self: center;
   }
@@ -257,14 +270,14 @@
   }
 
   .product-card-price {
-    margin: 11px 0 14px;
+    margin: 10px 0 5px;
   }
 
   .product-card-name {
     font-size: 14px;
     margin: 8px 0 0;
-    height: 32px;
     line-height: 16px;
+    height: 32px;
   }
 
   .discounted-price {
@@ -284,7 +297,8 @@
     height: 142px;
   }
 
-  .produs-in-stock {
+  .product-in-stock,
+  .product-in-stock-invis {
     font-size: 10px;
   }
 
@@ -299,10 +313,12 @@
     .cards-container {
       display: flex !important;
       flex-wrap: wrap;
+      justify-content: flex-start;
     }
 
     .product-card-name {
       font-size: 14px !important;
+      height: 32px;
     }
 
     .crossed-price {
@@ -386,14 +402,14 @@
   }
 
   .product-card-price {
-    margin: 11px 0 14px;
+    margin: 10px 0 5px;
   }
 
   .product-card-name {
     font-size: 14px;
     margin: 8px 0 0;
-    height: 32px;
     line-height: 16px;
+    height: 32px;
   }
 
   .discounted-price {
@@ -413,7 +429,8 @@
     height: 142px;
   }
 
-  .produs-in-stock {
+  .product-in-stock,
+  .product-in-stock-invis {
     font-size: 10px;
   }
 
@@ -433,6 +450,7 @@
 
     .product-card-name {
       font-size: 14px !important;
+      height: 32px;
     }
 
     .crossed-price {
@@ -515,7 +533,7 @@
   }
 
   .product-card-price {
-    margin: 11px 0 14px;
+    margin: 10px 0 5px;
   }
 
   .product-card-name {
@@ -542,7 +560,8 @@
     height: 142px;
   }
 
-  .produs-in-stock {
+  .product-in-stock,
+  .product-in-stock-invis {
     font-size: 10px;
   }
 
