@@ -5,6 +5,7 @@ import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 import ProductCard from '../../app-features/home-page/product-card/ProductCard';
 import Pagination from '../../common/pagination/Pagination';
 import { AppContext } from '../../../context';
+import Filters from './Filters';
 
 export default function Subcategories({
   products,
@@ -15,6 +16,7 @@ export default function Subcategories({
 }): JSX.Element {
   const [pagesCount, setPagesCount] = useState(1);
   const [sortOrder, setSortOrder] = useState('');
+
   const router = useRouter();
   const limit = 20;
   const { favorites } = useContext(AppContext);
@@ -78,7 +80,9 @@ export default function Subcategories({
         </div>
       ) : (
         <div className="subcategories-products-container">
-          <div className="subcategories-filter">filtre</div>
+          <div className="subcategories-filter">
+            <Filters categoryId={subcategory.id} />
+          </div>
           <div style={{ width: '100%' }}>
             <div className="filter-and-sorting">
               <div className="filter-mobile-container">
@@ -112,7 +116,7 @@ export default function Subcategories({
                 </div>
               </div>
             </div>
-            <div className="cards-container">
+            <div className="cards-container subcategory-wrapper">
               {products.map((product) => {
                 return (
                   <ProductCard
