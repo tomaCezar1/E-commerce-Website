@@ -139,7 +139,9 @@ function ProductDetails({ productDetails }) {
                 </p>
               ) : (
                 <p className="product-details-not-in-stock">
-                  Produsul nu este în stoc
+                  {productDetails.products[0].notAvailableCustomText
+                    ? productDetails.products[0].notAvailableCustomText
+                    : 'Produsul nu este în stoc'}
                 </p>
               )}
 
