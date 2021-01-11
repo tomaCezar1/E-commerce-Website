@@ -6,6 +6,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import { AppContext } from '../../../context';
 import { cartTotal, formatPrice } from '../../../utils';
 import CheckoutForm from './CheckoutForm/CheckoutForm';
@@ -57,24 +58,29 @@ export default function CartPage(): JSX.Element {
               {cart.map((product) => {
                 return (
                   <div key={product.id} className="cart-product-wrapper">
-                    <div className="cart-product-image-info">
-                      <img
-                        src={product.images[0]}
-                        alt="Product image"
-                        className="cart-product-image"
-                      />
-                      <div className="cart-product-info">
-                        <span className="cart-product-name">
-                          {product.name}
-                        </span>
-                        <div
-                          className="cart-product-description"
-                          dangerouslySetInnerHTML={createMarkup(
-                            product.description
-                          )}
+                    <Link
+                      href="/product/[slug]"
+                      as={`/product/${product.slug}`}
+                    >
+                      <div className="cart-product-image-info">
+                        <img
+                          src={product.images[0]}
+                          alt="Product image"
+                          className="cart-product-image"
                         />
+                        <div className="cart-product-info">
+                          <span className="cart-product-name">
+                            {product.name}
+                          </span>
+                          <div
+                            className="cart-product-description"
+                            dangerouslySetInnerHTML={createMarkup(
+                              product.description
+                            )}
+                          />
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                     <div className="cart-product-price">
                       {product.isPromo ? product.newPrice : product.price} lei
                     </div>
@@ -160,21 +166,21 @@ export default function CartPage(): JSX.Element {
                         Doriți să goliți conținutul coșului dvs.?
                       </div>
                       <div className="modal-buttons-wrapper">
-                        <div
-                          className="modal-button-yes"
+                        <button
+                          className="btn outline"
                           onClick={() => {
                             clearCart();
                             setShowEmptyModal(false);
                           }}
                         >
                           Da
-                        </div>
-                        <div
-                          className="modal-button-no"
+                        </button>
+                        <button
+                          className="btn"
                           onClick={() => setShowEmptyModal(false)}
                         >
                           Nu
-                        </div>
+                        </button>
                       </div>
                     </ModalBody>
                   </ModalContent>
