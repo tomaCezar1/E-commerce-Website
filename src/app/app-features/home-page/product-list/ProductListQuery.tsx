@@ -5,11 +5,13 @@ export const ProductListQuery = gql`
     $filter: ProductFilter = {}
     $sorting: [ProductSort!] = [{ field: createdAt, direction: ASC }]
     $offset: Int
+    $uiFilters: [UiFilterInput!] = []
   ) {
     products(
       filter: $filter
       sorting: $sorting
       paging: { limit: 20, offset: $offset }
+      uiFilters: $uiFilters
     ) {
       id
       sortOrder

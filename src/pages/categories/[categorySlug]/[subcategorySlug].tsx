@@ -1,6 +1,9 @@
 import Subcategories from '../../../app/app-features/categories/Subcategories';
 import { initializeApollo } from '../../../app/lib/apolloClient';
-import { ProductCategoriesQuery } from '../../../app/app-features/categories/ProductCategoriesQueries';
+import {
+  DropDownOption,
+  ProductCategoriesQuery,
+} from '../../../app/app-features/categories/ProductCategoriesQueries';
 import {
   ProductListQuery,
   ProductsCountQuery,
@@ -24,10 +27,73 @@ export default function SubcategoryPage({
   );
 }
 
+const buildDropdownFilter = (property: string, values: DropDownOption[]) => {
+  return {
+    property,
+    filterValue: { in: values.map((v) => v.value) },
+  };
+};
+
+const buildNumberRangeFilter = (
+  property: string,
+  minValue: number,
+  maxValue: number
+) => {
+  const result = { property };
+  if (
+    minValue !== null &&
+    !isNaN(minValue) &&
+    maxValue !== null &&
+    !isNaN(maxValue)
+  ) {
+    result['filterValue'] = { between: { lower: minValue, upper: maxValue } };
+    // console.log('1');
+    return result;
+  }
+  if (minValue !== null && !isNaN(minValue)) {
+    result['filterValue'] = { gte: minValue };
+    // console.log('2');
+    return result;
+  }
+  if (maxValue !== null && !isNaN(maxValue)) {
+    result['filterValue'] = { lte: maxValue };
+    // console.log('3');
+    return result;
+  }
+};
+
 export async function getServerSideProps(context) {
+  let uiFilters = [];
+
+  if (context.query.filter) {
+    try {
+      const filterForm = JSON.parse(decodeURI(context.query.filter as string));
+      Object.keys(filterForm).forEach((formKey) => {
+        // console.log(formKey);
+        if (filterForm[formKey] && filterForm[formKey].length > 0) {
+          uiFilters.push(buildDropdownFilter(formKey, filterForm[formKey]));
+        } else if (
+          filterForm[formKey].minValue !== null ||
+          filterForm[formKey].maxValue !== null
+        ) {
+          uiFilters.push(
+            buildNumberRangeFilter(
+              formKey,
+              filterForm[formKey].minValue,
+              filterForm[formKey].maxValue
+            )
+          );
+        }
+      });
+    } catch (e) {}
+  }
+
+  uiFilters = uiFilters.filter((v) => !!v);
+  console.log(uiFilters);
   const slug = context.query.subcategorySlug;
 
   const page = context.query.page || 1;
+
 
   let field = 'sortOrder';
   let direction = 'DESC';
@@ -93,6 +159,7 @@ export async function getServerSideProps(context) {
           direction: direction,
         },
       ],
+      uiFilters,
     },
   });
 

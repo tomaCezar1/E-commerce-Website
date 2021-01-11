@@ -26,7 +26,7 @@ export default function Categories({
             return (
               <Link
                 href={'/categories/[categorySlug]/[subcategorySlug]'}
-                as={`/categories/${categoryDetails.slug}/${subCategory.slug}`}
+                as={`/categories/${categoryDetails.slug}/${subCategory.slug}?page=1`}
                 locale={router.locale}
                 key={index}
               >
