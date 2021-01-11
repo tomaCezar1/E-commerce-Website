@@ -78,8 +78,8 @@
 }
 
 .mobile-notification-icon {
-  width: 10px !important;
-  height: 10px !important;
+  width: 12px !important;
+  height: 12px !important;
   background: $notificationIconBg;
   display: flex;
   justify-content: center;
@@ -87,7 +87,7 @@
   position: absolute;
   right: -4px;
   top: -3px;
-  font-size: 8px;
+  font-size: 10px;
   color: $black;
   font-family: $regular;
   border-radius: 5px;
