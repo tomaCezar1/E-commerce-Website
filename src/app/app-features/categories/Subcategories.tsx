@@ -26,7 +26,7 @@ export default function Subcategories({
     setSortOrder(router.query.sort as any);
 
     setPagesCount(Math.ceil(productsCount / limit));
-  }, []);
+  }, [productsCount]);
 
   const paginationHandler = async (page) => {
     const currentPath = router.pathname;
@@ -128,13 +128,11 @@ export default function Subcategories({
                 );
               })}
             </div>
-            {pagesCount > 1 && (
-              <Pagination
-                paginationHandler={paginationHandler}
-                pageCount={pagesCount}
-                currentPage={currentPage}
-              />
-            )}
+            <Pagination
+              paginationHandler={paginationHandler}
+              pageCount={pagesCount}
+              currentPage={currentPage}
+            />
           </div>
         </div>
       )}
