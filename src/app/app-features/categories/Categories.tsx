@@ -25,7 +25,7 @@ export default function Categories({
           {subcategories.map((subCategory, index) => {
             return (
               <Link
-                href={'/categories/[categorySlug]/[subcategorySlug]'}
+                href={'/categories/[categorySlug]/[subcategorySlug]?page=1'}
                 as={`/categories/${categoryDetails.slug}/${subCategory.slug}?page=1`}
                 locale={router.locale}
                 key={index}

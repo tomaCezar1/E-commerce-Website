@@ -1,8 +1,10 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const SearchProductsQuery = gql`
   query SearchProducts($searchQuery: String) {
-    products(filter: {name: {iLike: $searchQuery}}) {
+    products(
+      filter: { name: { iLike: $searchQuery }, isActive: { is: true } }
+    ) {
       id
       name
       images
@@ -19,5 +21,5 @@ export interface Product {
 }
 
 export interface FoundProductsList {
-  foundProducts: Product[]
+  foundProducts: Product[];
 }
