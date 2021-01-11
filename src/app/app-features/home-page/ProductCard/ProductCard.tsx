@@ -1,13 +1,14 @@
 import { useContext, useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useToast } from '@chakra-ui/react';
+
 import FavoriteEmpty from '../../../../../public/svg/FavoriteEmpty.svg';
 import FavoriteActive from '../../../../../public/svg/FavoriteActive.svg';
 import CartIcon from '../../../../../public/svg/CartIcon.svg';
-import Link from 'next/link';
-import { useToast } from '@chakra-ui/react';
 import { AppContext } from '../../../../context';
 import Toast from '../../../common/toast/Toast';
 
-function ProductCard({ product, small = false, isFavorite = [] }) {
+function ProductCard({ product, small = false, isFavorite = false }) {
   const { addToCart, addToFavorites } = useContext(AppContext);
   const toast = useToast();
 
@@ -28,8 +29,6 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
   } else {
     sale = 0;
   }
-
-  const filtered = isFavorite.filter((id) => id === product.id);
 
   const addToFavoritesList = (event, product) => {
     event.stopPropagation();
@@ -68,13 +67,13 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
                 ) : (
                   <p className="basic-price">{product?.price} lei</p>
                 )}
-                {product.available ? null : (
-                  <p className="produs-in-stock">
-                    {product?.notAvailableCustomText}
-                    Produsul nu este in stock
-                  </p>
-                )}
               </div>
+              {product.available ? null : (
+                <p className="produs-in-stock">
+                  {product?.notAvailableCustomText}
+                  Produsul nu este in stock
+                </p>
+              )}
               <div className="product-card-cart">
                 <i
                   className="fav-icons"
@@ -89,7 +88,7 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
                         }
                   }
                 >
-                  {product.available && filtered.length > 0 && loaded ? (
+                  {product.available && isFavorite && loaded ? (
                     <i className="product-fav-icons">
                       <FavoriteActive />
                     </i>
@@ -113,9 +112,6 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
                                 handleClose={onClose}
                               />
                             ),
-                            status: 'success',
-                            duration: 5000,
-                            isClosable: true,
                             position: 'top',
                           });
                         }

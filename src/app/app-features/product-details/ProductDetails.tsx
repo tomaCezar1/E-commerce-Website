@@ -11,7 +11,7 @@ import { createMarkup } from '../../../utils/index';
 import FavoriteEmpty from '../../../../public/svg/FavoriteEmpty.svg';
 import FavoriteActive from '../../../../public/svg/FavoriteActive.svg';
 import { RecommendedProductsQuery } from './RecommendedProdQuery';
-import ProductCard from '../home-page/product-card/ProductCard';
+import ProductCard from '../home-page/ProductCard/ProductCard';
 import LeftArrow from '../../../../public/svg/LeftPartnerIcon.svg';
 import RightArrow from '../../../../public/svg/LeftPartnerIcon.svg';
 

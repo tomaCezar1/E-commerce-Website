@@ -4,7 +4,7 @@ import { ProductCategoriesQuery } from '../../../app/app-features/categories/Pro
 import {
   ProductListQuery,
   ProductsCountQuery,
-} from '../../../app/app-features/home-page/product-list/ProductListQuery';
+} from '../../../app/app-features/home-page/ProductList/ProductListQuery';
 
 export default function SubcategoryPage({
   products,

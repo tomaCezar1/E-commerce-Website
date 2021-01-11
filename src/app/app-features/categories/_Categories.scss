@@ -48,7 +48,6 @@
 @media screen and (min-width: 0) and (max-width: $xs) {
   .subcategories-grid {
     display: flex !important;
-    justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
     gap: 10px !important;

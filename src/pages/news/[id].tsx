@@ -1,5 +1,5 @@
-import { BlogQuery } from '../../app/app-features/blog/BlogPageQueries';
-import BlogDetailsPage from '../../app/app-features/blog/news-details/BlogDetailsPage';
+import { BlogQuery } from '../../app/app-features/blog-page/BlogPageQueries';
+import BlogDetailsPage from '../../app/app-features/blog-page/news-details/BlogDetailsPage';
 import { initializeApollo } from '../../app/lib/apolloClient';
 
 export default function BlogNews({ blogPost }) {

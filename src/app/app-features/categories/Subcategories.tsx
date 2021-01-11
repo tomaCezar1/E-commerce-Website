@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Select } from '@chakra-ui/react';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
-import ProductCard from '../../app-features/home-page/product-card/ProductCard';
+import ProductCard from '../home-page/ProductCard/ProductCard';
 import Pagination from '../../common/pagination/Pagination';
 import { AppContext } from '../../../context';
 

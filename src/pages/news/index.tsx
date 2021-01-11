@@ -1,5 +1,5 @@
-import BlogPage from '../../app/app-features/blog/BlogPage';
-import { BlogPostsQuery } from '../../app/app-features/blog/BlogPageQueries';
+import BlogPage from '../../app/app-features/blog-page/BlogPage';
+import { BlogPostsQuery } from '../../app/app-features/blog-page/BlogPageQueries';
 import Breadcrumbs from '../../app/common/breadcrumbs/Breadcrumbs';
 import { initializeApollo } from '../../app/lib/apolloClient';
 
