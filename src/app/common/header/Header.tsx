@@ -84,7 +84,7 @@ export default function Header(): JSX.Element {
                   <Menu onClose={setShowMenu}></Menu>
                 </Overlay>
               )}
-              <SearchBar />
+              <SearchBar onClose={() => {}} />
               <div className="header-cart-section">
                 <div className="icons-wrapper">
                   <Link href="/cart" locale={router.locale}>
