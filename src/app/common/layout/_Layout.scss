@@ -9,11 +9,19 @@
   height: 282px;
 }
 
-//xs
-@media screen and (min-width: 0px) and (max-width: $xs) {
+//ultra-thin
+@media screen and (min-width: 0) and (max-width: 359px) {
   .layout-container {
     width: 100%;
     padding: 70px 16px;
+  }
+}
+
+//xs
+@media screen and (min-width: 360px) and (max-width: $xs) {
+  .layout-container {
+    width: 100%;
+    padding: 70px 9px;
   }
 }
 

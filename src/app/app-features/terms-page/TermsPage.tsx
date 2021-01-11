@@ -44,9 +44,9 @@ export default function TermsPage() {
           2.1. Termenii enumerați mai jos au următoarele semnificații în sensul
           prezentului acord:
           <br />
-          2.1.1 'INGCO' - un magazin online situat pe numele de domeniu
-          www.ingco.md, care operează prin resursa Internet și serviciile
-          conexe.
+          2.1.1 &apos;INGCO&apos; - un magazin online situat pe numele de
+          domeniu www.ingco.md, care operează prin resursa Internet și
+          serviciile conexe.
           <br />
           2.1.2. Magazin online - un site care conține informații despre Bunuri,
           Vânzător, care vă permite să selectați, să comandați și (sau) să
@@ -74,7 +74,7 @@ export default function TermsPage() {
         </p>
 
         <h4 className="terms-heading">3. SUBIECTUL ACORDULUI</h4>
-        <p>
+        <div>
           3.1. Obiectul prezentului Acord este de a oferi Utilizatorului
           Magazinului Online acces la Produse și servicii conținute pe Site.
           <br />
@@ -119,7 +119,7 @@ export default function TermsPage() {
           <br />
           3.4. Utilizarea materialelor și serviciilor site-ului este
           reglementată de normele actuale ale legislației Republicii Moldova.
-        </p>
+        </div>
 
         <h4 className="terms-heading">4. DREPTURILE ȘI OBLIGAȚIILE PĂRȚILOR</h4>
         <p>

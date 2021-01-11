@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { SkeletonText, SkeletonCircle } from '@chakra-ui/react';
 import { SearchProductsQuery } from './SearchProductsQuery';
 import { useDebounce } from '../../../../utils';
 import { apolloClient } from '../../../lib/apolloClient';
 import Overlay from '../../overlay/Overlay';
-import { SkeletonText, SkeletonCircle } from '@chakra-ui/react';
 
 export default function SearchBar({ mobile = false, onClose }): JSX.Element {
   const client = apolloClient;
@@ -166,48 +166,43 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
             {results &&
               results.map(({ id, name, price, images, slug }) => {
                 return (
-                  <div key={id}>
-                    <Link href="/product/[slug]" as={`/product/${slug}`}>
-                      <div
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => setShowOverlay(false)}
-                      >
-                        <div className="search-results-divider" />
-                        <div className="search-product-wrapper">
-                          <img
-                            src={images[0]}
+                  <Link href="/product/[slug]" as={`/product/${slug}`} key={id}>
+                    <div>
+                      <div className="search-results-divider" />
+                      <div className="search-product-wrapper">
+                        <img
+                          src={images[0]}
+                          className={
+                            mobile
+                              ? 'search-product-image-mobile'
+                              : 'search-product-image'
+                          }
+                        />
+                        <div className="search-product-text">
+                          <span
                             className={
                               mobile
-                                ? 'search-product-image-mobile'
-                                : 'search-product-image'
+                                ? 'search-product-name-mobile'
+                                : 'search-product-name'
                             }
-                          />
-                          <div className="search-product-text">
-                            <span
-                              className={
-                                mobile
-                                  ? 'search-product-name-mobile'
-                                  : 'search-product-name'
-                              }
-                            >
-                              {name}
-                            </span>
-                            <span
-                              className={
-                                mobile
-                                  ? 'search-product-price-mobile'
-                                  : 'search-product-price'
-                              }
-                            >
-                              {price} lei
-                            </span>
-                          </div>
-
-                          <div className="button-to-product" />
+                          >
+                            {name}
+                          </span>
+                          <span
+                            className={
+                              mobile
+                                ? 'search-product-price-mobile'
+                                : 'search-product-price'
+                            }
+                          >
+                            {price} lei
+                          </span>
                         </div>
+
+                        <div className="button-to-product" />
                       </div>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 );
               })}
           </div>

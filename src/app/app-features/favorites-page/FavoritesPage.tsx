@@ -1,5 +1,5 @@
 import Breadcrumbs from '../../../app/common/breadcrumbs/Breadcrumbs';
-import ProductCard from '../home-page/product-card/ProductCard';
+import ProductCard from '../home-page/ProductCard/ProductCard';
 import { AppContext } from '../../../context';
 import { useContext } from 'react';
 
