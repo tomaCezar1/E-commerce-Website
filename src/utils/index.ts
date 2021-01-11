@@ -4,6 +4,8 @@ export function toggleHeader() {
   const doc = document.documentElement;
   const w = window;
 
+  const { innerWidth } = w;
+
   let prevScroll = w.scrollY || doc.scrollTop;
   let curScroll: number;
   let direction = 0;
@@ -12,60 +14,62 @@ export function toggleHeader() {
   const header = document.getElementById('header-relative');
   const homepage = document.getElementById('homepage');
 
-  const checkScroll = function () {
-    // Find the direction of scroll
-    // 0 - initial, 1 - up, 2 - down
+  if (innerWidth > 1151) {
+    const checkScroll = function () {
+      // Find the direction of scroll
+      // 0 - initial, 1 - up, 2 - down
 
-    curScroll = w.scrollY || doc.scrollTop;
-    if (curScroll > prevScroll) {
-      //scrolled up
-      direction = 2;
-    } else if (curScroll < prevScroll) {
-      //scrolled down
-      direction = 1;
-    }
+      curScroll = w.scrollY || doc.scrollTop;
+      if (curScroll > prevScroll) {
+        //scrolled up
+        direction = 2;
+      } else if (curScroll < prevScroll) {
+        //scrolled down
+        direction = 1;
+      }
 
-    if (direction !== prevDirection) {
-      toggleHeader(direction, curScroll);
-    }
+      if (direction !== prevDirection) {
+        toggleHeader(direction, curScroll);
+      }
 
-    prevScroll = curScroll;
+      prevScroll = curScroll;
 
-    if (direction === 1 && curScroll < 65) {
-      header.classList.remove('header-fixed');
-      header.classList.add('header-relative');
-      header.classList.remove('hide');
-      homepage.classList.remove('add-padding');
-    }
-    if (direction === 2 && curScroll < 150) {
-      header.classList.remove('header-fixed');
-      header.classList.add('header-relative');
-    }
-    if (direction === 2 && curScroll > 150) {
-      header.classList.remove('header-fixed');
-      header.classList.add('hide');
-    }
-    if (direction === 2 && curScroll > 65) {
-      homepage.classList.remove('add-padding');
-    }
-  };
+      if (direction === 1 && curScroll < 65) {
+        header.classList.remove('header-fixed');
+        header.classList.add('header-relative');
+        header.classList.remove('hide');
+        homepage.classList.remove('add-padding');
+      }
+      if (direction === 2 && curScroll < 150) {
+        header.classList.remove('header-fixed');
+        header.classList.add('header-relative');
+      }
+      if (direction === 2 && curScroll > 150) {
+        header.classList.remove('header-fixed');
+        header.classList.add('hide');
+      }
+      if (direction === 2 && curScroll > 65) {
+        homepage.classList.remove('add-padding');
+      }
+    };
 
-  const toggleHeader = function (direction: number, curScroll: number) {
-    if (direction === 2 && curScroll > 150) {
-      //replace 150 with the height of your header in px
-      header.classList.add('hide');
-      prevDirection = direction;
-    }
-    if (direction === 1) {
-      header.classList.remove('header-relative');
-      header.classList.add('header-fixed');
-      header.classList.remove('hide');
-      homepage.classList.add('add-padding');
-      prevDirection = direction;
-    }
-  };
+    const toggleHeader = function (direction: number, curScroll: number) {
+      if (direction === 2 && curScroll > 150) {
+        //replace 150 with the height of your header in px
+        header.classList.add('hide');
+        prevDirection = direction;
+      }
+      if (direction === 1) {
+        header.classList.remove('header-relative');
+        header.classList.add('header-fixed');
+        header.classList.remove('hide');
+        homepage.classList.add('add-padding');
+        prevDirection = direction;
+      }
+    };
 
-  window.addEventListener('scroll', checkScroll);
+    window.addEventListener('scroll', checkScroll);
+  }
 }
 
 export const convertBreadcrumb = (string: string) => {
@@ -214,3 +218,18 @@ export const validate = {
   callTime: (callTime) => callTimeValidation('callTime', callTime),
 };
 
+export const formatDate = (date: string) => {
+  const newDate = new Date(date);
+
+  const day = newDate.getDate();
+  const month = newDate.getMonth() + 1;
+  const year = newDate.getFullYear();
+
+  return `${day}.${month}.${year}`;
+};
+
+export const createMarkup = (html: string) => {
+  return {
+    __html: html,
+  };
+};

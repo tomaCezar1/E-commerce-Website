@@ -3,25 +3,54 @@ import CartIcon from '../../../../public/svg/CartIcon.svg';
 import { useState, useEffect, useContext } from 'react';
 import { useQuery } from '@apollo/client';
 import { TechSpecsQuery } from './ProductDetailsQuery';
-import { Skeleton } from '@chakra-ui/react';
+import { IRecommendedProducts } from './RecommendedProdQuery';
+import { Skeleton, useToast, useMediaQuery } from '@chakra-ui/react';
 import { AppContext } from '../../../context';
-import { useToast } from '@chakra-ui/react';
+import Toast from '../../common/toast/Toast';
+import { createMarkup } from '../../../utils/index';
 import FavoriteEmpty from '../../../../public/svg/FavoriteEmpty.svg';
 import FavoriteActive from '../../../../public/svg/FavoriteActive.svg';
+import { RecommendedProductsQuery } from './RecommendedProdQuery';
+import ProductCard from '../home-page/ProductCard/ProductCard';
+import LeftArrow from '../../../../public/svg/LeftPartnerIcon.svg';
+import RightArrow from '../../../../public/svg/LeftPartnerIcon.svg';
 
 function ProductDetails({ productDetails }) {
   const details = productDetails?.products[0];
   const toast = useToast();
   const id = details.id;
   const { addToCart, favorites, addToFavorites } = useContext(AppContext);
+  const [qty, setQty] = useState(1);
   const [isAvailable, setAvailable] = useState(null);
-
+  const [x, setX] = useState(0);
+  const isFavorite = favorites.map((el) => el.id);
   const filtered = favorites.filter((favorite) => favorite.id === details.id);
+  const [isLargerThan1250] = useMediaQuery('(min-width: 1250px)');
+  const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
+  const [isLargerThan580] = useMediaQuery('(min-width: 580px)');
+  const [isLargerThan0] = useMediaQuery('(min-width: 0px)');
 
   const addToFavoritesList = (event, product) => {
     event.stopPropagation();
     addToFavorites(product);
   };
+
+  let sale: number;
+
+  if (details.isPromo) {
+    sale = Math.floor(
+      ((details.price - details.newPrice) / details.price) * 100
+    );
+  } else {
+    sale = 0;
+  }
+
+  const productId = id;
+  const recommendedQuery = useQuery(RecommendedProductsQuery, {
+    variables: { productId },
+  });
+
+  const recommendedData = recommendedQuery.data?.recommendedProducts;
 
   const { loading, data } = useQuery(TechSpecsQuery, {
     variables: { id },
@@ -56,28 +85,48 @@ function ProductDetails({ productDetails }) {
     }
   }, []);
 
-  const createMarkup = (html) => {
-    return {
-      __html: html,
+  let goLeft, goRight;
+
+  //Recommended Products Slider
+  if (isLargerThan1250) {
+    goLeft = () => {
+      x === 0 ? null : setX(x + 100);
     };
-  };
 
-  const [counter, setCounter] = useState(0);
+    goRight = () => {
+      x === -100 * (recommendedData.length - 4) ? null : setX(x - 100);
+    };
+  } else if (isLargerThan770) {
+    goLeft = () => {
+      x === 0 ? null : setX(x + 100);
+    };
 
-  const handleAdd = () => {
-    setCounter(counter + 1);
-  };
+    goRight = () => {
+      x === -100 * (recommendedData.length - 3) ? null : setX(x - 100);
+    };
+  } else if (isLargerThan580) {
+    goLeft = () => {
+      x === 0 ? null : setX(x + 100);
+    };
 
-  const handleRemove = () => {
-    if (counter > 0) {
-      setCounter(counter - 1);
-    }
-  };
+    goRight = () => {
+      x === -100 * (recommendedData.length - 2) ? null : setX(x - 100);
+    };
+  } else if (isLargerThan0) {
+    goLeft = () => {
+      x === 0 ? null : setX(x + 100);
+    };
+
+    goRight = () => {
+      x === -100 * (recommendedData.length - 1) ? null : setX(x - 100);
+    };
+  }
 
   return (
     <>
       <div className="product-details-container">
         <div className="product-details-flex">
+          <h1 className="product-details-title-responsive">{details.name}</h1>
           <div className="product-details-slideshow">
             <ProductImages images={details.images} />
           </div>
@@ -101,20 +150,41 @@ function ProductDetails({ productDetails }) {
               dangerouslySetInnerHTML={createMarkup(details.description)}
             />
             <div className="product-details-cart-price">
-              <h1 className="product-details-price">{details.price} lei</h1>
-
+              {sale > 0 ? (
+                <div className="discounted-price-div-mobile">
+                  <p className="crossed-price">{details?.price}</p>
+                  <p className="discounted-price discounted-price-lg">
+                    {details?.newPrice} lei
+                  </p>
+                </div>
+              ) : (
+                <p className="product-details-price">{details?.price} lei</p>
+              )}
               <div className="product-details-add-to-cart-flex">
                 <div className="product-details-counter">
                   <div
                     className="product-details-counters"
-                    onClick={handleRemove}
+                    onClick={() => {
+                      if (qty > 1) {
+                        setQty(qty - 1);
+                      }
+                    }}
                   >
                     <p>-</p>
                   </div>
                   <div className="product-details-center-counter">
-                    <p>{counter}</p>
+                    <input
+                      className="product-qty-input"
+                      type="number"
+                      value={qty}
+                      onChange={(e) => setQty(+e.target.value)}
+                      min={1}
+                    />
                   </div>
-                  <div className="product-details-counters" onClick={handleAdd}>
+                  <div
+                    className="product-details-counters"
+                    onClick={() => setQty(qty + 1)}
+                  >
                     <p>+</p>
                   </div>
                 </div>
@@ -137,9 +207,82 @@ function ProductDetails({ productDetails }) {
                   className="product-details-add-to-cart"
                   onClick={(e) => {
                     e.stopPropagation();
-                    addToCart(details, 1);
+                    addToCart(details, qty);
                     toast({
-                      title: `Produsul ${details.name} a fost adăugat cu succes!`,
+                      render: ({ onClose }) => (
+                        <Toast
+                          description={`Produsul ${details.name} a fost adăugat cu succes!`}
+                          handleClose={onClose}
+                        />
+                      ),
+                      status: 'success',
+                      duration: 5000,
+                      isClosable: true,
+                      position: 'top',
+                    });
+                  }}
+                >
+                  <CartIcon />
+                  <p className="product-details-add-text">Adaugă în coș</p>
+                </div>
+              </div>
+
+              <div className="product-details-add-to-cart-mobile">
+                <div className="counter-and-fav-mobile">
+                  <i
+                    className="product-details-favorites"
+                    style={{ cursor: 'pointer' }}
+                    onClick={(event) => {
+                      addToFavoritesList(event, details);
+                    }}
+                  >
+                    {filtered.length > 0 && loaded ? (
+                      <FavoriteActive />
+                    ) : (
+                      <FavoriteEmpty />
+                    )}
+                  </i>
+
+                  <div className="product-details-counter">
+                    <div
+                      className="product-details-counters"
+                      onClick={() => {
+                        if (qty > 1) {
+                          setQty(qty - 1);
+                        }
+                      }}
+                    >
+                      <p>-</p>
+                    </div>
+                    <div className="product-details-center-counter">
+                      <input
+                        className="product-qty-input"
+                        type="number"
+                        value={qty}
+                        onChange={(e) => setQty(+e.target.value)}
+                        min={1}
+                      />
+                    </div>
+                    <div
+                      className="product-details-counters"
+                      onClick={() => setQty(qty + 1)}
+                    >
+                      <p>+</p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="product-details-add-to-cart"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addToCart(details, qty);
+                    toast({
+                      render: ({ onClose }) => (
+                        <Toast
+                          description={`Produsul ${details.name} a fost adăugat cu succes!`}
+                          handleClose={onClose}
+                        />
+                      ),
                       status: 'success',
                       duration: 5000,
                       isClosable: true,
@@ -235,6 +378,39 @@ function ProductDetails({ productDetails }) {
             </div>
           </div>
         )}
+        <h1 className="product-details-title">Produse Recomandate</h1>
+        <div className="recommended-products-container">
+          <i
+            id="goLeft"
+            className="arrows-recommended-slider arr-left"
+            onClick={goLeft}
+          >
+            <LeftArrow />
+          </i>
+          {recommendedData && recommendedData.length > 0 && (
+            <div className="recommended-slider">
+              {recommendedData.map((item, index) => {
+                return (
+                  <div
+                    className="recommended-slide"
+                    key={index}
+                    style={{ transform: `translateX(${x}%)` }}
+                  >
+                    <ProductCard product={item} isFavorite={isFavorite} />
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          <i
+            id="goRight"
+            className="arrows-recommended-slider arr-right"
+            onClick={goRight}
+            style={{ transform: 'rotate(180deg)' }}
+          >
+            <RightArrow />
+          </i>
+        </div>
       </div>
     </>
   );

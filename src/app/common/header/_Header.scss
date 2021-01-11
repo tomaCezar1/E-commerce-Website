@@ -17,7 +17,7 @@
 }
 
 #header-relative {
-  transition: top .3s ease;
+  transition: top 0.3s ease;
   height: 65px;
   width: $width;
   top: 0;
@@ -41,9 +41,8 @@
   transition: border-raius 125ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-
 .header-clipped-part:before {
-  content: "";
+  content: '';
   position: absolute;
   left: -65px;
   width: 82px;
@@ -140,7 +139,7 @@
 }
 
 .header-links a:focus {
-  outline: none
+  outline: none;
 }
 
 // Mega menu button
@@ -222,4 +221,18 @@
 
 .add-margin {
   margin-top: 65px;
+}
+
+@media screen and (min-width: 0) and (max-width: $md) {
+  .header-relative {
+    display: none;
+  }
+
+  .header-static {
+    display: none !important;
+  }
+
+  .header {
+    display: none;
+  }
 }

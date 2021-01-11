@@ -1,0 +1,30 @@
+
+
+//xs
+@media screen and (min-width: 0px) and (max-width: $xs) {
+
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+
+}
+
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+
+}
+
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+  .homepage-container {
+    margin-top: 32px;
+  }
+}
+
+//xl
+@media screen and (min-width: 1501px) and (max-width: $xl) {
+  .homepage-container {
+    margin-top: 32px;
+  }
+}

@@ -1,14 +1,22 @@
 import { useState, useEffect, useCallback, useContext } from 'react';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react';
 import { AppContext } from '../../../context';
 import { cartTotal, formatPrice } from '../../../utils';
 import CheckoutForm from './CheckoutForm/CheckoutForm';
-import { validate } from '../../../utils';
+import { validate, createMarkup } from '../../../utils';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function CartPage(): JSX.Element {
   const { cart, addToCart, removeFromCart, clearCart } = useContext(AppContext);
   const [orderSuccess, setOrderSuccess] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);
+  const [showEmptyModal, setShowEmptyModal] = useState(false);
   const [, updateState] = useState();
 
   const forceUpdate = useCallback(() => updateState({}), []);
@@ -25,10 +33,8 @@ export default function CartPage(): JSX.Element {
     },
   ];
 
-  const createMarkup = (html) => {
-    return {
-      __html: html,
-    };
+  const handleClose = () => {
+    setShowModal(false);
   };
 
   return (
@@ -40,14 +46,12 @@ export default function CartPage(): JSX.Element {
         </div>
       ) : renderCartLength && cart.length > 0 ? (
         <div className="cart-items-wrapper">
-          <div
-            style={{ display: 'flex', flexDirection: 'column', width: '70%' }}
-          >
+          <div className="container-items">
             <div className="cart-items-headings">
               <span className="cart-heading-first">Item</span>
-              <span>Pret</span>
-              <span>Cantitate</span>
-              <span>Total</span>
+              <span className="cart-heading-text">Pret</span>
+              <span className="cart-heading-text">Cantitate</span>
+              <span className="cart-heading-text">Total</span>
             </div>
             <div className="cart-items-list">
               {cart.map((product) => {
@@ -68,7 +72,7 @@ export default function CartPage(): JSX.Element {
                           dangerouslySetInnerHTML={createMarkup(
                             product.description
                           )}
-                        ></div>
+                        />
                       </div>
                     </div>
                     <div className="cart-product-price">
@@ -95,6 +99,32 @@ export default function CartPage(): JSX.Element {
                         +
                       </div>
                     </div>
+                    <div className="mobile-price-qty">
+                      <div className="cart-product-price-mobile">
+                        {product.isPromo ? product.newPrice : product.price} lei
+                      </div>
+                      <div className="cart-product-qty-wrap-mobile">
+                        <div
+                          className="cart-qty-remove"
+                          onClick={() => {
+                            addToCart(product, -1);
+                            forceUpdate();
+                          }}
+                        >
+                          -
+                        </div>
+                        <div className="cart-product-qty">{product.qty}</div>
+                        <div
+                          className="cart-qty-add"
+                          onClick={() => {
+                            addToCart(product, 1);
+                            forceUpdate();
+                          }}
+                        >
+                          +
+                        </div>
+                      </div>
+                    </div>
                     <div className="cart-product-total">
                       {product.isPromo
                         ? (product.newPrice * product.qty).toFixed(2)
@@ -110,14 +140,72 @@ export default function CartPage(): JSX.Element {
               })}
             </div>
             <div className="cart-total-wrapper">
-              <div className="clear-cart-button" onClick={() => clearCart()}>
-                Golește coșul
+              <div className="cart-buttons-wrapper">
+                <div
+                  className="clear-cart-button"
+                  onClick={() => setShowEmptyModal(true)}
+                >
+                  Golește coșul
+                </div>
+                <Modal
+                  isOpen={showEmptyModal}
+                  onClose={() => setShowEmptyModal(false)}
+                  isCentered
+                >
+                  <ModalOverlay />
+                  <ModalContent style={{ maxWidth: 320 }}>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      <div className="modal-empty-text">
+                        Doriți să goliți conținutul coșului dvs.?
+                      </div>
+                      <div className="modal-buttons-wrapper">
+                        <div
+                          className="modal-button-yes"
+                          onClick={() => {
+                            clearCart();
+                            setShowEmptyModal(false);
+                          }}
+                        >
+                          Da
+                        </div>
+                        <div
+                          className="modal-button-no"
+                          onClick={() => setShowEmptyModal(false)}
+                        >
+                          Nu
+                        </div>
+                      </div>
+                    </ModalBody>
+                  </ModalContent>
+                </Modal>
+                <div
+                  className="place-order-button"
+                  onClick={() => setShowModal(true)}
+                >
+                  Plasează comanda
+                </div>
               </div>
               <div className="cart-total-price">
-                Total: {formatPrice(cartTotal(cart))} lei
+                <span>Total:</span>
+                <span>{formatPrice(cartTotal(cart))}</span>
+                <span>lei</span>
               </div>
             </div>
           </div>
+          <Modal isOpen={showModal} onClose={handleClose}>
+            <ModalOverlay />
+            <ModalContent style={{ maxWidth: 320 }}>
+              <ModalCloseButton />
+              <ModalBody>
+                <CheckoutForm
+                  validate={validate}
+                  setOrderSuccess={setOrderSuccess}
+                  insideModal
+                />
+              </ModalBody>
+            </ModalContent>
+          </Modal>
           <CheckoutForm validate={validate} setOrderSuccess={setOrderSuccess} />
         </div>
       ) : (

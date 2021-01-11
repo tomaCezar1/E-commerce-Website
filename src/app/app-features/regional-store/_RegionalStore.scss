@@ -28,4 +28,133 @@
   flex-direction: column;
   width: 586px;
   margin-right: 60px;
+  justify-content: center;
+  align-items: center;
+}
+
+//xs
+@media screen and (min-width: 0px) and (max-width: $xs) {
+  .leaflet-container,
+  #mapid {
+    height: 205px !important;
+    width: 100% !important;
+  }
+
+  .regional-store-row {
+    flex-direction: column;
+    width: 100% !important;
+  }
+
+  .regional-store-map-cards {
+    width: 100%;
+  }
+
+  .boxes-container {
+    flex-direction: column !important;
+    margin: 16px 0 32px !important;
+    align-items: center;
+    width: 100%;
+  }
+
+  .box-containers {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+
+  .box-containers:first-child {
+    margin-bottom: 16px;
+  }
+
+  .regional-store-title {
+    font-size: 24px;
+    margin: -16px 0 16px;
+  }
+
+  .regional-store-text {
+    margin-bottom: 24px;
+  }
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .leaflet-container,
+  #mapid {
+    height: 300px !important;
+    width: 100% !important;
+  }
+
+  .regional-store-row {
+    flex-direction: column;
+    width: 100% !important;
+  }
+
+  .regional-store-map-cards {
+    width: 100%;
+  }
+
+  .boxes-container {
+    flex-direction: row !important;
+    margin: 16px 0 32px !important;
+    align-items: center;
+    align-self: start;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .box-containers {
+    width: 270px !important;
+  }
+
+  .regional-store-title {
+    font-size: 24px;
+    margin: -16px 0 16px;
+  }
+
+  .regional-store-text {
+    margin-bottom: 24px;
+  }
+}
+
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .leaflet-container,
+  #mapid {
+    height: 350px !important;
+    width: 100% !important;
+  }
+
+  .regional-store-row {
+    flex-direction: column;
+    align-items: center;
+    width: 100% !important;
+  }
+
+  .regional-store-map-cards {
+    width: 100%;
+    margin: 0 !important;
+  }
+
+  .boxes-container {
+    margin: 16px 0 32px !important;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .box-containers {
+    width: 375px !important;
+    margin-right: 32px !important;
+    &:nth-child(2) {
+      margin-right: 0 !important;
+    }
+  }
+
+  .regional-store-title {
+    font-size: 24px;
+    margin: -16px 0 16px;
+  }
+
+  .regional-store-text {
+    margin-bottom: 24px;
+  }
 }

@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { AppContext } from '../../../../context';
 import Link from 'next/link';
 import { Select, useToast } from '@chakra-ui/react';
+import Toast from '../../../common/toast/Toast';
 import { useRouter } from 'next/router';
 import InputMask from 'react-input-mask';
 import { useMutation } from '@apollo/client';
@@ -16,6 +17,7 @@ const initialValues = {
 export default function CheckoutForm({
   validate,
   setOrderSuccess,
+  insideModal = false,
 }): JSX.Element {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({} as any);
@@ -104,7 +106,12 @@ export default function CheckoutForm({
       // Make the request to place an order instead of the alert
       sendOrder();
       toast({
-        title: 'Comanda dumneavoastră a fost procesată cu succes.',
+        render: ({ onClose }) => (
+          <Toast
+            description="Comanda dumneavoastră a fost procesată cu succes."
+            handleClose={onClose}
+          />
+        ),
         status: 'success',
         duration: 5000,
         isClosable: true,
@@ -127,7 +134,9 @@ export default function CheckoutForm({
   });
 
   return (
-    <div className="checkout-wrapper">
+    <div
+      className={insideModal ? 'checkout-wrapper-modal' : 'checkout-wrapper'}
+    >
       <p className="checkout-form-heading">Plasează comanda</p>
       <form onSubmit={handleSubmit}>
         <input
@@ -206,8 +215,8 @@ export default function CheckoutForm({
         <input type="submit" value="Comandă" className="checkout-form-button" />
 
         <div className="checkout-terms-text">
-          *Apăsînd butonul &#39;Comandă&#39; dvs. confirmați că ați luat
-          cunoștință și sînteți de acord cu{' '}
+          *Apăsând butonul &#39;Comandă&#39; dvs. confirmați că ați luat
+          cunoștință și sunteți de acord cu{' '}
           <Link href="/privacy" as="/privacy-policy" locale={router.locale}>
             <span className="checkout-privacy-link">
               politica de confidențialitate

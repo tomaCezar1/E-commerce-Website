@@ -29,7 +29,8 @@
   padding-left: 25px;
 }
 
-.checkout-form-input:focus, .checkout-form-error-input:focus {
+.checkout-form-input:focus,
+.checkout-form-error-input:focus {
   outline: none;
 }
 
@@ -43,16 +44,16 @@
   background: $primaryColor;
   border-radius: 8px;
   color: $white;
-  font-size: 18px;
-  font-family: "Bold";
+  font-size: 15px;
+  font-family: 'Bold';
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 46px;
+  height: 40px;
   width: 142px;
   margin: 10px auto;
   cursor: pointer;
-  -webkit-user-select: none; /* Safari */        
+  -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none;
@@ -65,7 +66,7 @@
 .checkout-terms-text {
   color: $darkGrey;
   font-size: 12px;
-  font-family: "Medium";
+  font-family: 'Medium';
   text-align: center;
 }
 
@@ -86,4 +87,40 @@
   font-size: 12px;
   font-family: 'Medium';
   margin-bottom: 3px;
+}
+
+.checkout-wrapper-modal {
+  & .checkout-form-heading {
+    text-align: center;
+  }
+  padding-bottom: 16px;
+}
+
+//xs
+@media screen and (min-width: 0px) and (max-width: $xs) {
+  .checkout-wrapper {
+    display: none;
+  }
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .checkout-wrapper {
+    display: none;
+  }
+}
+
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .checkout-wrapper {
+    display: none;
+  }
+}
+
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+}
+
+//xl
+@media screen and (min-width: 1501px) and (max-width: $xl) {
 }

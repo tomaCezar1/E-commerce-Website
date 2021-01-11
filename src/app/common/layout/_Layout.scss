@@ -8,3 +8,41 @@
 .footer-push {
   height: 282px;
 }
+
+//xs
+@media screen and (min-width: 0px) and (max-width: $xs) {
+  .layout-container {
+    width: 100%;
+    padding: 70px 16px;
+  }
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .layout-container {
+    width: 100%;
+    padding: 80px 16px;
+  }
+}
+
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .layout-container {
+    width: 100%;
+    padding: 90px 16px;
+  }
+}
+
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+  .layout-container {
+    max-width: 1251px;
+  }
+}
+
+//xl
+@media screen and (min-width: 1501px) and (max-width: $xl) {
+  .layout-container {
+    max-width: 1501px;
+  }
+}

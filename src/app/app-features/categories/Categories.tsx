@@ -26,7 +26,7 @@ export default function Categories({
             return (
               <Link
                 href={'/categories/[categorySlug]/[subcategorySlug]'}
-                as={`/categories/${categoryDetails.slug}/${subCategory.slug}`}
+                as={`/categories/${categoryDetails.slug}/${subCategory.slug}?page=1`}
                 locale={router.locale}
                 key={index}
               >
@@ -42,7 +42,12 @@ export default function Categories({
             );
           })}
         </div>
-        <div className="subcat-banner">Baner</div>
+        <div className="subcat-banner">
+          <img
+            src="https://cdn.incoden.com/Diferite/bec.png"
+            className="banner-image"
+          />
+        </div>
       </div>
     </div>
   );

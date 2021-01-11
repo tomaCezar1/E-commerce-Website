@@ -1,0 +1,106 @@
+@import '../../../styles/constants.scss';
+
+.jobs-page-container {
+  margin-bottom: 50px;
+}
+
+.jobs-list-wrapper {
+  & .product-list-header {
+    font-size: 24px !important;
+    margin-bottom: 32px !important;
+  }
+}
+
+.jobs-list-button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: $white;
+  padding: 16px 24px !important;
+  border: none !important;
+}
+
+.jobs-list-title {
+  color: $black;
+  font-size: 18px;
+  font-family: $medium !important;
+}
+
+.jobs-list-title-active {
+  font-size: 18px;
+  color: $primaryColor !important;
+  font-family: $medium !important;
+}
+
+.jobs-list-item {
+  border: none !important;
+  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.jobs-item-content {
+  background: $white;
+  padding: 24px 24px 16px 24px !important;
+  font-family: $regular !important;
+  font-size: 16px !important;
+}
+
+//xs
+@media screen and (min-width: 0) and (max-width: $xs) {
+  .jobs-list-wrapper {
+    & .product-list-header {
+      font-size: 20px !important;
+      margin-bottom: 24px !important;
+    }
+  }
+
+  .jobs-list-title,
+  .jobs-list-title-active {
+    font-size: 15px;
+  }
+
+  .jobs-item-content {
+    font-size: 14px !important;
+  }
+
+  .jobs-list-item {
+    margin-top: 10px;
+  }
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .jobs-list-wrapper {
+    & .product-list-header {
+      font-size: 22px !important;
+      margin-bottom: 28px !important;
+    }
+  }
+
+  .jobs-list-title,
+  .jobs-list-title-active {
+    font-size: 17px;
+  }
+
+  .jobs-item-content {
+    font-size: 15px !important;
+  }
+
+  .jobs-list-item {
+    margin-top: 14px;
+  }
+}
+
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+}
+
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+}
+
+//xl
+@media screen and (min-width: 1501) and (max-width: $xl) {
+}
