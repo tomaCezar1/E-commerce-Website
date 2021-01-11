@@ -1,34 +1,65 @@
-import "slick-carousel/slick/slick-theme.css";
-import RightArrow from "../../../../../public/svg/RightPartnerIcon.svg";
-import LeftArrow from "../../../../../public/svg/LeftPartnerIcon.svg";
-import { useState } from "react";
+import 'slick-carousel/slick/slick-theme.css';
+import LeftArrow from '../../../../../public/svg/LeftPartnerIcon.svg';
+import RightArrow from '../../../../../public/svg/LeftPartnerIcon.svg';
+import { useState } from 'react';
+import { useMediaQuery } from '@chakra-ui/react';
 
 function PartnerList(): JSX.Element {
   const paths = [
-    "https://source.unsplash.com/RyRpq9SUwAU/1600x900",
-    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
-    "https://source.unsplash.com/yXpA_eCbtzI/1600x900",
-    "https://source.unsplash.com/RyRpq9SUwAU/1600x900",
-    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
-    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
-    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
-    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
-    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
-    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
-    "https://source.unsplash.com/BeOW_PJjA0w/1600x900",
+    'https://source.unsplash.com/RyRpq9SUwAU/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/yXpA_eCbtzI/1600x900',
+    'https://source.unsplash.com/RyRpq9SUwAU/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
   ];
-
   const [x, setX] = useState(0);
 
-  const goLeft = () => {
-    x === 0 ? null : setX(x + 100);
-  };
+  const [isLargerThan1250] = useMediaQuery('(min-width: 1250px)');
+  const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
+  const [isLargerThan580] = useMediaQuery('(min-width: 580px)');
+  const [isLargerThan0] = useMediaQuery('(min-width: 0px)');
 
-  const goRight = () => {
-    x === -100 * (paths.length - 5) ? null : setX(x - 100);
-  };
+  let goLeft, goRight;
 
-  console.log(x);
+  if (isLargerThan1250) {
+    goLeft = () => {
+      x === 0 ? null : setX(x + 100);
+    };
+
+    goRight = () => {
+      x === -100 * (paths.length - 4) ? null : setX(x - 100);
+    };
+  } else if (isLargerThan770) {
+    goLeft = () => {
+      x === 0 ? null : setX(x + 100);
+    };
+
+    goRight = () => {
+      x === -100 * (paths.length - 4) ? null : setX(x - 100);
+    };
+  } else if (isLargerThan580) {
+    goLeft = () => {
+      x === 0 ? null : setX(x + 100);
+    };
+
+    goRight = () => {
+      x === -100 * (paths.length - 3) ? null : setX(x - 100);
+    };
+  } else if (isLargerThan0) {
+    goLeft = () => {
+      x === 0 ? null : setX(x + 100);
+    };
+
+    goRight = () => {
+      x === -100 * (paths.length - 2) ? null : setX(x - 100);
+    };
+  }
 
   return (
     <div className="slider-container">
@@ -48,7 +79,14 @@ function PartnerList(): JSX.Element {
           );
         })}
       </div>
-      <i id="goRight" onClick={goRight}>
+      <i
+        id="goRight"
+        className="partner-list-arrow-right"
+        onClick={goRight}
+        style={{
+          transform: 'rotate(180deg)',
+        }}
+      >
         <RightArrow />
       </i>
     </div>

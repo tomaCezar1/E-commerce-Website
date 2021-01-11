@@ -4,7 +4,7 @@
   width: $width;
   font-size: 16px;
   font-family: $regular;
-  margin-bottom: 50px;
+  margin-bottom: 44px;
 }
 
 .terms-page-name {
@@ -43,4 +43,58 @@
   margin: 30px 0;
   font-size: 18px;
   font-family: $bold;
+}
+
+//xs
+@media screen and (min-width: 0px) and (max-width: $xs) {
+  .guarantees-container {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .terms-page-name {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  .terms-list-item {
+    font-size: 14px;
+  }
+  .terms-heading {
+    margin: 16px 0;
+  }
+}
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .guarantees-container {
+    width: 100%;
+  }
+  p {
+    font-size: 14px;
+  }
+  .terms-page-name {
+    font-size: 24px;
+  }
+  .terms-list-item {
+    font-size: 14px;
+  }
+  .terms-heading {
+    margin-bottom: 4px;
+  }
+}
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .guarantees-container {
+    width: 100%;
+  }
+  .terms-heading {
+    margin-bottom: 4px;
+  }
+}
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+  .guarantees-container {
+    width: 100%;
+  }
 }

@@ -3,14 +3,14 @@
 @import '../app/app-features/home-page/PartnerList/PartnerList';
 @import '../app/common/header/Header';
 @import '../app/common/layout/Layout';
-@import '../app/app-features/home-page/product-card/ProductCard';
-@import '../app/app-features/home-page/product-list/ProductList';
+@import '../app/app-features/home-page/ProductCard/ProductCard';
+@import '../app/app-features/home-page/ProductList/ProductList';
 @import '../app/common/menu/Menu';
 @import '../app/common/header/LangSwitch/LangSwitch';
 @import '../app/app-features/product-details/ProductDetails';
 @import '../app/common/header/SearchBar/SearchBar';
 
-@import '../app/app-features/blog/BlogPage';
+@import '../app/app-features/blog-page/BlogPage';
 @import '../app/app-features/regional-store/RegionalStore';
 @import '../app/app-features/regional-store/contact-box/ContactBox';
 @import '../app/common/overlay/Overlay';
@@ -25,6 +25,12 @@
 @import '../app/app-features/categories/Subcategories';
 @import '../app/common/pagination/Pagination';
 @import '../app/app-features/service-page/ServicePage';
+@import '../app/common/header/MobileHeader/MobileHeader';
+@import '../app/app-features/blog-page/news-details/BlogDetailsPage';
+@import '../app/app-features/home-page/Homepage';
+@import '../app/common/toast/Toast';
+@import '../app/app-features/jobs-page/JobsPage';
+@import '../styles/buttons';
 
 .cursor-pointer {
   cursor: pointer;

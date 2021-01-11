@@ -1,9 +1,8 @@
-@import "../../../../styles/constants.scss";
-$height: 100px;
+@import '../../../../styles/constants.scss';
 
 .slider-container {
   width: 100%;
-  height: $height;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,8 +12,14 @@ $height: 100px;
 .slider {
   display: inline-grid;
   grid-template-columns: repeat(100, 1fr);
-  overflow: hidden;
+  overflow: auto;
   background: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
 }
 
 .current {
@@ -29,7 +34,10 @@ $height: 100px;
   transition: 0.7s;
   height: 100px !important;
   width: 200px !important;
-  margin: 0 15px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .partner-img {
@@ -59,9 +67,111 @@ $height: 100px;
 #goLeft {
   padding-right: 16px;
   @extend %btn-styles;
+  & svg {
+    width: 18px;
+    height: 36px;
+  }
 }
 
 #goRight {
   padding-left: 16px;
   @extend %btn-styles;
+  & svg {
+    width: 18px;
+    height: 36px;
+  }
+}
+
+.partner-list-arrow-right {
+  padding: 0 16px 0 0 !important;
+}
+
+//xs
+@media screen and (min-width: 0px) and (max-width: $xs) {
+  .partner-img {
+    height: 50px;
+  }
+
+  .slide {
+    height: 50px !important;
+    width: 100px !important;
+    margin: 0;
+  }
+
+  #goLeft > *,
+  #goRight > * {
+    width: 10px;
+    height: 16px;
+  }
+
+  .slider {
+    margin-left: -10px;
+  }
+
+  .slider-container {
+    margin: 40px 0 0 0;
+  }
+}
+
+//sm
+@media screen and (min-width: 581px) and (max-width: $sm) {
+  .partner-img {
+    height: 80px;
+  }
+
+  .slide {
+    height: 80px !important;
+    width: 170px !important;
+    margin: 0;
+  }
+
+  #goLeft > *,
+  #goRight > * {
+    width: 12px;
+    height: 18px;
+  }
+
+  .slider {
+    margin-left: -10px;
+  }
+
+  .slider-container {
+    margin: 40px 0 25px 0;
+  }
+}
+
+//md
+@media screen and (min-width: 771px) and (max-width: $md) {
+  .partner-img {
+    height: 80px;
+  }
+
+  .slide {
+    height: 80px !important;
+    width: 160px !important;
+    margin: 0;
+  }
+
+  #goLeft > *,
+  #goRight > * {
+    width: 12px;
+    height: 18px;
+  }
+
+  .slider-container {
+    margin: 40px 0;
+  }
+}
+
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+  .partner-img {
+    height: 110px;
+  }
+
+  .slide {
+    height: 110px !important;
+    width: 230px !important;
+    margin: 0;
+  }
 }

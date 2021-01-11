@@ -14,6 +14,8 @@ $fullWidth: 100%;
 $darkGrey: #acb5bd;
 $scorpion: #5e5e5e;
 
+//test
+
 $companyLogo: url('../../../../public/svg/Logo.svg');
 $logoClear: url('../../../../public/svg/LogoClear.svg');
 $phoneIcon: url('../../../../public/svg/PhoneIcon.svg');
@@ -27,6 +29,13 @@ $notificationIconBg: #ffc91a;
 $regular: 'Regular'; // 400
 $medium: 'Medium'; //500
 $bold: 'Bold'; //700
+
+//Breakpoints
+$xs: 580px;
+$sm: 770px;
+$md: 1250px;
+$lg: 1500px;
+$xl: 10000px;
 
 %flex-row {
   display: flex;

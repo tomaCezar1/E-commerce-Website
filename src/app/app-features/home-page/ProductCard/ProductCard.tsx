@@ -1,13 +1,14 @@
 import { useContext, useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useToast } from '@chakra-ui/react';
+
 import FavoriteEmpty from '../../../../../public/svg/FavoriteEmpty.svg';
 import FavoriteActive from '../../../../../public/svg/FavoriteActive.svg';
 import CartIcon from '../../../../../public/svg/CartIcon.svg';
-import Link from 'next/link';
-import { useToast } from '@chakra-ui/react';
 import { AppContext } from '../../../../context';
+import Toast from '../../../common/toast/Toast';
 
-function ProductCard({ product, small = false, isFavorite = [] }) {
-  const [isActive, setActive] = useState(false);
+function ProductCard({ product, small = false, isFavorite = false }) {
   const { addToCart, addToFavorites } = useContext(AppContext);
   const toast = useToast();
 
@@ -29,8 +30,6 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
     sale = 0;
   }
 
-  const filtered = isFavorite.filter((id) => id === product.id);
-
   const addToFavoritesList = (event, product) => {
     event.stopPropagation();
     addToFavorites(product);
@@ -45,10 +44,8 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
           } ${small ? 'product-container-small' : ''}`}
         >
           {sale ? (
-            <div className="on-sale on-sale">
-              <p className="on-sale-text on-sale-text">
-                {sale ? `-${sale}%` : null}
-              </p>
+            <div className="on-sale">
+              <p className="on-sale-text">{sale ? `-${sale}%` : null}</p>
             </div>
           ) : null}
           <div className="product-card-container-flex">
@@ -70,25 +67,35 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
                 ) : (
                   <p className="basic-price">{product?.price} lei</p>
                 )}
-                {product.available ? null : (
-                  <p className="produs-in-stock">
-                    {product?.notAvailableCustomText}
-                    Produsul nu este in stock
-                  </p>
-                )}
               </div>
+              {product.available ? null : (
+                <p className="produs-in-stock">
+                  {product?.notAvailableCustomText}
+                  Produsul nu este in stock
+                </p>
+              )}
               <div className="product-card-cart">
                 <i
                   className="fav-icons"
                   style={{ cursor: 'pointer' }}
-                  onClick={(event) => {
-                    addToFavoritesList(event, product);
-                  }}
+                  onClick={
+                    product.available
+                      ? (event) => {
+                          addToFavoritesList(event, product);
+                        }
+                      : (event) => {
+                          event.stopPropagation();
+                        }
+                  }
                 >
-                  {product.available && filtered.length > 0 && loaded ? (
-                    <FavoriteActive />
+                  {product.available && isFavorite && loaded ? (
+                    <i className="product-fav-icons">
+                      <FavoriteActive />
+                    </i>
                   ) : (
-                    <FavoriteEmpty />
+                    <i className="product-fav-icons">
+                      <FavoriteEmpty />
+                    </i>
                   )}
                 </i>
                 <div
@@ -99,10 +106,12 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
                           e.stopPropagation();
                           addToCart(product, 1);
                           toast({
-                            title: `Produsul ${product.name} a fost adăugat cu succes!`,
-                            status: 'success',
-                            duration: 5000,
-                            isClosable: true,
+                            render: ({ onClose }) => (
+                              <Toast
+                                description={`Produsul "${product.name}" a fost adăugat cu succes!`}
+                                handleClose={onClose}
+                              />
+                            ),
                             position: 'top',
                           });
                         }
@@ -111,7 +120,9 @@ function ProductCard({ product, small = false, isFavorite = [] }) {
                         }
                   }
                 >
-                  <CartIcon />
+                  <i className="product-fav-cart-icon">
+                    <CartIcon />
+                  </i>
                   <p className="product-card-add-text">Adaugă în coș</p>
                 </div>
               </div>

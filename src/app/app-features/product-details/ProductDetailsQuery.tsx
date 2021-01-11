@@ -9,6 +9,8 @@ export const ProductDetailsQuery = gql`
       images
       description
       price
+      newPrice
+      isPromo
       available
       articleCode
       categoryId

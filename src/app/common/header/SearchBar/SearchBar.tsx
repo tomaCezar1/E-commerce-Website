@@ -6,7 +6,7 @@ import { apolloClient } from '../../../lib/apolloClient';
 import Overlay from '../../overlay/Overlay';
 import { SkeletonText, SkeletonCircle } from '@chakra-ui/react';
 
-export default function SearchBar(): JSX.Element {
+export default function SearchBar({ mobile = false, onClose }): JSX.Element {
   const client = apolloClient;
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -39,20 +39,26 @@ export default function SearchBar(): JSX.Element {
     <>
       <div
         id="search-container"
-        className="search-container"
+        className={mobile ? 'search-container-mobile' : 'search-container'}
         ref={searchContainerRef}
       >
         <div style={{ margin: '0 auto', position: 'relative' }}>
           {searchTerm ? (
             <div
               className={
-                showOverlay ? 'close-circle-icon' : 'close-circle-icon2'
+                showOverlay
+                  ? mobile
+                    ? 'close-circle-icon-mobile'
+                    : 'close-circle-icon'
+                  : 'close-circle-icon2'
               }
               onClick={() => {
-                setResults([]);
-                setSearchTerm('');
-                setIsSearching(true);
-                document.getElementById('Search').focus();
+                setTimeout(() => {
+                  setResults([]);
+                  setSearchTerm('');
+                  setIsSearching(true);
+                  document.getElementById('Search').focus();
+                }, 300);
               }}
             />
           ) : (
@@ -64,7 +70,13 @@ export default function SearchBar(): JSX.Element {
             placeholder="Caută..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className={showOverlay ? 'search-bar-active' : 'search-bar'}
+            className={
+              showOverlay
+                ? mobile
+                  ? 'search-bar-active-mobile'
+                  : 'search-bar-active'
+                : 'search-bar'
+            }
             onFocus={() => {
               setShowOverlay(true);
               setIsSearching(true);
@@ -75,17 +87,18 @@ export default function SearchBar(): JSX.Element {
                     setShowOverlay(false);
                     setIsSearching(false);
                   }
-                : null
+                : () => setShowOverlay(false)
             }
           />
         </div>
       </div>
       {showOverlay && (
         <Overlay
-          className="search-overlay"
+          className={mobile ? 'search-overlay-mobile' : 'search-overlay'}
           anchor={searchContainerRef.current}
           onBackdropClick={() => {
             setShowOverlay(false);
+            onClose();
             document.getElementById('Search').blur();
           }}
         >
@@ -93,28 +106,48 @@ export default function SearchBar(): JSX.Element {
             className={
               !results.length
                 ? 'search-results-container'
+                : mobile
+                ? 'search-results-container-scroll-mobile'
                 : 'search-results-container-scroll'
             }
           >
             {isSearching && !results.length && (
               <>
                 <div className="search-skeleton-wrapper">
-                  <SkeletonCircle size="10" />
-                  <div className="search-skeleton-text">
+                  <SkeletonCircle size={mobile ? '7' : '10'} />
+                  <div
+                    className={
+                      mobile
+                        ? 'search-skeleton-text-mobile'
+                        : 'search-skeleton-text'
+                    }
+                  >
                     <SkeletonText noOfLines={2} spacing="2" />
                   </div>
                   <SkeletonCircle size="4" />
                 </div>
                 <div className="search-skeleton-wrapper">
-                  <SkeletonCircle size="10" />
-                  <div className="search-skeleton-text">
+                  <SkeletonCircle size={mobile ? '7' : '10'} />
+                  <div
+                    className={
+                      mobile
+                        ? 'search-skeleton-text-mobile'
+                        : 'search-skeleton-text'
+                    }
+                  >
                     <SkeletonText noOfLines={2} spacing="2" />
                   </div>
                   <SkeletonCircle size="4" />
                 </div>
                 <div className="search-skeleton-wrapper">
-                  <SkeletonCircle size="10" />
-                  <div className="search-skeleton-text">
+                  <SkeletonCircle size={mobile ? '7' : '10'} />
+                  <div
+                    className={
+                      mobile
+                        ? 'search-skeleton-text-mobile'
+                        : 'search-skeleton-text'
+                    }
+                  >
                     <SkeletonText noOfLines={2} spacing="2" />
                   </div>
                   <SkeletonCircle size="4" />
@@ -122,17 +155,20 @@ export default function SearchBar(): JSX.Element {
               </>
             )}
             {!isSearching && !results.length && (
-              <div className="no-items-container">
+              <div
+                className={
+                  mobile ? 'no-items-container-mobile' : 'no-items-container'
+                }
+              >
                 <span className="no-items-text">Nu au fost găsite produse</span>
               </div>
             )}
             {results &&
               results.map(({ id, name, price, images, slug }) => {
                 return (
-                  <>
+                  <div key={id}>
                     <Link href="/product/[slug]" as={`/product/${slug}`}>
                       <div
-                        key={id}
                         style={{ cursor: 'pointer' }}
                         onClick={() => setShowOverlay(false)}
                       >
@@ -140,11 +176,29 @@ export default function SearchBar(): JSX.Element {
                         <div className="search-product-wrapper">
                           <img
                             src={images[0]}
-                            className="search-product-image"
+                            className={
+                              mobile
+                                ? 'search-product-image-mobile'
+                                : 'search-product-image'
+                            }
                           />
                           <div className="search-product-text">
-                            <span className="search-product-name">{name}</span>
-                            <span className="search-product-price">
+                            <span
+                              className={
+                                mobile
+                                  ? 'search-product-name-mobile'
+                                  : 'search-product-name'
+                              }
+                            >
+                              {name}
+                            </span>
+                            <span
+                              className={
+                                mobile
+                                  ? 'search-product-price-mobile'
+                                  : 'search-product-price'
+                              }
+                            >
                               {price} lei
                             </span>
                           </div>
@@ -153,7 +207,7 @@ export default function SearchBar(): JSX.Element {
                         </div>
                       </div>
                     </Link>
-                  </>
+                  </div>
                 );
               })}
           </div>
