@@ -55,7 +55,7 @@ function CarouselComponent({ style = {} }): JSX.Element {
       return (
         <div className="carousel-img-container">
           <img
-            src="https://ibb.co/w78VcM2"
+            src="https://cdn.incoden.com/Diferite/not-found.png"
             alt="error image"
             className="carousel-img"
           />
