@@ -106,6 +106,11 @@ $carousel-height: 434px;
     height: 130px;
   }
 
+  .slick-arrow-bg {
+    width: 35px;
+    height: 45px;
+  }
+
   .slick-dots {
     top: 75% !important;
     li {
@@ -117,11 +122,6 @@ $carousel-height: 434px;
       width: 3px !important;
       height: 3px;
     }
-  }
-
-  .slick-arrow-bg {
-    width: 30px;
-    height: 30px;
   }
 
   .icons > * {
@@ -153,11 +153,6 @@ $carousel-height: 434px;
     }
   }
 
-  .slick-arrow-bg {
-    width: 30px;
-    height: 30px;
-  }
-
   .icons > * {
     width: 10px !important;
     height: 25px !important;
@@ -187,11 +182,6 @@ $carousel-height: 434px;
     }
   }
 
-  .slick-arrow-bg {
-    width: 30px;
-    height: 30px;
-  }
-
   .icons > * {
     width: 10px !important;
     height: 25px !important;
@@ -219,11 +209,6 @@ $carousel-height: 434px;
       width: 3px !important;
       height: 3px;
     }
-  }
-
-  .slick-arrow-bg {
-    width: 30px;
-    height: 30px;
   }
 
   .icons > * {

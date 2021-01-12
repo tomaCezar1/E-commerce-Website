@@ -30,6 +30,12 @@ function BlogPageCard({ blogPost }): JSX.Element {
             dangerouslySetInnerHTML={createMarkup(previewDesc)}
           />
         )}
+        {isSmallerThan581 && (
+          <p
+            className="blog-card-description blog-card-description-mobile"
+            dangerouslySetInnerHTML={createMarkup(previewDesc)}
+          />
+        )}
       </div>
     </div>
   );

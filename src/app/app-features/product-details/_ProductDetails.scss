@@ -343,6 +343,10 @@
   padding: 0 16px 0 0 !important;
 }
 
+.goLeft-details {
+  padding-right: 6px !important;
+}
+
 //xs
 @media screen and (min-width: 0px) and (max-width: $xs) {
   .recommended-products-container {
@@ -454,6 +458,7 @@
 
   .small-img {
     margin: 0 6px 6px 0;
+    width: 100%;
   }
 
   .small-img-container {
@@ -464,7 +469,7 @@
   .mobile-small-img-component {
     display: flex;
     flex-direction: column;
-    width: 48px;
+    width: 50px;
     margin-top: 0;
     margin-left: 10px;
     overflow-y: scroll;
