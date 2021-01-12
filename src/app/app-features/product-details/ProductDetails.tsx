@@ -61,8 +61,13 @@ function ProductDetails({ productDetails }) {
   let techFieldsSecond = [];
 
   const vendorObject = {
-    name: 'Vendor',
+    name: 'Producator',
     value: details.vendor,
+  };
+
+  const typeObject = {
+    name: 'Tip',
+    value: details.type,
   };
 
   if (data && data.techSpecs && data.techSpecs.fields) {
@@ -72,6 +77,9 @@ function ProductDetails({ productDetails }) {
       techFieldsSecond = fields.slice(Math.round(fields.length / 2));
     } else {
       techFields = fields;
+    }
+    if (details.type) {
+      techFields.unshift(typeObject);
     }
     if (details.vendor) {
       techFields.unshift(vendorObject);

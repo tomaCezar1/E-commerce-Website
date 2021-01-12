@@ -15,6 +15,7 @@ export const ProductDetailsQuery = gql`
       articleCode
       categoryId
       vendor
+      type
       notAvailableCustomText
     }
   }
