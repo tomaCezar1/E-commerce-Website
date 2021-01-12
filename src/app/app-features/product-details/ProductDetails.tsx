@@ -113,14 +113,25 @@ function ProductDetails({ productDetails }) {
     goRight = () => {
       x === -100 * (recommendedData.length - 4) ? null : setX(x - 100);
     };
+
+    if (recommendedData.length <= 4) {
+      goRight = () => {
+        x === 0;
+      };
+    }
   } else if (isLargerThan770) {
     goLeft = () => {
       x === 0 ? null : setX(x + 100);
     };
-
     goRight = () => {
       x === -100 * (recommendedData.length - 3) ? null : setX(x - 100);
     };
+
+    if (recommendedData.length <= 3) {
+      goRight = () => {
+        x === 0;
+      };
+    }
   } else if (isLargerThan580) {
     goLeft = () => {
       x === 0 ? null : setX(x + 100);
@@ -129,6 +140,12 @@ function ProductDetails({ productDetails }) {
     goRight = () => {
       x === -100 * (recommendedData.length - 2) ? null : setX(x - 100);
     };
+
+    if (recommendedData.length <= 2) {
+      goRight = () => {
+        x === 0;
+      };
+    }
   } else if (isLargerThan0) {
     goLeft = () => {
       x === 0 ? null : setX(x + 100);
