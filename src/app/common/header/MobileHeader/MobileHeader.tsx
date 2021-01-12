@@ -53,7 +53,7 @@ export default function MobileHeader() {
     setShowSearchBar(false);
     setTimeout(() => {
       setShowLogo(!showLogo);
-    }, 300);
+    }, 100);
   };
 
   return (
@@ -174,22 +174,26 @@ export default function MobileHeader() {
           </div>
         </Link>
       )}
-      <div className="mobile-icons-wrapper">
-        <Link href="/cart" locale={router.locale}>
-          <div className="mobile-cart-icon">
-            {cart.length ? (
-              <div className="mobile-notification-icon">{cart.length}</div>
-            ) : null}
-          </div>
-        </Link>
-        <Link href="/favorites" locale={router.locale}>
-          <div className="mobile-heart-icon">
-            {renderedFavorites && favorites.length ? (
-              <div className="mobile-notification-icon">{favorites.length}</div>
-            ) : null}
-          </div>
-        </Link>
-      </div>
+      {renderedFavorites && (
+        <div className="mobile-icons-wrapper">
+          <Link href="/cart" locale={router.locale}>
+            <div className="mobile-cart-icon">
+              {cart.length ? (
+                <div className="mobile-notification-icon">{cart.length}</div>
+              ) : null}
+            </div>
+          </Link>
+          <Link href="/favorites" locale={router.locale}>
+            <div className="mobile-heart-icon">
+              {favorites.length ? (
+                <div className="mobile-notification-icon">
+                  {favorites.length}
+                </div>
+              ) : null}
+            </div>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
