@@ -57,8 +57,8 @@ export default function Menu({ onClose }): JSX.Element {
           const { id, title, slug } = element;
           return (
             <Link
-              href={'/categories/[categorySlug]/[subcategorySlug]'}
-              as={`/categories/${rootCategories[activeCategory].slug}/${slug}`}
+              href={'/categories/[categorySlug]/[subcategorySlug]?page=1'}
+              as={`/categories/${rootCategories[activeCategory].slug}/${slug}?page=1`}
               locale={router.locale}
               key={id}
             >

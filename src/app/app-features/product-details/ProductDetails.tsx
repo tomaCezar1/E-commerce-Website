@@ -3,7 +3,6 @@ import CartIcon from '../../../../public/svg/CartIcon.svg';
 import { useState, useEffect, useContext } from 'react';
 import { useQuery } from '@apollo/client';
 import { TechSpecsQuery } from './ProductDetailsQuery';
-import { IRecommendedProducts } from './RecommendedProdQuery';
 import { Skeleton, useToast, useMediaQuery } from '@chakra-ui/react';
 import { AppContext } from '../../../context';
 import Toast from '../../common/toast/Toast';
@@ -23,7 +22,7 @@ function ProductDetails({ productDetails }) {
   const [qty, setQty] = useState(1);
   const [isAvailable, setAvailable] = useState(null);
   const [x, setX] = useState(0);
-  const isFavorite = favorites.map((el) => el.id);
+  const favoritesIds = favorites.map((el) => el.id);
   const filtered = favorites.filter((favorite) => favorite.id === details.id);
   const [isLargerThan1250] = useMediaQuery('(min-width: 1250px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
@@ -50,7 +49,13 @@ function ProductDetails({ productDetails }) {
     variables: { productId },
   });
 
-  const recommendedData = recommendedQuery.data?.recommendedProducts;
+  const loadingRecommended = recommendedQuery.loading;
+
+  let recommendedData = recommendedQuery.data?.recommendedProducts;
+
+  if (!recommendedData) {
+    recommendedData = 0;
+  }
 
   const { loading, data } = useQuery(TechSpecsQuery, {
     variables: { id },
@@ -59,6 +64,16 @@ function ProductDetails({ productDetails }) {
   let techFields = [];
   let techFieldsSecond = [];
 
+  const vendorObject = {
+    name: 'Producator',
+    value: details.vendor,
+  };
+
+  const typeObject = {
+    name: 'Tip',
+    value: details.type,
+  };
+
   if (data && data.techSpecs && data.techSpecs.fields) {
     const fields = data.techSpecs.fields.filter((product) => product.value);
     if (fields.length > 7) {
@@ -66,6 +81,12 @@ function ProductDetails({ productDetails }) {
       techFieldsSecond = fields.slice(Math.round(fields.length / 2));
     } else {
       techFields = fields;
+    }
+    if (details.type) {
+      techFields.unshift(typeObject);
+    }
+    if (details.vendor) {
+      techFields.unshift(vendorObject);
     }
   }
 
@@ -96,14 +117,25 @@ function ProductDetails({ productDetails }) {
     goRight = () => {
       x === -100 * (recommendedData.length - 4) ? null : setX(x - 100);
     };
+
+    if (recommendedData.length <= 4) {
+      goRight = () => {
+        x === 0;
+      };
+    }
   } else if (isLargerThan770) {
     goLeft = () => {
       x === 0 ? null : setX(x + 100);
     };
-
     goRight = () => {
       x === -100 * (recommendedData.length - 3) ? null : setX(x - 100);
     };
+
+    if (recommendedData.length <= 3) {
+      goRight = () => {
+        x === 0;
+      };
+    }
   } else if (isLargerThan580) {
     goLeft = () => {
       x === 0 ? null : setX(x + 100);
@@ -112,6 +144,12 @@ function ProductDetails({ productDetails }) {
     goRight = () => {
       x === -100 * (recommendedData.length - 2) ? null : setX(x - 100);
     };
+
+    if (recommendedData.length <= 2) {
+      goRight = () => {
+        x === 0;
+      };
+    }
   } else if (isLargerThan0) {
     goLeft = () => {
       x === 0 ? null : setX(x + 100);
@@ -139,7 +177,9 @@ function ProductDetails({ productDetails }) {
                 </p>
               ) : (
                 <p className="product-details-not-in-stock">
-                  Produsul nu este în stoc
+                  {productDetails.products[0].notAvailableCustomText
+                    ? productDetails.products[0].notAvailableCustomText
+                    : 'Produsul nu este în stoc'}
                 </p>
               )}
 
@@ -317,8 +357,8 @@ function ProductDetails({ productDetails }) {
                   {techFields.map((spec, index) => {
                     return (
                       <tr key={index}>
-                        <th>{spec.name}</th>
-                        <td>
+                        <th className="capitalize-tr">{spec.name}</th>
+                        <td className="capitalize-td">
                           {spec.value}&nbsp;
                           {spec.suffix}
                         </td>
@@ -378,39 +418,47 @@ function ProductDetails({ productDetails }) {
             </div>
           </div>
         )}
-        <h1 className="product-details-title">Produse Recomandate</h1>
-        <div className="recommended-products-container">
-          <i
-            id="goLeft"
-            className="arrows-recommended-slider arr-left"
-            onClick={goLeft}
-          >
-            <LeftArrow />
-          </i>
-          {recommendedData && recommendedData.length > 0 && (
-            <div className="recommended-slider">
-              {recommendedData.map((item, index) => {
-                return (
-                  <div
-                    className="recommended-slide"
-                    key={index}
-                    style={{ transform: `translateX(${x}%)` }}
-                  >
-                    <ProductCard product={item} isFavorite={isFavorite} />
-                  </div>
-                );
-              })}
+        {!loadingRecommended && recommendedData && recommendedData.length > 0 && (
+          <div>
+            <h1 className="product-details-title">Produse Recomandate</h1>
+            <div className="recommended-products-container">
+              <i id="goLeft" className="goLeft-details" onClick={goLeft}>
+                <LeftArrow />
+              </i>
+              <div className="recommended-slider">
+                {recommendedData.map((item) => {
+                  return (
+                    <div
+                      className="recommended-slide"
+                      key={item.id}
+                      style={{ transform: `translateX(${x}%)` }}
+                    >
+                      <ProductCard
+                        product={item}
+                        isFavorite={
+                          favoritesIds.indexOf(item.id) === -1 ? false : true
+                        }
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              <i
+                id="goRight"
+                className="details-arrow-right goRight-details"
+                onClick={goRight}
+                style={{ transform: 'rotate(180deg)' }}
+              >
+                <RightArrow />
+              </i>
             </div>
-          )}
-          <i
-            id="goRight"
-            className="arrows-recommended-slider arr-right"
-            onClick={goRight}
-            style={{ transform: 'rotate(180deg)' }}
-          >
-            <RightArrow />
-          </i>
-        </div>
+          </div>
+        )}
+        {loadingRecommended && (
+          <div className=" full-width" style={{ margin: '80px 0 62px' }}>
+            <Skeleton height="445px" style={{ borderRadius: '16px' }} />
+          </div>
+        )}
       </div>
     </>
   );

@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { SkeletonText, SkeletonCircle } from '@chakra-ui/react';
 import { SearchProductsQuery } from './SearchProductsQuery';
 import { useDebounce } from '../../../../utils';
 import { apolloClient } from '../../../lib/apolloClient';
 import Overlay from '../../overlay/Overlay';
-import { SkeletonText, SkeletonCircle } from '@chakra-ui/react';
 
 export default function SearchBar({ mobile = false, onClose }): JSX.Element {
   const client = apolloClient;
@@ -13,7 +14,7 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
   const [results, setResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
-
+  const router = useRouter();
   const searchContainerRef = useRef(null);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
@@ -34,6 +35,12 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
       setResults([]);
     }
   }, [debouncedSearchTerm]);
+
+  useEffect(() => {
+    if (showOverlay) {
+      setShowOverlay(false);
+    }
+  }, [router.asPath]);
 
   return (
     <>
@@ -81,14 +88,6 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
               setShowOverlay(true);
               setIsSearching(true);
             }}
-            onBlur={
-              !searchTerm
-                ? () => {
-                    setShowOverlay(false);
-                    setIsSearching(false);
-                  }
-                : () => setShowOverlay(false)
-            }
           />
         </div>
       </div>
@@ -98,8 +97,9 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
           anchor={searchContainerRef.current}
           onBackdropClick={() => {
             setShowOverlay(false);
-            onClose();
-            document.getElementById('Search').blur();
+            if (!searchTerm) {
+              onClose();
+            }
           }}
         >
           <div
@@ -166,12 +166,13 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
             {results &&
               results.map(({ id, name, price, images, slug }) => {
                 return (
-                  <div key={id}>
-                    <Link href="/product/[slug]" as={`/product/${slug}`}>
-                      <div
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => setShowOverlay(false)}
-                      >
+                  <div key={id} style={{ cursor: 'pointer' }}>
+                    <Link
+                      href="/product/[slug]"
+                      as={`/product/${slug}`}
+                      key={id}
+                    >
+                      <div>
                         <div className="search-results-divider" />
                         <div className="search-product-wrapper">
                           <img

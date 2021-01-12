@@ -23,6 +23,7 @@ export default function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [showLogo, setShowLogo] = useState(true);
   const { cart, favorites, appContext } = useContext(AppContext);
+  const [renderedFavorites, setRenderedFavorites] = useState(false);
   const [rootCategories, setRootCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(0);
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -31,6 +32,7 @@ export default function MobileHeader() {
   useEffect(() => {
     const rooCats = appContext.categories.filter((c) => !c.parent);
     setRootCategories(rooCats);
+    setRenderedFavorites(true);
   }, [appContext]);
 
   useEffect(() => {
@@ -49,19 +51,20 @@ export default function MobileHeader() {
 
   const handleClick = () => {
     setShowSearchBar(false);
-    setShowLogo(!showLogo);
+    setTimeout(() => {
+      setShowLogo(!showLogo);
+    }, 100);
   };
 
   return (
-    <div className="mobile-header-container">
+    <div className="mobile-header-container" suppressHydrationWarning={true}>
       <div className="mobile-icons-wrapper">
         <div className="mobile-icon-wrap" onClick={() => setIsOpen(true)}>
           <div className="mobile-burger-icon" />
         </div>
         <div className="mobile-search-wrapper">
-          {showSearchBar && !showLogo ? (
-            <SearchBar mobile onClose={handleClick} />
-          ) : (
+          {showSearchBar && <SearchBar mobile onClose={handleClick} />}
+          {!showSearchBar && (
             <div
               className={
                 !showLogo ? 'mobile-search-icon-expanded' : 'mobile-search-icon'
@@ -171,22 +174,26 @@ export default function MobileHeader() {
           </div>
         </Link>
       )}
-      <div className="mobile-icons-wrapper">
-        <Link href="/cart" locale={router.locale}>
-          <div className="mobile-cart-icon">
-            {cart.length ? (
-              <div className="mobile-notification-icon">{cart.length}</div>
-            ) : null}
-          </div>
-        </Link>
-        <Link href="/favorites" locale={router.locale}>
-          <div className="mobile-heart-icon">
-            {favorites.length ? (
-              <div className="mobile-notification-icon">{favorites.length}</div>
-            ) : null}
-          </div>
-        </Link>
-      </div>
+      {renderedFavorites && (
+        <div className="mobile-icons-wrapper">
+          <Link href="/cart" locale={router.locale}>
+            <div className="mobile-cart-icon">
+              {cart.length ? (
+                <div className="mobile-notification-icon">{cart.length}</div>
+              ) : null}
+            </div>
+          </Link>
+          <Link href="/favorites" locale={router.locale}>
+            <div className="mobile-heart-icon">
+              {favorites.length ? (
+                <div className="mobile-notification-icon">
+                  {favorites.length}
+                </div>
+              ) : null}
+            </div>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

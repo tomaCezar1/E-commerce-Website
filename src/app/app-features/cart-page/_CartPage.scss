@@ -53,6 +53,7 @@
   display: flex;
   align-items: center;
   width: 100%;
+  cursor: pointer;
 }
 
 .cart-product-info {
@@ -352,8 +353,11 @@
 
   .cart-items-list {
     height: auto;
-    overflow: visible;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 10px;
   }
+
 
   .checkout-wrapper {
     display: none;
@@ -607,7 +611,8 @@
 
   .cart-items-list {
     height: auto;
-    overflow: visible;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .cart-total-price {
