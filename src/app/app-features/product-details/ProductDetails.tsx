@@ -357,8 +357,8 @@ function ProductDetails({ productDetails }) {
                   {techFields.map((spec, index) => {
                     return (
                       <tr key={index}>
-                        <th>{spec.name}</th>
-                        <td>
+                        <th className="capitalize-tr">{spec.name}</th>
+                        <td className="capitalize-td">
                           {spec.value}&nbsp;
                           {spec.suffix}
                         </td>

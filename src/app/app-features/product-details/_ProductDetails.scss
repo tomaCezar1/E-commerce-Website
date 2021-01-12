@@ -347,6 +347,11 @@
   padding-right: 6px !important;
 }
 
+.capitalize-td,
+.capitalize-tr {
+  text-transform: capitalize;
+}
+
 //xs
 @media screen and (min-width: 0px) and (max-width: $xs) {
   .recommended-products-container {
