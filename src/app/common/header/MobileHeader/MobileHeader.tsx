@@ -51,7 +51,9 @@ export default function MobileHeader() {
 
   const handleClick = () => {
     setShowSearchBar(false);
-    setShowLogo(!showLogo);
+    setTimeout(() => {
+      setShowLogo(!showLogo);
+    }, 300);
   };
 
   return (
@@ -61,9 +63,8 @@ export default function MobileHeader() {
           <div className="mobile-burger-icon" />
         </div>
         <div className="mobile-search-wrapper">
-          {showSearchBar && !showLogo ? (
-            <SearchBar mobile onClose={handleClick} />
-          ) : (
+          {showSearchBar && <SearchBar mobile onClose={handleClick} />}
+          {!showSearchBar && (
             <div
               className={
                 !showLogo ? 'mobile-search-icon-expanded' : 'mobile-search-icon'

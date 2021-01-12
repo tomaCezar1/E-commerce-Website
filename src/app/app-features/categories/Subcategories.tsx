@@ -20,7 +20,7 @@ export default function Subcategories({
   const router = useRouter();
   const limit = 20;
   const { favorites } = useContext(AppContext);
-  const isFavorite = favorites.map((el) => el.id);
+  const favoritesIds = favorites.map((el) => el.id);
 
   useEffect(() => {
     setSortOrder(router.query.sort as any);
@@ -122,7 +122,9 @@ export default function Subcategories({
                   <ProductCard
                     key={product.id}
                     product={product}
-                    isFavorite={isFavorite}
+                    isFavorite={
+                      favoritesIds.indexOf(product.id) === -1 ? false : true
+                    }
                     small
                   />
                 );

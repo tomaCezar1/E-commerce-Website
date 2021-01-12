@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { SkeletonText, SkeletonCircle } from '@chakra-ui/react';
 import { SearchProductsQuery } from './SearchProductsQuery';
 import { useDebounce } from '../../../../utils';
@@ -13,7 +14,7 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
   const [results, setResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
-
+  const router = useRouter();
   const searchContainerRef = useRef(null);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
@@ -34,6 +35,12 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
       setResults([]);
     }
   }, [debouncedSearchTerm]);
+
+  useEffect(() => {
+    if (showOverlay) {
+      setShowOverlay(false);
+    }
+  }, [router.asPath]);
 
   return (
     <>
@@ -81,14 +88,6 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
               setShowOverlay(true);
               setIsSearching(true);
             }}
-            onBlur={
-              !searchTerm
-                ? () => {
-                    setShowOverlay(false);
-                    setIsSearching(false);
-                  }
-                : () => setShowOverlay(false)
-            }
           />
         </div>
       </div>
@@ -98,8 +97,9 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
           anchor={searchContainerRef.current}
           onBackdropClick={() => {
             setShowOverlay(false);
-            onClose();
-            document.getElementById('Search').blur();
+            if (!searchTerm) {
+              onClose();
+            }
           }}
         >
           <div
@@ -166,43 +166,49 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
             {results &&
               results.map(({ id, name, price, images, slug }) => {
                 return (
-                  <Link href="/product/[slug]" as={`/product/${slug}`} key={id}>
-                    <div>
-                      <div className="search-results-divider" />
-                      <div className="search-product-wrapper">
-                        <img
-                          src={images[0]}
-                          className={
-                            mobile
-                              ? 'search-product-image-mobile'
-                              : 'search-product-image'
-                          }
-                        />
-                        <div className="search-product-text">
-                          <span
+                  <div key={id} style={{ cursor: 'pointer' }}>
+                    <Link
+                      href="/product/[slug]"
+                      as={`/product/${slug}`}
+                      key={id}
+                    >
+                      <div>
+                        <div className="search-results-divider" />
+                        <div className="search-product-wrapper">
+                          <img
+                            src={images[0]}
                             className={
                               mobile
-                                ? 'search-product-name-mobile'
-                                : 'search-product-name'
+                                ? 'search-product-image-mobile'
+                                : 'search-product-image'
                             }
-                          >
-                            {name}
-                          </span>
-                          <span
-                            className={
-                              mobile
-                                ? 'search-product-price-mobile'
-                                : 'search-product-price'
-                            }
-                          >
-                            {price} lei
-                          </span>
-                        </div>
+                          />
+                          <div className="search-product-text">
+                            <span
+                              className={
+                                mobile
+                                  ? 'search-product-name-mobile'
+                                  : 'search-product-name'
+                              }
+                            >
+                              {name}
+                            </span>
+                            <span
+                              className={
+                                mobile
+                                  ? 'search-product-price-mobile'
+                                  : 'search-product-price'
+                              }
+                            >
+                              {price} lei
+                            </span>
+                          </div>
 
-                        <div className="button-to-product" />
+                          <div className="button-to-product" />
+                        </div>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                  </div>
                 );
               })}
           </div>
