@@ -193,7 +193,7 @@ export default function CartPage(): JSX.Element {
                 </div>
               </div>
               <div className="cart-total-price">
-                <span>Total:</span>
+                <span>Total:&nbsp;</span>
                 <span>{formatPrice(cartTotal(cart))}</span>
                 <span>lei</span>
               </div>
