@@ -1,6 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Select } from '@chakra-ui/react';
+import {
+  Select,
+  Drawer,
+  DrawerBody,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useMediaQuery,
+} from '@chakra-ui/react';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 import ProductCard from '../home-page/ProductCard/ProductCard';
 import Pagination from '../../common/pagination/Pagination';
@@ -16,11 +24,12 @@ export default function Subcategories({
 }): JSX.Element {
   const [pagesCount, setPagesCount] = useState(1);
   const [sortOrder, setSortOrder] = useState('');
-
+  const [showFilter, setShowFilter] = useState(false);
   const router = useRouter();
   const limit = 20;
   const { favorites } = useContext(AppContext);
   const favoritesIds = favorites.map((el) => el.id);
+  const [isSmallerThan1251] = useMediaQuery('(max-width: 1250px');
 
   useEffect(() => {
     setSortOrder(router.query.sort as any);
@@ -70,6 +79,10 @@ export default function Subcategories({
     },
   ];
 
+  const handleClose = () => {
+    setShowFilter(false);
+  };
+
   return (
     <div className="subcategories-page-wrapper">
       <Breadcrumbs path={path} />
@@ -81,12 +94,39 @@ export default function Subcategories({
       ) : (
         <div className="subcategories-products-container">
           <div className="subcategories-filter">
-            <Filters categoryId={subcategory.id} />
+            {isSmallerThan1251 ? (
+              <Drawer
+                isOpen={showFilter}
+                placement="left"
+                onClose={handleClose}
+              >
+                <DrawerOverlay>
+                  <DrawerContent>
+                    <DrawerCloseButton onClick={handleClose} />
+                    <DrawerBody>
+                      <div style={{ marginTop: 50 }}>
+                        <Filters
+                          categoryId={subcategory.id}
+                          handleClose={handleClose}
+                        />
+                      </div>
+                    </DrawerBody>
+                  </DrawerContent>
+                </DrawerOverlay>
+              </Drawer>
+            ) : (
+              <Filters categoryId={subcategory.id} handleClose={handleClose} />
+            )}
           </div>
           <div style={{ width: '100%' }}>
             <div className="filter-and-sorting">
               <div className="filter-mobile-container">
-                <div className="filter-mobile">Filtre</div>
+                <div
+                  className="filter-mobile"
+                  onClick={() => setShowFilter(true)}
+                >
+                  Filtre
+                </div>
               </div>
 
               <div className="sorting-bar-wrapper">
@@ -130,11 +170,17 @@ export default function Subcategories({
                 );
               })}
             </div>
-            <Pagination
-              paginationHandler={paginationHandler}
-              pageCount={pagesCount}
-              currentPage={currentPage}
-            />
+            {products.length !== 0 ? (
+              <Pagination
+                paginationHandler={paginationHandler}
+                pageCount={pagesCount}
+                currentPage={currentPage}
+              />
+            ) : (
+              <div className="no-items-text">
+                Nu a fost gasit nici un produs conform filtrelor aplicate
+              </div>
+            )}
           </div>
         </div>
       )}
