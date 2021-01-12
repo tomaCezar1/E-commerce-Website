@@ -11,9 +11,13 @@ import { useRouter } from 'next/router';
 
 export interface FiltersProps {
   categoryId: string;
+  handleClose: () => void;
 }
 
-export default function Filters({ categoryId }: FiltersProps): JSX.Element {
+export default function Filters({
+  categoryId,
+  handleClose,
+}: FiltersProps): JSX.Element {
   const [uiFilters, setUiFilters] = useState<UiFilter[]>([]);
   const [loadingFilters, setLoadingFilters] = useState(true);
   const [formValue, setFormValue] = useState({});
@@ -55,6 +59,7 @@ export default function Filters({ categoryId }: FiltersProps): JSX.Element {
       pathname: router.pathname,
       query: currentQuery,
     });
+    handleClose();
   };
 
   const onClearClick = () => {
@@ -65,6 +70,7 @@ export default function Filters({ categoryId }: FiltersProps): JSX.Element {
       pathname: router.pathname,
       query: currentQuery,
     });
+    handleClose();
   };
 
   const onDropDownChange = (propertyName: string, value: DropDownOption[]) => {
