@@ -49,7 +49,7 @@ export default function CartPage(): JSX.Element {
         <div className="cart-items-wrapper">
           <div className="container-items">
             <div className="cart-items-headings">
-              <span className="cart-heading-first">Item</span>
+              <span className="cart-heading-first">Produse</span>
               <span className="cart-heading-text">Pret</span>
               <span className="cart-heading-text">Cantitate</span>
               <span className="cart-heading-text">Total</span>
