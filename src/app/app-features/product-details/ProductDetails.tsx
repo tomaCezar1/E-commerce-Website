@@ -51,7 +51,11 @@ function ProductDetails({ productDetails }) {
 
   const loadingRecommended = recommendedQuery.loading;
 
-  const recommendedData = recommendedQuery.data?.recommendedProducts;
+  let recommendedData = recommendedQuery.data?.recommendedProducts;
+
+  if (recommendedData === undefined || recommendedData === null) {
+    recommendedData = 0;
+  }
 
   const { loading, data } = useQuery(TechSpecsQuery, {
     variables: { id },
@@ -414,7 +418,7 @@ function ProductDetails({ productDetails }) {
             </div>
           </div>
         )}
-        {!loadingRecommended && recommendedData && recommendedData.length && (
+        {!loadingRecommended && recommendedData && recommendedData.length > 0 && (
           <div>
             <h1 className="product-details-title">Produse Recomandate</h1>
             <div className="recommended-products-container">
