@@ -68,10 +68,15 @@ function ProductCard({ product, small = false, isFavorite = false }) {
                   <p className="basic-price">{product?.price} lei</p>
                 )}
               </div>
-              {product.available ? null : (
-                <p className="produs-in-stock">
-                  {product?.notAvailableCustomText}
-                  Produsul nu este in stock
+              {product.available ? (
+                <p className="product-in-stock-invis">Asd</p>
+              ) : (
+                <p className="product-in-stock">
+                  {product.notAvailableCustomText ? (
+                    <span>{product.notAvailableCustomText}</span>
+                  ) : (
+                    <span>Produsul nu este in stock</span>
+                  )}
                 </p>
               )}
               <div className="product-card-cart">

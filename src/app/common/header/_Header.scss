@@ -205,14 +205,14 @@
 }
 
 .cart-notification {
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 8px;
+  font-size: 10px;
   background-color: $notificationIconBg;
-  border-radius: 5px;
+  border-radius: 10px;
   position: absolute;
   top: -2px;
   right: -5px;

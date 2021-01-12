@@ -19,7 +19,12 @@
 .blog-details-title {
   font-size: 36px;
   font-family: $bold;
-  line-height: 26px;
+  line-height: 42px;
+}
+
+.blog-details-title-bottom {
+  margin: 64px 0 32px;
+  font-size: 36px;
 }
 
 .blog-details-date {
@@ -54,7 +59,7 @@
   .blog-details-title {
     font-size: 24px;
     font-family: $bold;
-    line-height: 24px;
+    line-height: 26px;
   }
 
   .blog-details-date {
@@ -86,7 +91,7 @@
   .blog-details-title {
     font-size: 24px;
     font-family: $bold;
-    line-height: 24px;
+    line-height: 26px;
   }
 
   .blog-details-date {
@@ -117,12 +122,6 @@
     margin-bottom: 15px;
   }
 
-  .blog-details-title {
-    font-size: 26px;
-    font-family: $bold;
-    line-height: 26px;
-  }
-
   .blog-details-date {
     font-size: 14px;
     font-family: $medium;
@@ -134,11 +133,4 @@
     font-family: $medium;
     font-size: 17px;
   }
-}
-//lg
-@media screen and (min-width: 1251px) and (max-width: $lg) {
-}
-
-//xl
-@media screen and (min-width: 1501) and (max-width: $xl) {
 }

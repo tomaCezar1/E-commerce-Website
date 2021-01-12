@@ -9,13 +9,9 @@
   margin-bottom: 30px !important;
 }
 
-//.subcategories-filter {
-//  width: 234px;
-//  height: 700px;
-//  //background: red;
-//  //border: 1px solid #ccc;
-//}
-
+.subcategories-filter {
+  margin-bottom: 50px;
+}
 
 .sorting-input {
   width: 180px !important;
@@ -28,7 +24,7 @@
 .sorting-options {
   background-color: $white;
   border-radius: 8px;
-  
+
   & option {
     font-family: $medium !important;
   }
@@ -62,6 +58,7 @@
   color: $white;
   font-size: 10px;
   font-family: $bold;
+  cursor: pointer;
 }
 
 //xs
@@ -154,7 +151,7 @@
   margin-top: -6px;
   width: 234px;
   margin-right: 15px;
-  background: #FFFFFF;
+  background: $white;
   box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
 }
@@ -170,11 +167,11 @@
 
 .filter-input {
   input {
-    border-color: hsl(0,0%,80%);
+    border-color: hsl(0, 0%, 80%);
     border-radius: 8px;
   }
   input::placeholder {
-    color: hsl(0,0%,50%)
+    color: hsl(0, 0%, 50%);
   }
   input:focus {
     border-color: #124193;

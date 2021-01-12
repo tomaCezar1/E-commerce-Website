@@ -89,7 +89,7 @@ export default function PrivacyPage() {
         </p>
 
         <h4 className="terms-heading">3. SUBIECTUL POLITICII DE PRIVATIE</h4>
-        <p>
+        <div>
           3.1. Această Politică de confidențialitate stabilește obligațiile
           Administrației site-ului web al magazinului online pentru nedivulgarea
           și asigură regimul de protejare a confidențialității datelor cu
@@ -131,7 +131,7 @@ export default function PrivacyPage() {
           etc.) sunt supuse unui stocare fiabilă și neproliferare, cu excepția
           celor prevăzute în clauze. 5.2. și 5.3. a acestei Politici de
           confidențialitate.
-        </p>
+        </div>
 
         <h4 className="terms-heading">
           4. SCOPUL INFORMAȚIILOR PERSONALE PENTRU COLECTAREA UTILIZATORULUI
@@ -226,7 +226,7 @@ export default function PrivacyPage() {
           6.1.1. Oferiți informații despre datele personale necesare utilizării
           site-ului web al magazinului online.
         </p>
-        <p>
+        <div>
           6.1.2. Actualizați, completați informațiile furnizate despre datele cu
           caracter personal în cazul modificărilor acestor informații.
           <br />
@@ -254,7 +254,7 @@ export default function PrivacyPage() {
           dezvăluirii de date personale inexacte sau acțiuni ilegale.
           <br />
           7. RESPONSABILITATEA PĂRȚILOR
-        </p>
+        </div>
 
         <h4 className="terms-heading">
           7.1. Administrația site-ului, care nu și-a îndeplinit obligațiile,

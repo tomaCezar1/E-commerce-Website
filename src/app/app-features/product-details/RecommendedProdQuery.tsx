@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 export const RecommendedProductsQuery = gql`
   query($productId: String!) {
     recommendedProducts(productId: $productId) {
+      id
       articleCode
       available
       description
@@ -20,6 +21,7 @@ export const RecommendedProductsQuery = gql`
 `;
 
 export interface IRecommendedProducts {
+  id: string;
   articleCode: string;
   available: boolean;
   description: string;

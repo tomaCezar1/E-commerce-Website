@@ -41,6 +41,7 @@ export async function getServerSideProps(context) {
     variables: {
       filter: {
         slug: { eq: slug },
+        isActive: { is: true },
       },
     },
   });

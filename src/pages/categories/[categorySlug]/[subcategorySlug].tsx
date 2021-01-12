@@ -89,11 +89,10 @@ export async function getServerSideProps(context) {
   }
 
   uiFilters = uiFilters.filter((v) => !!v);
-  console.log(uiFilters);
+
   const slug = context.query.subcategorySlug;
 
-  const page = context.query.page || 1;
-
+  const page = context.query.page || '1';
 
   let field = 'sortOrder';
   let direction = 'DESC';
@@ -148,6 +147,7 @@ export async function getServerSideProps(context) {
         categoryId: {
           eq: categoryId,
         },
+        isActive: { is: true },
       },
       paging: {
         limit: limit,
