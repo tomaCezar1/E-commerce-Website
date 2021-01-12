@@ -53,7 +53,7 @@ function ProductDetails({ productDetails }) {
 
   let recommendedData = recommendedQuery.data?.recommendedProducts;
 
-  if (recommendedData === undefined || recommendedData === null) {
+  if (!recommendedData) {
     recommendedData = 0;
   }
 
