@@ -1,7 +1,7 @@
 import { BlogQuery } from '../../app/app-features/blog-page/BlogPageQueries';
 import BlogDetailsPage from '../../app/app-features/blog-page/blogpost-details/BlogDetailsPage';
 import { initializeApollo } from '../../app/lib/apolloClient';
-import { BlogPostsQuery } from '../../app/app-features/blog/BlogPageQueries';
+import { BlogPostsQuery } from '../../app/app-features/blog-page/BlogPageQueries';
 
 export default function BlogNews({ blogPost, blogPosts }) {
   return <BlogDetailsPage blogPost={blogPost} blogPosts={blogPosts} />;
