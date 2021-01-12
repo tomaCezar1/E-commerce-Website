@@ -22,7 +22,7 @@ function ProductDetails({ productDetails }) {
   const [qty, setQty] = useState(1);
   const [isAvailable, setAvailable] = useState(null);
   const [x, setX] = useState(0);
-  const isFavorite = favorites.map((el) => el.id);
+  const favoritesIds = favorites.map((el) => el.id);
   const filtered = favorites.filter((favorite) => favorite.id === details.id);
   const [isLargerThan1250] = useMediaQuery('(min-width: 1250px)');
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
@@ -397,14 +397,19 @@ function ProductDetails({ productDetails }) {
                 <LeftArrow />
               </i>
               <div className="recommended-slider">
-                {recommendedData.map((item, index) => {
+                {recommendedData.map((item) => {
                   return (
                     <div
                       className="recommended-slide"
-                      key={index}
+                      key={item.id}
                       style={{ transform: `translateX(${x}%)` }}
                     >
-                      <ProductCard product={item} isFavorite={isFavorite} />
+                      <ProductCard
+                        product={item}
+                        isFavorite={
+                          favoritesIds.indexOf(item.id) === -1 ? false : true
+                        }
+                      />
                     </div>
                   );
                 })}
