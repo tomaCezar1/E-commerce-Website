@@ -24,10 +24,14 @@ export default function Filters({
   handleClose,
 }: FiltersProps): JSX.Element {
   const [uiFilters, setUiFilters] = useState<UiFilter[]>([]);
-  const [loadingFilters, setLoadingFilters] = useState(true);
+  const [loadingFilters, setLoadingFilters] = useState(false);
   const [formValue, setFormValue] = useState({});
   const [isSmallerThan1250] = useMediaQuery('(max-width: 1250px');
   const router = useRouter();
+
+  useEffect(() => {
+    setLoadingFilters(true);
+  }, []);
 
   useEffect(() => {
     (async () => {
