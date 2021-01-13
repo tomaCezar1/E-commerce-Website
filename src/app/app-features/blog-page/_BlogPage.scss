@@ -201,3 +201,17 @@ a {
     padding: 10px 20px 16px 20px;
   }
 }
+
+//lg
+@media screen and (min-width: 1251px) and (max-width: $lg) {
+  .blog-page-container {
+    margin-bottom: 50px;
+  }
+}
+
+//xl
+@media screen and (min-width: 1501px) and (max-width: $xl) {
+  .blog-page-container {
+    margin-bottom: 50px;
+  }
+}

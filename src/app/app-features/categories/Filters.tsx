@@ -64,6 +64,7 @@ export default function Filters({
   const onFormApplyClick = () => {
     const currentQuery = router.query;
     currentQuery['filter'] = encodeURI(JSON.stringify(formValue));
+    currentQuery['page'] = '1';
     router.push({
       pathname: router.pathname,
       query: currentQuery,
@@ -74,6 +75,7 @@ export default function Filters({
   const onClearClick = () => {
     const currentQuery = router.query;
     delete currentQuery['filter'];
+    currentQuery['page'] = '1';
     setFormValue({});
     router.push({
       pathname: router.pathname,
@@ -109,7 +111,7 @@ export default function Filters({
         <div className="filter-dd-name">{uiFilter.name}</div>
         <ComplexSelect
           options={uiFilter.values}
-          value={formValue[uiFilter.property]}
+          value={formValue[uiFilter.property] || []}
           onChange={(value) => onDropDownChange(uiFilter.property, value)}
           isMulti
           placeholder="Selectează opțiuni"

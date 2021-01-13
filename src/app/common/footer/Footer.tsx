@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import FacebookIcon from '../../../../public/svg/FacebookIcon.svg';
-import LinkedInIcon from '../../../../public/svg/LinkedInIcon.svg';
 import InstagramIcon from '../../../../public/svg/InstagramIcon.svg';
 import CegoltarLogo from '../../../../public/svg/cegoltar-footer-logo.svg';
 import Phone from '../../../../public/svg/phone-white.svg';
@@ -73,18 +72,23 @@ export default function Footer() {
 
         <div className="footer-copyright">
           <div className="footer-social-icons">
-            <a href="https://www.facebook.com/cegoltar.md/">
-              <i className="footer-icon">
+            <a
+              className="footer-icon"
+              href="https://www.facebook.com/cegoltar.md/"
+            >
+              <i>
                 <FacebookIcon />
               </i>
             </a>
 
-            {/* <i className="footer-icon">
-              <InstagramIcon />
-            </i>
-            <i className="footer-icon">
-              <LinkedInIcon />
-            </i> */}
+            <a
+              className="footer-icon"
+              href="https://instagram.com/cegoltar?igshid=1hsf8mg0vy5jw"
+            >
+              <i className="footer-icon">
+                <InstagramIcon />
+              </i>
+            </a>
           </div>
 
           <div className="footer-copyright-text">
@@ -101,9 +105,6 @@ export default function Footer() {
               </i>
               <i className="footer-icon">
                 <InstagramIcon />
-              </i>
-              <i className="footer-icon">
-                <LinkedInIcon />
               </i>
             </div>
 

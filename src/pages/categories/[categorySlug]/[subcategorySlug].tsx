@@ -5,8 +5,8 @@ import {
   ProductCategoriesQuery,
 } from '../../../app/app-features/categories/ProductCategoriesQueries';
 import {
-  ProductListQuery,
-  ProductsCountQuery,
+  ProductListQuery, ProductListQueryWithCount,
+  ProductsCountQuery
 } from '../../../app/app-features/home-page/ProductList/ProductListQuery';
 
 export default function SubcategoryPage({
@@ -141,7 +141,7 @@ export async function getServerSideProps(context) {
   const categoryId = productCategoriesData.data.productCategories[0].id;
 
   const productsData = await apolloClient.query({
-    query: ProductListQuery,
+    query: ProductListQueryWithCount,
     variables: {
       filter: {
         categoryId: {
@@ -163,37 +163,11 @@ export async function getServerSideProps(context) {
     },
   });
 
-  let productsCount: number;
-  let productsCountData: any;
-
-  try {
-    productsCountData = await apolloClient.query({
-      query: ProductsCountQuery,
-      variables: {
-        filter: {
-          categoryId: {
-            eq: categoryId,
-          },
-        },
-        sorting: [
-          {
-            field: 'price',
-            direction: 'ASC',
-          },
-        ],
-      },
-    });
-
-    productsCount = productsCountData?.data.productAggregate.count.id;
-  } catch (e) {
-    productsCount = 0;
-  }
-
   return {
     props: {
-      products: productsData.data.products,
+      products: productsData.data?.productsWithCount?.nodes,
       subcategory: productCategoriesData?.data?.productCategories[0],
-      productsCount: productsCount,
+      productsCount: productsData.data?.productsWithCount?.count,
       category: categoryData.data.productCategories[0],
       currentPage: page,
     },
