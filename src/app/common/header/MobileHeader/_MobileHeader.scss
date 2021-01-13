@@ -1,13 +1,12 @@
 @import '../../../../styles/constants.scss';
 
 .mobile-header-container {
-  height: 40px;
+  height: 50px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 14px;
   background: $primaryColor;
   position: fixed;
   top: 0;
@@ -61,6 +60,15 @@
   margin-left: -4px;
 }
 
+.mobile-cart-wrapper,
+.mobile-favorites-wrapper {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mobile-cart-icon {
   background: url('../../../../../public/svg/CartIconSmall.svg');
   width: 23px;
@@ -73,7 +81,6 @@
   background: url('../../../../../public/svg/HeartIconSmall.svg');
   width: 20px;
   height: 18px;
-  margin-left: 15px;
   position: relative;
 }
 
@@ -170,6 +177,11 @@
 
 .mobile-search-wrapper {
   margin-left: 16px;
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (min-width: 1251px) {
@@ -182,6 +194,7 @@
   .mobile-icon-wrap {
     width: 40px;
     height: 40px;
+    padding-left: 10px;
   }
 
   .mobile-header-container {
@@ -208,6 +221,7 @@
 @media screen and (min-width: $xs) and (max-width: $sm) {
   .mobile-header-container {
     height: 50px;
+    padding: 0 14px;
   }
 
   .mobile-search-wrapper {
@@ -223,6 +237,11 @@
 @media screen and (min-width: $sm) and (max-width: $md) {
   .mobile-header-container {
     height: 60px;
+    padding: 0 14px;
+  }
+
+  .mobile-search-icon {
+    margin-left: 0;
   }
 
   .mobile-search-wrapper {
