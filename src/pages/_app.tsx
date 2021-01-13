@@ -49,6 +49,7 @@ MyApp.getInitialProps = async (appContext) => {
   const apolloClient = initializeApollo();
   const productCategoriesData = await apolloClient.query({
     query: ProductCategoriesQuery,
+    variables: { filter: { isActive: { is: true } } },
   });
   const initialState = {
     categories: productCategoriesData.data.productCategories,
