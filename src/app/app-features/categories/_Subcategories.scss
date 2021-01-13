@@ -10,7 +10,7 @@
 }
 
 .subcategories-filter {
-  margin-bottom: 50px;
+  margin: 0 15px 50px 0;
 }
 
 .sorting-input {
@@ -41,6 +41,14 @@
 .sorting-bar-wrapper {
   display: flex;
   justify-content: flex-start;
+}
+
+.filter-panel-wrapper {
+  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.1);
+}
+
+.filter-panel-wrapper-mobile {
+  box-shadow: none !important;
 }
 
 .filter-mobile-container {

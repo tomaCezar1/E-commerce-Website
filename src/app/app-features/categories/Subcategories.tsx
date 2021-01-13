@@ -29,7 +29,7 @@ export default function Subcategories({
   const limit = 20;
   const { favorites } = useContext(AppContext);
   const favoritesIds = favorites.map((el) => el.id);
-  const [isSmallerThan1251] = useMediaQuery('(max-width: 1250px');
+  const [isSmallerThan1250] = useMediaQuery('(max-width: 1250px');
 
   useEffect(() => {
     setSortOrder(router.query.sort as any);
@@ -94,7 +94,7 @@ export default function Subcategories({
       ) : (
         <div className="subcategories-products-container">
           <div className="subcategories-filter">
-            {isSmallerThan1251 ? (
+            {isSmallerThan1250 ? (
               <Drawer
                 isOpen={showFilter}
                 placement="left"
