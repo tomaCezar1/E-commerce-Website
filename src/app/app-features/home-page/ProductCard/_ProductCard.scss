@@ -49,7 +49,7 @@
   font-family: $bold;
   font-size: 26px;
   color: $black;
-  align-self: start;
+  align-self: center;
   margin: 14px 0;
 }
 
@@ -105,6 +105,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  height: 60px;
 }
 
 .product-in-stock,
@@ -140,9 +141,8 @@
 
 .discounted-price-div {
   display: flex;
-  align-items: center;
-  align-self: end;
-  margin: 14px 0;
+  flex-direction: column;
+  margin: 0;
 }
 
 .crossed-price {
@@ -156,7 +156,6 @@
   font-family: $bold;
   color: #36b368;
   font-size: 26px;
-  margin-left: 8px;
 }
 
 .fav-icons {
@@ -181,6 +180,7 @@
   .basic-price {
     font-size: 24px;
     margin: 0;
+    align-self: center;
   }
 
   .product-card-cart {
@@ -212,7 +212,6 @@
 
   .discounted-price {
     font-size: 22px;
-    margin-left: 8px;
   }
 
   .discounted-price-div {
@@ -325,6 +324,7 @@
 
     .product-card-price {
       margin: 0 !important;
+      height: 42px;
     }
 
     .basic-price {
@@ -341,7 +341,7 @@
     }
 
     .product-card-cart {
-      margin-top: 10px;
+      margin-top: 5px;
     }
 
     .product-card-image {
@@ -452,6 +452,7 @@
 
     .product-card-price {
       margin: 0 !important;
+      height: 42px;
     }
 
     .basic-price {
@@ -467,7 +468,7 @@
     }
 
     .product-card-cart {
-      margin-top: 10px;
+      margin-top: 5px;
     }
 
     .product-card-image {
@@ -552,6 +553,7 @@
   .product-in-stock,
   .product-in-stock-invis {
     font-size: 10px;
+    margin-bottom: 0;
   }
 
   .discounted-price-div {
@@ -577,6 +579,7 @@
 
     .product-card-price {
       margin: 0 !important;
+      height: 42px;
     }
 
     .basic-price {
@@ -592,7 +595,7 @@
     }
 
     .product-card-cart {
-      margin-top: 10px;
+      margin-top: 3px;
     }
 
     .product-card-image {
