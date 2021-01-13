@@ -18,7 +18,7 @@ export const ProductCategoriesQuery = gql`
 export const SubcategoriesQuery = gql`
   query ProductCategories($id: String) {
     productCategories(
-      filter: { parent: { eq: $id } }
+      filter: { parent: { eq: $id }, isActive: { is: true } }
       sorting: { field: sortOrder, direction: ASC }
     ) {
       id

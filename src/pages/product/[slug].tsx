@@ -52,6 +52,7 @@ export async function getServerSideProps(context) {
     query: ProductCategoriesQuery,
     variables: {
       filter: {
+        isActive: { is: true},
         id: { eq: subCategoryId },
       },
     },
@@ -63,6 +64,7 @@ export async function getServerSideProps(context) {
     query: ProductCategoriesQuery,
     variables: {
       filter: {
+        isActive: { is: true },
         id: { eq: categoryId },
       },
     },
