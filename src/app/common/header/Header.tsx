@@ -35,14 +35,12 @@ export default function Header(): JSX.Element {
       {process.browser && (
         <>
           <div className="header-static">
-            <div className="header-phone-number cursor-pointer">
+            <a className="header-phone" href="tel:+373 69 606 707">
               <div className="phone-icon-wrapper">
                 <div className="header-phone-icon" />
               </div>
-              <a className="header-phone" href="tel:+373 69 606 707">
-                069 60 67 07
-              </a>
-            </div>
+              069 60 67 07
+            </a>
             <div className="header-links">
               <Link href="/regional-store" locale={router.locale}>
                 Magazine regionale
