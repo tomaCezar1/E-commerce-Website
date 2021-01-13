@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useToast } from '@chakra-ui/react';
-
+import Image from 'next/image';
 import FavoriteEmpty from '../../../../../public/svg/FavoriteEmpty.svg';
 import FavoriteActive from '../../../../../public/svg/FavoriteActive.svg';
 import CartIcon from '../../../../../public/svg/CartIcon.svg';
@@ -49,14 +49,17 @@ function ProductCard({ product, small = false, isFavorite = false }) {
             </div>
           ) : null}
           <div className="product-card-container-flex">
-            <div>
-              <img
+            <div className="product-card-image-container">
+              <Image
                 src={product?.images[0]}
                 alt="image"
+                width={218}
+                height={214}
+                layout="responsive"
                 className="product-card-image"
               />
-              <p className="product-card-name">{product?.name}</p>
             </div>
+            <p className="product-card-name">{product?.name}</p>
             <div className="product-card-bottom">
               <div className="product-card-price">
                 {sale > 0 ? (
