@@ -6,7 +6,12 @@ import {
   UiFiltersQuery,
 } from './ProductCategoriesQueries';
 import { apolloClient } from '../../lib/apolloClient';
-import { NumberInput, NumberInputField, SkeletonText } from '@chakra-ui/react';
+import {
+  NumberInput,
+  NumberInputField,
+  SkeletonText,
+  useMediaQuery,
+} from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 export interface FiltersProps {
@@ -19,10 +24,14 @@ export default function Filters({
   handleClose,
 }: FiltersProps): JSX.Element {
   const [uiFilters, setUiFilters] = useState<UiFilter[]>([]);
-  const [loadingFilters, setLoadingFilters] = useState(true);
+  const [loadingFilters, setLoadingFilters] = useState(false);
   const [formValue, setFormValue] = useState({});
-
+  const [isSmallerThan1250] = useMediaQuery('(max-width: 1250px');
   const router = useRouter();
+
+  useEffect(() => {
+    setLoadingFilters(true);
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -174,7 +183,13 @@ export default function Filters({
   };
 
   return (
-    <div className="filter-panel-wrapper">
+    <div
+      className={
+        isSmallerThan1250
+          ? 'filter-panel-wrapper-mobile'
+          : 'filter-panel-wrapper'
+      }
+    >
       <div
         className="flex-row flex-center bold"
         style={{ height: 40, marginBottom: 10 }}
