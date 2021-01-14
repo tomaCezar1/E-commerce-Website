@@ -175,6 +175,7 @@ export default function Subcategories({
                 paginationHandler={paginationHandler}
                 pageCount={pagesCount}
                 currentPage={currentPage}
+                forcePage={+currentPage}
               />
             ) : (
               <div className="no-items-text">

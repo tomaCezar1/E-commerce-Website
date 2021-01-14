@@ -78,7 +78,11 @@
   padding-top: 65px;
 }
 
-.header-phone-number {
+.header-phone {
+  margin-left: 8px;
+  padding-top: 1px;
+  text-decoration: none;
+  color: $primaryColor;
   margin: auto 0;
   border-radius: 16px;
   border: 1px solid $primaryColor;
@@ -90,11 +94,8 @@
   margin-right: 30px;
 }
 
-.header-phone {
-  margin-left: 8px;
-  padding-top: 1px;
-  text-decoration: none;
-  color: $primaryColor;
+.header-phone:focus {
+  outline: none;
 }
 
 .phone-icon-wrapper {
@@ -107,6 +108,7 @@
   height: 8px;
   margin: auto;
   background: $phoneIcon;
+  margin-right: 10px;
 }
 
 .logo-wrapper {
