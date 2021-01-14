@@ -8,17 +8,27 @@ export default function BlogNews({ blogPost, blogPosts }) {
 }
 
 export async function getServerSideProps(context) {
-  const apolloClient = initializeApollo(null, context.locale);
+  const apolloClient = initializeApollo();
 
   const blogPostData = await apolloClient.query({
     query: BlogQuery,
     variables: {
       id: context.query.id,
     },
+    context: {
+      headers: {
+        lang: context.locale,
+      },
+    },
   });
 
   const blogPostsData = await apolloClient.query({
     query: BlogPostsQuery,
+    context: {
+      headers: {
+        lang: context.locale,
+      },
+    },
   });
 
   return {

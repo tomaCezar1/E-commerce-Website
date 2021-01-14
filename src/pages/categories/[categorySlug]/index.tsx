@@ -17,7 +17,7 @@ function ProductCategoryPage({ subcategories, categoryDetails }) {
 export async function getServerSideProps(context) {
   const slug = context.query.categorySlug;
 
-  const apolloClient = initializeApollo(null, context.locale);
+  const apolloClient = initializeApollo();
   const productCategoriesData = await apolloClient.query({
     query: ProductCategoriesQuery,
     variables: {
@@ -26,12 +26,22 @@ export async function getServerSideProps(context) {
         slug: { eq: slug },
       },
     },
+    context: {
+      headers: {
+        lang: context.locale,
+      },
+    },
   });
   const categoryId = productCategoriesData.data.productCategories[0].id;
   const subcategoriesData = await apolloClient.query({
     query: SubcategoriesQuery,
     variables: {
       id: categoryId,
+    },
+    context: {
+      headers: {
+        lang: context.locale,
+      },
     },
   });
 

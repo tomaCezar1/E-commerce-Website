@@ -7,7 +7,7 @@ function IndexPage({ homePageInfo }): JSX.Element {
 }
 
 export async function getServerSideProps(context) {
-  const apolloClient = initializeApollo(null, context.locale);
+  const apolloClient = initializeApollo();
   const homePageData = await apolloClient.query({
     query: ProductListQuery,
     variables: {
@@ -16,6 +16,11 @@ export async function getServerSideProps(context) {
         isActive: { is: true },
       },
       sorting: [{ field: 'sortOrder', direction: 'ASC' }],
+    },
+    context: {
+      headers: {
+        lang: context.locale,
+      },
     },
   });
 

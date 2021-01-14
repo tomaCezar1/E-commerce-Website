@@ -9,14 +9,14 @@ import Layout from '../app/common/layout/Layout';
 import { AppContextProvider } from '../context';
 
 import '../styles/styles.scss';
+import { DictionaryQuery } from '../app/app-features/home-page/DictionaryQuery';
 
 function MyApp({
   Component,
   pageProps,
   initialState,
-  locale,
 }: AppProps & any): JSX.Element {
-  const apolloClient = useApollo(pageProps, locale);
+  const apolloClient = useApollo(pageProps);
 
   return (
     <>
@@ -47,14 +47,53 @@ function MyApp({
  * TODO: Probably we will load categories client side and compromise the SEO
  */
 MyApp.getInitialProps = async (appContext) => {
-  const apolloClient = initializeApollo(null, appContext.router.locale);
+  const apolloClient = initializeApollo();
+
+  const translationsData = await apolloClient.query({
+    query: DictionaryQuery,
+  });
+
   const productCategoriesData = await apolloClient.query({
     query: ProductCategoriesQuery,
     variables: { filter: { isActive: { is: true } } },
+    context: {
+      headers: {
+        lang: appContext.router.locale,
+      },
+    },
   });
+
+  const dictionary = {};
+
+  await translationsData.data.dictionaryItems.map(
+    ({ id, key, value, ruValue }) => {
+      if (appContext.router.locale === 'ru') {
+        let nonEmptyValue: string;
+        if (!ruValue.trim()) {
+          nonEmptyValue = 'Missing translation';
+        } else {
+          nonEmptyValue = ruValue;
+        }
+        dictionary[key] = {
+          id,
+          key,
+          value: nonEmptyValue,
+        };
+      } else {
+        dictionary[key] = {
+          id,
+          key,
+          value,
+        };
+      }
+    }
+  );
+
   const initialState = {
     categories: productCategoriesData.data.productCategories,
+    dictionary: dictionary,
   };
+
   const appProps = await App.getInitialProps(appContext);
 
   return {

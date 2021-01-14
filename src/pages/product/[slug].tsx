@@ -44,6 +44,11 @@ export async function getServerSideProps(context) {
         isActive: { is: true },
       },
     },
+    context: {
+      headers: {
+        lang: context.locale,
+      },
+    },
   });
 
   const subCategoryId = productDetails.data.products[0].categoryId;
@@ -56,6 +61,11 @@ export async function getServerSideProps(context) {
         id: { eq: subCategoryId },
       },
     },
+    context: {
+      headers: {
+        lang: context.locale,
+      },
+    },
   });
 
   const categoryId = productSubCategoryData.data.productCategories[0].parent;
@@ -66,6 +76,11 @@ export async function getServerSideProps(context) {
       filter: {
         isActive: { is: true },
         id: { eq: categoryId },
+      },
+    },
+    context: {
+      headers: {
+        lang: context.locale,
       },
     },
   });

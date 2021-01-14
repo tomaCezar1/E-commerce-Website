@@ -1,5 +1,5 @@
 import ComplexSelect from 'react-select';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
   DropDownOption,
   UiFilter,
@@ -13,6 +13,7 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { AppContext } from '../../../context';
 
 export interface FiltersProps {
   categoryId: string;
@@ -28,6 +29,7 @@ export default function Filters({
   const [formValue, setFormValue] = useState({});
   const [isSmallerThan1250] = useMediaQuery('(max-width: 1250px');
   const router = useRouter();
+  const context = useContext(AppContext);
 
   useEffect(() => {
     setLoadingFilters(true);
@@ -39,6 +41,11 @@ export default function Filters({
         const res = await apolloClient.query({
           query: UiFiltersQuery,
           variables: { categoryId },
+          context: {
+            headers: {
+              lang: context.locale,
+            },
+          },
         });
         setLoadingFilters(false);
         setUiFilters((res.data && res.data.uiFilters) || []);
