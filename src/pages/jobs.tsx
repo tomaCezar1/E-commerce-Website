@@ -7,10 +7,15 @@ export default function Jobs({ jobsList }): JSX.Element {
 }
 
 export async function getServerSideProps(context) {
-  const apolloClient = initializeApollo(null, context.locale);
+  const apolloClient = initializeApollo();
 
   const jobsListData = await apolloClient.query({
     query: JobsListQuery,
+    context: {
+      headers: {
+        lang: context.locale,
+      },
+    },
   });
 
   return {

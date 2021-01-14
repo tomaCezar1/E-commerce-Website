@@ -6,18 +6,12 @@ export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
 export let apolloClient;
 
-function createApolloClient(locale: string) {
+function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
       uri: 'http://165.227.171.192:3000/graphql', // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
-      headers: [
-        {
-          key: 'lang',
-          value: locale,
-        },
-      ],
     }),
     cache: new InMemoryCache({
       // typePolicies: {
@@ -31,8 +25,8 @@ function createApolloClient(locale: string) {
   });
 }
 
-export function initializeApollo(initialState = null, locale: string) {
-  const _apolloClient = apolloClient ?? createApolloClient(locale);
+export function initializeApollo(initialState = null) {
+  const _apolloClient = apolloClient ?? createApolloClient();
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
   // gets hydrated here
@@ -51,8 +45,6 @@ export function initializeApollo(initialState = null, locale: string) {
   // Create the Apollo Client once in the client
   if (!apolloClient) apolloClient = _apolloClient;
 
-  console.log(_apolloClient, 'apollo client');
-
   return _apolloClient;
 }
 
@@ -64,8 +56,8 @@ export function addApolloState(client, pageProps) {
   return pageProps;
 }
 
-export function useApollo(pageProps, locale: string) {
+export function useApollo(pageProps) {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
-  const store = useMemo(() => initializeApollo(state, locale), [state]);
+  const store = useMemo(() => initializeApollo(state), [state]);
   return store;
 }

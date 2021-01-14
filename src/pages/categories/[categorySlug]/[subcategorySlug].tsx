@@ -107,7 +107,7 @@ export async function getServerSideProps(context) {
     direction = 'ASC';
   }
 
-  const apolloClient = initializeApollo(null, context.locale);
+  const apolloClient = initializeApollo();
 
   const productCategoriesData = await apolloClient.query({
     query: ProductCategoriesQuery,
@@ -115,6 +115,11 @@ export async function getServerSideProps(context) {
       filter: {
         isActive: { is: true },
         slug: { eq: slug },
+      },
+    },
+    context: {
+      headers: {
+        lang: context.locale,
       },
     },
   });
@@ -129,6 +134,11 @@ export async function getServerSideProps(context) {
         id: {
           eq: parentId,
         },
+      },
+    },
+    context: {
+      headers: {
+        lang: context.locale,
       },
     },
   });

@@ -20,10 +20,15 @@ export default function Index({ blogPosts }): JSX.Element {
 }
 
 export async function getServerSideProps(context) {
-  const apolloClient = initializeApollo(null, context.locale);
+  const apolloClient = initializeApollo();
 
   const blogPostsData = await apolloClient.query({
     query: BlogPostsQuery,
+    context: {
+      headers: {
+        lang: context.locale,
+      },
+    },
   });
 
   return {
