@@ -4,10 +4,7 @@ import {
   DropDownOption,
   ProductCategoriesQuery,
 } from '../../../app/app-features/categories/ProductCategoriesQueries';
-import {
-  ProductListQuery, ProductListQueryWithCount,
-  ProductsCountQuery
-} from '../../../app/app-features/home-page/ProductList/ProductListQuery';
+import { ProductListQueryWithCount } from '../../../app/app-features/home-page/ProductList/ProductListQuery';
 
 export default function SubcategoryPage({
   products,
@@ -110,7 +107,7 @@ export async function getServerSideProps(context) {
     direction = 'ASC';
   }
 
-  const apolloClient = initializeApollo();
+  const apolloClient = initializeApollo(null, context.locale);
 
   const productCategoriesData = await apolloClient.query({
     query: ProductCategoriesQuery,

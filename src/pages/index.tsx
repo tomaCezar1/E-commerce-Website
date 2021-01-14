@@ -6,8 +6,8 @@ function IndexPage({ homePageInfo }): JSX.Element {
   return <HomePage homePageInfo={homePageInfo} />;
 }
 
-export async function getServerSideProps() {
-  const apolloClient = initializeApollo();
+export async function getServerSideProps(context) {
+  const apolloClient = initializeApollo(null, context.locale);
   const homePageData = await apolloClient.query({
     query: ProductListQuery,
     variables: {

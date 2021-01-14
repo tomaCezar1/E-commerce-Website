@@ -14,8 +14,9 @@ function MyApp({
   Component,
   pageProps,
   initialState,
+  locale,
 }: AppProps & any): JSX.Element {
-  const apolloClient = useApollo(pageProps);
+  const apolloClient = useApollo(pageProps, locale);
 
   return (
     <>
@@ -46,7 +47,7 @@ function MyApp({
  * TODO: Probably we will load categories client side and compromise the SEO
  */
 MyApp.getInitialProps = async (appContext) => {
-  const apolloClient = initializeApollo();
+  const apolloClient = initializeApollo(null, appContext.router.locale);
   const productCategoriesData = await apolloClient.query({
     query: ProductCategoriesQuery,
     variables: { filter: { isActive: { is: true } } },
@@ -55,9 +56,11 @@ MyApp.getInitialProps = async (appContext) => {
     categories: productCategoriesData.data.productCategories,
   };
   const appProps = await App.getInitialProps(appContext);
+
   return {
     ...appProps,
     initialState,
+    locale: appContext.router.locale,
   };
 };
 

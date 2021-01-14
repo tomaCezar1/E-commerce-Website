@@ -19,8 +19,8 @@ export default function Index({ blogPosts }): JSX.Element {
   );
 }
 
-export async function getServerSideProps() {
-  const apolloClient = initializeApollo();
+export async function getServerSideProps(context) {
+  const apolloClient = initializeApollo(null, context.locale);
 
   const blogPostsData = await apolloClient.query({
     query: BlogPostsQuery,

@@ -17,7 +17,7 @@ function ProductCategoryPage({ subcategories, categoryDetails }) {
 export async function getServerSideProps(context) {
   const slug = context.query.categorySlug;
 
-  const apolloClient = initializeApollo();
+  const apolloClient = initializeApollo(null, context.locale);
   const productCategoriesData = await apolloClient.query({
     query: ProductCategoriesQuery,
     variables: {

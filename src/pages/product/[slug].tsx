@@ -35,7 +35,7 @@ function ProductDetailsComponent({
 export async function getServerSideProps(context) {
   const slug = context.query.slug;
 
-  const apolloClient = initializeApollo();
+  const apolloClient = initializeApollo(null, context.locale);
   const productDetails = await apolloClient.query({
     query: ProductDetailsQuery,
     variables: {
@@ -52,7 +52,7 @@ export async function getServerSideProps(context) {
     query: ProductCategoriesQuery,
     variables: {
       filter: {
-        isActive: { is: true},
+        isActive: { is: true },
         id: { eq: subCategoryId },
       },
     },

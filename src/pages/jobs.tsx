@@ -6,8 +6,8 @@ export default function Jobs({ jobsList }): JSX.Element {
   return <JobsPage jobsList={jobsList} />;
 }
 
-export async function getServerSideProps() {
-  const apolloClient = initializeApollo();
+export async function getServerSideProps(context) {
+  const apolloClient = initializeApollo(null, context.locale);
 
   const jobsListData = await apolloClient.query({
     query: JobsListQuery,
