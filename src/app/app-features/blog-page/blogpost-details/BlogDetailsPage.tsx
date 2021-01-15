@@ -42,7 +42,7 @@ function BlogDetailsPage({ blogPost, blogPosts }): JSX.Element {
         />
       </div>
       <h1 className="blog-details-title blog-details-title-bottom">
-        Alte știri
+        {dictionary.otherNews}
       </h1>
       <div className="blog-page-container">
         {blogPostsLimit.map((blog, index) => {

@@ -62,7 +62,7 @@ export default function CheckoutForm({
     // @ts-ignore
     const { [name]: removedError, ...rest } = errors;
 
-    const error = validate[name](value);
+    const error = validate[name](value, router.locale);
 
     // // validate the field if the value has been touched
     setErrors({
