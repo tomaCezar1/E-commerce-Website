@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { AppContext } from '../../../context';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 import { useContext } from 'react';
 import { AppContext } from '../../../context';
@@ -9,7 +11,7 @@ export default function DeliveryPage() {
 
   const path = [
     {
-      name: 'Livrare',
+      name: dictionary.delivery,
       link: '/delivery',
     },
   ];

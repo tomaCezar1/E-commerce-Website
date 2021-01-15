@@ -1,7 +1,7 @@
-import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
-import { createMarkup } from '../../../utils/index';
 import { useContext } from 'react';
 import { AppContext } from '../../../context';
+import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
+import { createMarkup } from '../../../utils/index';
 
 export default function AboutPage(): JSX.Element {
   const { appContext } = useContext(AppContext);
@@ -9,7 +9,7 @@ export default function AboutPage(): JSX.Element {
 
   const path = [
     {
-      name: 'Despre noi',
+      name: dictionary.aboutUs,
       link: '/about',
     },
   ];

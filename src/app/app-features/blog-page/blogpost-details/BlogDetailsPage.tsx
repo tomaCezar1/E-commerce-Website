@@ -4,11 +4,16 @@ import BlogPageCard from '../BlogPageCard';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMediaQuery } from '@chakra-ui/react';
+import { useContext } from 'react';
+import { AppContext } from '../../../../context';
 
 function BlogDetailsPage({ blogPost, blogPosts }): JSX.Element {
+  const { appContext } = useContext(AppContext);
+  const { dictionary } = appContext;
+
   const path = [
     {
-      name: 'Știri',
+      name: dictionary.news,
       link: '/news',
     },
   ];
@@ -37,7 +42,7 @@ function BlogDetailsPage({ blogPost, blogPosts }): JSX.Element {
         />
       </div>
       <h1 className="blog-details-title blog-details-title-bottom">
-        Alte știri
+        {dictionary.otherNews}
       </h1>
       <div className="blog-page-container">
         {blogPostsLimit.map((blog, index) => {

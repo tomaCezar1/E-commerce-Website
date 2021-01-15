@@ -32,7 +32,7 @@ export default function CartPage(): JSX.Element {
 
   const path = [
     {
-      name: 'Coș',
+      name: dictionary.cart,
       link: '/cart',
     },
   ];
@@ -196,7 +196,7 @@ export default function CartPage(): JSX.Element {
               <div className="cart-total-price">
                 <span>{dictionary.total}:&nbsp;</span>
                 <span>{formatPrice(cartTotal(cart))}</span>
-                <span>{dictionary.lei}</span>
+                <span>&nbsp;{dictionary.lei}</span>
               </div>
             </div>
           </div>

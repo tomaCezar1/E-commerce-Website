@@ -5,8 +5,8 @@ export default function LangSwitch({ mobile }): JSX.Element {
   const router = useRouter();
 
   const handleClick = async (lang: string) => {
-    await router.push('/', '/', { locale: lang });
-    window.location.reload();
+    // router.push('/', '/', { locale: lang });
+    window.location.assign('/' + lang);
   };
 
   return (

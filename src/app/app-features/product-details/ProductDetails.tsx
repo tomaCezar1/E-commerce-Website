@@ -18,7 +18,9 @@ function ProductDetails({ productDetails }) {
   const details = productDetails?.products[0];
   const toast = useToast();
   const id = details.id;
-  const { addToCart, favorites, addToFavorites } = useContext(AppContext);
+  const { addToCart, favorites, addToFavorites, appContext } = useContext(
+    AppContext
+  );
   const [qty, setQty] = useState(1);
   const [isAvailable, setAvailable] = useState(null);
   const [x, setX] = useState(0);
@@ -28,6 +30,7 @@ function ProductDetails({ productDetails }) {
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan580] = useMediaQuery('(min-width: 580px)');
   const [isLargerThan0] = useMediaQuery('(min-width: 0px)');
+  const { dictionary } = appContext;
 
   const addToFavoritesList = (event, product) => {
     event.stopPropagation();
@@ -172,9 +175,7 @@ function ProductDetails({ productDetails }) {
             <h1 className="product-details-title">{details.name}</h1>
             <div className="product-details-info">
               {isAvailable ? (
-                <p className="product-details-in-stock">
-                  Produsul este în stoc
-                </p>
+                <p className="product-details-in-stock">{dictionary.inStock}</p>
               ) : (
                 <p className="product-details-not-in-stock">
                   {productDetails.products[0].notAvailableCustomText
@@ -194,11 +195,13 @@ function ProductDetails({ productDetails }) {
                 <div className="discounted-price-div-mobile">
                   <p className="crossed-price">{details?.price}</p>
                   <p className="discounted-price discounted-price-lg">
-                    {details?.newPrice} lei
+                    {details?.newPrice} {dictionary.lei}
                   </p>
                 </div>
               ) : (
-                <p className="product-details-price">{details?.price} lei</p>
+                <p className="product-details-price">
+                  {details?.price} {dictionary.lei}
+                </p>
               )}
               <div className="product-details-add-to-cart-flex">
                 <div className="product-details-counter">
@@ -251,7 +254,7 @@ function ProductDetails({ productDetails }) {
                     toast({
                       render: ({ onClose }) => (
                         <Toast
-                          description={`Produsul ${details.name} a fost adăugat cu succes!`}
+                          description={`${dictionary.theProduct} ${details.name} ${dictionary.addSuccess}!`}
                           handleClose={onClose}
                         />
                       ),
@@ -319,7 +322,7 @@ function ProductDetails({ productDetails }) {
                     toast({
                       render: ({ onClose }) => (
                         <Toast
-                          description={`Produsul ${details.name} a fost adăugat cu succes!`}
+                          description={`${dictionary.theProduct} ${details.name} ${dictionary.addSuccess}!`}
                           handleClose={onClose}
                         />
                       ),
@@ -331,13 +334,15 @@ function ProductDetails({ productDetails }) {
                   }}
                 >
                   <CartIcon />
-                  <p className="product-details-add-text">Adaugă în coș</p>
+                  <p className="product-details-add-text">
+                    {dictionary.addToCart}
+                  </p>
                 </div>
               </div>
             </div>
             <div className="product-details-questions">
-              <p>Ai o intrebare?</p>&nbsp;
-              <a>Contactează-ne</a>
+              <p>{dictionary.anyQuestions}?</p>&nbsp;
+              <a>{dictionary.callNow}</a>
             </div>
           </div>
         </div>
