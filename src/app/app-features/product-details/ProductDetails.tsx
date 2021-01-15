@@ -68,12 +68,12 @@ function ProductDetails({ productDetails }) {
   let techFieldsSecond = [];
 
   const vendorObject = {
-    name: 'Producator',
+    name: dictionary.vendor,
     value: details.vendor,
   };
 
   const typeObject = {
-    name: 'Tip',
+    name: dictionary.type,
     value: details.type,
   };
 
@@ -180,7 +180,7 @@ function ProductDetails({ productDetails }) {
                 <p className="product-details-not-in-stock">
                   {productDetails.products[0].notAvailableCustomText
                     ? productDetails.products[0].notAvailableCustomText
-                    : 'Produsul nu este în stoc'}
+                    : dictionary.notAvailable}
                 </p>
               )}
 
