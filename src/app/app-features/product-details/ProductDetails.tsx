@@ -68,12 +68,12 @@ function ProductDetails({ productDetails }) {
   let techFieldsSecond = [];
 
   const vendorObject = {
-    name: 'Producator',
+    name: dictionary.vendor,
     value: details.vendor,
   };
 
   const typeObject = {
-    name: 'Tip',
+    name: dictionary.type,
     value: details.type,
   };
 
