@@ -11,11 +11,11 @@ export async function getServerSideProps(context) {
 
   const jobsListData = await apolloClient.query({
     query: JobsListQuery,
-    context: {
-      headers: {
-        lang: context.locale,
-      },
-    },
+    // context: {
+    //   headers: {
+    //     lang: context.locale,
+    //   },
+    // },
   });
 
   return {

@@ -16,7 +16,6 @@
 }
 
 .sorting-input {
-  width: 180px !important;
   height: 32px;
   border: 1px solid $darkGrey !important;
   border-radius: 8px !important;
@@ -86,7 +85,6 @@
   }
 
   .sorting-input {
-    width: 120px !important;
     height: 28px !important;
     font-size: 12px !important;
     padding-left: 5px !important;
@@ -113,7 +111,6 @@
   }
 
   .sorting-input {
-    width: 120px !important;
     height: 28px !important;
     font-size: 12px !important;
     padding-left: 5px !important;
@@ -140,7 +137,6 @@
   }
 
   .sorting-input {
-    width: 130px !important;
     height: 28px !important;
     font-size: 13px !important;
     padding-left: 15px !important;
@@ -182,7 +178,8 @@
     border-radius: 8px;
   }
   input::placeholder {
-    color: hsl(0, 0%, 50%);
+    color: hsl(0, 0%, 50%) !important;
+    font-size: 14px;
   }
   input:focus {
     border-color: #124193;

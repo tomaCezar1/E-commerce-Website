@@ -4,11 +4,16 @@ import BlogPageCard from '../BlogPageCard';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMediaQuery } from '@chakra-ui/react';
+import { useContext } from 'react';
+import { AppContext } from '../../../../context';
 
 function BlogDetailsPage({ blogPost, blogPosts }): JSX.Element {
+  const { appContext } = useContext(AppContext);
+  const { dictionary } = appContext;
+
   const path = [
     {
-      name: 'Știri',
+      name: dictionary.news,
       link: '/news',
     },
   ];

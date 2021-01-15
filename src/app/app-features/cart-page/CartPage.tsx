@@ -32,7 +32,7 @@ export default function CartPage(): JSX.Element {
 
   const path = [
     {
-      name: 'Coș',
+      name: dictionary.cart,
       link: '/cart',
     },
   ];

@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { AppContext } from '../../../context';
+import { fontsize } from '../../../../test/__mocks__/fileMock';
 
 export interface FiltersProps {
   categoryId: string;
@@ -67,6 +68,7 @@ export default function Filters({
 
   const colourStyles = {
     control: (styles) => ({ ...styles, borderRadius: 8 }),
+    placeholder: (styles) => ({ ...styles, fontSize: 14 }),
   };
 
   const onFormApplyClick = () => {
@@ -122,8 +124,8 @@ export default function Filters({
           value={formValue[uiFilter.property] || []}
           onChange={(value) => onDropDownChange(uiFilter.property, value)}
           isMulti
-          placeholder="Selectează opțiuni"
-          noOptionsMessage={() => 'Nu sunt opțiuni'}
+          placeholder={`${dictionary.selectOptions}`}
+          noOptionsMessage={() => dictionary.noOptions}
           styles={colourStyles}
           theme={(theme) => ({
             ...theme,
@@ -165,7 +167,7 @@ export default function Filters({
                   isNaN(parseInt(e.target.value)) ? null : +e.target.value
                 )
               }
-              placeholder="de la"
+              placeholder={dictionary.from}
             />
           </NumberInput>
           <NumberInput
@@ -184,7 +186,7 @@ export default function Filters({
                   isNaN(parseInt(e.target.value)) ? null : +e.target.value
                 )
               }
-              placeholder="până la"
+              placeholder={dictionary.to}
             />
           </NumberInput>
         </div>

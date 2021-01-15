@@ -120,7 +120,7 @@ function ProductCard({ product, small = false, isFavorite = false }) {
                           toast({
                             render: ({ onClose }) => (
                               <Toast
-                                description={`Produsul "${product.name}" a fost adăugat cu succes!`}
+                                description={`${dictionary.theProduct} ${product.name} ${dictionary.addSuccess}!`}
                                 handleClose={onClose}
                               />
                             ),

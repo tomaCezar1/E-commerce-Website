@@ -24,7 +24,8 @@ export default function CheckoutForm({
   const [touched, setTouched] = useState({} as any);
   const [productsArray, setProductsArray] = useState([] as any);
   const toast = useToast();
-  const { cart, clearCart } = useContext(AppContext);
+  const { cart, clearCart, appContext } = useContext(AppContext);
+  const { dictionary } = appContext;
 
   const router = useRouter();
 
@@ -107,10 +108,7 @@ export default function CheckoutForm({
       sendOrder();
       toast({
         render: ({ onClose }) => (
-          <Toast
-            description="Comanda dumneavoastră a fost procesată cu succes."
-            handleClose={onClose}
-          />
+          <Toast description={dictionary.successOrder} handleClose={onClose} />
         ),
         status: 'success',
         duration: 5000,
@@ -137,14 +135,14 @@ export default function CheckoutForm({
     <div
       className={insideModal ? 'checkout-wrapper-modal' : 'checkout-wrapper'}
     >
-      <p className="checkout-form-heading">Plasează comanda</p>
+      <p className="checkout-form-heading">{dictionary.placeOrder}</p>
       <form onSubmit={handleSubmit}>
         <input
           value={values.name}
           name="name"
           onChange={handleChange}
           onBlur={handleBlur}
-          placeholder="Nume"
+          placeholder={dictionary.name}
           className={
             touched.name && errors.name
               ? 'checkout-form-error-input'
@@ -163,7 +161,7 @@ export default function CheckoutForm({
           name="phone"
           onChange={handleChange}
           onBlur={handleBlur}
-          placeholder="Telefon"
+          placeholder={dictionary.phone}
           className={
             touched.phone && errors.phone
               ? 'checkout-form-error-input'
@@ -187,7 +185,7 @@ export default function CheckoutForm({
           }
         >
           <option value="" disabled hidden>
-            Ora apelului
+            {dictionary.callTime}
           </option>
           <option value="9:00 - 12:00" className="checkout-option-text">
             9:00 - 12:00
@@ -198,11 +196,8 @@ export default function CheckoutForm({
           <option value="15:00 - 18:00" className="checkout-option-text">
             15:00 - 18:00
           </option>
-          <option
-            value="Cît de curînd posibil"
-            className="checkout-option-text"
-          >
-            Cît de curînd posibil
+          <option value={dictionary.asap} className="checkout-option-text">
+            {dictionary.asap}
           </option>
         </Select>
         {touched.callTime && errors.callTime ? (
@@ -212,19 +207,22 @@ export default function CheckoutForm({
         ) : (
           <div className="checkout-error-invis">Asd</div>
         )}
-        <input type="submit" value="Comandă" className="checkout-form-button" />
+        <input
+          type="submit"
+          value={dictionary.order}
+          className="checkout-form-button"
+        />
 
         <div className="checkout-terms-text">
-          *Apăsând butonul &#39;Comandă&#39; dvs. confirmați că ați luat
-          cunoștință și sunteți de acord cu{' '}
+          {dictionary.orderCondition}
           <Link href="/privacy" as="/privacy-policy" locale={router.locale}>
             <span className="checkout-privacy-link">
-              politica de confidențialitate
+              {dictionary.privacyPolitics}
             </span>
           </Link>
-          <span> și </span>
+          <span> {dictionary.and} </span>
           <Link href="/terms" as="/terms-and-conditions" locale={router.locale}>
-            <span className="checkout-privacy-link">termenii de utilizare</span>
+            <span className="checkout-privacy-link">{dictionary.terms}</span>
           </Link>
           .
         </div>

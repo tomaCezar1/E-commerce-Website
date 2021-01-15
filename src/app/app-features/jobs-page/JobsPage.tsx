@@ -7,14 +7,17 @@ import {
 } from '@chakra-ui/react';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 import { createMarkup } from '../../../utils';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AppContext } from '../../../context';
 
 export default function JobsPage({ jobsList }) {
   const [openItemIndex, setOpenItemIndex] = useState([]);
+  const context = useContext(AppContext);
+  const { dictionary } = context.appContext;
 
   const path = [
     {
-      name: 'Posturi vacante',
+      name: dictionary.jobs,
       link: '/jobs',
     },
   ];
@@ -27,7 +30,7 @@ export default function JobsPage({ jobsList }) {
     <div className="jobs-page-container">
       <Breadcrumbs path={path} />
       <div className="jobs-list-wrapper">
-        <h1 className="product-list-header">Posturi vacante</h1>
+        <h1 className="jobs-list-header">{dictionary.jobs}</h1>
         <Accordion
           index={openItemIndex}
           onChange={handleChange}
