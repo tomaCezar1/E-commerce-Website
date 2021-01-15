@@ -29,6 +29,7 @@ export default function MobileHeader() {
   const [activeCategory, setActiveCategory] = useState(0);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const router = useRouter();
+  const { dictionary } = appContext;
 
   useEffect(() => {
     const rooCats = appContext.categories.filter((c) => !c.parent);
@@ -154,14 +155,18 @@ export default function MobileHeader() {
                   <div className="mobile-drawer-footer">
                     <Link href="/regional-store" locale={router.locale}>
                       <div className="mobile-header-link">
-                        Magazine regionale
+                        {dictionary.regionalStores}
                       </div>
                     </Link>
                     <Link href="/service" locale={router.locale}>
-                      <div className="mobile-header-link">Service Centru</div>
+                      <div className="mobile-header-link">
+                        {dictionary.serviceCenter}
+                      </div>
                     </Link>
                     <Link href="/news" locale={router.locale}>
-                      <div className="mobile-header-link">Știri</div>
+                      <div className="mobile-header-link">
+                        {dictionary.news}
+                      </div>
                     </Link>
                     <div style={{ margin: '10px 0' }}>
                       <LangSwitch />

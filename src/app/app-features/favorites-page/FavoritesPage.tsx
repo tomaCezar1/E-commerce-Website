@@ -4,8 +4,9 @@ import { AppContext } from '../../../context';
 import { useContext } from 'react';
 
 export default function FavoritesPage(): JSX.Element {
-  const { favorites } = useContext(AppContext);
+  const { favorites, appContext } = useContext(AppContext);
   const isFavorite = favorites.map((el) => el.id);
+  const { dictionary } = appContext;
 
   const path = [
     {
@@ -18,7 +19,7 @@ export default function FavoritesPage(): JSX.Element {
     <>
       <Breadcrumbs path={path} />
       <h1 className="product-list-header" style={{ marginTop: 32 }}>
-        Produsele favorite
+        {dictionary.favoriteProducts}
       </h1>
       {favorites.length > 0 ? (
         <div
@@ -40,7 +41,7 @@ export default function FavoritesPage(): JSX.Element {
           })}
         </div>
       ) : (
-        <div className="no-items-text">Nu aveți produse favorite</div>
+        <div className="no-items-text">{dictionary.noFavoriteProducts}</div>
       )}
     </>
   );

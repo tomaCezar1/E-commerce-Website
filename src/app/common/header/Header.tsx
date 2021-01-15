@@ -12,8 +12,10 @@ export default function Header(): JSX.Element {
   const [showMenu, setShowMenu] = useState(false);
   const header = useRef(null);
   const router = useRouter();
-  const { cart, favorites } = useContext(AppContext);
+  const { cart, favorites, appContext } = useContext(AppContext);
   const [renderCartLength, setRenderCartLength] = useState(false);
+
+  const { dictionary } = appContext;
 
   useEffect(() => {
     toggleHeader();
@@ -41,15 +43,15 @@ export default function Header(): JSX.Element {
               </div>
               069 60 67 07
             </a>
-            <div className="header-links">
+            <div className={`header-links ${router.locale === 'ru' && 'ru'}`}>
               <Link href="/regional-store" locale={router.locale}>
-                Magazine regionale
+                {dictionary.regionalStores}
               </Link>
               <Link href="/service" locale={router.locale}>
-                Service centru
+                {dictionary.serviceCenter}
               </Link>
               <Link href="/news" locale={router.locale}>
-                Știri
+                {dictionary.news}
               </Link>
             </div>
           </div>
@@ -72,7 +74,7 @@ export default function Header(): JSX.Element {
             <div className="header-clipped-part">
               <button className="header-menu" onClick={handleMenu}>
                 <div className="burger-icon" />
-                <span className="button-text">Catalogul produselor</span>
+                <span className="button-text">{dictionary.catalogue}</span>
               </button>
               {showMenu && (
                 <Overlay

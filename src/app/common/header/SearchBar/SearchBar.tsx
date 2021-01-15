@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { SkeletonText, SkeletonCircle } from '@chakra-ui/react';
@@ -6,17 +6,18 @@ import { SearchProductsQuery } from './SearchProductsQuery';
 import { useDebounce } from '../../../../utils';
 import { apolloClient } from '../../../lib/apolloClient';
 import Overlay from '../../overlay/Overlay';
+import { AppContext } from '../../../../context';
 
 export default function SearchBar({ mobile = false, onClose }): JSX.Element {
   const client = apolloClient;
-
+  const { appContext } = useContext(AppContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const router = useRouter();
   const searchContainerRef = useRef(null);
-
+  const { dictionary } = appContext;
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect(() => {
@@ -74,7 +75,7 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
           <input
             autoComplete="off"
             id="Search"
-            placeholder="Caută..."
+            placeholder={`${dictionary.search}...`}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className={

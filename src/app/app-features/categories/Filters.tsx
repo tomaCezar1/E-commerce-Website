@@ -30,6 +30,7 @@ export default function Filters({
   const [isSmallerThan1250] = useMediaQuery('(max-width: 1250px');
   const router = useRouter();
   const context = useContext(AppContext);
+  const { dictionary } = context.appContext;
 
   useEffect(() => {
     setLoadingFilters(true);
@@ -203,7 +204,7 @@ export default function Filters({
         className="flex-row flex-center bold"
         style={{ height: 40, marginBottom: 10 }}
       >
-        Filtreaza după
+        {dictionary.filterBy}
       </div>
       {!loadingFilters && (
         <>
@@ -218,14 +219,14 @@ export default function Filters({
           </form>
           <div className="flex-row justify-between" style={{ marginTop: 30 }}>
             <button onClick={onClearClick} className="btn rounded default">
-              Curăță
+              {dictionary.clear}
             </button>
             <button
               onClick={onFormApplyClick}
               className="btn rounded"
               style={{ width: '60%' }}
             >
-              Aplică
+              {dictionary.apply}
             </button>
           </div>
         </>
