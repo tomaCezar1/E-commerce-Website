@@ -1,8 +1,6 @@
 import { useContext } from 'react';
 import { AppContext } from '../../../context';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
-import { useContext } from 'react';
-import { AppContext } from '../../../context';
 import { createMarkup } from '../../../utils/index';
 
 export default function DeliveryPage() {

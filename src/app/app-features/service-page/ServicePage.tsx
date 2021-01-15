@@ -6,8 +6,6 @@ import ServiceIcon from '../../../../public/svg/service.svg';
 import ServiceGear from '../../../../public/svg/service_gear.svg';
 import Guarantee from '../../../../public/svg/guarantee.svg';
 import Arrow from '../../../../public/svg/arrow.svg';
-import { AppContext } from '../../../context';
-import { useContext } from 'react';
 
 export default function Service(): JSX.Element {
   const { appContext } = useContext(AppContext);
@@ -19,9 +17,6 @@ export default function Service(): JSX.Element {
       link: '/service',
     },
   ];
-
-  const { appContext } = useContext(AppContext);
-  const { dictionary } = appContext;
 
   return (
     <>
@@ -166,7 +161,7 @@ export default function Service(): JSX.Element {
               </i>
             </div>
             <div className="service-algoritm-heading">
-              {dictionary.guarantees}
+              {dictionary.guarantee}
             </div>
           </div>
         </div>
