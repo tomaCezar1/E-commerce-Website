@@ -266,7 +266,9 @@ function ProductDetails({ productDetails }) {
                   }}
                 >
                   <CartIcon />
-                  <p className="product-details-add-text">Adaugă în coș</p>
+                  <p className="product-details-add-text">
+                    {dictionary.addToCart}
+                  </p>
                 </div>
               </div>
 
@@ -341,7 +343,7 @@ function ProductDetails({ productDetails }) {
               </div>
             </div>
             <div className="product-details-questions">
-              <p>{dictionary.anyQuestions}?</p>&nbsp;
+              <p>{dictionary.anyQuestions}</p>&nbsp;
               <a>{dictionary.callNow}</a>
             </div>
           </div>
@@ -355,7 +357,7 @@ function ProductDetails({ productDetails }) {
               <table className="table">
                 <thead>
                   <tr className="table-head">
-                    <th>Caracteristici</th>
+                    <th>{dictionary.characteristics}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -425,7 +427,9 @@ function ProductDetails({ productDetails }) {
         )}
         {!loadingRecommended && recommendedData && recommendedData.length > 0 && (
           <div>
-            <h1 className="product-details-title">Produse Recomandate</h1>
+            <h1 className="product-details-title">
+              {dictionary.recommendedProducts}
+            </h1>
             <div className="recommended-products-container">
               <i id="goLeft" className="goLeft-details" onClick={goLeft}>
                 <LeftArrow />
