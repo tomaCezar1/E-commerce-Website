@@ -1,11 +1,19 @@
-import ContactBox from './contact-box/ContactBox'
-import Map from './Map'
+import ContactBox from './contact-box/ContactBox';
+import Map from './Map';
+import { AppContext } from '../../../context';
+import { useContext } from 'react';
+import { useMediaQuery } from '@chakra-ui/react';
 
-function RegionalStore() {
+function RegionalStore(): JSX.Element {
+  const { appContext } = useContext(AppContext);
+  const { dictionary } = appContext;
+
+  const [isSmallerThan120] = useMediaQuery('(max-width: 1250px)');
+
   return (
     <>
       <div className="regional-store-title-container">
-        <h1 className="regional-store-title">Magazine Regionale</h1>
+        <h1 className="regional-store-title">{dictionary.regionalStores}</h1>
       </div>
       <div className="regional-store-row">
         <div className="regional-store-map-cards">
@@ -15,48 +23,49 @@ function RegionalStore() {
           </div>
           <div className="boxes-container">
             <ContactBox
-              title="Oficiu"
-              location="mun. Chișinău, str. Petru Rareș, 43/1"
+              title={dictionary.office}
+              location={dictionary.officeAddress}
               email="cegoltar@inbox.ru"
               phone="022 27-37-82"
             />
             <ContactBox
-              title="Depozit"
-              location="mun. Chișinău, str. Petricani 21, depozit nr. 2"
+              title={dictionary.deposit}
+              location={dictionary.depositAddress}
               email="cegoltar@inbox.ru"
               phone="022 31-75-02"
             />
           </div>
         </div>
-        <div className="map-description">
-          <p className="regional-store-text">
-            Compania Cegoltar SRL este distribuitorul oficial și exclusiv al
-            companiei INGCO în Republica Moldova. În mun. Chișinău produsele
-            companiei pot fi găsite in magazinul specilizat exclusiv INGCO, pe
-            tot teritoriul Moldovei produsele sunt distribuite de agenții locali
-            (Sud/Centru/Nord) - astfel raza de acoperire pe Teritoriul moldovei
-            atinge o valaore de 87%. Mai jos puteți găsi contactele agenților
-            noștri atît pentru a procura produse individual, cît și la preț
-            angro pentru dezvoltarea afacerii dumneavostră.
+        {isSmallerThan120 ? (
+          <div className="map-description">
+            <p className="regional-store-text regional-store-text-3">
+              {dictionary.regionalStoresText1}
+            </p>
+            <p className="regional-store-text regional-store-text-2">
+              {dictionary.regionalStoresText2}
+            </p>
+            <p className="regional-store-text regional-store-text-3">
+              {dictionary.regionalStoresText3}
+            </p>
+          </div>
+        ) : (
+          <div className="map-description">
+            <p className="regional-store-text regional-store-text-3">
+              {dictionary.regionalStoresText1}
+            </p>
             <br />
+            <p className="regional-store-text regional-store-text-2">
+              {dictionary.regionalStoresText2}
+            </p>
             <br />
-            Noi oferim servicii de calitate superioară conform principiilor
-            noastre şi aducem clienţilor valoarea, creşterea şi dezvoltarea
-            afacerii. În prezent Cegoltar colaborează cu mai mult de 60
-            distriuitori, gestionează mai mult de 60 de branduri globale şi
-            locale şi aprovizionează mai mult de 200000 de clienti din toată
-            Republica.
-            <br />
-            <br />
-            Pentru a colabora cu Cegoltar ,a beneficia de cooperarea cu brandul
-            INGCO și alte produse destinate sferei apelați la oficiul nostru sau
-            contactați unul din agenții repsonsabili pentru regiunea
-            dumneavoastră.
-          </p>
-        </div>
+            <p className="regional-store-text regional-store-text-3">
+              {dictionary.regionalStoresText3}
+            </p>
+          </div>
+        )}
       </div>
     </>
-  )
+  );
 }
 
-export default RegionalStore
+export default RegionalStore;
