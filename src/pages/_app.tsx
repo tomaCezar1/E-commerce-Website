@@ -47,17 +47,33 @@ function MyApp({
  */
 MyApp.getInitialProps = async (appContext) => {
   const apolloClient = initializeApollo();
+
   const productCategoriesData = await apolloClient.query({
     query: ProductCategoriesQuery,
     variables: { filter: { isActive: { is: true } } },
+    context: {
+      headers: {
+        lang: appContext.router.locale,
+      },
+    },
   });
+
+  const res = await fetch(
+    `http://165.227.171.192:3000/api/translations/${appContext.router.locale}`
+  );
+  const dictionary = await res.json();
+
   const initialState = {
     categories: productCategoriesData.data.productCategories,
+    dictionary: dictionary,
   };
+
   const appProps = await App.getInitialProps(appContext);
+
   return {
     ...appProps,
     initialState,
+    locale: appContext.router.locale,
   };
 };
 

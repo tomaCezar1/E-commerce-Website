@@ -9,9 +9,9 @@ import { AppContext } from '../../../../context';
 import Toast from '../../../common/toast/Toast';
 
 function ProductCard({ product, small = false, isFavorite = false }) {
-  const { addToCart, addToFavorites } = useContext(AppContext);
+  const { addToCart, addToFavorites, appContext } = useContext(AppContext);
   const toast = useToast();
-
+  const { dictionary } = appContext;
   let sale: number;
 
   const useLoaded = () => {
@@ -65,10 +65,14 @@ function ProductCard({ product, small = false, isFavorite = false }) {
                 {sale > 0 ? (
                   <div className="discounted-price-div">
                     <p className="crossed-price">{product.price}</p>
-                    <p className="discounted-price">{product?.newPrice} lei</p>
+                    <p className="discounted-price">
+                      {product?.newPrice} {dictionary.lei}
+                    </p>
                   </div>
                 ) : (
-                  <p className="basic-price">{product?.price} lei</p>
+                  <p className="basic-price">
+                    {product?.price} {dictionary.lei}
+                  </p>
                 )}
               </div>
               {product.available ? (
@@ -78,7 +82,7 @@ function ProductCard({ product, small = false, isFavorite = false }) {
                   {product.notAvailableCustomText ? (
                     <span>{product.notAvailableCustomText}</span>
                   ) : (
-                    <span>Produsul nu este in stock</span>
+                    <span>{dictionary.notAvailable}</span>
                   )}
                 </p>
               )}
@@ -116,7 +120,7 @@ function ProductCard({ product, small = false, isFavorite = false }) {
                           toast({
                             render: ({ onClose }) => (
                               <Toast
-                                description={`Produsul "${product.name}" a fost adăugat cu succes!`}
+                                description={`${dictionary.theProduct} ${product.name} ${dictionary.addSuccess}!`}
                                 handleClose={onClose}
                               />
                             ),
@@ -131,7 +135,9 @@ function ProductCard({ product, small = false, isFavorite = false }) {
                   <i className="product-fav-cart-icon">
                     <CartIcon />
                   </i>
-                  <p className="product-card-add-text">Adaugă în coș</p>
+                  <p className="product-card-add-text">
+                    {dictionary.addToCart}
+                  </p>
                 </div>
               </div>
             </div>

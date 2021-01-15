@@ -3,12 +3,14 @@ import ProductCard from '../ProductCard/ProductCard';
 import { AppContext } from '../../../../context';
 
 function ProductList({ products }): JSX.Element {
-  const { favorites } = useContext(AppContext);
+  const { favorites, appContext } = useContext(AppContext);
+  const { homeProduseCegoltar } = appContext.dictionary;
+
   const favoritesIds = favorites.map((el) => el.id);
 
   return (
     <div className="product-list-container">
-      <h1 className="product-list-header">Produsele Cegoltar</h1>
+      <h1 className="product-list-header">{homeProduseCegoltar}</h1>
       <div className="cards-container">
         {products.map((item, index) => {
           return (

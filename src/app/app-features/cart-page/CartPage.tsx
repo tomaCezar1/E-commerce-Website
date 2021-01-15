@@ -14,11 +14,14 @@ import { validate, createMarkup } from '../../../utils';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function CartPage(): JSX.Element {
-  const { cart, addToCart, removeFromCart, clearCart } = useContext(AppContext);
+  const { cart, addToCart, removeFromCart, clearCart, appContext } = useContext(
+    AppContext
+  );
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showEmptyModal, setShowEmptyModal] = useState(false);
   const [, updateState] = useState();
+  const { dictionary } = appContext;
 
   const forceUpdate = useCallback(() => updateState({}), []);
   const [renderCartLength, setRenderCartLength] = useState(false);
@@ -29,7 +32,7 @@ export default function CartPage(): JSX.Element {
 
   const path = [
     {
-      name: 'Coș',
+      name: dictionary.cart,
       link: '/cart',
     },
   ];
@@ -42,17 +45,15 @@ export default function CartPage(): JSX.Element {
     <div className="cart-page-container" suppressHydrationWarning={true}>
       <Breadcrumbs path={path} />
       {orderSuccess ? (
-        <div className="no-items-text">
-          Comanda dumneavoastră a fost procesată cu succes
-        </div>
+        <div className="no-items-text">{dictionary.orderSuccess}</div>
       ) : renderCartLength && cart.length > 0 ? (
         <div className="cart-items-wrapper">
           <div className="container-items">
             <div className="cart-items-headings">
-              <span className="cart-heading-first">Produse</span>
-              <span className="cart-heading-text">Pret</span>
-              <span className="cart-heading-text">Cantitate</span>
-              <span className="cart-heading-text">Total</span>
+              <span className="cart-heading-first">{dictionary.products}</span>
+              <span className="cart-heading-text">{dictionary.price}</span>
+              <span className="cart-heading-text">{dictionary.quantity}</span>
+              <span className="cart-heading-text">{dictionary.total}</span>
             </div>
             <div className="cart-items-list">
               {cart.map((product) => {
@@ -151,7 +152,7 @@ export default function CartPage(): JSX.Element {
                   className="clear-cart-button"
                   onClick={() => setShowEmptyModal(true)}
                 >
-                  Golește coșul
+                  {dictionary.clearCart}
                 </div>
                 <Modal
                   isOpen={showEmptyModal}
@@ -163,7 +164,7 @@ export default function CartPage(): JSX.Element {
                     <ModalCloseButton />
                     <ModalBody>
                       <div className="modal-empty-text">
-                        Doriți să goliți conținutul coșului dvs.?
+                        {dictionary.clearCartConfirm}
                       </div>
                       <div className="modal-buttons-wrapper">
                         <button
@@ -173,13 +174,13 @@ export default function CartPage(): JSX.Element {
                             setShowEmptyModal(false);
                           }}
                         >
-                          Da
+                          {dictionary.yes}
                         </button>
                         <button
                           className="btn"
                           onClick={() => setShowEmptyModal(false)}
                         >
-                          Nu
+                          {dictionary.no}
                         </button>
                       </div>
                     </ModalBody>
@@ -189,13 +190,13 @@ export default function CartPage(): JSX.Element {
                   className="place-order-button"
                   onClick={() => setShowModal(true)}
                 >
-                  Plasează comanda
+                  {dictionary.placeOrder}
                 </div>
               </div>
               <div className="cart-total-price">
-                <span>Total:&nbsp;</span>
+                <span>{dictionary.total}:&nbsp;</span>
                 <span>{formatPrice(cartTotal(cart))}</span>
-                <span>lei</span>
+                <span>&nbsp;{dictionary.lei}</span>
               </div>
             </div>
           </div>
@@ -215,7 +216,7 @@ export default function CartPage(): JSX.Element {
           <CheckoutForm validate={validate} setOrderSuccess={setOrderSuccess} />
         </div>
       ) : (
-        <div className="no-items-text">Coșul dumneavoastră este gol</div>
+        <div className="no-items-text">{dictionary.emptyCart}</div>
       )}
     </div>
   );

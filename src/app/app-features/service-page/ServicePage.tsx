@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { AppContext } from '../../../context';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 import RotaryPhone from '../../../../public/svg/rotary_phone_black.svg';
 import ServiceIcon from '../../../../public/svg/service.svg';
@@ -6,9 +8,12 @@ import Guarantee from '../../../../public/svg/guarantee.svg';
 import Arrow from '../../../../public/svg/arrow.svg';
 
 export default function Service(): JSX.Element {
+  const { appContext } = useContext(AppContext);
+  const { dictionary } = appContext;
+
   const path = [
     {
-      name: 'Service centru',
+      name: dictionary.serviceCenter,
       link: '/service',
     },
   ];

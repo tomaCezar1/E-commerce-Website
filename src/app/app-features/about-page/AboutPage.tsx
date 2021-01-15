@@ -1,12 +1,18 @@
+import { useContext } from 'react';
+import { AppContext } from '../../../context';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function AboutPage() {
+  const { appContext } = useContext(AppContext);
+  const { dictionary } = appContext;
+
   const path = [
     {
-      name: 'Despre noi',
+      name: dictionary.aboutUs,
       link: '/about',
     },
   ];
+
   return (
     <>
       <Breadcrumbs path={path} />

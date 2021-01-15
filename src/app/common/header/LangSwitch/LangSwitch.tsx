@@ -4,8 +4,9 @@ import { useRouter } from 'next/router';
 export default function LangSwitch({ mobile }): JSX.Element {
   const router = useRouter();
 
-  const handleClick = (lang: string) => {
-    router.push('/', '/', { locale: lang });
+  const handleClick = async (lang: string) => {
+    // router.push('/', '/', { locale: lang });
+    window.location.assign('/' + lang);
   };
 
   return (

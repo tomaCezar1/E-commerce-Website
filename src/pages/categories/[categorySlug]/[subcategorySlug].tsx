@@ -4,10 +4,7 @@ import {
   DropDownOption,
   ProductCategoriesQuery,
 } from '../../../app/app-features/categories/ProductCategoriesQueries';
-import {
-  ProductListQuery, ProductListQueryWithCount,
-  ProductsCountQuery
-} from '../../../app/app-features/home-page/ProductList/ProductListQuery';
+import { ProductListQueryWithCount } from '../../../app/app-features/home-page/ProductList/ProductListQuery';
 
 export default function SubcategoryPage({
   products,
@@ -120,6 +117,11 @@ export async function getServerSideProps(context) {
         slug: { eq: slug },
       },
     },
+    context: {
+      headers: {
+        lang: context.locale,
+      },
+    },
   });
 
   const parentId = productCategoriesData.data.productCategories[0].parent;
@@ -132,6 +134,11 @@ export async function getServerSideProps(context) {
         id: {
           eq: parentId,
         },
+      },
+    },
+    context: {
+      headers: {
+        lang: context.locale,
       },
     },
   });

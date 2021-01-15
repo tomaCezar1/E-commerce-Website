@@ -26,12 +26,22 @@ export async function getServerSideProps(context) {
         slug: { eq: slug },
       },
     },
+    context: {
+      headers: {
+        lang: context.locale,
+      },
+    },
   });
   const categoryId = productCategoriesData.data.productCategories[0].id;
   const subcategoriesData = await apolloClient.query({
     query: SubcategoriesQuery,
     variables: {
       id: categoryId,
+    },
+    context: {
+      headers: {
+        lang: context.locale,
+      },
     },
   });
 

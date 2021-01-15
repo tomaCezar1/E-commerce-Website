@@ -1,9 +1,14 @@
+import { useContext } from 'react';
+import { AppContext } from '../../../context';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function GuaranteesPage(): JSX.Element {
+  const { appContext } = useContext(AppContext);
+  const { dictionary } = appContext;
+
   const path = [
     {
-      name: 'Garanții',
+      name: dictionary.guarantees,
       link: '/guarantees',
     },
   ];
