@@ -17,11 +17,11 @@ export async function getServerSideProps(context) {
       },
       sorting: [{ field: 'sortOrder', direction: 'ASC' }],
     },
-    context: {
-      headers: {
-        lang: context.locale,
-      },
-    },
+    // context: {
+    //   headers: {
+    //     lang: context.locale,
+    //   },
+    // },
   });
 
   return {

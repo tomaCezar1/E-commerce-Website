@@ -24,11 +24,11 @@ export async function getServerSideProps(context) {
 
   const blogPostsData = await apolloClient.query({
     query: BlogPostsQuery,
-    context: {
-      headers: {
-        lang: context.locale,
-      },
-    },
+    // context: {
+    //   headers: {
+    //     lang: context.locale,
+    //   },
+    // },
   });
 
   return {
