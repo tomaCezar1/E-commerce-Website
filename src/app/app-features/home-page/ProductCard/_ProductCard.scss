@@ -122,8 +122,9 @@
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none;
   font-size: 14px;
+  height: 15px !important;
   font-family: $medium;
-  margin-bottom: 5px;
+  margin-bottom: 5px !important;
 }
 
 .product-in-stock {
