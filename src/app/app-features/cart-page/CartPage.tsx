@@ -83,7 +83,8 @@ export default function CartPage(): JSX.Element {
                       </div>
                     </Link>
                     <div className="cart-product-price">
-                      {product.isPromo ? product.newPrice : product.price} lei
+                      {product.isPromo ? product.newPrice : product.price}
+                      {dictionary.lei}
                     </div>
                     <div className="cart-product-qty-wrap">
                       <div
@@ -108,7 +109,8 @@ export default function CartPage(): JSX.Element {
                     </div>
                     <div className="mobile-price-qty">
                       <div className="cart-product-price-mobile">
-                        {product.isPromo ? product.newPrice : product.price} lei
+                        {product.isPromo ? product.newPrice : product.price}
+                        {dictionary.lei}
                       </div>
                       <div className="cart-product-qty-wrap-mobile">
                         <div
@@ -135,8 +137,8 @@ export default function CartPage(): JSX.Element {
                     <div className="cart-product-total">
                       {product.isPromo
                         ? (product.newPrice * product.qty).toFixed(2)
-                        : (product.price * product.qty).toFixed(2)}{' '}
-                      lei
+                        : (product.price * product.qty).toFixed(2)}
+                      {dictionary.lei}
                     </div>
                     <div
                       className="remove-cart-item"
