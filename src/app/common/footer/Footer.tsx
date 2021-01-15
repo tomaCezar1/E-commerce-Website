@@ -48,11 +48,7 @@ export default function Footer() {
               <Link href="/privacy" locale={router.locale}>
                 <span className="footer-link">{dictionary.privacy}</span>
               </Link>
-              <Link
-                href="/terms"
-                as="/terms-and-conditions"
-                locale={router.locale}
-              >
+              <Link href="/terms" as="/terms" locale={router.locale}>
                 <span className="footer-link">
                   {dictionary.termsAndConditions}
                 </span>
