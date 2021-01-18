@@ -189,6 +189,10 @@
   color: $primaryColor;
 }
 
+.mobile-header-phone:focus {
+  outline: none;
+}
+
 .mobile-search-wrapper {
   margin-left: 16px;
   min-width: 40px;
