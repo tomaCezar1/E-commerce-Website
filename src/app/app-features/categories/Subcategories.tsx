@@ -27,9 +27,11 @@ export default function Subcategories({
   const [showFilter, setShowFilter] = useState(false);
   const router = useRouter();
   const limit = 20;
-  const { favorites } = useContext(AppContext);
+  const { favorites, appContext } = useContext(AppContext);
   const favoritesIds = favorites.map((el) => el.id);
-  const [isSmallerThan1251] = useMediaQuery('(max-width: 1250px');
+  const [isSmallerThan1250] = useMediaQuery('(max-width: 1250px');
+
+  const { dictionary } = appContext;
 
   useEffect(() => {
     setSortOrder(router.query.sort as any);
@@ -88,13 +90,11 @@ export default function Subcategories({
       <Breadcrumbs path={path} />
       <div className="title-1 subcategory-title">{subcategory?.title}</div>
       {productsCount === 0 ? (
-        <div className="no-items-text">
-          În această categorie nu a fost găsit nici un produs.
-        </div>
+        <div className="no-items-text">{dictionary.noItemsText}</div>
       ) : (
         <div className="subcategories-products-container">
           <div className="subcategories-filter">
-            {isSmallerThan1251 ? (
+            {isSmallerThan1250 ? (
               <Drawer
                 isOpen={showFilter}
                 placement="left"
@@ -125,7 +125,7 @@ export default function Subcategories({
                   className="filter-mobile"
                   onClick={() => setShowFilter(true)}
                 >
-                  Filtre
+                  {dictionary.filters}
                 </div>
               </div>
 
@@ -138,19 +138,19 @@ export default function Subcategories({
                     className="sorting-input"
                   >
                     <option value="" disabled hidden>
-                      Sortare după
+                      {dictionary.sortBy}
                     </option>
                     <option value="cheap" className="sorting-option-text">
-                      Preț ascendent
+                      {dictionary.ascendingPrice}
                     </option>
                     <option value="expensive" className="sorting-option-text">
-                      Preț descendent
+                      {dictionary.descendingPrice}
                     </option>
                     <option value="new" className="sorting-option-text">
-                      Cele mai noi
+                      {dictionary.newItems}
                     </option>
                     <option value="old" className="sorting-option-text">
-                      Cele mai vechi
+                      {dictionary.oldItems}
                     </option>
                   </Select>
                 </div>
@@ -175,11 +175,10 @@ export default function Subcategories({
                 paginationHandler={paginationHandler}
                 pageCount={pagesCount}
                 currentPage={currentPage}
+                forcePage={+currentPage}
               />
             ) : (
-              <div className="no-items-text">
-                Nu a fost gasit nici un produs conform filtrelor aplicate
-              </div>
+              <div className="no-items-text">{dictionary.noFoundFilters}</div>
             )}
           </div>
         </div>

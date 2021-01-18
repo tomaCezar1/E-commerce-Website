@@ -35,13 +35,18 @@ function ProductDetailsComponent({
 export async function getServerSideProps(context) {
   const slug = context.query.slug;
 
-  const apolloClient = initializeApollo();
+  const apolloClient = initializeApollo(null, context.locale);
   const productDetails = await apolloClient.query({
     query: ProductDetailsQuery,
     variables: {
       filter: {
         slug: { eq: slug },
         isActive: { is: true },
+      },
+    },
+    context: {
+      headers: {
+        lang: context.locale,
       },
     },
   });
@@ -52,7 +57,13 @@ export async function getServerSideProps(context) {
     query: ProductCategoriesQuery,
     variables: {
       filter: {
+        isActive: { is: true },
         id: { eq: subCategoryId },
+      },
+    },
+    context: {
+      headers: {
+        lang: context.locale,
       },
     },
   });
@@ -63,7 +74,13 @@ export async function getServerSideProps(context) {
     query: ProductCategoriesQuery,
     variables: {
       filter: {
+        isActive: { is: true },
         id: { eq: categoryId },
+      },
+    },
+    context: {
+      headers: {
+        lang: context.locale,
       },
     },
   });

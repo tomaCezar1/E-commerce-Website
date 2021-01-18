@@ -1,7 +1,8 @@
 import Link from 'next/link';
+import { useContext } from 'react';
 import { useRouter } from 'next/router';
+import { AppContext } from '../../../context';
 import FacebookIcon from '../../../../public/svg/FacebookIcon.svg';
-import LinkedInIcon from '../../../../public/svg/LinkedInIcon.svg';
 import InstagramIcon from '../../../../public/svg/InstagramIcon.svg';
 import CegoltarLogo from '../../../../public/svg/cegoltar-footer-logo.svg';
 import Phone from '../../../../public/svg/phone-white.svg';
@@ -10,54 +11,53 @@ const date = new Date();
 
 export default function Footer() {
   const router = useRouter();
+  const { appContext } = useContext(AppContext);
+  const dictionary = appContext.dictionary;
+
   return (
     <footer className="footer">
       <div className="footer-wrapper">
         <div className="footer-links-container">
           <div className="footer-links-wrapper">
             <div className="footer-links-group">
-              <p className="footer-links-heading">Link-uri</p>
+              <p className="footer-links-heading">{dictionary.links}</p>
               <Link href="/service" locale={router.locale}>
-                <span className="footer-link">Service centru</span>
+                <span className="footer-link">{dictionary.serviceCenter}</span>
               </Link>
               <Link href="/regional-store" locale={router.locale}>
-                <span className="footer-link">Magazine regionale</span>
+                <span className="footer-link">{dictionary.regionalStores}</span>
               </Link>
               <Link href="/news" locale={router.locale}>
-                <span className="footer-link">Știri</span>
+                <span className="footer-link">{dictionary.news}</span>
               </Link>
               <Link href="/jobs" locale={router.locale}>
-                <span className="footer-link">Posturi vacante</span>
+                <span className="footer-link">{dictionary.jobs}</span>
               </Link>
             </div>
             <div className="footer-links-group" style={{ marginLeft: 50 }}>
-              <p className="footer-links-heading">Informații</p>
+              <p className="footer-links-heading">{dictionary.information}</p>
               <Link href="/guarantee" locale={router.locale}>
-                <span className="footer-link">Condiții de garanție</span>
+                <span className="footer-link">{dictionary.guaranteeTerms}</span>
               </Link>
               <Link href="/about" locale={router.locale}>
-                <span className="footer-link">Despre noi</span>
+                <span className="footer-link">{dictionary.aboutUs}</span>
               </Link>
               <Link href="/delivery" locale={router.locale}>
-                <span className="footer-link">Livrare</span>
+                <span className="footer-link">{dictionary.delivery}</span>
               </Link>
               <Link href="/privacy" locale={router.locale}>
-                <span className="footer-link">
-                  Politica de confidențialitate
-                </span>
+                <span className="footer-link">{dictionary.privacy}</span>
               </Link>
-              <Link
-                href="/terms"
-                as="/terms-and-conditions"
-                locale={router.locale}
-              >
-                <span className="footer-link">Termeni de utilizare</span>
+              <Link href="/terms" as="/terms" locale={router.locale}>
+                <span className="footer-link">
+                  {dictionary.termsAndConditions}
+                </span>
               </Link>
             </div>
           </div>
           <div className="footer-phone-wrapper">
             <div className="footer-phone-number">
-              <p>Call centru: </p>
+              <p>{dictionary.callCenter}: </p>
               <a href="tel: +373 69 606 707">+373 69 606 707</a>
             </div>
             <div className="footer-logo">
@@ -73,23 +73,28 @@ export default function Footer() {
 
         <div className="footer-copyright">
           <div className="footer-social-icons">
-            <a href="https://www.facebook.com/cegoltar.md/">
-              <i className="footer-icon">
+            <a
+              className="footer-icon"
+              href="https://www.facebook.com/cegoltar.md/"
+            >
+              <i>
                 <FacebookIcon />
               </i>
             </a>
 
-            {/* <i className="footer-icon">
-              <InstagramIcon />
-            </i>
-            <i className="footer-icon">
-              <LinkedInIcon />
-            </i> */}
+            <a
+              className="footer-icon"
+              href="https://instagram.com/cegoltar?igshid=1hsf8mg0vy5jw"
+            >
+              <i className="footer-icon">
+                <InstagramIcon />
+              </i>
+            </a>
           </div>
 
           <div className="footer-copyright-text">
-            Copyright &copy; {date.getFullYear()} Cegoltar S.R.L. str.
-            Petricani, 21 MD-2005
+            {dictionary.copyrightFirst} {date.getFullYear()}
+            {dictionary.copyrightSecond}
           </div>
         </div>
 
@@ -102,9 +107,6 @@ export default function Footer() {
               <i className="footer-icon">
                 <InstagramIcon />
               </i>
-              <i className="footer-icon">
-                <LinkedInIcon />
-              </i>
             </div>
 
             <div className="cursor-pointer footer-phone-mobile">
@@ -116,8 +118,8 @@ export default function Footer() {
           </div>
           <div className=" footer-divider-mobile" />
           <div className="footer-copyright-text">
-            Copyright &copy; {date.getFullYear()} Cegoltar S.R.L. str.
-            Petricani, 21 MD-2005
+            {dictionary.copyrightFirst} {date.getFullYear()}
+            {dictionary.copyrightSecond}
           </div>
         </div>
       </div>

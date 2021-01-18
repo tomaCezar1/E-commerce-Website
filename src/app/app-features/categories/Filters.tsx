@@ -1,13 +1,20 @@
 import ComplexSelect from 'react-select';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
   DropDownOption,
   UiFilter,
   UiFiltersQuery,
 } from './ProductCategoriesQueries';
 import { apolloClient } from '../../lib/apolloClient';
-import { NumberInput, NumberInputField, SkeletonText } from '@chakra-ui/react';
+import {
+  NumberInput,
+  NumberInputField,
+  SkeletonText,
+  useMediaQuery,
+} from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { AppContext } from '../../../context';
+import { fontsize } from '../../../../test/__mocks__/fileMock';
 
 export interface FiltersProps {
   categoryId: string;
@@ -19,10 +26,16 @@ export default function Filters({
   handleClose,
 }: FiltersProps): JSX.Element {
   const [uiFilters, setUiFilters] = useState<UiFilter[]>([]);
-  const [loadingFilters, setLoadingFilters] = useState(true);
+  const [loadingFilters, setLoadingFilters] = useState(false);
   const [formValue, setFormValue] = useState({});
-
+  const [isSmallerThan1250] = useMediaQuery('(max-width: 1250px');
   const router = useRouter();
+  const context = useContext(AppContext);
+  const { dictionary } = context.appContext;
+
+  useEffect(() => {
+    setLoadingFilters(true);
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -30,6 +43,11 @@ export default function Filters({
         const res = await apolloClient.query({
           query: UiFiltersQuery,
           variables: { categoryId },
+          context: {
+            headers: {
+              lang: context.locale,
+            },
+          },
         });
         setLoadingFilters(false);
         setUiFilters((res.data && res.data.uiFilters) || []);
@@ -50,11 +68,13 @@ export default function Filters({
 
   const colourStyles = {
     control: (styles) => ({ ...styles, borderRadius: 8 }),
+    placeholder: (styles) => ({ ...styles, fontSize: 14 }),
   };
 
   const onFormApplyClick = () => {
     const currentQuery = router.query;
     currentQuery['filter'] = encodeURI(JSON.stringify(formValue));
+    currentQuery['page'] = '1';
     router.push({
       pathname: router.pathname,
       query: currentQuery,
@@ -65,6 +85,7 @@ export default function Filters({
   const onClearClick = () => {
     const currentQuery = router.query;
     delete currentQuery['filter'];
+    currentQuery['page'] = '1';
     setFormValue({});
     router.push({
       pathname: router.pathname,
@@ -100,11 +121,11 @@ export default function Filters({
         <div className="filter-dd-name">{uiFilter.name}</div>
         <ComplexSelect
           options={uiFilter.values}
-          value={formValue[uiFilter.property]}
+          value={formValue[uiFilter.property] || []}
           onChange={(value) => onDropDownChange(uiFilter.property, value)}
           isMulti
-          placeholder="Selectează opțiuni"
-          noOptionsMessage={() => 'Nu sunt opțiuni'}
+          placeholder={`${dictionary.selectOptions}`}
+          noOptionsMessage={() => dictionary.noOptions}
           styles={colourStyles}
           theme={(theme) => ({
             ...theme,
@@ -146,7 +167,7 @@ export default function Filters({
                   isNaN(parseInt(e.target.value)) ? null : +e.target.value
                 )
               }
-              placeholder="de la"
+              placeholder={dictionary.from}
             />
           </NumberInput>
           <NumberInput
@@ -165,7 +186,7 @@ export default function Filters({
                   isNaN(parseInt(e.target.value)) ? null : +e.target.value
                 )
               }
-              placeholder="până la"
+              placeholder={dictionary.to}
             />
           </NumberInput>
         </div>
@@ -174,12 +195,18 @@ export default function Filters({
   };
 
   return (
-    <div className="filter-panel-wrapper">
+    <div
+      className={
+        isSmallerThan1250
+          ? 'filter-panel-wrapper-mobile'
+          : 'filter-panel-wrapper'
+      }
+    >
       <div
         className="flex-row flex-center bold"
         style={{ height: 40, marginBottom: 10 }}
       >
-        Filtreaza după
+        {dictionary.filterBy}
       </div>
       {!loadingFilters && (
         <>
@@ -194,14 +221,14 @@ export default function Filters({
           </form>
           <div className="flex-row justify-between" style={{ marginTop: 30 }}>
             <button onClick={onClearClick} className="btn rounded default">
-              Curăță
+              {dictionary.clear}
             </button>
             <button
               onClick={onFormApplyClick}
               className="btn rounded"
               style={{ width: '60%' }}
             >
-              Aplică
+              {dictionary.apply}
             </button>
           </div>
         </>

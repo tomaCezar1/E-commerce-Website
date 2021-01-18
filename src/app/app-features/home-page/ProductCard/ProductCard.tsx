@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useToast } from '@chakra-ui/react';
-
+import Image from 'next/image';
 import FavoriteEmpty from '../../../../../public/svg/FavoriteEmpty.svg';
 import FavoriteActive from '../../../../../public/svg/FavoriteActive.svg';
 import CartIcon from '../../../../../public/svg/CartIcon.svg';
@@ -9,9 +9,9 @@ import { AppContext } from '../../../../context';
 import Toast from '../../../common/toast/Toast';
 
 function ProductCard({ product, small = false, isFavorite = false }) {
-  const { addToCart, addToFavorites } = useContext(AppContext);
+  const { addToCart, addToFavorites, appContext } = useContext(AppContext);
   const toast = useToast();
-
+  const { dictionary } = appContext;
   let sale: number;
 
   const useLoaded = () => {
@@ -49,33 +49,40 @@ function ProductCard({ product, small = false, isFavorite = false }) {
             </div>
           ) : null}
           <div className="product-card-container-flex">
-            <div>
-              <img
+            <div className="product-card-image-container">
+              <Image
                 src={product?.images[0]}
                 alt="image"
+                width={218}
+                height={214}
+                layout="responsive"
                 className="product-card-image"
               />
-              <p className="product-card-name">{product?.name}</p>
             </div>
+            <p className="product-card-name">{product?.name}</p>
             <div className="product-card-bottom">
               <div className="product-card-price">
                 {sale > 0 ? (
                   <div className="discounted-price-div">
                     <p className="crossed-price">{product.price}</p>
-                    <p className="discounted-price">{product?.newPrice} lei</p>
+                    <p className="discounted-price">
+                      {product?.newPrice} {dictionary.lei}
+                    </p>
                   </div>
                 ) : (
-                  <p className="basic-price">{product?.price} lei</p>
+                  <p className="basic-price">
+                    {product?.price} {dictionary.lei}
+                  </p>
                 )}
               </div>
               {product.available ? (
-                <p className="product-in-stock-invis">Asd</p>
+                <p className="product-in-stock-invis"></p>
               ) : (
-                <p className="product-in-stock">
+                <p className="product-in-stock product-in-stock-invis">
                   {product.notAvailableCustomText ? (
                     <span>{product.notAvailableCustomText}</span>
                   ) : (
-                    <span>Produsul nu este in stock</span>
+                    <span>{dictionary.notAvailable}</span>
                   )}
                 </p>
               )}
@@ -113,7 +120,7 @@ function ProductCard({ product, small = false, isFavorite = false }) {
                           toast({
                             render: ({ onClose }) => (
                               <Toast
-                                description={`Produsul "${product.name}" a fost adăugat cu succes!`}
+                                description={`${dictionary.theProduct} ${product.name} ${dictionary.addSuccess}!`}
                                 handleClose={onClose}
                               />
                             ),
@@ -128,7 +135,9 @@ function ProductCard({ product, small = false, isFavorite = false }) {
                   <i className="product-fav-cart-icon">
                     <CartIcon />
                   </i>
-                  <p className="product-card-add-text">Adaugă în coș</p>
+                  <p className="product-card-add-text">
+                    {dictionary.addToCart}
+                  </p>
                 </div>
               </div>
             </div>

@@ -4,10 +4,7 @@ import {
   DropDownOption,
   ProductCategoriesQuery,
 } from '../../../app/app-features/categories/ProductCategoriesQueries';
-import {
-  ProductListQuery,
-  ProductsCountQuery,
-} from '../../../app/app-features/home-page/ProductList/ProductListQuery';
+import { ProductListQueryWithCount } from '../../../app/app-features/home-page/ProductList/ProductListQuery';
 
 export default function SubcategoryPage({
   products,
@@ -116,7 +113,13 @@ export async function getServerSideProps(context) {
     query: ProductCategoriesQuery,
     variables: {
       filter: {
+        isActive: { is: true },
         slug: { eq: slug },
+      },
+    },
+    context: {
+      headers: {
+        lang: context.locale,
       },
     },
   });
@@ -127,9 +130,15 @@ export async function getServerSideProps(context) {
     query: ProductCategoriesQuery,
     variables: {
       filter: {
+        isActive: { is: true },
         id: {
           eq: parentId,
         },
+      },
+    },
+    context: {
+      headers: {
+        lang: context.locale,
       },
     },
   });
@@ -141,7 +150,7 @@ export async function getServerSideProps(context) {
   const categoryId = productCategoriesData.data.productCategories[0].id;
 
   const productsData = await apolloClient.query({
-    query: ProductListQuery,
+    query: ProductListQueryWithCount,
     variables: {
       filter: {
         categoryId: {
@@ -163,37 +172,11 @@ export async function getServerSideProps(context) {
     },
   });
 
-  let productsCount: number;
-  let productsCountData: any;
-
-  try {
-    productsCountData = await apolloClient.query({
-      query: ProductsCountQuery,
-      variables: {
-        filter: {
-          categoryId: {
-            eq: categoryId,
-          },
-        },
-        sorting: [
-          {
-            field: 'price',
-            direction: 'ASC',
-          },
-        ],
-      },
-    });
-
-    productsCount = productsCountData?.data.productAggregate.count.id;
-  } catch (e) {
-    productsCount = 0;
-  }
-
   return {
     props: {
-      products: productsData.data.products,
+      products: productsData.data?.productsWithCount?.nodes,
       subcategory: productCategoriesData?.data?.productCategories[0],
-      productsCount: productsCount,
+      productsCount: productsData.data?.productsWithCount?.count,
       category: categoryData.data.productCategories[0],
       currentPage: page,
     },

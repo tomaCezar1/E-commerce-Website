@@ -22,7 +22,13 @@ export async function getServerSideProps(context) {
     query: ProductCategoriesQuery,
     variables: {
       filter: {
+        isActive: { is: true },
         slug: { eq: slug },
+      },
+    },
+    context: {
+      headers: {
+        lang: context.locale,
       },
     },
   });
@@ -31,6 +37,11 @@ export async function getServerSideProps(context) {
     query: SubcategoriesQuery,
     variables: {
       id: categoryId,
+    },
+    context: {
+      headers: {
+        lang: context.locale,
+      },
     },
   });
 

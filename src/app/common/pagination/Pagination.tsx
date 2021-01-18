@@ -4,6 +4,7 @@ export default function Pagination({
   currentPage,
   pageCount,
   paginationHandler,
+  forcePage,
 }) {
   return (
     <div className="pagination-container">
@@ -22,6 +23,7 @@ export default function Pagination({
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         onPageChange={paginationHandler}
+        forcePage={forcePage - 1}
       />
     </div>
   );

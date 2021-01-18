@@ -185,37 +185,54 @@ export const removeFavorites = () => {
 };
 
 // Form fields validation
-const nameValidation = (fieldName, fieldValue) => {
+const nameValidation = (fieldName, fieldValue, locale) => {
   if (fieldValue.trim() === '') {
-    return 'Numele este obligatoriu';
+    if (locale === 'ro') {
+      return 'Numele este obligatoriu';
+    } else {
+      return 'Имя обязательно';
+    }
   }
 
   return null;
 };
 
-const phoneValidation = (fieldName, fieldValue) => {
+const phoneValidation = (fieldName, fieldValue, locale) => {
   if (String(fieldValue).length < 8) {
-    return 'Număr inexistent';
+    if (locale === 'ro') {
+      return 'Număr inexistent';
+    } else {
+      return 'Номер телефона обязателен';
+    }
   }
 
   if (String(fieldValue).trim().length < 1) {
-    return 'Telefonul este obligatoriu';
+    if (locale === 'ro') {
+      return 'Telefonul este obligatoriu';
+    } else {
+      return 'Номер телефона обязателен';
+    }
   }
   return null;
 };
 
-const callTimeValidation = (fieldName, fieldValue) => {
+const callTimeValidation = (fieldName, fieldValue, locale) => {
   if (fieldValue.trim().length < 1) {
-    return 'Indicați ora apelului';
+    if (locale === 'ro') {
+      return 'Indicați ora apelului';
+    } else {
+      return 'Укажите время звонка';
+    }
   }
 
   return null;
 };
 
 export const validate = {
-  name: (name) => nameValidation('name', name),
-  phone: (phone) => phoneValidation('phone', phone),
-  callTime: (callTime) => callTimeValidation('callTime', callTime),
+  name: (name, locale) => nameValidation('name', name, locale),
+  phone: (phone, locale) => phoneValidation('phone', phone, locale),
+  callTime: (callTime, locale) =>
+    callTimeValidation('callTime', callTime, locale),
 };
 
 export const formatDate = (date: string) => {

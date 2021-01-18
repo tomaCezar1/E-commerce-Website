@@ -18,6 +18,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from '@chakra-ui/react';
+import LangSwitch from '../LangSwitch/LangSwitch';
 
 export default function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +29,7 @@ export default function MobileHeader() {
   const [activeCategory, setActiveCategory] = useState(0);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const router = useRouter();
+  const { dictionary } = appContext;
 
   useEffect(() => {
     const rooCats = appContext.categories.filter((c) => !c.parent);
@@ -62,20 +64,22 @@ export default function MobileHeader() {
         <div className="mobile-icon-wrap" onClick={() => setIsOpen(true)}>
           <div className="mobile-burger-icon" />
         </div>
-        <div className="mobile-search-wrapper">
+        <div
+          className="mobile-search-wrapper"
+          onClick={() => {
+            setShowLogo(!showLogo);
+            setTimeout(() => {
+              setShowSearchBar(true);
+              document.getElementById('Search').focus();
+            }, 300);
+          }}
+        >
           {showSearchBar && <SearchBar mobile onClose={handleClick} />}
           {!showSearchBar && (
             <div
               className={
                 !showLogo ? 'mobile-search-icon-expanded' : 'mobile-search-icon'
               }
-              onClick={() => {
-                setShowLogo(!showLogo);
-                setTimeout(() => {
-                  setShowSearchBar(true);
-                  document.getElementById('Search').focus();
-                }, 300);
-              }}
             />
           )}
         </div>
@@ -151,15 +155,22 @@ export default function MobileHeader() {
                   <div className="mobile-drawer-footer">
                     <Link href="/regional-store" locale={router.locale}>
                       <div className="mobile-header-link">
-                        Magazine regionale
+                        {dictionary.regionalStores}
                       </div>
                     </Link>
                     <Link href="/service" locale={router.locale}>
-                      <div className="mobile-header-link">Service Centru</div>
+                      <div className="mobile-header-link">
+                        {dictionary.serviceCenter}
+                      </div>
                     </Link>
                     <Link href="/news" locale={router.locale}>
-                      <div className="mobile-header-link">Știri</div>
+                      <div className="mobile-header-link">
+                        {dictionary.news}
+                      </div>
                     </Link>
+                    <div style={{ margin: '10px 0' }}>
+                      <LangSwitch />
+                    </div>
                   </div>
                 </DrawerFooter>
               </div>
@@ -177,19 +188,23 @@ export default function MobileHeader() {
       {renderedFavorites && (
         <div className="mobile-icons-wrapper">
           <Link href="/cart" locale={router.locale}>
-            <div className="mobile-cart-icon">
-              {cart.length ? (
-                <div className="mobile-notification-icon">{cart.length}</div>
-              ) : null}
+            <div className="mobile-cart-wrapper">
+              <div className="mobile-cart-icon">
+                {cart.length ? (
+                  <div className="mobile-notification-icon">{cart.length}</div>
+                ) : null}
+              </div>
             </div>
           </Link>
           <Link href="/favorites" locale={router.locale}>
-            <div className="mobile-heart-icon">
-              {favorites.length ? (
-                <div className="mobile-notification-icon">
-                  {favorites.length}
-                </div>
-              ) : null}
+            <div className="mobile-favorites-wrapper">
+              <div className="mobile-heart-icon">
+                {favorites.length ? (
+                  <div className="mobile-notification-icon">
+                    {favorites.length}
+                  </div>
+                ) : null}
+              </div>
             </div>
           </Link>
         </div>
