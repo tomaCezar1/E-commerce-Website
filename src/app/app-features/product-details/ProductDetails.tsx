@@ -342,10 +342,13 @@ function ProductDetails({ productDetails }) {
                 </div>
               </div>
             </div>
-            <div className="product-details-questions">
+            <a
+              href="tel: +373 69 606 707"
+              className="product-details-questions"
+            >
               <p>{dictionary.anyQuestions}</p>&nbsp;
               <a>{dictionary.callNow}</a>
-            </div>
+            </a>
           </div>
         </div>
 
