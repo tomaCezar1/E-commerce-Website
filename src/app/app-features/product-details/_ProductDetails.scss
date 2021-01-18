@@ -293,6 +293,24 @@
   display: none;
 }
 
+.mobile-small-img-component {
+  &::-webkit-scrollbar {
+    scrollbar-width: 6px; // Firefox
+    scrollbar-color: rgb(187, 187, 187) $grey; // Firefox
+    width: 6px;
+    background-color: $grey;
+    border-radius: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    background-color: rgb(187, 187, 187);
+    border-radius: 6px;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+}
+
 .recommended-products-container {
   width: 100%;
   display: flex;
@@ -477,7 +495,7 @@
     width: 50px;
     margin-top: 0;
     margin-left: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
   }
 
@@ -668,7 +686,7 @@
     width: 48px;
     margin-top: 0;
     margin-left: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
   }
 
@@ -857,7 +875,7 @@
     width: 60px;
     margin-top: 0;
     margin-left: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 
     .small-img {
