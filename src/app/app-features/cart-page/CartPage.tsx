@@ -109,7 +109,7 @@ export default function CartPage(): JSX.Element {
                     </div>
                     <div className="mobile-price-qty">
                       <div className="cart-product-price-mobile">
-                        {product.isPromo ? product.newPrice : product.price}
+                        {product.isPromo ? product.newPrice : product.price}{' '}
                         {dictionary.lei}
                       </div>
                       <div className="cart-product-qty-wrap-mobile">
