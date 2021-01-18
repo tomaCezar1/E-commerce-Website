@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-export default function LangSwitch({ mobile }): JSX.Element {
+export default function LangSwitch({ mobile = null }): JSX.Element {
   const router = useRouter();
 
   const handleClick = async (lang: string) => {

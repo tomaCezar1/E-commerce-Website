@@ -35,7 +35,7 @@ function ProductDetailsComponent({
 export async function getServerSideProps(context) {
   const slug = context.query.slug;
 
-  const apolloClient = initializeApollo(null, context.locale);
+  const apolloClient = initializeApollo(null);
   const productDetails = await apolloClient.query({
     query: ProductDetailsQuery,
     variables: {
