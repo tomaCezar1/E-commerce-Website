@@ -176,6 +176,19 @@
   display: none;
 }
 
+.mobile-header-phone {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 20px;
+  border: 1px solid $primaryColor;
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: $primaryColor;
+}
+
 .mobile-search-wrapper {
   margin-left: 16px;
   min-width: 40px;
