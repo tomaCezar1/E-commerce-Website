@@ -77,6 +77,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
+  margin-top: 14px;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
@@ -93,7 +94,7 @@
   height: 14px;
   position: absolute;
   right: 14px;
-  top: 7px;
+  top: 14px;
   background: $searchIcon;
 }
 
@@ -122,7 +123,7 @@
   overflow: hidden;
   padding-top: 1px;
   max-height: 345px;
-  z-index: 15 !important;
+  z-index: 2000 !important;
   position: relative;
 }
 

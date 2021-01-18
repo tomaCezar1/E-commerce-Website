@@ -11,7 +11,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 5000 !important;
+  z-index: 1000 !important;
 }
 
 .mobile-logo-wrapper {
@@ -221,7 +221,7 @@
 
 @media screen and (min-width: $xs) and (max-width: $sm) {
   .mobile-header-container {
-    height: 50px;
+    height: 40px;
     padding: 0 14px;
   }
 
@@ -237,7 +237,7 @@
 
 @media screen and (min-width: $sm) and (max-width: $md) {
   .mobile-header-container {
-    height: 60px;
+    height: 50px;
     padding: 0 14px;
   }
 
