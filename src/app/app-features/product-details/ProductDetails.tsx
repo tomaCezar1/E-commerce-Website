@@ -184,7 +184,9 @@ function ProductDetails({ productDetails }) {
                 </p>
               )}
 
-              <p className="product-details-serial-nb">{details.articleCode}</p>
+              <p className="product-details-serial-nb">
+                {dictionary.productCode}: {details.articleCode}
+              </p>
             </div>
             <div
               className="product-details-text"

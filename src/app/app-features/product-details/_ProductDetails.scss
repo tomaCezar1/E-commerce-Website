@@ -73,10 +73,9 @@
 }
 
 .product-details-serial-nb {
-  text-transform: uppercase;
-  font-family: $regular;
+  font-family: $medium;
   font-size: 14px;
-  color: #acb5bd;
+  color: $darkGrey;
 }
 
 .product-details-text {
@@ -510,6 +509,10 @@
       font-size: 32px;
       margin: 0;
     }
+  }
+
+  .product-details-serial-nb {
+    font-size: 12px;
   }
 
   .recommended-slide {
