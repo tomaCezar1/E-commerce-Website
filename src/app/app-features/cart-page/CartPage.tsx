@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { AppContext } from '../../../context';
 import { cartTotal, formatPrice } from '../../../utils';
 import CheckoutForm from './CheckoutForm/CheckoutForm';
-import { validate, createMarkup } from '../../../utils';
+import { createMarkup } from '../../../utils';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 
 export default function CartPage(): JSX.Element {
@@ -109,7 +109,7 @@ export default function CartPage(): JSX.Element {
                     </div>
                     <div className="mobile-price-qty">
                       <div className="cart-product-price-mobile">
-                        {product.isPromo ? product.newPrice : product.price}
+                        {product.isPromo ? product.newPrice : product.price}{' '}
                         {dictionary.lei}
                       </div>
                       <div className="cart-product-qty-wrap-mobile">
@@ -207,15 +207,11 @@ export default function CartPage(): JSX.Element {
             <ModalContent style={{ maxWidth: 320 }}>
               <ModalCloseButton />
               <ModalBody>
-                <CheckoutForm
-                  validate={validate}
-                  setOrderSuccess={setOrderSuccess}
-                  insideModal
-                />
+                <CheckoutForm setOrderSuccess={setOrderSuccess} insideModal />
               </ModalBody>
             </ModalContent>
           </Modal>
-          <CheckoutForm validate={validate} setOrderSuccess={setOrderSuccess} />
+          <CheckoutForm setOrderSuccess={setOrderSuccess} />
         </div>
       ) : (
         <div className="no-items-text">{dictionary.emptyCart}</div>

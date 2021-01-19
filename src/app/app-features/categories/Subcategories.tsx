@@ -8,6 +8,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useMediaQuery,
+  DrawerHeader,
 } from '@chakra-ui/react';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
 import ProductCard from '../home-page/ProductCard/ProductCard';
@@ -30,6 +31,7 @@ export default function Subcategories({
   const { favorites, appContext } = useContext(AppContext);
   const favoritesIds = favorites.map((el) => el.id);
   const [isSmallerThan1250] = useMediaQuery('(max-width: 1250px');
+  const [width, setWidth] = useState(0);
 
   const { dictionary } = appContext;
 
@@ -38,6 +40,10 @@ export default function Subcategories({
 
     setPagesCount(Math.ceil(productsCount / limit));
   }, [productsCount]);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, []);
 
   const paginationHandler = async (page) => {
     const currentPath = router.pathname;
@@ -85,6 +91,10 @@ export default function Subcategories({
     setShowFilter(false);
   };
 
+  const handleOpen = () => {
+    setShowFilter(true);
+  };
+
   return (
     <div className="subcategories-page-wrapper">
       <Breadcrumbs path={path} />
@@ -94,7 +104,7 @@ export default function Subcategories({
       ) : (
         <div className="subcategories-products-container">
           <div className="subcategories-filter">
-            {isSmallerThan1250 ? (
+            {isSmallerThan1250 || width < 1250 ? (
               <Drawer
                 isOpen={showFilter}
                 placement="left"
@@ -102,9 +112,11 @@ export default function Subcategories({
               >
                 <DrawerOverlay>
                   <DrawerContent>
-                    <DrawerCloseButton onClick={handleClose} />
+                    <DrawerHeader style={{ marginTop: 12 }}>
+                      <DrawerCloseButton onClick={handleClose} />
+                    </DrawerHeader>
                     <DrawerBody>
-                      <div style={{ marginTop: 50 }}>
+                      <div style={{ marginBottom: 50 }}>
                         <Filters
                           categoryId={subcategory.id}
                           handleClose={handleClose}
@@ -120,13 +132,8 @@ export default function Subcategories({
           </div>
           <div style={{ width: '100%' }}>
             <div className="filter-and-sorting">
-              <div className="filter-mobile-container">
-                <div
-                  className="filter-mobile"
-                  onClick={() => setShowFilter(true)}
-                >
-                  {dictionary.filters}
-                </div>
+              <div className="filter-mobile-container" onClick={handleOpen}>
+                <div className="filter-mobile">{dictionary.filters}</div>
               </div>
 
               <div className="sorting-bar-wrapper">

@@ -187,10 +187,10 @@ export const removeFavorites = () => {
 // Form fields validation
 const nameValidation = (fieldName, fieldValue, locale) => {
   if (fieldValue.trim() === '') {
-    if (locale === 'ro') {
-      return 'Numele este obligatoriu';
-    } else {
+    if (locale === 'ru') {
       return 'Имя обязательно';
+    } else {
+      return 'Numele este obligatoriu';
     }
   }
 
@@ -199,18 +199,18 @@ const nameValidation = (fieldName, fieldValue, locale) => {
 
 const phoneValidation = (fieldName, fieldValue, locale) => {
   if (String(fieldValue).length < 8) {
-    if (locale === 'ro') {
-      return 'Număr inexistent';
-    } else {
+    if (locale === 'ru') {
       return 'Номер телефона обязателен';
+    } else {
+      return 'Număr inexistent';
     }
   }
 
   if (String(fieldValue).trim().length < 1) {
-    if (locale === 'ro') {
-      return 'Telefonul este obligatoriu';
-    } else {
+    if (locale === 'ru') {
       return 'Номер телефона обязателен';
+    } else {
+      return 'Telefonul este obligatoriu';
     }
   }
   return null;
@@ -218,10 +218,10 @@ const phoneValidation = (fieldName, fieldValue, locale) => {
 
 const callTimeValidation = (fieldName, fieldValue, locale) => {
   if (fieldValue.trim().length < 1) {
-    if (locale === 'ro') {
-      return 'Indicați ora apelului';
-    } else {
+    if (locale === 'ru') {
       return 'Укажите время звонка';
+    } else {
+      return 'Indicați ora apelului';
     }
   }
 

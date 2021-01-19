@@ -41,7 +41,7 @@
 }
 
 .checkout-form-button {
-  background: $primaryColor;
+  background: $primaryColor !important;
   border-radius: 8px;
   color: $white;
   font-size: 15px;
@@ -57,6 +57,7 @@
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none;
+  -webkit-appearance: none;
 }
 
 .checkout-option-text {

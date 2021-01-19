@@ -79,12 +79,24 @@
   .title-1 {
     font-size: 24px !important;
   }
+
+  @media screen and (min-color-index: 0) and(-webkit-min-device-pixel-ratio:0) {
+    .subcat-card-wrapper {
+      margin: 0 15px 15px 0;
+    }
+  }
 }
 
 //sm
 @media screen and (min-width: 581px) and (max-width: $sm) {
   .subcat-banner {
     display: none;
+  }
+  
+  @media screen and (min-color-index: 0) and(-webkit-min-device-pixel-ratio:0) {
+    .subcat-card-wrapper {
+      margin: 0 15px 15px 0;
+    }
   }
 }
 //md

@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { AppContext } from '../../../context';
-import { fontsize } from '../../../../test/__mocks__/fileMock';
 
 export interface FiltersProps {
   categoryId: string;
@@ -32,9 +31,11 @@ export default function Filters({
   const router = useRouter();
   const context = useContext(AppContext);
   const { dictionary } = context.appContext;
+  const [width, setWidth] = useState(0);
 
   useEffect(() => {
     setLoadingFilters(true);
+    setWidth(window.innerWidth);
   }, []);
 
   useEffect(() => {
@@ -139,6 +140,7 @@ export default function Filters({
               dangerLight: '#C3CFE4',
             },
           })}
+          inputProps={{ readOnly: true }}
         />
       </div>
     );
@@ -197,7 +199,7 @@ export default function Filters({
   return (
     <div
       className={
-        isSmallerThan1250
+        isSmallerThan1250 || width < 1250
           ? 'filter-panel-wrapper-mobile'
           : 'filter-panel-wrapper'
       }

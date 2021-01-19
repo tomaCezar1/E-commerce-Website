@@ -363,6 +363,12 @@
       height: 142px;
     }
   }
+
+  @media screen and (min-color-index: 0) and(-webkit-min-device-pixel-ratio:0) {
+    .product-card-container {
+      margin: 0 6px 15px 0;
+    }
+  }
 }
 
 //sm
@@ -497,6 +503,12 @@
       height: 142px;
     }
   }
+
+  @media screen and (min-color-index: 0) and(-webkit-min-device-pixel-ratio:0) {
+    .product-card-container {
+      margin: 0 15px 15px 0;
+    }
+  }
 }
 
 //md
@@ -629,6 +641,12 @@
 
     .product-card-image {
       height: 142px;
+    }
+  }
+
+  @media screen and (min-color-index: 0) and(-webkit-min-device-pixel-ratio:0) {
+    .product-card-container {
+      margin: 0 15px 15px 0;
     }
   }
 }
