@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import InputMask from 'react-input-mask';
 import { useMutation } from '@apollo/client';
 import { OrdersMutation } from '../CartPageMutation';
+import { validate } from '../../../../utils';
 
 const initialValues = {
   name: '',
@@ -15,7 +16,6 @@ const initialValues = {
 };
 
 export default function CheckoutForm({
-  validate,
   setOrderSuccess,
   insideModal = false,
 }): JSX.Element {
@@ -76,7 +76,7 @@ export default function CheckoutForm({
 
     const formValidation = Object.keys(values).reduce(
       (acc, key) => {
-        const newError = validate[key](values[key]);
+        const newError = validate[key](values[key], router.locale);
         const newTouched = { [key]: true };
 
         return {

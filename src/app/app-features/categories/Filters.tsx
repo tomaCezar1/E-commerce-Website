@@ -194,10 +194,12 @@ export default function Filters({
     );
   };
 
+  const { innerWidth } = window;
+
   return (
     <div
       className={
-        isSmallerThan1250
+        isSmallerThan1250 || innerWidth < 1250
           ? 'filter-panel-wrapper-mobile'
           : 'filter-panel-wrapper'
       }

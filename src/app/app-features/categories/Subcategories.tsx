@@ -85,6 +85,12 @@ export default function Subcategories({
     setShowFilter(false);
   };
 
+  const handleOpen = () => {
+    setShowFilter(true);
+  };
+
+  const { innerWidth } = window;
+
   return (
     <div className="subcategories-page-wrapper">
       <Breadcrumbs path={path} />
@@ -94,7 +100,7 @@ export default function Subcategories({
       ) : (
         <div className="subcategories-products-container">
           <div className="subcategories-filter">
-            {isSmallerThan1250 ? (
+            {isSmallerThan1250 || innerWidth < 1250 ? (
               <Drawer
                 isOpen={showFilter}
                 placement="left"
@@ -104,7 +110,7 @@ export default function Subcategories({
                   <DrawerContent>
                     <DrawerCloseButton onClick={handleClose} />
                     <DrawerBody>
-                      <div style={{ marginTop: 50 }}>
+                      <div style={{ marginTop: 50, marginBottom: 50 }}>
                         <Filters
                           categoryId={subcategory.id}
                           handleClose={handleClose}
@@ -120,13 +126,8 @@ export default function Subcategories({
           </div>
           <div style={{ width: '100%' }}>
             <div className="filter-and-sorting">
-              <div className="filter-mobile-container">
-                <div
-                  className="filter-mobile"
-                  onClick={() => setShowFilter(true)}
-                >
-                  {dictionary.filters}
-                </div>
+              <div className="filter-mobile-container" onClick={handleOpen}>
+                <div className="filter-mobile">{dictionary.filters}</div>
               </div>
 
               <div className="sorting-bar-wrapper">

@@ -121,7 +121,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  a {
+  span {
     font-size: 12px;
     margin-left: 8px;
     font-family: $regular;
@@ -187,6 +187,21 @@
 
   .footer {
     padding-bottom: 0;
+  }
+
+  @media screen and (min-color-index: 0) and(-webkit-min-device-pixel-ratio:0) {
+    .footer-divider-mobile {
+      margin: 0
+    }
+
+    .footer-copyright-mobile {
+      height: 20px !important;
+      margin: 10px 0 15px 0;
+    }
+
+    .footer-copyright-text {
+      margin-top: 10px;
+    }
   }
 }
 
