@@ -9,6 +9,7 @@ import Layout from '../app/common/layout/Layout';
 import { AppContextProvider } from '../context';
 
 import '../styles/styles.scss';
+import { SERVER_URL } from '../app/lib/constants';
 
 function MyApp({
   Component,
@@ -59,7 +60,7 @@ MyApp.getInitialProps = async (appContext) => {
   });
 
   const res = await fetch(
-    `http://165.227.171.192:3000/api/translations/${appContext.router.locale}`
+    `${SERVER_URL}/api/translations/${appContext.router.locale}`
   );
   const dictionary = await res.json();
 
