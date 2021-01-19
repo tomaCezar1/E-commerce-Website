@@ -54,7 +54,11 @@ export default function MobileHeader() {
   const handleClick = () => {
     setShowSearchBar(false);
     setTimeout(() => {
-      setShowLogo(!showLogo);
+      if (showLogo) {
+        setShowLogo(false);
+      } else {
+        setShowLogo(true);
+      }
     }, 100);
   };
 
@@ -67,14 +71,16 @@ export default function MobileHeader() {
         <div
           className="mobile-search-wrapper"
           onClick={() => {
-            setShowLogo(!showLogo);
+            setShowLogo(false);
             setTimeout(() => {
               setShowSearchBar(true);
               document.getElementById('Search').focus();
             }, 300);
           }}
         >
-          {showSearchBar && <SearchBar mobile onClose={handleClick} />}
+          {showSearchBar && !showLogo && (
+            <SearchBar mobile onClose={handleClick} />
+          )}
           {!showSearchBar && (
             <div
               className={

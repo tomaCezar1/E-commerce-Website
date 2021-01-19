@@ -50,7 +50,7 @@ export default function SearchBar({ mobile = false, onClose }): JSX.Element {
         className={mobile ? 'search-container-mobile' : 'search-container'}
         ref={searchContainerRef}
       >
-        <div style={{ margin: '0 auto', position: 'relative' }}>
+        <div className="search-bar-container">
           {searchTerm ? (
             <div
               className={
