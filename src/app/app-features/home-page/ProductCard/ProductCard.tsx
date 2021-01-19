@@ -76,9 +76,11 @@ function ProductCard({ product, small = false, isFavorite = false }) {
                 )}
               </div>
               {product.available ? (
-                <p className="product-in-stock-invis"></p>
+                <p className="product-in-stock-invis">
+                  {dictionary.notAvailable}
+                </p>
               ) : (
-                <p className="product-in-stock product-in-stock-invis">
+                <p className="product-in-stock">
                   {product.notAvailableCustomText ? (
                     <span>{product.notAvailableCustomText}</span>
                   ) : (

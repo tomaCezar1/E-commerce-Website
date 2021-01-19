@@ -11,7 +11,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 5000 !important;
+  z-index: 1000 !important;
 }
 
 .mobile-logo-wrapper {
@@ -70,7 +70,7 @@
 }
 
 .mobile-cart-icon {
-  background: url('../../../../../public/svg/CartIconSmall.svg');
+  background: url('../../../../../public/svg/CartIconSmall.svg') no-repeat;
   width: 23px;
   height: 20px;
   position: relative;
@@ -176,6 +176,23 @@
   display: none;
 }
 
+.mobile-header-phone {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 20px;
+  border: 1px solid $primaryColor;
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: $primaryColor;
+}
+
+.mobile-header-phone:focus {
+  outline: none;
+}
+
 .mobile-search-wrapper {
   margin-left: 16px;
   min-width: 40px;
@@ -200,6 +217,7 @@
 
   .mobile-header-container {
     padding-left: 5px;
+    height: 50px;
   }
 
   .mobile-cart-icon {
@@ -221,7 +239,7 @@
 
 @media screen and (min-width: $xs) and (max-width: $sm) {
   .mobile-header-container {
-    height: 50px;
+    height: 40px;
     padding: 0 14px;
   }
 
@@ -237,7 +255,7 @@
 
 @media screen and (min-width: $sm) and (max-width: $md) {
   .mobile-header-container {
-    height: 60px;
+    height: 50px;
     padding: 0 14px;
   }
 

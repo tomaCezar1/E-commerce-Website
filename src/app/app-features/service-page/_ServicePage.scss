@@ -26,7 +26,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 170px;
+  height: 210px;
   background-color: $white;
   border-radius: 12px;
   box-shadow: 0px 2px 5px -2px rgba(150, 150, 150, 0.91);
@@ -34,6 +34,7 @@
   overflow: hidden;
   width: $width;
   margin-bottom: 40px;
+  padding-left: 20px;
 }
 
 .service-algoritm-item {
@@ -73,18 +74,13 @@
 }
 
 .service-call-now {
-  background-color: rgb(224, 224, 224);
-  width: 120px;
-  height: 30px;
-  text-align: center;
+  background-color: $primaryColor;
+  padding: 12px 36px;
   font-family: $medium;
-  color: $black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: $white;
   font-size: 16px;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5;
+  border-radius: 8px;
 }
 
 .service-page-contacts {
@@ -242,8 +238,10 @@
     justify-content: space-evenly;
     width: 100%;
     min-height: 700px;
+    height: auto;
     max-width: 400px;
     margin: 15px auto;
+    padding: 20px 0;
   }
   .service-icon svg {
     transform: rotate(90deg);
@@ -294,6 +292,8 @@
     min-height: 700px;
     max-width: 400px;
     margin: 15px auto;
+    height: auto;
+    padding: 20px 0;
   }
   .service-icon svg {
     transform: rotate(90deg);

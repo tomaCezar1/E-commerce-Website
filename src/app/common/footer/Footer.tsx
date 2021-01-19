@@ -101,20 +101,30 @@ export default function Footer() {
         <div className="footer-phone-wrapper-mobile">
           <div className="footer-copyright-mobile">
             <div className="footer-social-icons">
-              <i className="footer-icon">
-                <FacebookIcon />
-              </i>
-              <i className="footer-icon">
-                <InstagramIcon />
-              </i>
+              <a href="https://www.facebook.com/cegoltar.md/">
+                <i className="footer-icon">
+                  <FacebookIcon />
+                </i>
+              </a>
+              <a
+                href="https://instagram.com/cegoltar?igshid=1hsf8mg0vy5jw"
+                style={{ marginLeft: 15 }}
+              >
+                <i className="footer-icon">
+                  <InstagramIcon />
+                </i>
+              </a>
             </div>
 
-            <div className="cursor-pointer footer-phone-mobile">
+            <a
+              href="tel:+373 69 000 000"
+              className="cursor-pointer footer-phone-mobile"
+            >
               <i>
                 <Phone />
               </i>
-              <a href="tel:+373 69 000 000">069 00 00 00</a>
-            </div>
+              <span>069 00 00 00</span>
+            </a>
           </div>
           <div className=" footer-divider-mobile" />
           <div className="footer-copyright-text">
