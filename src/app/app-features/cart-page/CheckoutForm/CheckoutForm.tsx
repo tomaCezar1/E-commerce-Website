@@ -184,9 +184,6 @@ export default function CheckoutForm({
               : 'checkout-form-input'
           }
         >
-          <option value="" disabled hidden>
-            {dictionary.callTime}
-          </option>
           <option value="9:00 - 12:00" className="checkout-option-text">
             9:00 - 12:00
           </option>
@@ -196,7 +193,11 @@ export default function CheckoutForm({
           <option value="15:00 - 18:00" className="checkout-option-text">
             15:00 - 18:00
           </option>
-          <option value={dictionary.asap} className="checkout-option-text">
+          <option
+            value={dictionary.asap}
+            className="checkout-option-text"
+            selected
+          >
             {dictionary.asap}
           </option>
         </Select>

@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import { AppContext } from '../../../context';
 import Breadcrumbs from '../../common/breadcrumbs/Breadcrumbs';
-import RotaryPhone from '../../../../public/svg/rotary_phone_black.svg';
-import ServiceIcon from '../../../../public/svg/service.svg';
-import ServiceGear from '../../../../public/svg/service_gear.svg';
-import Guarantee from '../../../../public/svg/guarantee.svg';
-import Arrow from '../../../../public/svg/arrow.svg';
+import PhoneCall from '../../../../public/svg/PhoneCall.svg';
+import Gear from '../../../../public/svg/Gear.svg';
+import Wrench from '../../../../public/svg/Wrench.svg';
+import Guarantee from '../../../../public/svg/Medal.svg';
+import ArrowRight from '../../../../public/svg/ArrowRight.svg';
 
 export default function Service(): JSX.Element {
   const { appContext } = useContext(AppContext);
@@ -103,11 +103,9 @@ export default function Service(): JSX.Element {
         <br />
         <div className="service-algoritm-wrapper">
           <div className="service-algoritm-item">
-            <div className="service-icon-wrapper">
-              <i style={{ margin: 'auto' }}>
-                <RotaryPhone />
-              </i>
-            </div>
+            <i style={{ margin: 'auto' }}>
+              <PhoneCall />
+            </i>
             <div className="service-algoritm-heading">
               {dictionary.contactUs}
             </div>
@@ -117,15 +115,13 @@ export default function Service(): JSX.Element {
           </div>
 
           <i className="service-icon">
-            <Arrow />
+            <ArrowRight />
           </i>
 
           <div className="service-algoritm-item">
-            <div className="service-icon-wrapper">
-              <i style={{ margin: 'auto' }}>
-                <ServiceGear />
-              </i>
-            </div>
+            <i style={{ margin: 'auto' }}>
+              <Gear />
+            </i>
             <div className="service-algoritm-heading">
               {dictionary.diagnostic}
             </div>
@@ -135,15 +131,13 @@ export default function Service(): JSX.Element {
           </div>
 
           <i className="service-icon">
-            <Arrow />
+            <ArrowRight />
           </i>
 
           <div className="service-algoritm-item" style={{ marginTop: 6 }}>
-            <div className="service-icon-wrapper">
-              <i style={{ margin: 'auto' }}>
-                <ServiceIcon />
-              </i>
-            </div>
+            <i style={{ margin: 'auto' }}>
+              <Wrench />
+            </i>
             <div className="service-algoritm-heading">{dictionary.repairs}</div>
             <div className="service-algoritm-text">
               {dictionary.servicePageAlgorithmItem3}
@@ -151,15 +145,13 @@ export default function Service(): JSX.Element {
           </div>
 
           <i className="service-icon">
-            <Arrow />
+            <ArrowRight />
           </i>
 
           <div className="service-algoritm-item">
-            <div className="service-icon-wrapper">
-              <i style={{ margin: 'auto' }}>
-                <Guarantee />
-              </i>
-            </div>
+            <i style={{ margin: 'auto' }}>
+              <Guarantee />
+            </i>
             <div className="service-algoritm-heading">
               {dictionary.guarantee}
             </div>

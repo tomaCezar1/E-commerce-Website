@@ -99,6 +99,12 @@ export default function MobileHeader() {
                 <Link href="/">
                   <div className="drawer-logo" />
                 </Link>
+                <a className="mobile-header-phone" href="tel:+373 69 606 707">
+                  <div className="phone-icon-wrapper">
+                    <div className="header-phone-icon" />
+                  </div>
+                  069 60 67 07
+                </a>
               </DrawerHeader>
               <DrawerBody>
                 <div style={{ marginBottom: 50 }}>
