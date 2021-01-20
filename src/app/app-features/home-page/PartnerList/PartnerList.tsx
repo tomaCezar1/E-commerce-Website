@@ -1,8 +1,9 @@
 import 'slick-carousel/slick/slick-theme.css';
 import LeftArrow from '../../../../../public/svg/LeftPartnerIcon.svg';
 import RightArrow from '../../../../../public/svg/LeftPartnerIcon.svg';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useMediaQuery } from '@chakra-ui/react';
+import { AppContext } from '../../../../context';
 
 function PartnerList(): JSX.Element {
   const paths = [
@@ -31,6 +32,9 @@ function PartnerList(): JSX.Element {
   const [isLargerThan770] = useMediaQuery('(min-width: 770px)');
   const [isLargerThan580] = useMediaQuery('(min-width: 580px)');
   const [isLargerThan0] = useMediaQuery('(min-width: 0px)');
+
+  const { appContext } = useContext(AppContext);
+  const { homeVendorList } = appContext.dictionary;
 
   let goLeft, goRight;
 
@@ -69,34 +73,37 @@ function PartnerList(): JSX.Element {
   }
 
   return (
-    <div className="slider-container">
-      <i id="goLeft" onClick={goLeft}>
-        <LeftArrow />
-      </i>
-      <div className="slider">
-        {paths.map((item, index) => {
-          return (
-            <div
-              key={index}
-              className="slide"
-              style={{ transform: `translateX(${x}%)` }}
-            >
-              <img src={item} alt="" className="partner-img" />
-            </div>
-          );
-        })}
+    <>
+      <h1 className="product-list-header">{homeVendorList}</h1>
+      <div className="slider-container">
+        <i id="goLeft" onClick={goLeft}>
+          <LeftArrow />
+        </i>
+        <div className="slider">
+          {paths.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className="slide"
+                style={{ transform: `translateX(${x}%)` }}
+              >
+                <img src={item} alt="" className="partner-img" />
+              </div>
+            );
+          })}
+        </div>
+        <i
+          id="goRight"
+          className="partner-list-arrow-right"
+          onClick={goRight}
+          style={{
+            transform: 'rotate(180deg)',
+          }}
+        >
+          <RightArrow />
+        </i>
       </div>
-      <i
-        id="goRight"
-        className="partner-list-arrow-right"
-        onClick={goRight}
-        style={{
-          transform: 'rotate(180deg)',
-        }}
-      >
-        <RightArrow />
-      </i>
-    </div>
+    </>
   );
 }
 
