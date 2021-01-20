@@ -24,6 +24,9 @@ steps:
     script: 'mkdir cegoltar-ui'
 - task: CmdLine@2
   inputs:
+    script: 'cp public cegoltar-ui/'
+- task: CmdLine@2
+  inputs:
     script: 'cp package.json cegoltar-ui/'
 - task: CmdLine@2
   inputs:
