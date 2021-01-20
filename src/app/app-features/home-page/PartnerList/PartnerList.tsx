@@ -6,17 +6,24 @@ import { useMediaQuery } from '@chakra-ui/react';
 
 function PartnerList(): JSX.Element {
   const paths = [
-    'https://source.unsplash.com/RyRpq9SUwAU/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/yXpA_eCbtzI/1600x900',
-    'https://source.unsplash.com/RyRpq9SUwAU/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
-    'https://source.unsplash.com/BeOW_PJjA0w/1600x900',
+    '/img/vendors/feman.png',
+    '/img/vendors/iek.png',
+    '/img/vendors/ingco.png',
+    '/img/vendors/iug-kabeli.png',
+    '/img/vendors/keaz.png',
+    '/img/vendors/kvt.png',
+    '/img/vendors/kzs.png',
+    '/img/vendors/mepa.png',
+    '/img/vendors/navigator.png',
+    '/img/vendors/schneider.png',
+    '/img/vendors/spotlight.png',
+    '/img/vendors/ukrelektroaparat.png',
+    '/img/vendors/valon-a.png',
+    '/img/vendors/ardic.png',
+    '/img/vendors/britop.png',
+    '/img/vendors/elctrocanali.png',
+    '/img/vendors/elektro plast.png',
+    '/img/vendors/far.png',
   ];
   const [x, setX] = useState(0);
 
