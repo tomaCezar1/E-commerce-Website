@@ -4,6 +4,6 @@ module.exports = {
     defaultLocale: 'ro',
   },
   images: {
-    domains: ['cdn.incoden.com'],
+    domains: ['cdn.incoden.com', 'ceg.fra1.digitaloceanspaces.com'],
   },
 };
