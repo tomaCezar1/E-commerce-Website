@@ -9,6 +9,7 @@ export const BlogPostsQuery = gql`
       slug
       createdAt
       previewDesc
+      previewImg
       i18n
     }
   }
