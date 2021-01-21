@@ -158,11 +158,11 @@ export const clearCart = () => {
 };
 
 export const formatPrice = (priceWithDecimal: number) => {
-  const dec = priceWithDecimal.toString().split('.')[1];
-
+  const fixedPrice = priceWithDecimal.toFixed(2);
+  const dec = fixedPrice.split('.')[1];
   const len = dec && dec.length > 2 ? dec.length : 2;
-
-  return priceWithDecimal.toFixed(len);
+  const result = +fixedPrice;
+  return result.toFixed(len);
 };
 
 // Favorites utilities
