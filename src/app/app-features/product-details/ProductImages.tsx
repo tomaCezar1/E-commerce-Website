@@ -21,11 +21,15 @@ function ProductImages(props) {
             },
             largeImage: {
               src: props.images[currentImg],
-              width: 600,
-              height: 800,
+              width: 999,
+              height: 999,
             },
             imageClassName: 'big-image',
             enlargedImageStyle: { objectFit: 'cover' },
+            enlargedImageContainerDimensions: {
+              width: '200%',
+              height: '150%',
+            },
           }}
         />
       </div>
