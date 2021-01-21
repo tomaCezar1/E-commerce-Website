@@ -22,7 +22,7 @@ function ProductDetails({ productDetails }) {
     AppContext
   );
   const [qty, setQty] = useState(1);
-  const [isAvailable, setAvailable] = useState(null);
+  const { available } = details;
   const [x, setX] = useState(0);
   const favoritesIds = favorites.map((el) => el.id);
   const filtered = favorites.filter((favorite) => favorite.id === details.id);
@@ -101,14 +101,6 @@ function ProductDetails({ productDetails }) {
 
   const loaded = useLoaded();
 
-  useEffect(() => {
-    if (details.available) {
-      setAvailable(true);
-    } else {
-      setAvailable(false);
-    }
-  }, []);
-
   let goLeft, goRight;
 
   //Recommended Products Slider
@@ -172,9 +164,8 @@ function ProductDetails({ productDetails }) {
             <ProductImages images={details.images} />
           </div>
           <div className="product-details-content">
-            <h1 className="product-details-title">{details.name}</h1>
             <div className="product-details-info">
-              {isAvailable ? (
+              {available ? (
                 <p className="product-details-in-stock">{dictionary.inStock}</p>
               ) : (
                 <p className="product-details-not-in-stock">
@@ -344,13 +335,10 @@ function ProductDetails({ productDetails }) {
                 </div>
               </div>
             </div>
-            <a
-              href="tel: +373 69 606 707"
-              className="product-details-questions"
-            >
+            <div className="product-details-questions">
               <p>{dictionary.anyQuestions}</p>&nbsp;
-              <a>{dictionary.callNow}</a>
-            </a>
+              <a href="tel: +373 69 606 707"> {dictionary.callNow}</a>
+            </div>
           </div>
         </div>
 
