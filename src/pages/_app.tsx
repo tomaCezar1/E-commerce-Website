@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import App, { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/client';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { initializeApollo, useApollo } from '../app/lib/apolloClient';
 import { ProductCategoriesQuery } from '../app/app-features/categories/ProductCategoriesQueries';
 import Layout from '../app/common/layout/Layout';
@@ -10,6 +10,16 @@ import { AppContextProvider } from '../context';
 
 import '../styles/styles.scss';
 import { SERVER_URL } from '../app/lib/constants';
+
+import { createBreakpoints } from '@chakra-ui/theme-tools';
+// 2. Update the breakpoints as key-value pairs
+const breakpoints = createBreakpoints({
+  sm: '580px',
+  md: '770px',
+  lg: '1250px',
+  xl: '1500px',
+});
+const theme = extendTheme({ breakpoints });
 
 function MyApp({
   Component,
@@ -24,7 +34,7 @@ function MyApp({
         <meta name="description" content="Test" />
         <title>Cegoltar</title>
       </Head>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <AppContextProvider initialState={initialState}>
           <ApolloProvider client={apolloClient}>
             <Layout>

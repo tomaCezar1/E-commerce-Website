@@ -14,6 +14,27 @@ export function toggleHeader() {
   const header = document.getElementById('header-relative');
   const homepage = document.getElementById('homepage');
 
+  const addFixedToBg = () => {
+    const elem = document.getElementsByClassName('header-background-full')[0];
+    if (elem) {
+      elem.classList.add('bg-fixed');
+    }
+  };
+
+  const rmFixedToBg = () => {
+    const elem = document.getElementsByClassName('header-background-full')[0];
+    if (elem) {
+      elem.classList.remove('bg-fixed');
+    }
+  };
+
+  const hideBg = () => {
+    const elem = document.getElementsByClassName('header-background-full')[0];
+    if (elem) {
+      elem.classList.add('hide');
+    }
+  }
+
   if (innerWidth > 1151) {
     const checkScroll = function () {
       // Find the direction of scroll
@@ -36,16 +57,19 @@ export function toggleHeader() {
 
       if (direction === 1 && curScroll < 65) {
         header.classList.remove('header-fixed');
+        rmFixedToBg();
         header.classList.add('header-relative');
         header.classList.remove('hide');
         homepage.classList.remove('add-padding');
       }
       if (direction === 2 && curScroll < 150) {
         header.classList.remove('header-fixed');
+        rmFixedToBg();
         header.classList.add('header-relative');
       }
       if (direction === 2 && curScroll > 150) {
         header.classList.remove('header-fixed');
+        rmFixedToBg();
         header.classList.add('hide');
       }
       if (direction === 2 && curScroll > 65) {
@@ -62,6 +86,7 @@ export function toggleHeader() {
       if (direction === 1) {
         header.classList.remove('header-relative');
         header.classList.add('header-fixed');
+        addFixedToBg();
         header.classList.remove('hide');
         homepage.classList.add('add-padding');
         prevDirection = direction;
