@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import { AppContext } from '../../../context';
 import FacebookIcon from '../../../../public/svg/FacebookIcon.svg';
@@ -22,36 +22,67 @@ export default function Footer() {
             <div className="footer-links-group">
               <p className="footer-links-heading">{dictionary.links}</p>
               <Link href="/service" locale={router.locale}>
-                <span className="footer-link">{dictionary.serviceCenter}</span>
+                <div className="flex-row align-center">
+                  <span className="material-icons">handyman</span>
+                  <span className="footer-link">
+                    {dictionary.serviceCenter}
+                  </span>
+                </div>
               </Link>
               <Link href="/regional-store" locale={router.locale}>
-                <span className="footer-link">{dictionary.regionalStores}</span>
+                <div className="flex-row align-center">
+                  <span className="material-icons">store</span>
+                  <span className="footer-link">
+                    {dictionary.regionalStores}
+                  </span>
+                </div>
               </Link>
               <Link href="/news" locale={router.locale}>
-                <span className="footer-link">{dictionary.news}</span>
+                <div className="flex-row align-center">
+                  <span className="material-icons">article</span>
+                  <span className="footer-link">{dictionary.news}</span>
+                </div>
               </Link>
               <Link href="/jobs" locale={router.locale}>
-                <span className="footer-link">{dictionary.jobs}</span>
+                <div className="flex-row align-center">
+                  <span className="material-icons">people</span>
+                  <span className="footer-link">{dictionary.jobs}</span>
+                </div>
               </Link>
             </div>
             <div className="footer-links-group" style={{ marginLeft: 50 }}>
               <p className="footer-links-heading">{dictionary.information}</p>
               <Link href="/guarantee" locale={router.locale}>
-                <span className="footer-link">{dictionary.guaranteeTerms}</span>
+                <div className="flex-row align-center">
+                  <span className="material-icons">beenhere</span>
+                  <span className="footer-link">{dictionary.guaranteeTerms}</span>
+                </div>
               </Link>
               <Link href="/about" locale={router.locale}>
-                <span className="footer-link">{dictionary.aboutUs}</span>
+                <div className="flex-row align-center">
+                  <span className="material-icons">info</span>
+                  <span className="footer-link">{dictionary.aboutUs}</span>
+                </div>
               </Link>
               <Link href="/delivery" locale={router.locale}>
-                <span className="footer-link">{dictionary.delivery}</span>
+                <div className="flex-row align-center">
+                  <span className="material-icons">directions_car</span>
+                  <span className="footer-link">{dictionary.delivery}</span>
+                </div>
               </Link>
               <Link href="/privacy" locale={router.locale}>
-                <span className="footer-link">{dictionary.privacy}</span>
+                <div className="flex-row align-center">
+                  <span className="material-icons">privacy_tip</span>
+                  <span className="footer-link">{dictionary.privacy}</span>
+                </div>
               </Link>
               <Link href="/terms" as="/terms" locale={router.locale}>
-                <span className="footer-link">
-                  {dictionary.termsAndConditions}
-                </span>
+                <div className="flex-row align-center">
+                  <span className="material-icons">policy</span>
+                  <span className="footer-link">
+                    {dictionary.termsAndConditions}
+                  </span>
+                </div>
               </Link>
             </div>
           </div>

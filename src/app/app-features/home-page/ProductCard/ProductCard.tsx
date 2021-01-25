@@ -63,16 +63,29 @@ function ProductCard({ product, small = false, isFavorite = false }) {
             <div className="product-card-bottom">
               <div className="product-card-price">
                 {sale > 0 ? (
-                  <div className="discounted-price-div">
-                    <p className="crossed-price">{product.price}</p>
-                    <p className="discounted-price">
-                      {product?.newPrice} {dictionary.lei}
-                    </p>
+                  <div
+                    className="flex-row second-axis-center justify-between full-width"
+                    style={{ marginTop: 15 }}
+                  >
+                    <div className="discounted-price-div">
+                      <p className="crossed-price">
+                        {product.price} {dictionary.lei}
+                      </p>
+                      <p className="discounted-price">
+                        {product?.newPrice} {dictionary.lei}
+                      </p>
+                    </div>
+                    {/*<div>*/}
+                    <img src="/img/vendors/schneider.png" width={75} alt="" />
+                    {/*</div>*/}
                   </div>
                 ) : (
-                  <p className="basic-price">
-                    {product?.price} {dictionary.lei}
-                  </p>
+                  <div className="flex-row second-axis-center justify-between full-width">
+                    <p className="basic-price">
+                      {product?.price} {dictionary.lei}
+                    </p>
+                    <img src="/img/vendors/ingco.png" width={75} alt="" />
+                  </div>
                 )}
               </div>
               {product.available ? (
