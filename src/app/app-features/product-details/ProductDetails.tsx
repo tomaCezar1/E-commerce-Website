@@ -164,6 +164,7 @@ function ProductDetails({ productDetails }) {
             <ProductImages images={details.images} />
           </div>
           <div className="product-details-content">
+            <h1 className="product-details-title">{details.name}</h1>
             <div className="product-details-info">
               {available ? (
                 <p className="product-details-in-stock">{dictionary.inStock}</p>
