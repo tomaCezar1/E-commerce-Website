@@ -45,12 +45,21 @@ export default function Header(): JSX.Element {
         {process.browser && (
           <>
             <div className="header-static">
-              <Box
-                as="div"
-                className="extendend-logo"
-              >
+              <div className="ex-logo-wrapper">
+                <Link href="/" locale={router.locale}>
+                  <Box
+                    display={{ base: 'none', lg: 'flex' }}
+                    as="div"
+                    className="extendend-logo cursor-pointer"
+                  />
+                </Link>
 
-              </Box>
+                <div className="addresses">
+                  <span className="material-icons">location_on</span>
+                  <span>mun. Chișinău, str. Petru Rareș, 43/1</span>
+                </div>
+              </div>
+
               <a className="header-phone" href="tel:+373 69 606 707">
                 <div className="phone-icon-wrapper">
                   <div className="header-phone-icon" />
@@ -59,13 +68,22 @@ export default function Header(): JSX.Element {
               </a>
               <div className={`header-links ${router.locale === 'ru' && 'ru'}`}>
                 <Link href="/regional-store" locale={router.locale}>
-                  {dictionary.regionalStores}
+                  <div className="link-body">
+                    <span className="material-icons">store</span>
+                    {dictionary.regionalStores}
+                  </div>
                 </Link>
                 <Link href="/service" locale={router.locale}>
-                  {dictionary.serviceCenter}
+                  <div className="link-body">
+                    <span className="material-icons">handyman</span>
+                    {dictionary.serviceCenter}
+                  </div>
                 </Link>
                 <Link href="/news" locale={router.locale}>
-                  {dictionary.news}
+                  <div className="link-body">
+                    <span className="material-icons">article</span>
+                    {dictionary.news}
+                  </div>
                 </Link>
               </div>
             </div>

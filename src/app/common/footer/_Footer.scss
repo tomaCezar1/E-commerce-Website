@@ -4,6 +4,13 @@
   height: 282px !important;
   display: flex;
   background: $primaryColor;
+
+  .material-icons {
+    margin-bottom: 6px;
+    margin-right: 6px;
+    font-size: 20px;
+  }
+
 }
 
 .footer-wrapper {
